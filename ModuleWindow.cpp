@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleWindow.h"
 
+
 ModuleWindow::ModuleWindow(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	window = NULL;
@@ -18,6 +19,8 @@ bool ModuleWindow::Init()
 {
 	LOG("Init SDL window & surface");
 	bool ret = true;
+
+	
 
 	if(SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
