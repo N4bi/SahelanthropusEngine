@@ -37,7 +37,7 @@ bool ModuleRenderer3D::Init()
 		ret = false;
 	}
 
-	GLenum gl_enum = glewInit();
+	GLenum gl_init = glewInit();
 	
 	if(ret == true)
 	{
