@@ -2,12 +2,14 @@
 #include "Application.h"
 #include "ModuleInput.h"
 
+
 #define MAX_KEYS 300
 
 ModuleInput::ModuleInput(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	keyboard = new KEY_STATE[MAX_KEYS];
 	memset(keyboard, KEY_IDLE, sizeof(KEY_STATE) * MAX_KEYS);
+	memset(mouse_buttons, KEY_IDLE, sizeof(KEY_STATE)*MAX_MOUSE_BUTTONS);
 }
 
 // Destructor
@@ -116,6 +118,7 @@ update_status ModuleInput::PreUpdate(float dt)
 	if(quit == true || keyboard[SDL_SCANCODE_ESCAPE] == KEY_UP)
 		return UPDATE_STOP;
 
+
 	return UPDATE_CONTINUE;
 }
 
@@ -125,4 +128,10 @@ bool ModuleInput::CleanUp()
 	LOG("Quitting SDL input event subsystem");
 	SDL_QuitSubSystem(SDL_INIT_EVENTS);
 	return true;
+}
+
+void ModuleInput::getMousePosition(iPoint & p) const
+{
+	p.x = mouse_x;
+	p.y = mouse_y;
 }

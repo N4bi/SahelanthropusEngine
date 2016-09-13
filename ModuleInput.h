@@ -1,6 +1,7 @@
 #pragma once
 #include "Module.h"
 #include "Globals.h"
+#include "p2Point.h"
 
 #define MAX_MOUSE_BUTTONS 5
 
@@ -32,6 +33,8 @@ public:
 	{
 		return mouse_buttons[id];
 	}
+
+	void getMousePosition(iPoint &p) const;
 
 	int GetMouseX() const
 	{

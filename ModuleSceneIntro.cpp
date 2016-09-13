@@ -6,10 +6,8 @@
 #include "Primitive.h"
 #include "PhysBody3D.h"
 #include "Imgui\imgui.h"
-#include "Imgui\imgui_impl_sdl_gl3.h"
-#include "Imgui\imconfig.h"
 
-using namespace ImGui;
+
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -24,6 +22,7 @@ bool ModuleSceneIntro::Start()
 {
 	LOG("Loading Intro assets");
 	bool ret = true;
+
 	
 
 	return ret;
@@ -40,11 +39,14 @@ bool ModuleSceneIntro::CleanUp()
 // Update: draw background
 update_status ModuleSceneIntro::Update(float dt)
 {
-
-
-
+	ImGui::ShowTestWindow();
+	//ImGui::BeginMenu("Menu");
+	//ImGui::Text("Hello");
 	Plane(0, 1, 0, 0).Render();
+	
 
+
+	
 
 	return UPDATE_CONTINUE;
 }
