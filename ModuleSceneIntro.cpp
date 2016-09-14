@@ -39,11 +39,22 @@ bool ModuleSceneIntro::CleanUp()
 // Update: draw background
 update_status ModuleSceneIntro::Update(float dt)
 {
-	ImGuiWindowFlags window_flags = 0;
+	if (ImGui::BeginMainMenuBar())
+	{
+		if (ImGui::MenuItem("close"))
+		{
+			return UPDATE_STOP;
+		}
+		ImGui::EndMainMenuBar();
+	}
 	ImGui::ShowTestWindow();
 	if (ImGui::BeginMenu("Menu"))
 	{
-		ImGui::Text("Menu Clicked!");
+		if (ImGui::BeginMenu("first object"))
+		{
+			ImGui::EndMenu();
+		}
+		
 		ImGui::EndMenu();
 	}
 	ImGui::BulletText("This is a bullet text");
