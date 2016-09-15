@@ -6,7 +6,7 @@
 #include "Primitive.h"
 #include "PhysBody3D.h"
 #include "Imgui\imgui.h"
-
+#include "Rng.h"
 
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
@@ -23,7 +23,15 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
-	
+	Rng random;
+
+	int ran[50];
+	for (int i = 0; i < 50; i++)
+	{
+
+		ran[i] = random.random();
+	}
+	int a = 0;
 
 	return ret;
 }
@@ -68,7 +76,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	ImGui::LabelText("LABEL", "text");
 
 
-	Plane(0, 1, 0, 0).Render();
+	//Plane(0, 1, 0, 0).Render();
 	
 
 
