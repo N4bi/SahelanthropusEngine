@@ -1,7 +1,7 @@
 #include "Rng.h"
 #include <stdlib.h>
-
 #define FLOAT_MAX 4294967295.0f
+
 unsigned int Rng::random()
 {
 	static unsigned int x = 2463534242U;
@@ -31,4 +31,28 @@ unsigned int Rng::random()
 	return (x + y + z);
 
 }
+
+float Rng::floatRandom()
+{
+	static unsigned z = 2463534242U;
+	z ^= (z << 5);
+	z ^= (z >> 7);
+	z ^= (z << 22);
+
+	return z * (1.0f/FLOAT_MAX);
+}
+
+int Rng::intRandom(int min, int max)
+{
+	static unsigned z = 2463534242U;
+	z ^= (z << 5);
+	z ^= (z >> 7);
+	z ^= (z << 22);
+
+	float random = z * (1.0f / FLOAT_MAX);
+
+	return z * (float)(max - min) + min;
+}
+
+
 

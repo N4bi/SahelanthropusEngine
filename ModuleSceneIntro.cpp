@@ -31,7 +31,21 @@ bool ModuleSceneIntro::Start()
 
 		ran[i] = random.random();
 	}
-	int a = 0;
+	
+	Rng random2;
+	float ran2[50];
+	for (int j = 0; j < 50; j++)
+	{
+		ran2[j] = random2.floatRandom();
+	}
+
+	Rng random3;
+	int ran3[50];
+	for (int k = 0; k < 50; k++)
+	{
+
+		ran3[k] = random3.intRandom(2, 8);
+	}
 
 	return ret;
 }

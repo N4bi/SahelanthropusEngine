@@ -8,6 +8,8 @@ class Rng
 public:
 
 	unsigned int random();
+	float floatRandom();
+	int intRandom(int min, int max);
 
 };
 
