@@ -39,12 +39,15 @@ public:
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
-	PhysBody3D*		AddBody(const Cube& cube, float mass = 1.0f);
-	PhysBody3D*		AddBody(const Sphere& sphere, float mass = 1.0f);
-	PhysBody3D*		AddBody(const Cylinder& cylinder, float mass = 1.0f);
-	PhysBody3D*		AddBody(const Plane& plane);
+	PhysBody3D*		AddBody(const Cube_Prim& cube, float mass = 1.0f);
+	PhysBody3D*		AddBody(const Sphere_Prim& sphere, float mass = 1.0f);
+	PhysBody3D*		AddBody(const Cylinder_Prim& cylinder, float mass = 1.0f);
+	PhysBody3D*		AddBody(const Plane_Prim& plane);
 	PhysBody3D*		AddHeighField(const char* filename, int width, int height);
 	PhysVehicle3D*	AddVehicle(const VehicleInfo& info);
+
+	void AddConstraintP2P(PhysBody3D& bodyA, PhysBody3D& bodyB, const vec& anchorA, const vec& anchorB);
+	void AddConstraintHinge(PhysBody3D& bodyA, PhysBody3D& bodyB, const vec& anchorA, const vec& anchorB, const vec& axisS, const vec& axisB, bool disable_collision = false);
 
 	void DeleteBody(btRigidBody* body);
 
@@ -66,6 +69,8 @@ private:
 	list<PhysBody3D*> bodies;
 
 	list<PhysVehicle3D*> vehicles;
+
+	list<btTypedConstraint*> constraints;
 };
 
 class DebugDrawer : public btIDebugDraw
@@ -82,6 +87,6 @@ public:
 	int	 getDebugMode() const;
 
 	DebugDrawModes mode;
-	Line line;
+	Line_Prim line;
 	Primitive point;
 };

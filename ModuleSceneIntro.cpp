@@ -23,29 +23,29 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
-	Rng random;
+	//Rng random;
 
-	int ran[50];
-	for (int i = 0; i < 50; i++)
-	{
+	//int ran[50];
+	//for (int i = 0; i < 50; i++)
+	//{
 
-		ran[i] = random.random();
-	}
-	
-	Rng random2;
-	float ran2[50];
-	for (int j = 0; j < 50; j++)
-	{
-		ran2[j] = random2.floatRandom();
-	}
+	//	ran[i] = random.random();
+	//}
+	//
+	//Rng random2;
+	//float ran2[50];
+	//for (int j = 0; j < 50; j++)
+	//{
+	//	ran2[j] = random2.floatRandom();
+	//}
 
-	Rng random3;
-	int ran3[50];
-	for (int k = 0; k < 50; k++)
-	{
+	//Rng random3;
+	//int ran3[50];
+	//for (int k = 0; k < 50; k++)
+	//{
 
-		ran3[k] = random3.intRandom(2, 8);
-	}
+	//	ran3[k] = random3.intRandom(2, 8);
+	//}
 
 	return ret;
 }
@@ -90,9 +90,9 @@ update_status ModuleSceneIntro::Update(float dt)
 	ImGui::LabelText("LABEL", "text");
 
 
-	//Plane(0, 1, 0, 0).Render();
-	
+	//Plane_Prim(0, 1, 0, 0).Render();
 
+	
 
 	
 

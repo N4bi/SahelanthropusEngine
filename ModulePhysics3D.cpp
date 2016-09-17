@@ -61,7 +61,7 @@ bool ModulePhysics3D::Start()
 }
 
 // ---------------------------------------------------------
-PhysBody3D* ModulePhysics3D::AddBody(const Cube& cube, float mass)
+PhysBody3D* ModulePhysics3D::AddBody(const Cube_Prim& cube, float mass)
 {
 	btCollisionShape* colShape = new btBoxShape(btVector3(cube.size.x*0.5f, cube.size.y*0.5f, cube.size.z*0.5f));
 
@@ -69,7 +69,7 @@ PhysBody3D* ModulePhysics3D::AddBody(const Cube& cube, float mass)
 	shapes.push_back(colShape);
 
 	btTransform startTransform;
-	startTransform.setFromOpenGLMatrix(&cube.transform);
+	startTransform.setFromOpenGLMatrix(*cube.transform.v);
 
 	btVector3 localInertia(0, 0, 0);
 	if(mass != 0.f)
@@ -90,13 +90,13 @@ PhysBody3D* ModulePhysics3D::AddBody(const Cube& cube, float mass)
 }
 
 // ---------------------------------------------------------
-PhysBody3D* ModulePhysics3D::AddBody(const Sphere& sphere, float mass)
+PhysBody3D* ModulePhysics3D::AddBody(const Sphere_Prim& sphere, float mass)
 {
 	btCollisionShape* colShape = new btSphereShape(sphere.radius);
 	shapes.push_back(colShape);
 
 	btTransform startTransform;
-	startTransform.setFromOpenGLMatrix(&sphere.transform);
+	startTransform.setFromOpenGLMatrix(*sphere.transform.v);
 
 	btVector3 localInertia(0, 0, 0);
 	if(mass != 0.f)
@@ -116,13 +116,13 @@ PhysBody3D* ModulePhysics3D::AddBody(const Sphere& sphere, float mass)
 }
 
 // ---------------------------------------------------------
-PhysBody3D* ModulePhysics3D::AddBody(const Cylinder& cylinder, float mass)
+PhysBody3D* ModulePhysics3D::AddBody(const Cylinder_Prim& cylinder, float mass)
 {
 	btCollisionShape* colShape = new btCylinderShapeX(btVector3(cylinder.height*0.5f, cylinder.radius*2, 0.0f));
 	shapes.push_back(colShape);
 
 	btTransform startTransform;
-	startTransform.setFromOpenGLMatrix(&cylinder.transform);
+	startTransform.setFromOpenGLMatrix(*cylinder.transform.v);
 
 	btVector3 localInertia(0, 0, 0);
 	if(mass != 0.f)
@@ -142,13 +142,13 @@ PhysBody3D* ModulePhysics3D::AddBody(const Cylinder& cylinder, float mass)
 }
 
 // ---------------------------------------------------------
-PhysBody3D* ModulePhysics3D::AddBody(const Plane& plane)
+PhysBody3D* ModulePhysics3D::AddBody(const Plane_Prim& plane)
 {
 	btCollisionShape* colShape = new btStaticPlaneShape(btVector3(plane.normal.x, plane.normal.y, plane.normal.z), plane.constant);
 	shapes.push_back(colShape);
 
 	btTransform startTransform;
-	startTransform.setFromOpenGLMatrix(&plane.transform);
+	startTransform.setFromOpenGLMatrix(*plane.transform.v);
 
 	btVector3 localInertia(0, 0, 0);
 
@@ -288,6 +288,33 @@ PhysVehicle3D* ModulePhysics3D::AddVehicle(const VehicleInfo& info)
 
 // ---------------------------------------------------------
 
+void ModulePhysics3D::AddConstraintP2P(PhysBody3D & bodyA, PhysBody3D & bodyB, const vec & anchorA, const vec & anchorB)
+{
+	btTypedConstraint* p2p = new btPoint2PointConstraint(
+		*(bodyA.body),
+		*(bodyB.body),
+		btVector3(anchorA.x, anchorA.y, anchorA.z),
+		btVector3(anchorB.x, anchorB.y, anchorB.z));
+	world->addConstraint(p2p);
+	constraints.push_back(p2p);
+	p2p->setDbgDrawSize(2.0f);
+}
+
+void ModulePhysics3D::AddConstraintHinge(PhysBody3D & bodyA, PhysBody3D & bodyB, const vec & anchorA, const vec & anchorB, const vec & axisA, const vec & axisB, bool disable_collision)
+{
+	btHingeConstraint* hinge = new btHingeConstraint(
+		*(bodyA.body),
+		*(bodyB.body),
+		btVector3(anchorA.x, anchorA.y, anchorA.z),
+		btVector3(anchorB.x, anchorB.y, anchorB.z),
+		btVector3(axisA.x, axisA.y, axisA.z),
+		btVector3(axisB.x, axisB.y, axisB.z));
+
+	world->addConstraint(hinge, disable_collision);
+	constraints.push_back(hinge);
+	hinge->setDbgDrawSize(2.0f);
+}
+
 void ModulePhysics3D::DeleteBody(btRigidBody * body)
 {
 	if (body != nullptr)
@@ -361,21 +388,21 @@ update_status ModulePhysics3D::Update(float dt)
 		// drop some primitives on 1,2,3
 		if(App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
 		{
-			Sphere s(1);
+			Sphere_Prim s(1);
 			s.SetPos(App->camera->Position.x, App->camera->Position.y, App->camera->Position.z);
 			App->physics3D->AddBody(s);
 		}
 
 		if(App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
 		{
-			Cube c(1, 1, 1);
+			Cube_Prim c(1, 1, 1);
 			c.SetPos(App->camera->Position.x, App->camera->Position.y, App->camera->Position.z);
 			App->physics3D->AddBody(c);
 		}
 
 		if(App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
 		{
-			Cylinder c(0.5, 1);
+			Cylinder_Prim c(0.5, 1);
 			c.SetPos(App->camera->Position.x, App->camera->Position.y, App->camera->Position.z);
 			App->physics3D->AddBody(c);
 		}
@@ -454,7 +481,7 @@ void DebugDrawer::drawLine(const btVector3& from, const btVector3& to, const btV
 
 void DebugDrawer::drawContactPoint(const btVector3& PointOnB, const btVector3& normalOnB, btScalar distance, int lifeTime, const btVector3& color)
 {
-	point.transform.translate(PointOnB.getX(), PointOnB.getY(), PointOnB.getZ());
+	point.transform.SetTranslatePart(PointOnB.getX(), PointOnB.getY(), PointOnB.getZ());
 	point.color.Set(color.getX(), color.getY(), color.getZ());
 	point.Render();
 }

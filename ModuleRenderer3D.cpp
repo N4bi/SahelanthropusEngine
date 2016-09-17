@@ -108,7 +108,7 @@ bool ModuleRenderer3D::Init()
 	// Projection matrix for
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
 	
-	App->camera->Look(vec3(1.75f, 1.75f, 5.0f), vec3(0.0f, 0.0f, 0.0f));
+	App->camera->Look(vec(1.75f, 1.75f, 5.0f), vec(0.0f, 0.0f, 0.0f));
 
 	ImGui_ImplSdlGL3_Init(App->window->window);
 
@@ -169,8 +169,25 @@ void ModuleRenderer3D::OnResize(int width, int height)
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	ProjectionMatrix = perspective(60.0f, (float)width / (float)height, 0.125f, 512.0f);
-	glLoadMatrixf(&ProjectionMatrix);
+
+	//Doing what perspective method does in glmath library
+	float4x4 Perspective;
+	float n = 0.125f;
+	float f = 512.0f;
+	float fovy = 60.0f;
+
+	float coty = 1.0f / Tan(fovy * pi / 360.0f);
+
+	Perspective[0][0] = coty;
+	Perspective[1][1] = ((float)width / (float)height) / Tan(fovy*pi / 360.0f);
+	Perspective[2][2] = (n + f) / (n - f);
+	Perspective[2][3] = -1.0f;
+	Perspective[3][2] = 2.0f * n * f / (n - f);
+	Perspective[3][3] = 0.0f;
+
+	ProjectionMatrix = Perspective;
+
+	glLoadMatrixf(*ProjectionMatrix.v);
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();

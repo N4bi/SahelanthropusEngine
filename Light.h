@@ -1,7 +1,11 @@
 
 #pragma once
 #include "Color.h"
-#include "glmath.h"
+
+#include "MathGeoLib\include\MathGeoLib.h"
+
+
+
 
 struct Light
 {
@@ -14,7 +18,7 @@ struct Light
 
 	Color ambient;
 	Color diffuse;
-	vec3 position;
+	vec position;
 
 	int ref;
 	bool on;

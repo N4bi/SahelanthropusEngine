@@ -1,7 +1,7 @@
 
 #pragma once
-#include "glmath.h"
 #include "Color.h"
+#include "MathGeoLib\include\MathGeoLib.h"
 
 enum PrimitiveTypes
 {
@@ -22,14 +22,14 @@ public:
 	virtual void	Render() const;
 	virtual void	InnerRender() const;
 	void			SetPos(float x, float y, float z);
-	void			SetRotation(float angle, const vec3 &u);
+	void			SetRotation(float angle, const vec &u);
 	void			Scale(float x, float y, float z);
 	PrimitiveTypes	GetType() const;
 
 public:
 	
 	Color color;
-	mat4x4 transform;
+	float4x4 transform;
 	bool axis,wire;
 
 protected:
@@ -37,33 +37,33 @@ protected:
 };
 
 // ============================================
-class Cube : public Primitive
+class Cube_Prim : public Primitive
 {
 public :
-	Cube();
-	Cube(float sizeX, float sizeY, float sizeZ);
+	Cube_Prim();
+	Cube_Prim(float sizeX, float sizeY, float sizeZ);
 	void InnerRender() const;
 public:
-	vec3 size;
+	vec size;
 };
 
 // ============================================
-class Sphere : public Primitive
+class Sphere_Prim : public Primitive
 {
 public:
-	Sphere();
-	Sphere(float radius);
+	Sphere_Prim();
+	Sphere_Prim(float radius);
 	void InnerRender() const;
 public:
 	float radius;
 };
 
 // ============================================
-class Cylinder : public Primitive
+class Cylinder_Prim : public Primitive
 {
 public:
-	Cylinder();
-	Cylinder(float radius, float height);
+	Cylinder_Prim();
+	Cylinder_Prim(float radius, float height);
 	void InnerRender() const;
 public:
 	float radius;
@@ -71,25 +71,25 @@ public:
 };
 
 // ============================================
-class Line : public Primitive
+class Line_Prim : public Primitive
 {
 public:
-	Line();
-	Line(float x, float y, float z);
+	Line_Prim();
+	Line_Prim(float x, float y, float z);
 	void InnerRender() const;
 public:
-	vec3 origin;
-	vec3 destination;
+	vec origin;
+	vec destination;
 };
 
 // ============================================
-class Plane : public Primitive
+class Plane_Prim : public Primitive
 {
 public:
-	Plane();
-	Plane(float x, float y, float z, float d);
+	Plane_Prim();
+	Plane_Prim(float x, float y, float z, float d);
 	void InnerRender() const;
 public:
-	vec3 normal;
+	vec normal;
 	float constant;
 };
