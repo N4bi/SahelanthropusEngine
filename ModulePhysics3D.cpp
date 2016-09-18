@@ -343,7 +343,7 @@ update_status ModulePhysics3D::PreUpdate(float dt)
 
 			if(pbodyA && pbodyB)
 			{
-				//p2List_item<Module*>* item = pbodyA->collision_listeners.getFirst();
+
 				list<Module*>::iterator it = pbodyA->collision_listeners.begin();
 				while(it != pbodyA->collision_listeners.end())
 				{
@@ -375,13 +375,12 @@ update_status ModulePhysics3D::Update(float dt)
 		world->debugDrawWorld();
 
 		// Render vehicles
-	//	p2List_item<PhysVehicle3D*>* item = vehicles.getFirst();
 		list<PhysVehicle3D*>::iterator it = vehicles.begin();
 		while (it != vehicles.end())
 		{
-			//item->data->Render();
+
 			(*it)->Render();
-			//item = item->next;
+
 			++it;
 		}
 
@@ -460,6 +459,14 @@ bool ModulePhysics3D::CleanUp()
 	{
 		delete (*it3);
 		++it3;
+	}
+	vehicles.clear();
+
+	list<btTypedConstraint*>::iterator it4 = constraints.begin();
+	while (it4 != constraints.end())
+	{
+		delete (*it4);
+		++it4;
 	}
 	vehicles.clear();
 	

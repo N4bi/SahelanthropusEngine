@@ -61,6 +61,7 @@ bool ModuleSceneIntro::CleanUp()
 // Update: draw background
 update_status ModuleSceneIntro::Update(float dt)
 {
+
 	if (ImGui::BeginMainMenuBar())
 	{
 		if (ImGui::MenuItem("close"))
@@ -90,7 +91,10 @@ update_status ModuleSceneIntro::Update(float dt)
 	ImGui::LabelText("LABEL", "text");
 
 
-	//Plane_Prim(0, 1, 0, 0).Render();
+	Plane_Prim(0.0f, 1.0f, 0.0f, 0.0f).Render();
+
+	//Cube_Prim(5.0f, 5.0f, 5.0f).Render();
+	//Plane(vec(0.0f, 1.0f, 0.0f), 0.0f);
 
 	
 

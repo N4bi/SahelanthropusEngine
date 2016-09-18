@@ -114,8 +114,8 @@ update_status ModuleCamera3D::Update(float dt)
 		{
 			float DeltaX = (float)dx * Sensitivity;
 			Quat  quaternion;
-			quaternion.RotateAxisAngle(math::vec(0.0f, 1.0, 0.0f), DeltaX);
-
+			
+			quaternion = quaternion.RotateAxisAngle(math::vec(0.0f, 1.0, 0.0f), DeltaX);
 			X = quaternion * X;
 			Y = quaternion * Y;
 			Z = quaternion * Z;
@@ -125,7 +125,8 @@ update_status ModuleCamera3D::Update(float dt)
 		{
 			float DeltaY = (float)dy * Sensitivity;
 			Quat quaternion2;
-			quaternion2.RotateAxisAngle(X, DeltaY);
+
+			quaternion2 = quaternion2.RotateAxisAngle(X, DeltaY);
 			Y = quaternion2 * Y;
 			Z = quaternion2 * Z;
 

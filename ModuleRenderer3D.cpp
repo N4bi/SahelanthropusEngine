@@ -108,9 +108,10 @@ bool ModuleRenderer3D::Init()
 	// Projection matrix for
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
 	
+	ImGui_ImplSdlGL3_Init(App->window->window);
 	App->camera->Look(vec(1.75f, 1.75f, 5.0f), vec(0.0f, 0.0f, 0.0f));
 
-	ImGui_ImplSdlGL3_Init(App->window->window);
+
 
 
 	return ret;
@@ -176,10 +177,12 @@ void ModuleRenderer3D::OnResize(int width, int height)
 	float f = 512.0f;
 	float fovy = 60.0f;
 
-	float coty = 1.0f / Tan(fovy * pi / 360.0f);
+	Perspective.SetIdentity();
 
-	Perspective[0][0] = coty;
-	Perspective[1][1] = ((float)width / (float)height) / Tan(fovy*pi / 360.0f);
+	float coty = 1.0f / tan(fovy * pi / 360.0f);
+
+	Perspective[0][0] = coty/ ((float)width / (float)height);
+	Perspective[1][1] = /*((float)width / (float)height) / tan(fovy * pi / 360.0f)*/ coty;
 	Perspective[2][2] = (n + f) / (n - f);
 	Perspective[2][3] = -1.0f;
 	Perspective[3][2] = 2.0f * n * f / (n - f);
