@@ -41,7 +41,7 @@ bool ModuleCamera3D::CleanUp()
 // -----------------------------------------------------------------
 update_status ModuleCamera3D::Update(float dt)
 {
-	// Follow code
+	//// Follow code
 	if(following != NULL)
 	{
 		float4x4 m;
@@ -70,33 +70,25 @@ update_status ModuleCamera3D::Update(float dt)
 	// Implement a debug camera with keys and mouse
 
 	// OnKeys WASD keys -----------------------------------
-	float Speed = 5.0f;
 
-	if(App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT) Speed *= 2.0f;
-	if(App->input->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT) Speed *= 0.5f;
+	vec newPos(0, 0, 0);
+	float speed = 3.0f * dt;
+	if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
+		speed = 8.0f * dt;
 
-	float Distance = Speed * dt;
+	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_REPEAT) newPos.y += speed;
+	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_REPEAT) newPos.y -= speed;
 
-	math::vec Up(0.0f, 1.0f, 0.0f);
-	math::vec Right = X;
-	math::vec Forward = Up.Cross(Right);
+	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) newPos -= Z * speed;
+	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) newPos += Z * speed;
 
-	Up *= Distance;
-	Right *= Distance;
-	Forward *= Distance;
 
-	math::vec Movement;
+	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) newPos -= X * speed;
+	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) newPos += X * speed;
 
-	if(App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) Movement += Forward;
-	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) Movement -= Forward;
-	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) Movement -= Right;
-	if(App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) Movement += Right;
-	if(App->input->GetKey(SDL_SCANCODE_R) == KEY_REPEAT) Movement += Up;
-	if(App->input->GetKey(SDL_SCANCODE_F) == KEY_REPEAT) Movement -= Up;
+	Position += newPos;
+	Reference += newPos;
 
-	Position += Movement;
-	Reference += Movement;
-	
 	// Mouse motion ----------------
 
 	if(App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT)

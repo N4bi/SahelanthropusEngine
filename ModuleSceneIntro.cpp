@@ -94,6 +94,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	Plane_Prim(0.0f, 1.0f, 0.0f, 0.0f).Render();
 
 	//Cube_Prim(5.0f, 5.0f, 5.0f).Render();
+	//Cylinder_Prim(2.0f, 4.0f).Render();
 	//Plane(vec(0.0f, 1.0f, 0.0f), 0.0f);
 
 	

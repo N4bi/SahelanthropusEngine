@@ -182,7 +182,7 @@ void ModuleRenderer3D::OnResize(int width, int height)
 	float coty = 1.0f / tan(fovy * pi / 360.0f);
 
 	Perspective[0][0] = coty/ ((float)width / (float)height);
-	Perspective[1][1] = /*((float)width / (float)height) / tan(fovy * pi / 360.0f)*/ coty;
+	Perspective[1][1] = coty;
 	Perspective[2][2] = (n + f) / (n - f);
 	Perspective[2][3] = -1.0f;
 	Perspective[3][2] = 2.0f * n * f / (n - f);

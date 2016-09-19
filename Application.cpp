@@ -23,17 +23,22 @@ Application::Application()
 
 	// Main Modules
 	AddModule(window);
-	AddModule(physics3D);
-	AddModule(renderer3D);
 	AddModule(camera);
 	AddModule(input);
 	AddModule(audio);
+	AddModule(physics3D);
+	AddModule(scene_intro);
+	AddModule(player);
+	AddModule(renderer3D);
+	
+	
+
 	
 	// Scenes
-	AddModule(scene_intro);
+
 	
 	// Characters
-	AddModule(player);
+	
 }
 
 Application::~Application()
