@@ -62,15 +62,15 @@ bool ModuleSceneIntro::CleanUp()
 update_status ModuleSceneIntro::Update(float dt)
 {
 
-	if (ImGui::BeginMainMenuBar())
-	{
-		if (ImGui::MenuItem("close"))
-		{
-			return UPDATE_STOP;
-		}
-		ImGui::EndMainMenuBar();
-	}
-	ImGui::ShowTestWindow();
+	//if (ImGui::BeginMainMenuBar())
+	//{
+	//	if (ImGui::MenuItem("close"))
+	//	{
+	//		return UPDATE_STOP;
+	//	}
+	//	ImGui::EndMainMenuBar();
+	//}
+	/*ImGui::ShowTestWindow();
 	if (ImGui::BeginMenu("Menu"))
 	{
 		if (ImGui::BeginMenu("first object"))
@@ -88,10 +88,12 @@ update_status ModuleSceneIntro::Update(float dt)
 		ImGui::EndPopup();
 	}
 	ImGui::Text("Hello");
-	ImGui::LabelText("LABEL", "text");
+	ImGui::LabelText("LABEL", "text");*/
 
 
-	Plane_Prim(0.0f, 1.0f, 0.0f, 0.0f).Render();
+	Plane_Prim p(0.0f, 1.0f, 0.0f, 0.0f);
+	p.axis = true;
+	p.Render();
 
 	//Cube_Prim(5.0f, 5.0f, 5.0f).Render();
 	//Cylinder_Prim(2.0f, 4.0f).Render();

@@ -34,7 +34,6 @@ unsigned int Rng::random()
 
 float Rng::floatRandom()
 {
-	static unsigned z = 2463534242U;
 	z ^= (z << 5);
 	z ^= (z >> 7);
 	z ^= (z << 22);
@@ -44,14 +43,19 @@ float Rng::floatRandom()
 
 int Rng::intRandom(int min, int max)
 {
-	static unsigned z = 2463534242U;
+	
 	z ^= (z << 5);
-	z ^= (z >> 7);
-	z ^= (z << 22);
+	z ^= (z >> 13);
+	z ^= (z << 6);
 
 	float random = z * (1.0f / FLOAT_MAX);
 
 	return z * (float)(max - min) + min;
+}
+
+void Rng::setZ(unsigned int _z)
+{
+	this->z = _z;
 }
 
 

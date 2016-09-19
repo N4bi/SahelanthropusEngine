@@ -10,7 +10,11 @@ public:
 	unsigned int random();
 	float floatRandom();
 	int intRandom(int min, int max);
+	void setZ(unsigned int _z);
 
+private:
+
+	unsigned int z = 0;
 };
 
 
