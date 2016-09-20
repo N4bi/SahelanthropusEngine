@@ -108,9 +108,9 @@ void Application::FinishUpdate()
 		SDL_Delay(capped_ms - last_frame_ms);
 	}
 
-	//char t[50];
-	//sprintf_s(t, "FPS: %d", (int)last_fps);
-	//window->SetTitle(t);
+	char t[50];
+	sprintf_s(t, "Sahelanthropus Engine                    FPS: %d", (int)last_fps);
+	window->SetTitle(t);
 }
 
 // Call PreUpdate, Update and PostUpdate on all modules

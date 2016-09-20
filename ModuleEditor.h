@@ -20,10 +20,15 @@ public:
 
 private:
 	void CreatePoints(float2 min_max, int n);
+	void CreateBoundingBox();
 	void Render();
+	//---- Imgui stuff
+	void AboutMenu();
 
 private:
+	bool box_render;
 	int n_points;
+	Cube_Prim bounding_box;
 	float2 range;	
 	list<Sphere_Prim> points;
 

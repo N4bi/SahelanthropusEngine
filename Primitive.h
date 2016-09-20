@@ -22,6 +22,7 @@ public:
 	virtual void	Render() const;
 	virtual void	InnerRender() const;
 	void			SetPos(float x, float y, float z);
+	vec				GetPos();
 	void			SetRotation(float angle, const vec &u);
 	void			Scale(float x, float y, float z);
 	PrimitiveTypes	GetType() const;

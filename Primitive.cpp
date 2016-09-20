@@ -89,6 +89,16 @@ void Primitive::SetPos(float x, float y, float z)
 	transform.v[3][2] = z;
 }
 
+vec Primitive::GetPos()
+{
+	vec position;
+	position.x = transform.v[3][0];
+	position.y = transform.v[3][1];
+	position.z = transform.v[3][2];
+
+	return position;
+}
+
 // ------------------------------------------------------------
 void Primitive::SetRotation(float angle, const vec &u)
 {
