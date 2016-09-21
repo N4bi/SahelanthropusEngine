@@ -2,11 +2,6 @@
 
 Application::Application()
 {
-	frames = 0;
-	last_frame_ms = -1;
-	last_fps = -1;
-	capped_ms = 1000 / 60;
-	fps_counter = 0;
 
 	window = new ModuleWindow(this);
 	input = new ModuleInput(this);
@@ -74,7 +69,11 @@ bool Application::Init()
 			ret = (*it)->Start();
 		++it;
 	}
-	
+
+	capped_ms = 1000 / fps;
+
+	ms_timer.Start();
+	last_second_frame_time.Start();
 	return ret;
 }
 
@@ -82,6 +81,8 @@ bool Application::Init()
 // ---------------------------------------------
 void Application::PrepareUpdate()
 {
+	fps_counter++;
+
 	dt = (float)ms_timer.Read() / 1000.0f;
 	ms_timer.Start();
 }
@@ -90,26 +91,23 @@ void Application::PrepareUpdate()
 void Application::FinishUpdate()
 {
 	// Recap on framecount and fps
-	++frames;
-	++fps_counter;
 
-	if(fps_timer.Read() >= 1000)
-	{
-		last_fps = fps_counter;
+	if(last_second_frame_time.Read() > 1000)
+	{	
+		last_second_frame_time.Start();
+		last_second_frame_count = fps_counter;
 		fps_counter = 0;
-		fps_timer.Start();
 	}
 
-	last_frame_ms = ms_timer.Read();
-
+	uint32_t last_frame_ms = ms_timer.Read();
 	// cap fps
-	if(last_frame_ms < capped_ms)
+	if(last_frame_ms < capped_ms && capped_ms >0)
 	{
 		SDL_Delay(capped_ms - last_frame_ms);
 	}
 
 	char t[50];
-	sprintf_s(t, "Sahelanthropus Engine                    FPS: %d", (int)last_fps);
+	sprintf_s(t, "Sahelanthropus Engine");
 	window->SetTitle(t);
 }
 
@@ -163,7 +161,20 @@ bool Application::CleanUp()
 	return ret;
 }
 
+
+
 void Application::AddModule(Module* mod)
 {
 	list_modules.push_back(mod);
+}
+
+int Application::GetLastFPS()
+{
+	return last_second_frame_count;
+}
+
+void Application::SetMaxFPS(int max_fps)
+{
+	fps = max_fps;
+	capped_ms = 1000 / fps;
 }

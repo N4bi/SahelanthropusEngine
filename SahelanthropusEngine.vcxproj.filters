@@ -40,6 +40,9 @@
     <Filter Include="Sources\MathGeoLib\Algorithm\Random">
       <UniqueIdentifier>{5641e3af-c9ba-4595-87e9-4d09fbee930e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\InfoWindows">
+      <UniqueIdentifier>{61711d87-9e1d-4901-868e-8b153c12d714}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -309,6 +312,12 @@
     <ClInclude Include="ModuleEditor.h">
       <Filter>Sources\Modules</Filter>
     </ClInclude>
+    <ClInclude Include="FPSwindow.h">
+      <Filter>Sources\InfoWindows</Filter>
+    </ClInclude>
+    <ClInclude Include="InfoWindows.h">
+      <Filter>Sources\InfoWindows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -481,6 +490,12 @@
     </ClCompile>
     <ClCompile Include="ModuleEditor.cpp">
       <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="FPSwindow.cpp">
+      <Filter>Sources\InfoWindows</Filter>
+    </ClCompile>
+    <ClCompile Include="InfoWindows.cpp">
+      <Filter>Sources\InfoWindows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

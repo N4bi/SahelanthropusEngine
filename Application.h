@@ -29,13 +29,15 @@ public:
 private:
 
 	Timer	ms_timer;
-	Timer	fps_timer;
-	Uint32	frames;
+	Timer	last_second_frame_time;
+	
 	float	dt;
-	int		fps_counter;
-	int		last_frame_ms;
-	int		last_fps;
-	int		capped_ms;
+	int		fps = 144;
+	int		capped_ms = -1;
+	int		fps_counter = 0;
+	int		last_second_frame_count = 0;
+		
+	
 	list<Module*> list_modules;
 
 public:
@@ -46,6 +48,8 @@ public:
 	bool Init();
 	update_status Update();
 	bool CleanUp();
+	void SetMaxFPS(int max_fps);
+	int GetLastFPS();
 
 private:
 
@@ -53,3 +57,5 @@ private:
 	void PrepareUpdate();
 	void FinishUpdate();
 };
+
+extern Application* App;

@@ -2,11 +2,15 @@
 #include "ModuleEditor.h"
 #include "Primitive.h"
 #include "Imgui\imgui.h"
+#include "FPSwindow.h"
+#include "InfoWindows.h"
 #include "MathGeoLib\include\Algorithm\Random\LCG.h"
 
 
 ModuleEditor::ModuleEditor(Application* app, bool start_enabled) : Module(app, start_enabled)
-{}
+{	
+	
+}
 
 ModuleEditor::~ModuleEditor()
 {}
@@ -22,6 +26,9 @@ bool ModuleEditor::Start()
 	range.y = 0.0f;
 	box_render = false;
 
+	info_window.push_back(fps_win = new FPSwindow());
+
+
 	return ret;
 }
 
@@ -30,6 +37,12 @@ bool ModuleEditor::CleanUp()
 {
 	LOG("Unloading Intro scene");
 
+	list<InfoWindows*>::iterator it = info_window.begin();
+	while (it != info_window.end())
+	{
+		delete (*it);
+		++it;
+	}
 
 	return true;
 }
@@ -151,6 +164,12 @@ update_status ModuleEditor::UpdateEditor()
 
 	if (ImGui::BeginMainMenuBar())
 	{
+		if (ImGui::BeginMenu("Configuration"))
+		{
+			InfoMenu();
+			ImGui::EndMenu();
+		}
+
 		if (ImGui::BeginMenu("About"))
 		{
 			AboutMenu();
@@ -164,7 +183,7 @@ update_status ModuleEditor::UpdateEditor()
 	}
 
 	bool open = false;
-	if (!ImGui::Begin("Window",&open))
+	if (!ImGui::Begin("Window", &open))
 	{
 		ImGui::End();
 		return ret;
@@ -184,6 +203,14 @@ update_status ModuleEditor::UpdateEditor()
 		}
 	}
 	ImGui::End();
+
+	list<InfoWindows*>::iterator it = info_window.begin();
+	while (it != info_window.end())
+	{
+		(*it)->Render();
+		++it;
+	}
+
 	return ret;
 }
 void ModuleEditor::AboutMenu()
@@ -203,4 +230,22 @@ void ModuleEditor::AboutMenu()
 			"- Glew 2.0.0"
 
 	);
+}
+
+void ModuleEditor::InfoMenu()
+{
+	if (ImGui::BeginMenu("Info"))
+	{
+		if (ImGui::MenuItem("FPS info"))
+		{
+			ShowFPSwindow();
+		}
+
+		ImGui::EndMenu();
+	}
+}
+
+void ModuleEditor::ShowFPSwindow()
+{
+	fps_win->SetActive(true);
 }

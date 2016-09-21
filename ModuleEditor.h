@@ -2,8 +2,10 @@
 #include "Module.h"
 #include "Globals.h"
 #include "MathGeoLib\include\MathGeoLib.h"
+#include "InfoWindows.h"
 #include <list>
 
+class FPSwindow;
 
 class ModuleEditor : public Module
 {
@@ -22,8 +24,11 @@ private:
 	void CreatePoints(float2 min_max, int n);
 	void CreateBoundingBox();
 	void Render();
+
 	//---- Imgui stuff
 	void AboutMenu();
+	void InfoMenu();
+	void ShowFPSwindow();
 
 private:
 	bool box_render;
@@ -32,10 +37,9 @@ private:
 	float2 range;	
 	list<Sphere_Prim> points;
 
-
-
-
-	
+	//-------Info stuff
+	list<InfoWindows*> info_window;
+	FPSwindow* fps_win = nullptr;
 
 
 };
