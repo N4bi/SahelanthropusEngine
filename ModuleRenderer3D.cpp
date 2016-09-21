@@ -111,8 +111,8 @@ bool ModuleRenderer3D::Init()
 	ImGui_ImplSdlGL3_Init(App->window->window);
 	App->camera->Look(vec(1.75f, 1.75f, 5.0f), vec(0.0f, 0.0f, 0.0f));
 
-
-
+	LOG("OpenGL version: %s", glGetString(GL_VERSION));
+	LOG("Glew version: %s", glewGetString(GLEW_VERSION));
 
 	return ret;
 }

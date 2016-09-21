@@ -142,7 +142,6 @@ void ModuleEditor::Render()
 	if (box_render)
 	{
 		bounding_box.Render();
-		
 	}
 }
 
@@ -197,10 +196,11 @@ void ModuleEditor::AboutMenu()
 		"Libraries: \n"
 
 			"- Bullet\n"
-			"- SDL 2.0\n"
+			"- SDL 2.0.4\n"
 			"- MathGeoLib\n"
 			"- ImGui\n"
-			"- OpenGL3\n"
+			"- OpenGL 4.5.0\n"
+			"- Glew 2.0.0"
 
 	);
 }
