@@ -78,6 +78,7 @@
     <ClInclude Include="FPSwindow.h" />
     <ClInclude Include="glmath.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="HardwareWindow.h" />
     <ClInclude Include="Imgui\imconfig.h" />
     <ClInclude Include="Imgui\imgui.h" />
     <ClInclude Include="Imgui\imgui_impl_sdl_gl3.h" />
@@ -170,6 +171,7 @@
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="FPSwindow.cpp" />
     <ClCompile Include="glmath.cpp" />
+    <ClCompile Include="HardwareWindow.cpp" />
     <ClCompile Include="Imgui\imgui.cpp" />
     <ClCompile Include="Imgui\imgui_demo.cpp" />
     <ClCompile Include="Imgui\imgui_draw.cpp" />

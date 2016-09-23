@@ -3,6 +3,7 @@
 #include "Primitive.h"
 #include "Imgui\imgui.h"
 #include "FPSwindow.h"
+#include "HardwareWindow.h"
 #include "InfoWindows.h"
 #include "MathGeoLib\include\Algorithm\Random\LCG.h"
 
@@ -27,6 +28,7 @@ bool ModuleEditor::Start()
 	box_render = false;
 
 	info_window.push_back(fps_win = new FPSwindow());
+	info_window.push_back(hd_win = new HardwareWindow());
 
 
 	return ret;
@@ -156,6 +158,13 @@ void ModuleEditor::Render()
 	{
 		bounding_box.Render();
 	}
+
+	list<InfoWindows*>::iterator it = info_window.begin();
+	while (it != info_window.end())
+	{
+		(*it)->Render();
+		++it;
+	}
 }
 
 update_status ModuleEditor::UpdateEditor()
@@ -204,13 +213,6 @@ update_status ModuleEditor::UpdateEditor()
 	}
 	ImGui::End();
 
-	list<InfoWindows*>::iterator it = info_window.begin();
-	while (it != info_window.end())
-	{
-		(*it)->Render();
-		++it;
-	}
-
 	return ret;
 }
 void ModuleEditor::AboutMenu()
@@ -241,6 +243,11 @@ void ModuleEditor::InfoMenu()
 			ShowFPSwindow();
 		}
 
+		if (ImGui::MenuItem("Hardware info"))
+		{
+			ShowHardwareWindow();
+		}
+
 		ImGui::EndMenu();
 	}
 }
@@ -248,4 +255,9 @@ void ModuleEditor::InfoMenu()
 void ModuleEditor::ShowFPSwindow()
 {
 	fps_win->SetActive(true);
+}
+
+void ModuleEditor::ShowHardwareWindow()
+{
+	hd_win->SetActive(true);
 }

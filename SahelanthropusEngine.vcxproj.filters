@@ -318,6 +318,9 @@
     <ClInclude Include="InfoWindows.h">
       <Filter>Sources\InfoWindows</Filter>
     </ClInclude>
+    <ClInclude Include="HardwareWindow.h">
+      <Filter>Sources\InfoWindows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -495,6 +498,9 @@
       <Filter>Sources\InfoWindows</Filter>
     </ClCompile>
     <ClCompile Include="InfoWindows.cpp">
+      <Filter>Sources\InfoWindows</Filter>
+    </ClCompile>
+    <ClCompile Include="HardwareWindow.cpp">
       <Filter>Sources\InfoWindows</Filter>
     </ClCompile>
   </ItemGroup>

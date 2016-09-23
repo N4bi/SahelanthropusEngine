@@ -6,6 +6,7 @@
 #include <list>
 
 class FPSwindow;
+class HardwareWindow;
 
 class ModuleEditor : public Module
 {
@@ -29,6 +30,7 @@ private:
 	void AboutMenu();
 	void InfoMenu();
 	void ShowFPSwindow();
+	void ShowHardwareWindow();
 
 private:
 	bool box_render;
@@ -40,6 +42,8 @@ private:
 	//-------Info stuff
 	list<InfoWindows*> info_window;
 	FPSwindow* fps_win = nullptr;
+	HardwareWindow* hd_win = nullptr;
+
 
 
 };
