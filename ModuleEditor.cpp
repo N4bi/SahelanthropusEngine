@@ -4,13 +4,14 @@
 #include "Imgui\imgui.h"
 #include "FPSwindow.h"
 #include "HardwareWindow.h"
+#include "ConsoleWindow.h"
 #include "InfoWindows.h"
 #include "MathGeoLib\include\Algorithm\Random\LCG.h"
 
 
 ModuleEditor::ModuleEditor(Application* app, bool start_enabled) : Module(app, start_enabled)
 {	
-	
+	info_window.push_back(console = new ConsoleWindow());
 }
 
 ModuleEditor::~ModuleEditor()
@@ -248,6 +249,11 @@ void ModuleEditor::InfoMenu()
 			ShowHardwareWindow();
 		}
 
+		if (ImGui::MenuItem("Console info"))
+		{
+			ShowConsoleWindow();
+		}
+
 		ImGui::EndMenu();
 	}
 }
@@ -260,4 +266,9 @@ void ModuleEditor::ShowFPSwindow()
 void ModuleEditor::ShowHardwareWindow()
 {
 	hd_win->SetActive(true);
+}
+
+void ModuleEditor::ShowConsoleWindow()
+{
+	console->SetActive(true);
 }

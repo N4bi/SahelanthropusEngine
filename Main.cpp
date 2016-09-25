@@ -16,6 +16,7 @@ enum main_states
 };
 
 Application* App = nullptr;
+ConsoleWindow* console = nullptr;
 
 
 int main(int argc, char ** argv)
@@ -85,6 +86,7 @@ int main(int argc, char ** argv)
 	}
 
 	delete App;
+	delete console;
 	LOG("Exiting game '%s'...\n", TITLE);
 	return main_return;
 }

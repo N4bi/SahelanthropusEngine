@@ -321,6 +321,9 @@
     <ClInclude Include="HardwareWindow.h">
       <Filter>Sources\InfoWindows</Filter>
     </ClInclude>
+    <ClInclude Include="ConsoleWindow.h">
+      <Filter>Sources\InfoWindows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -501,6 +504,9 @@
       <Filter>Sources\InfoWindows</Filter>
     </ClCompile>
     <ClCompile Include="HardwareWindow.cpp">
+      <Filter>Sources\InfoWindows</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleWindow.cpp">
       <Filter>Sources\InfoWindows</Filter>
     </ClCompile>
   </ItemGroup>
