@@ -13,6 +13,8 @@
 #include "glut/glut.h"
 
 
+
+
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	graphics = NULL;
@@ -55,7 +57,7 @@ bool ModuleSceneIntro::Start()
 	uint id = 0;
 	glGenBuffers(1, (GLuint*) &(id));
 	glBindBuffer(GL_ARRAY_BUFFER, id);
-	glBufferData(GL_ARRAY_BUFFER,sizeof(float) 
+	//glBufferData(GL_ARRAY_BUFFER,sizeof(float) 
 	return ret;
 }
 

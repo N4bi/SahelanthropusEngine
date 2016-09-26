@@ -16,8 +16,6 @@ enum main_states
 };
 
 Application* App = nullptr;
-ConsoleWindow* console = nullptr;
-
 
 int main(int argc, char ** argv)
 {

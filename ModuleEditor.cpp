@@ -31,7 +31,6 @@ bool ModuleEditor::Start()
 	info_window.push_back(fps_win = new FPSwindow());
 	info_window.push_back(hd_win = new HardwareWindow());
 
-
 	return ret;
 }
 
@@ -40,12 +39,15 @@ bool ModuleEditor::CleanUp()
 {
 	LOG("Unloading Intro scene");
 
-	list<InfoWindows*>::iterator it = info_window.begin();
+	vector<InfoWindows*>::iterator it = info_window.begin();
 	while (it != info_window.end())
 	{
 		delete (*it);
 		++it;
 	}
+
+	info_window.clear();
+
 
 	return true;
 }
@@ -160,7 +162,7 @@ void ModuleEditor::Render()
 		bounding_box.Render();
 	}
 
-	list<InfoWindows*>::iterator it = info_window.begin();
+	vector<InfoWindows*>::iterator it = info_window.begin();
 	while (it != info_window.end())
 	{
 		(*it)->Render();
@@ -188,6 +190,7 @@ update_status ModuleEditor::UpdateEditor()
 		if (ImGui::MenuItem("Close"))
 		{
 			return UPDATE_STOP;
+			
 		}
 		ImGui::EndMainMenuBar();
 	}
@@ -216,6 +219,7 @@ update_status ModuleEditor::UpdateEditor()
 
 	return ret;
 }
+
 void ModuleEditor::AboutMenu()
 {
 	ImGui::BulletText("Sahelanthropus Engine\n"
@@ -271,4 +275,12 @@ void ModuleEditor::ShowHardwareWindow()
 void ModuleEditor::ShowConsoleWindow()
 {
 	console->SetActive(true);
+}
+
+void ModuleEditor::Log(const char * text)
+{
+	if (console != nullptr)
+	{
+		console->Write(text);
+	}
 }

@@ -1,6 +1,9 @@
 #pragma once
+
 #include <windows.h>
 #include <stdio.h>
+
+
 
 #define LOG(format, ...) log(__FILE__, __LINE__, format, __VA_ARGS__);
 
@@ -22,6 +25,7 @@ enum update_status
 	UPDATE_ERROR
 };
 
+
 // Configuration -----------
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 720
@@ -31,4 +35,4 @@ enum update_status
 #define WIN_BORDERLESS false
 #define WIN_FULLSCREEN_DESKTOP false
 #define VSYNC true
-#define TITLE "Sahelanthropus Engine v0.1"
+#define TITLE "Sahelanthropus Engine"

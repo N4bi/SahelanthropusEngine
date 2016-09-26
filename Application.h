@@ -36,6 +36,7 @@ private:
 	int		capped_ms = -1;
 	int		fps_counter = 0;
 	int		last_second_frame_count = 0;
+	std::string log;
 		
 	
 	list<Module*> list_modules;
@@ -50,6 +51,7 @@ public:
 	bool CleanUp();
 	void SetMaxFPS(int max_fps);
 	int GetLastFPS();
+	void Log(const char* text);
 
 private:
 

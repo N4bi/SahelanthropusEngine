@@ -60,7 +60,7 @@ bool Application::Init()
 	}
 
 	// After all Init calls we call Start() in all modules
-	LOG("Application Start --------------");
+
 	it = list_modules.begin();
 
 	while(it != list_modules.end() && ret == true)
@@ -171,6 +171,13 @@ void Application::AddModule(Module* mod)
 int Application::GetLastFPS()
 {
 	return last_second_frame_count;
+}
+
+void Application::Log(const char * text)
+{
+	log.append(text);
+
+	editor->Log(text);
 }
 
 void Application::SetMaxFPS(int max_fps)

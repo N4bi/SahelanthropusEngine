@@ -3,7 +3,7 @@
 #include "Globals.h"
 #include "MathGeoLib\include\MathGeoLib.h"
 #include "InfoWindows.h"
-#include <list>
+#include <vector>
 
 class FPSwindow;
 class HardwareWindow;
@@ -21,6 +21,7 @@ public:
 	bool CleanUp();
 
 	update_status UpdateEditor();
+	void Log(const char* text);
 
 private:
 	void CreatePoints(float2 min_max, int n);
@@ -42,9 +43,10 @@ private:
 	list<Sphere_Prim> points;
 
 	//-------Info stuff
-	list<InfoWindows*> info_window;
+	vector<InfoWindows*> info_window;
 	FPSwindow* fps_win = nullptr;
 	HardwareWindow* hd_win = nullptr;
+	ConsoleWindow* console = nullptr;
 
 
 

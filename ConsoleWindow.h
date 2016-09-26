@@ -17,7 +17,6 @@ private:
 	bool scroll_bottom;
 
 };
-extern ConsoleWindow* console; // we need this to call console in differents modules.
 
 #endif // !__CONSOLEWINDOW_H__
 

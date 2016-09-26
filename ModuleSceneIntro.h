@@ -1,9 +1,6 @@
 #pragma once
 #include "Module.h"
 #include "Globals.h"
-#include <gl/GL.h>
-#include <gl/GLU.h>
-#include "glut/glut.h"
 #include"MathGeoLib\include\MathGeoLib.h"
 #include <vector>
 

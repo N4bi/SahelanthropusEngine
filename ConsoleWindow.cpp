@@ -25,6 +25,7 @@ void ConsoleWindow::Render()
 	scroll_bottom = false;
 
 	ImGui::End();
+	
 }
 
 void ConsoleWindow::Write(const char * text)
