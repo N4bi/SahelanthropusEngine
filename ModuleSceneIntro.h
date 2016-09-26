@@ -1,6 +1,11 @@
 #pragma once
 #include "Module.h"
 #include "Globals.h"
+#include <gl/GL.h>
+#include <gl/GLU.h>
+#include "glut/glut.h"
+#include"MathGeoLib\include\MathGeoLib.h"
+#include <vector>
 
 #define BOUNCER_TIME 200
 
@@ -24,4 +29,7 @@ public:
 
 	SDL_Texture* graphics;
 	PhysBody3D* ground;
+	
+	vector<float3> vertex;
+
 };

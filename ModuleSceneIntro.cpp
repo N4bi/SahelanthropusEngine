@@ -7,6 +7,10 @@
 #include "PhysBody3D.h"
 #include "Imgui\imgui.h"
 #include "Rng.h"
+#include "Glew\include\glew.h"
+#include <gl/GL.h>
+#include <gl/GLU.h>
+#include "glut/glut.h"
 
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
@@ -47,6 +51,11 @@ bool ModuleSceneIntro::Start()
 	//	ran3[k] = random3.intRandom(2, 8);
 	//}
 
+	int num_vertex = vertex.size();
+	uint id = 0;
+	glGenBuffers(1, (GLuint*) &(id));
+	glBindBuffer(GL_ARRAY_BUFFER, id);
+	glBufferData(GL_ARRAY_BUFFER,sizeof(float) 
 	return ret;
 }
 
@@ -99,6 +108,83 @@ update_status ModuleSceneIntro::Update(float dt)
 	//Cylinder_Prim(2.0f, 4.0f).Render();
 	//Plane(vec(0.0f, 1.0f, 0.0f), 0.0f);
 
+	//glLineWidth(1.0f);
+	//
+	/*glBegin(GL_LINES);
+	glColor3f(1.0f, 1.0f, 0.0f);
+	glVertex3f(0.0f, 0.0f, 0.0f);
+	glVertex3f(0.0f, 10.0f, 0.0f);*/
+
+//--CUBE DIRECT MODE--------------------
+
+	glBegin(GL_TRIANGLES);
+//--------------------------------------
+	glColor3f(1.0f, 0.0f, 0.0f);
+
+
+	vertex.push_back(float3(0.0f, 0.0f, 0.0f));
+	vertex.push_back(float3(5.0f, 0.0f, 0.0f));
+	vertex.push_back(float3(0.0f, 5.0f, 0.0f));
+
+	vertex.push_back(float3(5.0f, 0.0f, 0.0f));
+	vertex.push_back(float3(5.0f, 5.0f, 0.0f));
+	vertex.push_back(float3(0.0f, 5.0f, 0.0f));
+
+//--------------------------------------
+
+	vertex.push_back(float3(5.0f, 0.0f, 0.0f));
+	vertex.push_back(float3(5.0f, 0.0f, -5.0f));
+	vertex.push_back(float3(5.0f, 5.0f, 0.0f));
+
+	vertex.push_back(float3(5.0f, 0.0f, -5.0f));
+	vertex.push_back(float3(5.0f, 5.0f, -5.0f));
+	vertex.push_back(float3(5.0f, 5.0f, 0.0f));
+//-------------------------------------
+
+	vertex.push_back(float3(5.0f, 0.0f, -5.0f));
+	vertex.push_back(float3(0.0f, 0.0f, -5.0f));
+	vertex.push_back(float3(5.0f, 5.0f, -5.0f));
+
+	vertex.push_back(float3(0.0f, 0.0f, -5.0f));
+	vertex.push_back(float3(0.0f, 5.0f, -5.0f));
+	vertex.push_back(float3(5.0f, 5.0f, -5.0f));
+//-------------------------------------
+
+	vertex.push_back(float3(0.0f, 0.0f, -5.0f));
+	vertex.push_back(float3(0.0f, 0.0f, 0.0f));
+	vertex.push_back(float3(0.0f, 5.0f, -5.0f));
+
+	vertex.push_back(float3(0.0f, 0.0f, 0.0f));
+	vertex.push_back(float3(0.0f, 5.0f, 0.0f));
+	vertex.push_back(float3(0.0f, 5.0f, -5.0f));
+
+//-------------------------------------
+
+
+	vertex.push_back(float3(0.0f, 5.0f, 0.0f));
+	vertex.push_back(float3(5.0f, 5.0f, 0.0f));
+	vertex.push_back(float3(0.0f, 5.0f, -5.0f));
+
+	vertex.push_back(float3(5.0f, 5.0f, 0.0f));
+	vertex.push_back(float3(5.0f, 5.0f, -5.0f));
+	vertex.push_back(float3(0.0f, 5.0f, -5.0f));
+
+//-------------------------------------
+
+	vertex.push_back(float3(0.0f, 0.0f, -5.0f));
+	vertex.push_back(float3(5.0f, 0.0f, -5.0f));
+	vertex.push_back(float3(0.0f, 0.0f, 0.0f));
+
+	vertex.push_back(float3(5.0f, 0.0f, -5.0f));
+	vertex.push_back(float3(5.0f, 0.0f, 0.0f));
+	vertex.push_back(float3(0.0f, 0.0f, 0.0f));
+
+	glEnd();
+
+
+
+
+	glLineWidth(1.0f);
 	
 
 	
