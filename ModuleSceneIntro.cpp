@@ -9,8 +9,7 @@
 #include "Rng.h"
 #include "Glew\include\glew.h"
 #include <gl/GL.h>
-#include <gl/GLU.h>
-#include "glut/glut.h"
+
 
 
 
@@ -29,35 +28,71 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
-	//Rng random;
+	//--CUBE ARRAY MODE--------------------
 
-	//int ran[50];
-	//for (int i = 0; i < 50; i++)
-	//{
 
-	//	ran[i] = random.random();
-	//}
-	//
-	//Rng random2;
-	//float ran2[50];
-	//for (int j = 0; j < 50; j++)
-	//{
-	//	ran2[j] = random2.floatRandom();
-	//}
+	vertex.push_back(vec(0.0f, 0.0f, 0.0f));
+	vertex.push_back(vec(5.0f, 0.0f, 0.0f));
+	vertex.push_back(vec(0.0f, 5.0f, 0.0f));
 
-	//Rng random3;
-	//int ran3[50];
-	//for (int k = 0; k < 50; k++)
-	//{
+	vertex.push_back(vec(5.0f, 0.0f, 0.0f));
+	vertex.push_back(vec(5.0f, 5.0f, 0.0f));
+	vertex.push_back(vec(0.0f, 5.0f, 0.0f));
 
-	//	ran3[k] = random3.intRandom(2, 8);
-	//}
+	//--------------------------------------
+
+	vertex.push_back(vec(5.0f, 0.0f, 0.0f));
+	vertex.push_back(vec(5.0f, 0.0f, -5.0f));
+	vertex.push_back(vec(5.0f, 5.0f, 0.0f));
+
+	vertex.push_back(vec(5.0f, 0.0f, -5.0f));
+	vertex.push_back(vec(5.0f, 5.0f, -5.0f));
+	vertex.push_back(vec(5.0f, 5.0f, 0.0f));
+	//-------------------------------------
+
+	vertex.push_back(vec(5.0f, 0.0f, -5.0f));
+	vertex.push_back(vec(0.0f, 0.0f, -5.0f));
+	vertex.push_back(vec(5.0f, 5.0f, -5.0f));
+
+	vertex.push_back(vec(0.0f, 0.0f, -5.0f));
+	vertex.push_back(vec(0.0f, 5.0f, -5.0f));
+	vertex.push_back(vec(5.0f, 5.0f, -5.0f));
+	//-------------------------------------
+
+	vertex.push_back(vec(0.0f, 0.0f, -5.0f));
+	vertex.push_back(vec(0.0f, 0.0f, 0.0f));
+	vertex.push_back(vec(0.0f, 5.0f, -5.0f));
+
+	vertex.push_back(vec(0.0f, 0.0f, 0.0f));
+	vertex.push_back(vec(0.0f, 5.0f, 0.0f));
+	vertex.push_back(vec(0.0f, 5.0f, -5.0f));
+
+	//-------------------------------------
+
+
+	vertex.push_back(vec(0.0f, 5.0f, 0.0f));
+	vertex.push_back(vec(5.0f, 5.0f, 0.0f));
+	vertex.push_back(vec(0.0f, 5.0f, -5.0f));
+
+	vertex.push_back(vec(5.0f, 5.0f, 0.0f));
+	vertex.push_back(vec(5.0f, 5.0f, -5.0f));
+	vertex.push_back(vec(0.0f, 5.0f, -5.0f));
+
+	//-------------------------------------
+
+	vertex.push_back(vec(0.0f, 0.0f, -5.0f));
+	vertex.push_back(vec(5.0f, 0.0f, -5.0f));
+	vertex.push_back(vec(0.0f, 0.0f, 0.0f));
+
+	vertex.push_back(vec(5.0f, 0.0f, -5.0f));
+	vertex.push_back(vec(5.0f, 0.0f, 0.0f));
+	vertex.push_back(vec(0.0f, 0.0f, 0.0f));
 
 	int num_vertex = vertex.size();
-	uint id = 0;
 	glGenBuffers(1, (GLuint*) &(id));
 	glBindBuffer(GL_ARRAY_BUFFER, id);
-	//glBufferData(GL_ARRAY_BUFFER,sizeof(float) 
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * num_vertex, vertex.data(), GL_STATIC_DRAW);
+
 	return ret;
 }
 
@@ -73,121 +108,20 @@ bool ModuleSceneIntro::CleanUp()
 update_status ModuleSceneIntro::Update(float dt)
 {
 
-	//if (ImGui::BeginMainMenuBar())
-	//{
-	//	if (ImGui::MenuItem("close"))
-	//	{
-	//		return UPDATE_STOP;
-	//	}
-	//	ImGui::EndMainMenuBar();
-	//}
-	/*ImGui::ShowTestWindow();
-	if (ImGui::BeginMenu("Menu"))
-	{
-		if (ImGui::BeginMenu("first object"))
-		{
-			ImGui::EndMenu();
-		}
-		
-		ImGui::EndMenu();
-	}
-	ImGui::BulletText("This is a bullet text");
-	ImGui::Button("Button", ImVec2(50, 30));
-	if (ImGui::BeginPopup("popup"))
-	{
-		ImGui::Text("PopUp clicked!");
-		ImGui::EndPopup();
-	}
-	ImGui::Text("Hello");
-	ImGui::LabelText("LABEL", "text");*/
-
-
 	Plane_Prim p(0.0f, 1.0f, 0.0f, 0.0f);
 	p.axis = true;
 	p.Render();
 
-	//Cube_Prim(5.0f, 5.0f, 5.0f).Render();
-	//Cylinder_Prim(2.0f, 4.0f).Render();
-	//Plane(vec(0.0f, 1.0f, 0.0f), 0.0f);
 
-	//glLineWidth(1.0f);
-	//
-	/*glBegin(GL_LINES);
-	glColor3f(1.0f, 1.0f, 0.0f);
-	glVertex3f(0.0f, 0.0f, 0.0f);
-	glVertex3f(0.0f, 10.0f, 0.0f);*/
+//-- DRAW CUBE---
 
-//--CUBE DIRECT MODE--------------------
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glBindBuffer(GL_ARRAY_BUFFER, id);
+	glVertexPointer(3, GL_FLOAT, 0, NULL);
 
-	glBegin(GL_TRIANGLES);
-//--------------------------------------
-	glColor3f(1.0f, 0.0f, 0.0f);
-
-
-	vertex.push_back(float3(0.0f, 0.0f, 0.0f));
-	vertex.push_back(float3(5.0f, 0.0f, 0.0f));
-	vertex.push_back(float3(0.0f, 5.0f, 0.0f));
-
-	vertex.push_back(float3(5.0f, 0.0f, 0.0f));
-	vertex.push_back(float3(5.0f, 5.0f, 0.0f));
-	vertex.push_back(float3(0.0f, 5.0f, 0.0f));
-
-//--------------------------------------
-
-	vertex.push_back(float3(5.0f, 0.0f, 0.0f));
-	vertex.push_back(float3(5.0f, 0.0f, -5.0f));
-	vertex.push_back(float3(5.0f, 5.0f, 0.0f));
-
-	vertex.push_back(float3(5.0f, 0.0f, -5.0f));
-	vertex.push_back(float3(5.0f, 5.0f, -5.0f));
-	vertex.push_back(float3(5.0f, 5.0f, 0.0f));
-//-------------------------------------
-
-	vertex.push_back(float3(5.0f, 0.0f, -5.0f));
-	vertex.push_back(float3(0.0f, 0.0f, -5.0f));
-	vertex.push_back(float3(5.0f, 5.0f, -5.0f));
-
-	vertex.push_back(float3(0.0f, 0.0f, -5.0f));
-	vertex.push_back(float3(0.0f, 5.0f, -5.0f));
-	vertex.push_back(float3(5.0f, 5.0f, -5.0f));
-//-------------------------------------
-
-	vertex.push_back(float3(0.0f, 0.0f, -5.0f));
-	vertex.push_back(float3(0.0f, 0.0f, 0.0f));
-	vertex.push_back(float3(0.0f, 5.0f, -5.0f));
-
-	vertex.push_back(float3(0.0f, 0.0f, 0.0f));
-	vertex.push_back(float3(0.0f, 5.0f, 0.0f));
-	vertex.push_back(float3(0.0f, 5.0f, -5.0f));
-
-//-------------------------------------
-
-
-	vertex.push_back(float3(0.0f, 5.0f, 0.0f));
-	vertex.push_back(float3(5.0f, 5.0f, 0.0f));
-	vertex.push_back(float3(0.0f, 5.0f, -5.0f));
-
-	vertex.push_back(float3(5.0f, 5.0f, 0.0f));
-	vertex.push_back(float3(5.0f, 5.0f, -5.0f));
-	vertex.push_back(float3(0.0f, 5.0f, -5.0f));
-
-//-------------------------------------
-
-	vertex.push_back(float3(0.0f, 0.0f, -5.0f));
-	vertex.push_back(float3(5.0f, 0.0f, -5.0f));
-	vertex.push_back(float3(0.0f, 0.0f, 0.0f));
-
-	vertex.push_back(float3(5.0f, 0.0f, -5.0f));
-	vertex.push_back(float3(5.0f, 0.0f, 0.0f));
-	vertex.push_back(float3(0.0f, 0.0f, 0.0f));
-
-	glEnd();
-
-
-
-
-	glLineWidth(1.0f);
-	
+	glDrawArrays(GL_TRIANGLES, 0, 36 * 3);
+	glDisableClientState(GL_VERTEX_ARRAY);
+//---------------
 
 	
 

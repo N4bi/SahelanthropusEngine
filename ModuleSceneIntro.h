@@ -28,5 +28,6 @@ public:
 	PhysBody3D* ground;
 	
 	vector<float3> vertex;
+	uint id = 0;
 
 };

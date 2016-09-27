@@ -47,7 +47,7 @@ bool ModuleEditor::CleanUp()
 	}
 
 	info_window.clear();
-
+	console = nullptr;
 
 	return true;
 }
