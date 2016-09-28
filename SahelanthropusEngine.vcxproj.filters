@@ -324,6 +324,9 @@
     <ClInclude Include="ConsoleWindow.h">
       <Filter>Sources\InfoWindows</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleLoadFBX.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -508,6 +511,9 @@
     </ClCompile>
     <ClCompile Include="ConsoleWindow.cpp">
       <Filter>Sources\InfoWindows</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleLoadFBX.cpp">
+      <Filter>Sources\Modules</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
