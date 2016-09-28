@@ -324,7 +324,7 @@
     <ClInclude Include="ConsoleWindow.h">
       <Filter>Sources\InfoWindows</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleLoadFBX.h">
+    <ClInclude Include="ModuleMesh.h">
       <Filter>Sources\Modules</Filter>
     </ClInclude>
   </ItemGroup>
@@ -512,7 +512,7 @@
     <ClCompile Include="ConsoleWindow.cpp">
       <Filter>Sources\InfoWindows</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleLoadFBX.cpp">
+    <ClCompile Include="ModuleMesh.cpp">
       <Filter>Sources\Modules</Filter>
     </ClCompile>
   </ItemGroup>

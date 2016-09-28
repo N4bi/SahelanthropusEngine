@@ -7,7 +7,7 @@
 #include "Assimp/include/cfileio.h"
 #pragma comment (lib, "Assimp/libx86/assimp.lib")
 
-struct VertexData
+struct Mesh
 {
 	uint id_vertices = 0;
 	uint num_indices = 0;
@@ -18,11 +18,11 @@ struct VertexData
 	float* vertices = nullptr;
 };
 
-class ModuleLoadFBX : public Module
+class ModuleMesh : public Module
 {
 public:
-	ModuleLoadFBX(Application* app, bool start_enabled = true);
-	~ModuleLoadFBX();
+	ModuleMesh(Application* app, bool start_enabled = true);
+	~ModuleMesh();
 
 	bool Init();
 	bool Start();
@@ -31,10 +31,9 @@ public:
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
-	const aiScene* LoadFBX(const char* path);
+	vector<Mesh> LoadFBX(const char* path);
 
 private:
-	VertexData m;
 
 
 };

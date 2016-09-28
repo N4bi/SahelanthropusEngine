@@ -6,6 +6,8 @@
 
 #define MAX_LIGHTS 8
 
+class Mesh;
+
 class ModuleRenderer3D : public Module
 {
 public:
@@ -19,6 +21,7 @@ public:
 	bool CleanUp();
 
 	void OnResize(int width, int height);
+	void Render(Mesh m);
 
 public:
 

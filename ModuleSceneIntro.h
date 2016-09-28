@@ -7,7 +7,7 @@
 #define BOUNCER_TIME 200
 
 struct PhysBody3D;
-class Cube;
+class Mesh;
 
 class ModuleSceneIntro : public Module
 {
@@ -26,8 +26,6 @@ public:
 
 	SDL_Texture* graphics;
 	PhysBody3D* ground;
-	
-	vector<float3> vertex;
-	uint id = 0;
+	vector<Mesh> fbx;
 
 };
