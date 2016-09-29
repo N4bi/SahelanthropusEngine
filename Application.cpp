@@ -13,6 +13,7 @@ Application::Application()
 	camera = new ModuleCamera3D(this);
 	editor = new ModuleEditor(this);
 	meshes = new ModuleMesh(this);
+	fs = new ModuleFileSystem(this);
 
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order
@@ -20,6 +21,7 @@ Application::Application()
 
 	// Main Modules
 
+	AddModule(fs);
 	AddModule(window);
 	AddModule(camera);
 	AddModule(input);

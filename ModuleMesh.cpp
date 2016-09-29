@@ -55,8 +55,11 @@ update_status ModuleMesh::PostUpdate(float dt)
 vector<Mesh> ModuleMesh::LoadFBX(const char * path)
 {
 	vector<Mesh> ret;
+	char* buffer;
+	uint size = App->fs->Load(path, &buffer);
 
-	const aiScene* scene = aiImportFile(path, aiProcessPreset_TargetRealtime_MaxQuality);
+	const aiScene* scene = aiImportFileFromMemory(buffer, size, aiProcessPreset_TargetRealtime_MaxQuality, NULL);
+
 
 	if (scene != nullptr && scene->HasMeshes())
 	{
@@ -106,6 +109,8 @@ vector<Mesh> ModuleMesh::LoadFBX(const char * path)
 	{
 		LOG("Error: %s", path, aiGetErrorString());
 	}
+
+	delete[] buffer;
 
 	return ret;
 }
