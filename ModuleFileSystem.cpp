@@ -35,7 +35,7 @@ bool ModuleFileSystem::Init()
 
 
 	// Ask SDL for a write dir
-	char* write_path = SDL_GetPrefPath("Ezwix-Organization", "Ezwix");
+	char* write_path = SDL_GetPrefPath("Sahelanthropus Engine", "Sahelanthropus");
 
 	if (PHYSFS_setWriteDir(write_path) == 0)
 	{

@@ -23,6 +23,7 @@ public:
 	update_status UpdateEditor();
 	void Log(const char* text);
 
+
 private:
 	void CreatePoints(float2 min_max, int n);
 	void CreateBoundingBox();
@@ -35,6 +36,10 @@ private:
 	void ShowHardwareWindow();
 	void ShowConsoleWindow();
 
+public:
+	bool console_on = false;
+	ConsoleWindow* console = nullptr;
+
 private:
 	bool box_render;
 	int n_points;
@@ -46,7 +51,7 @@ private:
 	vector<InfoWindows*> info_window;
 	FPSwindow* fps_win = nullptr;
 	HardwareWindow* hd_win = nullptr;
-	ConsoleWindow* console = nullptr;
+	
 
 
 

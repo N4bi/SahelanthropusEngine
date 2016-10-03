@@ -41,6 +41,7 @@ private:
 	int		fps_counter = 0;
 	int		last_second_frame_count = 0;
 	std::string log;
+	
 		
 	
 	list<Module*> list_modules;
@@ -56,6 +57,8 @@ public:
 	void SetMaxFPS(int max_fps);
 	int GetLastFPS();
 	void Log(const char* text);
+	
+	bool console_on;
 
 private:
 

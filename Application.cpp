@@ -33,7 +33,6 @@ Application::Application()
 	AddModule(player);
 	AddModule(renderer3D);
 	
-	
 }
 
 Application::~Application()
@@ -155,6 +154,7 @@ update_status Application::Update()
 bool Application::CleanUp()
 {
 	bool ret = true;
+
 	list<Module*>::reverse_iterator it = list_modules.rbegin();
 
 	while(it != list_modules.rend() && ret == true)
@@ -179,9 +179,8 @@ int Application::GetLastFPS()
 
 void Application::Log(const char * text)
 {
-	log.append(text);
 
-	editor->Log(text);
+			editor->Log(text);
 }
 
 void Application::SetMaxFPS(int max_fps)

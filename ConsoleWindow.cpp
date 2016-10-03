@@ -30,6 +30,6 @@ void ConsoleWindow::Render()
 
 void ConsoleWindow::Write(const char * text)
 {
-	buff.append(text);
-	scroll_bottom = true;
+	//buff.append(text);
+	//scroll_bottom = true;
 }
