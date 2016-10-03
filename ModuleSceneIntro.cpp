@@ -29,7 +29,34 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
-	fbx = App->meshes->LoadFBX("warrior.fbx");
+	//fbx = App->meshes->LoadFBX("Game/warrior.fbx");
+
+	GLubyte checkImage[6][6][4];
+	for (int i = 0; i < 6; i++) 
+	{
+		for (int j = 0; j < 6; j++) 
+		{
+			int c = ((((i & 0x8) == 0) ^ (((j & 0x8)) == 0))) * 255;
+			checkImage[i][j][0] = (GLubyte)c;
+			checkImage[i][j][1] = (GLubyte)c;
+			checkImage[i][j][2] = (GLubyte)c;
+			checkImage[i][j][3] = (GLubyte)255;
+		}
+	}
+	
+
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	glGenTextures(1, &ImageName);
+	glBindTexture(GL_TEXTURE_2D, ImageName);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 6, 6, 0, GL_RGBA, GL_UNSIGNED_BYTE, checkImage);
+	
+
+	
+	 
 	
 	return ret;
 }
@@ -49,6 +76,84 @@ update_status ModuleSceneIntro::Update(float dt)
 	Plane_Prim p(0.0f, 1.0f, 0.0f, 0.0f);
 	p.axis = true;
 	p.Render();
+
+
+	
+
+						//glVertex3f(0.0f, 0.0f, 0.0f);
+							//glVertex3f(5.0f, 0.0f, 0.0f);
+						//glVertex3f(0.0f, 5.0f, 0.0f);
+											//
+						//glVertex3f(5.0f, 0.0f, 0.0f);
+						//glVertex3f(5.0f, 5.0f, 0.0f);
+						//glVertex3f(0.0f, 5.0f, 0.0f);
+
+	glEnable(GL_TEXTURE_2D);
+	glBegin(GL_TRIANGLES);
+	glBindTexture(GL_TEXTURE_2D, ImageName);
+	//--------------------------------------
+
+	glTexCoord2f(0, 0);
+	glVertex3f(0.0f, 0.0f, 0.0f);
+	glTexCoord2f(1, 0);
+	glVertex3f(5.0f, 0.0f, 0.0f);
+	glTexCoord2f(1, 1);
+	glVertex3f(5.0f, 5.0f, 0.0f);
+	
+	glTexCoord2f(1, 1);
+	glVertex3f(5.0f, 5.0f, 0.0f);
+	glTexCoord2f(0, 1);
+	glVertex3f(0.0f, 5.0f, 0.0f);
+	glTexCoord2f(0, 0);
+	glVertex3f(0.0f, 0.0f, 0.0f);
+
+	
+
+	//glTexCoord2f(0, 0);						//glVertex3f(5.0f, 0.0f, 0.0f);
+	//glTexCoord2f(1, 0);						//glVertex3f(5.0f, 0.0f, -5.0f);
+	//glTexCoord2f(0, 1);						//glVertex3f(5.0f, 5.0f, 0.0f);
+
+	//glTexCoord2f(1, 0);						//glVertex3f(5.0f, 0.0f, -5.0f);
+	//glTexCoord2f(1, 1);						//glVertex3f(5.0f, 5.0f, -5.0f);
+	//glTexCoord2f(0, 1);						//glVertex3f(5.0f, 5.0f, 0.0f);
+
+	//glTexCoord2f(0, 0);						//glVertex3f(5.0f, 0.0f, -5.0f);
+	//glTexCoord2f(1, 0);						//glVertex3f(0.0f, 0.0f, -5.0f);
+	//glTexCoord2f(0, 1);						//glVertex3f(5.0f, 5.0f, -5.0f);
+
+	//glTexCoord2f(1, 0);						//glVertex3f(0.0f, 0.0f, -5.0f);
+	//glTexCoord2f(1, 1);						//glVertex3f(0.0f, 5.0f, -5.0f);
+	//glTexCoord2f(0, 1);						//glVertex3f(5.0f, 5.0f, -5.0f);
+
+	//glTexCoord2f(0, 0);						//glVertex3f(0.0f, 0.0f, -5.0f);
+	//glTexCoord2f(1, 0);						//glVertex3f(0.0f, 0.0f, 0.0f);
+	//glTexCoord2f(0, 1);						//glVertex3f(0.0f, 5.0f, -5.0f);
+
+	//glTexCoord2f(1, 0);						//glVertex3f(0.0f, 0.0f, 0.0f);
+	//glTexCoord2f(1, 1);						//glVertex3f(0.0f, 5.0f, 0.0f);
+	//glTexCoord2f(0, 1);						//glVertex3f(0.0f, 5.0f, -5.0f);
+
+	//glTexCoord2f(0, 0);						//glVertex3f(0.0f, 5.0f, 0.0f);
+	//glTexCoord2f(1, 0);						//glVertex3f(5.0f, 5.0f, 0.0f);
+	//glTexCoord2f(0, 1);						//glVertex3f(0.0f, 5.0f, -5.0f);
+
+	//glTexCoord2f(1, 0);						//glVertex3f(5.0f, 5.0f, 0.0f);
+	//glTexCoord2f(1, 1);						//glVertex3f(5.0f, 5.0f, -5.0f);
+	//glTexCoord2f(0, 1);						//glVertex3f(0.0f, 5.0f, -5.0f);
+
+	//glTexCoord2f(0, 0);						//glVertex3f(0.0f, 0.0f, -5.0f);
+	//glTexCoord2f(1, 0);						//glVertex3f(5.0f, 0.0f, -5.0f);
+	//glTexCoord2f(0, 1);						//glVertex3f(0.0f, 0.0f, 0.0f);
+
+	//glTexCoord2f(1, 0);						//glVertex3f(5.0f, 0.0f, -5.0f);
+	//glTexCoord2f(1, 1);						//glVertex3f(5.0f, 0.0f, 0.0f);
+	//glTexCoord2f(0, 1);
+
+
+	
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+
 	
 	vector<Mesh>::iterator it = fbx.begin();
 	while (it != fbx.end())
