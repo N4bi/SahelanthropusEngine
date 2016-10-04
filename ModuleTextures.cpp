@@ -39,5 +39,8 @@ bool ModuleTextures::CleanUp()
 	bool ret = true;
 	LOG("Freeing textures and DevIL");
 
+
+
 	return ret;
 }
+

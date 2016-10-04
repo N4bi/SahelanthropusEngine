@@ -13,7 +13,7 @@ public:
 	~ModuleTextures();
 
 	bool Init();
-	bool CleanUp() override;
+	bool CleanUp();
 
 
 
