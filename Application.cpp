@@ -14,6 +14,7 @@ Application::Application()
 	editor = new ModuleEditor(this);
 	meshes = new ModuleMesh(this);
 	fs = new ModuleFileSystem(this);
+	tex = new ModuleTextures(this);
 
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order
@@ -26,6 +27,7 @@ Application::Application()
 	AddModule(camera);
 	AddModule(input);
 	AddModule(audio);
+	AddModule(tex);
 	AddModule(physics3D);
 	AddModule(meshes);
 	AddModule(scene_intro);

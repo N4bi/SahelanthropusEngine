@@ -14,6 +14,7 @@
 #include "ModuleEditor.h"
 #include "ModuleMesh.h"
 #include "ModuleFileSystem.h"
+#include "ModuleTextures.h"
 
 class Application
 {
@@ -29,6 +30,7 @@ public:
 	ModuleEditor* editor;
 	ModuleMesh* meshes;
 	ModuleFileSystem* fs;
+	ModuleTextures* tex;
 
 private:
 

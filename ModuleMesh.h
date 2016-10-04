@@ -9,13 +9,25 @@
 
 struct Mesh
 {
+	//--Vertices
 	uint id_vertices = 0;
 	uint num_indices = 0;
 	uint* indices = nullptr;
 
+	//-- Indices
 	uint id_indices = 0;
 	uint num_vertices = 0;
 	float* vertices = nullptr;
+
+	//-- Textures
+	uint id_tex = 0;
+	uint num_tex = 0;
+	float2* textures = nullptr;
+
+	//-- Normals
+	uint id_normal = 0;
+	uint num_normal = 0;
+	float* normals = nullptr;
 };
 
 class ModuleMesh : public Module

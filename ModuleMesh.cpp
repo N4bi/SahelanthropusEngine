@@ -15,6 +15,8 @@ bool ModuleMesh::Init()
 {
 	bool ret = true;
 
+	LOG("Loading Module Mesh");
+
 	aiLogStream stream;
 	stream = aiGetPredefinedLogStream(aiDefaultLogStream_DEBUGGER, nullptr);
 	aiAttachLogStream(&stream);
@@ -98,10 +100,9 @@ vector<Mesh> ModuleMesh::LoadFBX(const char * path)
 				glGenBuffers(1, (GLuint*)&(m.id_indices));
 				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m.id_indices);
 				glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * m.num_indices, m.indices, GL_STATIC_DRAW);
-
-				ret.push_back(m);
+				
 			}
-
+			ret.push_back(m);
 			aiReleaseImport(scene);
 		}
 	}
