@@ -80,7 +80,7 @@ vector<Mesh> ModuleMesh::LoadFBX(const char * path)
 			glBindBuffer(GL_ARRAY_BUFFER, m.id_vertices);
 			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * m.num_vertices * 3, m.vertices, GL_STATIC_DRAW);
 
-			//Copy indices
+			//Copy indices--------------------------------------------------------------------------------------
 			if (new_mesh->HasFaces())
 			{
 				m.num_indices = new_mesh->mNumFaces * 3;
@@ -96,15 +96,30 @@ vector<Mesh> ModuleMesh::LoadFBX(const char * path)
 						memcpy(&m.indices[j * 3], new_mesh->mFaces[j].mIndices, sizeof(uint) * 3);
 					}
 				}
-
-				glGenBuffers(1, (GLuint*)&(m.id_indices));
-				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m.id_indices);
-				glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * m.num_indices, m.indices, GL_STATIC_DRAW);
-				
 			}
-			ret.push_back(m);
-			aiReleaseImport(scene);
-		}
+			glGenBuffers(1, (GLuint*)&(m.id_indices));
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m.id_indices);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * m.num_indices, m.indices, GL_STATIC_DRAW);
+		
+			
+			//Copy UVs----------------------------------------------------------------------------------------
+			uint uv_id = 0;
+			if (new_mesh->HasTextureCoords(uv_id))
+			{
+				m.num_uv = new_mesh->mNumVertices;
+				m.uvs = new float2[m.num_uv];
+				for (int k = 0; k < m.num_uv; k++)
+				{
+					memcpy(&m.uvs[k], &new_mesh->mTextureCoords[uv_id][k].x, sizeof(float2));
+					memcpy(&m.uvs[k+1], &new_mesh->mTextureCoords[uv_id][k+1].y, sizeof(float2));
+				}
+				glGenBuffers(1, (GLuint*)&(m.id_uv));
+				glBindBuffer(GL_ARRAY_BUFFER, m.id_uv);
+				glBufferData(GL_ARRAY_BUFFER, sizeof(float2) * m.num_uv, m.uvs, GL_STATIC_DRAW);
+			}
+			ret.push_back(m);			
+		}		
+		aiReleaseImport(scene);
 	}
 	else
 	{

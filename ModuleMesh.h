@@ -19,10 +19,13 @@ struct Mesh
 	uint num_vertices = 0;
 	float* vertices = nullptr;
 
+	//-- UVs
+	uint id_uv = 0;
+	uint num_uv = 0;
+	float2* uvs = nullptr;
+
 	//-- Textures
 	uint id_tex = 0;
-	uint num_tex = 0;
-	float2* textures = nullptr;
 
 	//-- Normals
 	uint id_normal = 0;

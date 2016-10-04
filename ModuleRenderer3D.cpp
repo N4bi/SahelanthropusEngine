@@ -200,10 +200,21 @@ void ModuleRenderer3D::OnResize(int width, int height)
 void ModuleRenderer3D::Render(Mesh m)
 {
 	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	glEnable(GL_TEXTURE_2D);
 //----------------------------------------------	
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m.id_indices);
+	glBindBuffer(GL_ARRAY_BUFFER, m.id_vertices);
 	glVertexPointer(3, GL_FLOAT, 0, NULL);
+
+	glBindBuffer(GL_ARRAY_BUFFER, m.id_uv);
+	glTexCoordPointer(2, GL_FLOAT, 0, NULL);
+	
+	glBindTexture(GL_TEXTURE_2D, m.id_tex);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m.id_indices);
 	glDrawElements(GL_TRIANGLES, m.num_indices, GL_UNSIGNED_INT, NULL);
 //---------------------------------------------
+	glDisable(GL_TEXTURE_2D);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	glDisableClientState(GL_VERTEX_ARRAY);
 }

@@ -47,14 +47,14 @@ bool ModuleSceneIntro::Start()
 		}
 	}
 	
-	//--Texture with DevIL
-	GLubyte devil_image;
-	int width = ilGetInteger(IL_IMAGE_WIDTH);
-	int height = ilutGetInteger(IL_IMAGE_HEIGHT);
-	ilGenImages(1, &ImageName);
-	ilBindImage(ImageName);
-	ilLoadImage("goku.jpg");
-	devil_image = ilutGLBindTexImage();
+	//--Texture with DevIL------------------------
+
+	uint devil_image;	
+	//fbx = App->meshes->LoadFBX("test.fbx");
+	devil_image = App->tex->LoadTexture("goku.jpg");
+	//fbx.begin()->id_tex = devil_image;
+
+
 
 	//--Checker Direct Mode
 	//glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
@@ -66,7 +66,9 @@ bool ModuleSceneIntro::Start()
 	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 54, 54, 0, GL_RGBA, GL_UNSIGNED_BYTE, checkImage);
 
+
 	
+
 
 	
 	 
@@ -192,7 +194,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	while (it != fbx.end())
 	{
 		App->renderer3D->Render(*it);
-		++it;
+		it++;
 	}
 
 	

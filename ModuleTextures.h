@@ -15,6 +15,8 @@ public:
 	bool Init();
 	bool CleanUp();
 
+	uint LoadTexture(char* path);
+
 
 
 

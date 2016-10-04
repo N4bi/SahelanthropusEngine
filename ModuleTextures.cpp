@@ -44,3 +44,13 @@ bool ModuleTextures::CleanUp()
 	return ret;
 }
 
+uint ModuleTextures::LoadTexture(char * path)
+{
+	ILuint id;
+	ilGenImages(1, &id);
+	ilBindImage(id);
+	ilLoadImage(path);
+
+	return ilutGLBindTexImage();
+}
+
