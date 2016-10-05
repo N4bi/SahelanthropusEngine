@@ -75,9 +75,10 @@
   <ItemGroup>
     <ClInclude Include="Application.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="Component.h" />
     <ClInclude Include="ConsoleWindow.h" />
     <ClInclude Include="FPSwindow.h" />
-    <ClInclude Include="glmath.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="HardwareWindow.h" />
     <ClInclude Include="Imgui\imconfig.h" />
@@ -153,6 +154,7 @@
     <ClInclude Include="ModuleCamera3D.h" />
     <ClInclude Include="ModuleEditor.h" />
     <ClInclude Include="ModuleFileSystem.h" />
+    <ClInclude Include="ModuleGOManager.h" />
     <ClInclude Include="ModuleMesh.h" />
     <ClInclude Include="ModulePhysics3D.h" />
     <ClInclude Include="ModuleRenderer3D.h" />
@@ -173,9 +175,10 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="Component.cpp" />
     <ClCompile Include="ConsoleWindow.cpp" />
     <ClCompile Include="FPSwindow.cpp" />
-    <ClCompile Include="glmath.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="HardwareWindow.cpp" />
     <ClCompile Include="Imgui\imgui.cpp" />
     <ClCompile Include="Imgui\imgui_demo.cpp" />
@@ -222,6 +225,7 @@
     <ClCompile Include="ModuleCamera3D.cpp" />
     <ClCompile Include="ModuleEditor.cpp" />
     <ClCompile Include="ModuleFileSystem.cpp" />
+    <ClCompile Include="ModuleGOManager.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModuleMesh.cpp" />
     <ClCompile Include="ModulePhysics3D.cpp" />

@@ -15,6 +15,7 @@ Application::Application()
 	meshes = new ModuleMesh(this);
 	fs = new ModuleFileSystem(this);
 	tex = new ModuleTextures(this);
+	go_manager = new ModuleGOManager(this);
 
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order
@@ -30,6 +31,7 @@ Application::Application()
 	AddModule(tex);
 	AddModule(physics3D);
 	AddModule(meshes);
+	AddModule(go_manager);
 	AddModule(scene_intro);
 	AddModule(editor);
 	AddModule(player);

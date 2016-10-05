@@ -226,7 +226,7 @@ update_status ModuleEditor::UpdateEditor()
 void ModuleEditor::AboutMenu()
 {
 	ImGui::BulletText("Sahelanthropus Engine\n"
-						"3D Engine created for the subject with the same name"
+						"3D Engine created for Game Engines subject"
 		);
 	ImGui::BulletText("Author: Ivan Perez Latorre");
 	ImGui::BulletText(

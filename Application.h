@@ -15,6 +15,7 @@
 #include "ModuleMesh.h"
 #include "ModuleFileSystem.h"
 #include "ModuleTextures.h"
+#include "ModuleGOManager.h"
 
 class Application
 {
@@ -31,6 +32,7 @@ public:
 	ModuleMesh* meshes;
 	ModuleFileSystem* fs;
 	ModuleTextures* tex;
+	ModuleGOManager* go_manager;
 
 private:
 

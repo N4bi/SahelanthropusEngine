@@ -49,9 +49,9 @@ bool ModuleSceneIntro::Start()
 	
 	//--Texture with DevIL------------------------
 
-	uint devil_image;	
-	//fbx = App->meshes->LoadFBX("test.fbx");
-	devil_image = App->tex->LoadTexture("goku.jpg");
+	//uint devil_image;	
+	//fbx = App->meshes->LoadFBX("Town/Street environment_V01.fbx");
+	//devil_image = App->tex->LoadTexture("goku.jpg");
 	//fbx.begin()->id_tex = devil_image;
 
 
@@ -93,103 +93,104 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.Render();
 
 
-	glEnable(GL_TEXTURE_2D);
-	glBegin(GL_TRIANGLES);
+	//glEnable(GL_TEXTURE_2D);
+	//glBegin(GL_TRIANGLES);
 
-	//--------------------------------------
-	
-	glTexCoord2f(0, 0);
-	glVertex3f(0.0f, 0.0f, 0.0f);	
-	glTexCoord2f(1, 0);
-	glVertex3f(5.0f, 0.0f, 0.0f);
-	glTexCoord2f(1, 1);
-	glVertex3f(5.0f, 5.0f, 0.0f);
-	
-	
-	glTexCoord2f(1, 1);
-	glVertex3f(5.0f, 5.0f, 0.0f);	
-	glTexCoord2f(0, 1);
-	glVertex3f(0.0f, 5.0f, 0.0f);
-	glTexCoord2f(0, 0);
-	glVertex3f(0.0f, 0.0f, 0.0f);
-	
+	////CUBE DIRECT DRAW--------------------------------------
+	//
+	//glTexCoord2f(0, 0);
+	//glVertex3f(0.0f, 0.0f, 0.0f);	
+	//glTexCoord2f(1, 0);
+	//glVertex3f(5.0f, 0.0f, 0.0f);
+	//glTexCoord2f(1, 1);
+	//glVertex3f(5.0f, 5.0f, 0.0f);
+	//
+	//
+	//glTexCoord2f(1, 1);
+	//glVertex3f(5.0f, 5.0f, 0.0f);	
+	//glTexCoord2f(0, 1);
+	//glVertex3f(0.0f, 5.0f, 0.0f);
+	//glTexCoord2f(0, 0);
+	//glVertex3f(0.0f, 0.0f, 0.0f);
+	//
 
-	glTexCoord2f(0, 0);	
-	glVertex3f(5.0f, 0.0f, 0.0f);
-	glTexCoord2f(1, 0);	
-	glVertex3f(5.0f, 0.0f, -5.0f);
-	glTexCoord2f(0, 1);						
-	glVertex3f(5.0f, 5.0f, 0.0f);
+	//glTexCoord2f(0, 0);	
+	//glVertex3f(5.0f, 0.0f, 0.0f);
+	//glTexCoord2f(1, 0);	
+	//glVertex3f(5.0f, 0.0f, -5.0f);
+	//glTexCoord2f(0, 1);						
+	//glVertex3f(5.0f, 5.0f, 0.0f);
 
-	glTexCoord2f(1, 0);
-	glVertex3f(5.0f, 0.0f, -5.0f);
-	glTexCoord2f(1, 1);
-	glVertex3f(5.0f, 5.0f, -5.0f);
-	glTexCoord2f(0, 1);
-	glVertex3f(5.0f, 5.0f, 0.0f);
-											
-	glTexCoord2f(0, 0);
-	glVertex3f(5.0f, 0.0f, -5.0f);
-	glTexCoord2f(1, 0);	
-	glVertex3f(0.0f, 0.0f, -5.0f);
-	glTexCoord2f(0, 1);		
-	glVertex3f(5.0f, 5.0f, -5.0f);
-											
-	glTexCoord2f(1, 0);	
-	glVertex3f(0.0f, 0.0f, -5.0f);
-	glTexCoord2f(1, 1);	
-	glVertex3f(0.0f, 5.0f, -5.0f);
-	glTexCoord2f(0, 1);						
-	glVertex3f(5.0f, 5.0f, -5.0f);
+	//glTexCoord2f(1, 0);
+	//glVertex3f(5.0f, 0.0f, -5.0f);
+	//glTexCoord2f(1, 1);
+	//glVertex3f(5.0f, 5.0f, -5.0f);
+	//glTexCoord2f(0, 1);
+	//glVertex3f(5.0f, 5.0f, 0.0f);
+	//										
+	//glTexCoord2f(0, 0);
+	//glVertex3f(5.0f, 0.0f, -5.0f);
+	//glTexCoord2f(1, 0);	
+	//glVertex3f(0.0f, 0.0f, -5.0f);
+	//glTexCoord2f(0, 1);		
+	//glVertex3f(5.0f, 5.0f, -5.0f);
+	//										
+	//glTexCoord2f(1, 0);	
+	//glVertex3f(0.0f, 0.0f, -5.0f);
+	//glTexCoord2f(1, 1);	
+	//glVertex3f(0.0f, 5.0f, -5.0f);
+	//glTexCoord2f(0, 1);						
+	//glVertex3f(5.0f, 5.0f, -5.0f);
 
-	glTexCoord2f(0, 0);
-	glVertex3f(0.0f, 0.0f, -5.0f);
-	glTexCoord2f(1, 0);	
-	glVertex3f(0.0f, 0.0f, 0.0f);
-	glTexCoord2f(0, 1);	
-	glVertex3f(0.0f, 5.0f, -5.0f);
-											
-	glTexCoord2f(1, 0);
-	glVertex3f(0.0f, 0.0f, 0.0f);
-	glTexCoord2f(1, 1);
-	glVertex3f(0.0f, 5.0f, 0.0f);
-	glTexCoord2f(0, 1);		
-	glVertex3f(0.0f, 5.0f, -5.0f);
-											
-	glTexCoord2f(0, 0);	
-	glVertex3f(0.0f, 5.0f, 0.0f);
-	glTexCoord2f(1, 0);
-	glVertex3f(5.0f, 5.0f, 0.0f);
-	glTexCoord2f(0, 1);
-	glVertex3f(0.0f, 5.0f, -5.0f);
-											
-	glTexCoord2f(1, 0);	
-	glVertex3f(5.0f, 5.0f, 0.0f);
-	glTexCoord2f(1, 1);	
-	glVertex3f(5.0f, 5.0f, -5.0f);
-	glTexCoord2f(0, 1);		
-	glVertex3f(0.0f, 5.0f, -5.0f);
-											
-	glTexCoord2f(0, 0);
-	glVertex3f(0.0f, 0.0f, -5.0f);
-	glTexCoord2f(1, 0);	
-	glVertex3f(5.0f, 0.0f, -5.0f);
-	glTexCoord2f(0, 1);	
-	glVertex3f(0.0f, 0.0f, 0.0f);
-											
-	glTexCoord2f(1, 0);	
-	glVertex3f(5.0f, 0.0f, -5.0f);
-	glTexCoord2f(1, 1);
-	glVertex3f(5.0f, 0.0f, 0.0f);
-	glTexCoord2f(0, 1);	
-	glVertex3f(0.0f, 0.0f, 0.0f);
-											
+	//glTexCoord2f(0, 0);
+	//glVertex3f(0.0f, 0.0f, -5.0f);
+	//glTexCoord2f(1, 0);	
+	//glVertex3f(0.0f, 0.0f, 0.0f);
+	//glTexCoord2f(0, 1);	
+	//glVertex3f(0.0f, 5.0f, -5.0f);
+	//										
+	//glTexCoord2f(1, 0);
+	//glVertex3f(0.0f, 0.0f, 0.0f);
+	//glTexCoord2f(1, 1);
+	//glVertex3f(0.0f, 5.0f, 0.0f);
+	//glTexCoord2f(0, 1);		
+	//glVertex3f(0.0f, 5.0f, -5.0f);
+	//										
+	//glTexCoord2f(0, 0);	
+	//glVertex3f(0.0f, 5.0f, 0.0f);
+	//glTexCoord2f(1, 0);
+	//glVertex3f(5.0f, 5.0f, 0.0f);
+	//glTexCoord2f(0, 1);
+	//glVertex3f(0.0f, 5.0f, -5.0f);
+	//										
+	//glTexCoord2f(1, 0);	
+	//glVertex3f(5.0f, 5.0f, 0.0f);
+	//glTexCoord2f(1, 1);	
+	//glVertex3f(5.0f, 5.0f, -5.0f);
+	//glTexCoord2f(0, 1);		
+	//glVertex3f(0.0f, 5.0f, -5.0f);
+	//										
+	//glTexCoord2f(0, 0);
+	//glVertex3f(0.0f, 0.0f, -5.0f);
+	//glTexCoord2f(1, 0);	
+	//glVertex3f(5.0f, 0.0f, -5.0f);
+	//glTexCoord2f(0, 1);	
+	//glVertex3f(0.0f, 0.0f, 0.0f);
+	//										
+	//glTexCoord2f(1, 0);	
+	//glVertex3f(5.0f, 0.0f, -5.0f);
+	//glTexCoord2f(1, 1);
+	//glVertex3f(5.0f, 0.0f, 0.0f);
+	//glTexCoord2f(0, 1);	
+	//glVertex3f(0.0f, 0.0f, 0.0f);
+	//										
+
+	//
+	//glEnd();
+	//glDisable(GL_TEXTURE_2D);
 
 	
-	glEnd();
-	glDisable(GL_TEXTURE_2D);
-
-	
+	//--RENDER FBX MODELS------------------------------------------------
 	vector<Mesh>::iterator it = fbx.begin();
 	while (it != fbx.end())
 	{
