@@ -15,7 +15,7 @@ bool ModuleGOManager::Init()
 	bool ret = true;
 	LOG("Init Game Object Manager");
 
-	root = new GameObject("root");
+	root = new GameObject(nullptr, "root");
 
 	return ret;
 }
@@ -32,6 +32,17 @@ bool ModuleGOManager::CleanUp()
 	bool ret = true;
 
 	delete root;
+
+	return ret;
+}
+
+GameObject* ModuleGOManager::CreateGameObject(GameObject * parent)
+{
+	GameObject* ret = new GameObject(parent, "uknown");
+	if (parent == nullptr)
+	{
+		parent = root;
+	}
 
 	return ret;
 }

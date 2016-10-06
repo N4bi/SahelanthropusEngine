@@ -9,8 +9,8 @@ class Component;
 class GameObject
 {
 public:
-	GameObject(const char* name);
-	~GameObject();
+	GameObject(GameObject* parent, const char* name);
+	virtual ~GameObject();
 
 	void Update(float dt);
 

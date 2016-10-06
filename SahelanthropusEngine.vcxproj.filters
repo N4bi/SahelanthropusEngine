@@ -339,6 +339,9 @@
     <ClInclude Include="p2Point.h">
       <Filter>Sources</Filter>
     </ClInclude>
+    <ClInclude Include="ComponentTransform.h">
+      <Filter>Sources\Containers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -537,6 +540,9 @@
       <Filter>Sources\Containers</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
+      <Filter>Sources\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentTransform.cpp">
       <Filter>Sources\Containers</Filter>
     </ClCompile>
   </ItemGroup>

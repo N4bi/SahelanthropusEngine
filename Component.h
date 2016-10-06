@@ -10,14 +10,15 @@ public:
 	enum Types
 	{
 		Geometry,
+		Transform,
 		Material,
 		Camera,
 		None
 	};
 
 public:
-	Component(Types _type);
-	~Component();
+	Component(GameObject* parent, unsigned int _id);
+	virtual ~Component();
 
 	virtual void Enable() {};
 	virtual void Disable() {};
@@ -27,9 +28,12 @@ public:
 	GameObject* GetGameObject();
 	const char* GetTypeStr() const;
 
-private:
+public:
 	Types type = None;
+
+private:
 	GameObject* game_object = nullptr;
+	unsigned int id = 0;
 };
 
 

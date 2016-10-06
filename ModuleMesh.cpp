@@ -54,7 +54,7 @@ update_status ModuleMesh::PostUpdate(float dt)
 	return UPDATE_CONTINUE;
 }
 
-vector<Mesh> ModuleMesh::LoadFBX(const char * path)
+vector<Mesh> ModuleMesh::LoadFBX(const char* path)
 {
 	vector<Mesh> ret;
 	char* buffer;

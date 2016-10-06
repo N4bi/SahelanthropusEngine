@@ -3,7 +3,7 @@
 
 using namespace std;
 
-GameObject::GameObject(const char * name)
+GameObject::GameObject(GameObject* parent, const char * name)
 {
 	name_object = name;
 }

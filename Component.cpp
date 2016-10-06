@@ -1,8 +1,9 @@
 #include "Component.h"
 
-Component::Component(Types _type)
+Component::Component(GameObject* parent, unsigned int _id)
 {
-	type = _type;
+	game_object = parent;
+	id = _id;
 }
 
 Component::~Component()
@@ -22,7 +23,7 @@ GameObject * Component::GetGameObject()
 
 const char* Component::GetTypeStr() const
 {
-	const char* types[] = { "Geometry","Material","Camera","None" };
+	const char* types[] = { "Geometry","Transform ","Material","Camera","None" };
 	
 	return types[type];
 }
