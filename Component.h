@@ -9,30 +9,31 @@ class Component
 public:
 	enum Types
 	{
-		Geometry,
-		Transform,
-		Material,
-		Camera,
-		None
+		MESH,
+		TRANSFORM,
+		MATERIAL,
+		CAMERA,
+		NONE
 	};
 
 public:
-	Component(GameObject* parent, unsigned int _id);
+	Component(Types _type);
 	virtual ~Component();
 
 	virtual void Enable() {};
 	virtual void Disable() {};
 	virtual void Update(float dt) {};
+	virtual void ShowOnEditor() {};
 
 	Types GetType() const;
 	GameObject* GetGameObject();
 	const char* GetTypeStr() const;
 
 public:
-	Types type = None;
-
+	bool active = true;
+	Types type = NONE;
+	GameObject* parent_go = nullptr;
 private:
-	GameObject* game_object = nullptr;
 	unsigned int id = 0;
 };
 

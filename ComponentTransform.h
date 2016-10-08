@@ -7,10 +7,10 @@
 class ComponentTransform : public Component
 {
 public:
-	ComponentTransform(GameObject* parent, unsigned int id);
+	ComponentTransform(Types _type);
 	~ComponentTransform();
 
-	void ShowComponentTransform();
+	void ShowOnEditor();	
 
 	void SetTranslation(float3 pos);
 	float3 GetTranslation();
@@ -19,6 +19,7 @@ public:
 	float3 GetScale();
 
 	void SetRotation(float3 rot);
+	void SetRotation(float4 rot);
 	float3 GetRotation();
 
 	float4x4 GetTransformationMatrix();

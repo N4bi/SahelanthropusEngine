@@ -1,11 +1,17 @@
 #pragma once
 #include "Module.h"
 #include "Globals.h"
+#include "GameObject.h"
 #include "Assimp/include/cimport.h"
 #include "Assimp/include/scene.h"
 #include "Assimp/include/postprocess.h"
 #include "Assimp/include/cfileio.h"
+#include"MathGeoLib\include\MathGeoLib.h"
 #pragma comment (lib, "Assimp/libx86/assimp.lib")
+
+class GameObject;
+class aiNode;
+class aiScene;
 
 struct Mesh
 {
@@ -31,6 +37,9 @@ struct Mesh
 	uint id_normal = 0;
 	uint num_normal = 0;
 	float* normals = nullptr;
+
+	//--Box -- WIP
+	AABB bounding_box;
 };
 
 class ModuleMesh : public Module
@@ -46,7 +55,8 @@ public:
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
-	vector<Mesh> LoadFBX(const char* path);
+	bool LoadFBX(const char* path);
+	void Load(aiNode* node, const aiScene* scene, GameObject* parent);
 
 private:
 

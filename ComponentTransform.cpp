@@ -1,9 +1,10 @@
 #include "ComponentTransform.h"
 #include "Imgui\imgui.h"
 
-ComponentTransform::ComponentTransform(GameObject * parent, unsigned int id) : Component(parent, id)
+ComponentTransform::ComponentTransform(Types _type) : Component(_type)
 {
-	type = Transform;
+	_type = TRANSFORM;
+
 }
 
 ComponentTransform::~ComponentTransform()
@@ -11,9 +12,42 @@ ComponentTransform::~ComponentTransform()
 
 }
 
-void ComponentTransform::ShowComponentTransform()
+void ComponentTransform::ShowOnEditor()
 {
+	if (ImGui::CollapsingHeader("Transformation"))
+	{
+		//Translation
+		ImGui::Text("Translation");
+		ImGui::SameLine();
 
+		float3 translate = this->translation;
+		if (ImGui::DragFloat3("T",translate.ptr(),0.2f))
+		{
+			SetTranslation(translate);
+		}
+
+		//Rotation
+		ImGui::Text("Rotation   ");
+		ImGui::SameLine();
+
+		float3 rot = this->rotation.ToEulerXYX();
+		
+		if (ImGui::DragFloat3("R", rot.ptr(), 0.2f))
+		{
+			SetRotation(rot);
+		}
+
+		//Scale
+		ImGui::Text("Scale      ");
+		ImGui::SameLine();
+
+		float3 scale = this->scale;
+		if (ImGui::DragFloat3("S", scale.ptr(), 0.2f))
+		{
+			SetScale(scale);
+		}
+
+	}
 }
 
 void ComponentTransform::SetTranslation(float3 pos)
@@ -31,6 +65,7 @@ float3 ComponentTransform::GetTranslation()
 void ComponentTransform::SetScale(float3 _scale)
 {
 	scale.Set(_scale.x, _scale.y, _scale.z);
+
 }
 float3 ComponentTransform::GetScale()
 {
@@ -43,12 +78,19 @@ void ComponentTransform::SetRotation(float3 rot)
 	DegToRad(rot.y);
 	DegToRad(rot.z);
 
+
 	rotation = Quat::FromEulerXYZ(rot.x, rot.y, rot.z);
+}
+
+void ComponentTransform::SetRotation(float4 rot)
+{
+	rotation.Set(rot.x,rot.y,rot.z,rot.w);
 }
 
 float3 ComponentTransform::GetRotation()
 {
 	float3 ret = rotation.ToEulerXYZ();
+	
 	RadToDeg(ret.x);
 	RadToDeg(ret.y);
 	RadToDeg(ret.z);
@@ -63,3 +105,5 @@ float4x4 ComponentTransform::GetTransformationMatrix()
 
 	return transform;
 }
+
+

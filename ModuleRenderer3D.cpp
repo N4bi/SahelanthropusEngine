@@ -197,8 +197,12 @@ void ModuleRenderer3D::OnResize(int width, int height)
 	glLoadIdentity();
 }
 
-void ModuleRenderer3D::Render(Mesh m)
+void ModuleRenderer3D::Render(Mesh m,float4x4 mtrx,uint tex_id)
 {
+	glPushMatrix();
+	glMultMatrixf(*mtrx.v);
+
+
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	glEnable(GL_TEXTURE_2D);
@@ -209,7 +213,7 @@ void ModuleRenderer3D::Render(Mesh m)
 	glBindBuffer(GL_ARRAY_BUFFER, m.id_uv);
 	glTexCoordPointer(2, GL_FLOAT, 0, NULL);
 	
-	glBindTexture(GL_TEXTURE_2D, m.id_tex);
+	glBindTexture(GL_TEXTURE_2D, tex_id);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m.id_indices);
 	glDrawElements(GL_TRIANGLES, m.num_indices, GL_UNSIGNED_INT, NULL);
@@ -217,4 +221,6 @@ void ModuleRenderer3D::Render(Mesh m)
 	glDisable(GL_TEXTURE_2D);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	glDisableClientState(GL_VERTEX_ARRAY);
+
+	glPopMatrix();
 }

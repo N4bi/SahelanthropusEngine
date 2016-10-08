@@ -32,9 +32,11 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
+	App->meshes->LoadFBX("Street environment_V01.fbx");
+
 	//fbx = App->meshes->LoadFBX("Arcade.fbx");
 
-	GLubyte checkImage[54][54][4];
+	/*GLubyte checkImage[54][54][4];
 	for (int i = 0; i < 54; i++) 
 	{
 		for (int j = 0; j < 54; j++) 
@@ -45,7 +47,7 @@ bool ModuleSceneIntro::Start()
 			checkImage[i][j][2] = (GLubyte)c;
 			checkImage[i][j][3] = (GLubyte)255;
 		}
-	}
+	}*/
 	
 	//--Texture with DevIL------------------------
 
@@ -188,15 +190,6 @@ update_status ModuleSceneIntro::Update(float dt)
 	//
 	//glEnd();
 	//glDisable(GL_TEXTURE_2D);
-
-	
-	//--RENDER FBX MODELS------------------------------------------------
-	vector<Mesh>::iterator it = fbx.begin();
-	while (it != fbx.end())
-	{
-		App->renderer3D->Render(*it);
-		it++;
-	}
 
 	
 

@@ -21,7 +21,7 @@ public:
 	bool CleanUp();
 
 	void OnResize(int width, int height);
-	void Render(Mesh m);
+	void Render(Mesh m, float4x4 mtrx,uint tex_id);
 
 public:
 

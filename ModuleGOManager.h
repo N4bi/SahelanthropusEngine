@@ -3,6 +3,7 @@
 
 #include "Globals.h"
 #include "Module.h"
+#include <list>
 
 class GameObject;
 
@@ -19,9 +20,16 @@ public:
 
 	GameObject* CreateGameObject(GameObject* parent);
 
+	void HierarchyInfo();
+	void ShowGameObjectsOnEditor(const std::list<GameObject*>* childs);
+	void EditorWindow();
+
+	void UpdateChilds(float dt, GameObject* go);
+
 
 private:
 	GameObject* root = nullptr;
+	GameObject* game_object_on_editor = nullptr;
 
 };
 
