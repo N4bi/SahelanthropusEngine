@@ -22,7 +22,7 @@ GameObject* Component::GetGameObject()
 
 const char* Component::GetTypeStr() const
 {
-	const char* types[] = { "Geometry","Transform ","Material","Camera","None" };
+	const char* types[] = { "MESH","TRANSFORM ","MATERIAL","CAMERA","NONE" };
 	
 	return types[type];
 }
