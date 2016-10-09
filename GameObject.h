@@ -2,7 +2,6 @@
 #define __GAMEOBJECT_H__
 
 #include <string>
-#include <vector>
 #include <list>
 #include "Component.h"
 
@@ -20,8 +19,8 @@ public:
 
 	Component* AddComponent(Component::Types type);
 	std::list<Component*> GetListComponentsByType(Component::Types type);
-	const std::list<GameObject*>* GetChilds();
-	const std::list<Component*>* GetComponents();
+	const std::list<GameObject*>* GetChilds() const;
+	const std::list<Component*>* GetComponents() const;
 	Component* GetComponent(Component::Types type);
 	GameObject* GetParent();
 
@@ -31,7 +30,6 @@ private:
 	GameObject* parent = nullptr;
 
 public: 
-	bool active = true;
 	std::string name_object;
 	std::list<GameObject*> childs;
 	std::list<Component*> components;

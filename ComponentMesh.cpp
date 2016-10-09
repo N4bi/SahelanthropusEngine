@@ -14,14 +14,13 @@ ComponentMesh::ComponentMesh(Types _type) : Component(_type)
 ComponentMesh::~ComponentMesh()
 {
 	delete mesh;
-	mesh = nullptr;
 }
 
 void ComponentMesh::Update(float dt)
 {
-	ComponentTransform* transformation = (ComponentTransform*)parent_go->GetComponent(Component::TRANSFORM);
+	ComponentTransform* transformation = (ComponentTransform*)go->GetComponent(Component::TRANSFORM);
 	
-	ComponentMaterial* material = (ComponentMaterial*)parent_go->GetComponent(Component::MATERIAL);
+	ComponentMaterial* material = (ComponentMaterial*)go->GetComponent(Component::MATERIAL);
 	
 	uint tex_id = 0;
 	if (material)
@@ -29,6 +28,7 @@ void ComponentMesh::Update(float dt)
 		tex_id = material->texture_id;
 	}
 
+	//Render geometry
 	App->renderer3D->Render(*mesh, transformation->GetTransformationMatrix(), tex_id);
 
 }
@@ -39,9 +39,16 @@ void ComponentMesh::ShowOnEditor()
 	{
 		if (mesh)
 		{
-			ImGui::Text("N. vertices %d", mesh->num_vertices);
-			ImGui::Text("N. indices %d", mesh->num_indices);
-			ImGui::Text("N. UV %d", mesh->num_uv);
+			ImGui::TextColored(IMGUI_YELLOW, "N. vertices: ");
+			ImGui::SameLine();
+			ImGui::Text("%d", mesh->num_vertices);
+			ImGui::TextColored(IMGUI_YELLOW, "N. indices:  ");
+			ImGui::SameLine();
+			ImGui::Text("%d", mesh->num_indices);
+			ImGui::TextColored(IMGUI_YELLOW, "N. UV:       ");
+			ImGui::SameLine();
+			ImGui::Text("%d", mesh->num_uv);
+
 		}
 	}
 }

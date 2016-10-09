@@ -199,7 +199,7 @@ update_status ModuleEditor::UpdateEditor()
 	}
 
 	bool open = false;
-	if (!ImGui::Begin("Window", &open))
+	if (!ImGui::Begin("Create a Bounding box on random points", &open))
 	{
 		ImGui::End();
 		return ret;

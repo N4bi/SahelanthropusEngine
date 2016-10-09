@@ -26,15 +26,12 @@ public:
 	virtual void ShowOnEditor() {};
 
 	Types GetType() const;
-	GameObject* GetGameObject();
 	const char* GetTypeStr() const;
 
 public:
-	bool active = true;
 	Types type = NONE;
-	GameObject* parent_go = nullptr;
-private:
-	unsigned int id = 0;
+	GameObject* go = nullptr;
+
 };
 
 

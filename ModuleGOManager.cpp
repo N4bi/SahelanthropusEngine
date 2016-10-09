@@ -49,7 +49,7 @@ bool ModuleGOManager::CleanUp()
 
 GameObject* ModuleGOManager::CreateGameObject(GameObject* parent)
 {
-	GameObject* ret = new GameObject(parent, "Game objects");
+	GameObject* ret = new GameObject(parent, "Game objects Group");
 	if (parent == nullptr)
 	{
 		parent = root;
@@ -115,14 +115,13 @@ void ModuleGOManager::EditorWindow()
 		ImGui::SameLine();
 		ImGui::Text("%s", game_object_on_editor->name_object.data());
 
-		const list<Component*>* components = game_object_on_editor->GetComponents();
-		list<Component*>::const_iterator it = (*components).begin();
-
-		while (it != (*components).end())
+		list<Component*>::const_iterator it = game_object_on_editor->components.begin();
+		while (it!= game_object_on_editor->components.end())
 		{
 			(*it)->ShowOnEditor();
 			++it;
 		}
+
 	}
 
 	ImGui::End();

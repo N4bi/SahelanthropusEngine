@@ -75,7 +75,7 @@ Component* GameObject::AddComponent(Component::Types type)
 	if (ret != nullptr)
 	{
 		components.push_back(ret);
-		ret->parent_go = this;
+		ret->go = this;
 	}
 
 
@@ -101,12 +101,12 @@ list<Component*> GameObject::GetListComponentsByType(Component::Types type)
 	return ret;
 }
 
-const std::list<GameObject*>* GameObject::GetChilds()
+const std::list<GameObject*>* GameObject::GetChilds() const
 {
 	return &childs;
 }
 
-const std::list<Component*>* GameObject::GetComponents()
+const std::list<Component*>* GameObject::GetComponents() const
 {
 	return &components;
 }

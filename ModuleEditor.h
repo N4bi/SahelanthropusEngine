@@ -49,6 +49,7 @@ private:
 
 	//-------Info stuff
 	vector<InfoWindows*> info_window;
+
 	FPSwindow* fps_win = nullptr;
 	HardwareWindow* hd_win = nullptr;
 	

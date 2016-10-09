@@ -23,12 +23,17 @@ public:
 	float3 GetRotation();
 
 	float4x4 GetTransformationMatrix();
-
+	void InheritedTransformation();
+	void SetTransformation();
 
 private:
 	float3 translation = float3::zero;
 	float3 scale = float3::zero;
 	Quat rotation = Quat::identity;
+	float3 rotation_deg = float3::zero;
+
+	float4x4 transformation = float4x4::identity;
+	float4x4 final_transformation = float4x4::identity;
 };
 
 
