@@ -4,6 +4,8 @@
 #include "Globals.h"
 #include "Component.h"
 
+struct Mesh;
+
 class ComponentMaterial : public Component
 {
 public:
@@ -14,5 +16,6 @@ public:
 
 public:
 	uint texture_id = 0;
+	ComponentMaterial* material;
 };
 #endif // !__COMPONENT_MATERIAL_H__

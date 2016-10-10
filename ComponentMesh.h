@@ -16,7 +16,7 @@ public:
 
 
 
-private:
+public:
 	Mesh* mesh = nullptr;
 };
 

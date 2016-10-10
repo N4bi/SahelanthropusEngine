@@ -25,7 +25,7 @@ void ComponentTransform::ShowOnEditor()
 		ImGui::Text("Translation");
 		ImGui::SameLine();
 
-		float3 translate = this->translation;
+		float3 translate = translation;
 		if (ImGui::DragFloat3("##T",translate.ptr(),0.2f))
 		{
 			SetTranslation(translate);
@@ -90,7 +90,7 @@ void ComponentTransform::SetRotation(float3 rot)
 	DegToRad(rot.y);
 	DegToRad(rot.z);
 
-	rotation = Quat::FromEulerXYZ(rot.x, rot.y, rot.z);
+	rotation = Quat::FromEulerXYZ(rot.z, rot.y, rot.x);
 
 	SetTransformation();
 	InheritedTransformation();
