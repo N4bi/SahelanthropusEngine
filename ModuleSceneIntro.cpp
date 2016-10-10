@@ -33,6 +33,7 @@ bool ModuleSceneIntro::Start()
 	bool ret = true;
 
 	App->meshes->LoadFBX("Street environment_V01.fbx");
+	//App->meshes->LoadFBX("test_3.fbx");
 
 	//fbx = App->meshes->LoadFBX("Arcade.fbx");
 

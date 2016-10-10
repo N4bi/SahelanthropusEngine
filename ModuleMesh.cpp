@@ -106,7 +106,8 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent)
 
 	transformation->SetTranslation(translate);
 
-	float4 rot;
+	Quat rot;
+
 	rot.x = rotation.x;
 	rot.y = rotation.y;
 	rot.z = rotation.z;

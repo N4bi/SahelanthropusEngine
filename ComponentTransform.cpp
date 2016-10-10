@@ -18,14 +18,16 @@ void ComponentTransform::ShowOnEditor()
 	{
 		ImGui::TextColored(IMGUI_RED, "                  X       ");
 		ImGui::SameLine();
-		ImGui::TextColored(IMGUI_BLUE, "   Z");
+		ImGui::TextColored(IMGUI_GREEN, "   Y");
 		ImGui::SameLine();
-		ImGui::TextColored(IMGUI_GREEN, "           Y");
+		ImGui::TextColored(IMGUI_BLUE, "           Z");
+		
 		//Translation
 		ImGui::Text("Translation");
 		ImGui::SameLine();
 
 		float3 translate = translation;
+
 		if (ImGui::DragFloat3("##T",translate.ptr(),0.2f))
 		{
 			SetTranslation(translate);
@@ -35,8 +37,8 @@ void ComponentTransform::ShowOnEditor()
 		ImGui::Text("Rotation   ");
 		ImGui::SameLine();
 
-		float3 rot = this->rotation_deg;	
-		if (ImGui::DragFloat3("##R", rot.ptr(), 0.2f))
+		float3 rot = rotation_deg;	
+		if (ImGui::DragFloat3("##R", rot.ptr(), 0.2f, 0.0f, 359.0f));
 		{
 			SetRotation(rot);
 		}
@@ -45,12 +47,11 @@ void ComponentTransform::ShowOnEditor()
 		ImGui::Text("Scale      ");
 		ImGui::SameLine();
 
-		float3 scale = this->scale;
+		float3 scal = scale;
 		if (ImGui::DragFloat3("##S", scale.ptr(), 0.2f))
 		{
 			SetScale(scale);
 		}
-
 	}
 }
 
@@ -86,17 +87,19 @@ void ComponentTransform::SetRotation(float3 rot)
 {
 	rotation_deg = rot;
 
-	DegToRad(rot.x);
-	DegToRad(rot.y);
-	DegToRad(rot.z);
+	float3 rotation_rad;
 
-	rotation = Quat::FromEulerXYZ(rot.z, rot.y, rot.x);
+	rotation_rad.x = DegToRad(rotation_deg.x);
+	rotation_rad.y = DegToRad(rotation_deg.y);
+	rotation_rad.z = DegToRad(rotation_deg.z);
+
+	rotation = Quat::FromEulerXYZ(rotation_rad.x, rotation_rad.y, rotation_rad.z);
 
 	SetTransformation();
 	InheritedTransformation();
 }
 
-void ComponentTransform::SetRotation(float4 rot)
+void ComponentTransform::SetRotation(Quat rot)
 {
 	rotation.Set(rot.x,rot.y,rot.z,rot.w);
 

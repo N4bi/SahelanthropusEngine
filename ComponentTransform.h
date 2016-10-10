@@ -19,10 +19,12 @@ public:
 	float3 GetScale();
 
 	void SetRotation(float3 rot);
-	void SetRotation(float4 rot);
+	void SetRotation(Quat rot);
 	float3 GetRotation();
 
 	float4x4 GetTransformationMatrix();
+
+private:
 	void InheritedTransformation();
 	void SetTransformation();
 
