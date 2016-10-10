@@ -159,6 +159,15 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent)
 		glBindBuffer(GL_ARRAY_BUFFER, m->id_vertices);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * m->num_vertices * 3, m->vertices, GL_STATIC_DRAW);
 
+		//Copy Normals
+		m->num_normal = new_mesh->mNumVertices;
+		m->normals = new float[m->num_normal * 3];
+		memcpy(m->normals, new_mesh->mNormals, sizeof(float) * m->num_normal * 3);
+
+		glGenBuffers(1, (GLuint*)&(m->id_normal));
+		glBindBuffer(GL_ARRAY_BUFFER, m->id_normal);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float)* m->num_normal * 3, m->normals, GL_STATIC_DRAW);
+
 		//Copy indices--------------------------------------------------------------------------------------
 		if (new_mesh->HasFaces())
 		{
@@ -196,6 +205,8 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent)
 			glBindBuffer(GL_ARRAY_BUFFER, m->id_uv);
 			glBufferData(GL_ARRAY_BUFFER, sizeof(float2) * m->num_uv, m->uvs, GL_STATIC_DRAW);
 		}
+
+
 
 
 		comp_mesh->SetMesh(m);	

@@ -204,11 +204,15 @@ void ModuleRenderer3D::Render(Mesh m,float4x4 mtrx,uint tex_id)
 
 
 	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_NORMAL_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	glEnable(GL_TEXTURE_2D);
 //----------------------------------------------	
 	glBindBuffer(GL_ARRAY_BUFFER, m.id_vertices);
 	glVertexPointer(3, GL_FLOAT, 0, NULL);
+
+	glBindBuffer(GL_ARRAY_BUFFER, m.id_normal);
+	glNormalPointer(GL_FLOAT, 0, NULL);
 
 	glBindBuffer(GL_ARRAY_BUFFER, m.id_uv);
 	glTexCoordPointer(2, GL_FLOAT, 0, NULL);
@@ -221,6 +225,7 @@ void ModuleRenderer3D::Render(Mesh m,float4x4 mtrx,uint tex_id)
 	glDisable(GL_TEXTURE_2D);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_NORMAL_ARRAY);
 
 	glPopMatrix();
 }

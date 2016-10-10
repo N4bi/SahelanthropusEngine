@@ -17,7 +17,7 @@ void ComponentMaterial::ShowOnEditor()
 {
 	if (ImGui::CollapsingHeader("Material"))
 	{
-		ComponentMaterial* material = (ComponentMaterial*)go->GetComponent(Component::MATERIAL);
+		material = (ComponentMaterial*)go->GetComponent(Component::MATERIAL);
 		if (material)
 		{
 			ImGui::TextColored(IMGUI_YELLOW, "Id Material: ");

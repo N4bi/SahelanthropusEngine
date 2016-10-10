@@ -48,6 +48,9 @@ void ComponentMesh::ShowOnEditor()
 			ImGui::TextColored(IMGUI_YELLOW, "N. UV:       ");
 			ImGui::SameLine();
 			ImGui::Text("%d", mesh->num_uv);
+			ImGui::TextColored(IMGUI_YELLOW, "N. Normal:   ");
+			ImGui::SameLine();
+			ImGui::Text("%d", mesh->num_normal);
 		}
 	}
 }
