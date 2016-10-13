@@ -1,4 +1,5 @@
 #include "Component.h"
+#include "GameObject.h"
 
 Component::Component(Types _type)
 {
@@ -8,6 +9,23 @@ Component::Component(Types _type)
 Component::~Component()
 {
 
+}
+void Component::Enable()
+{
+	go->Enable();
+}
+void Component::Disable()
+{
+	go->Disable();
+}
+GameObject * Component::GetGameObject() const
+{
+	return go;
+}
+
+bool Component::isEnabled()
+{
+	return go->isEnabled();
 }
 
 Component::Types Component::GetType() const
@@ -21,3 +39,5 @@ const char* Component::GetTypeStr() const
 	
 	return types[type];
 }
+
+

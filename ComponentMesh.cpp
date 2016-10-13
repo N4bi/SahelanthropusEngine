@@ -18,18 +18,27 @@ ComponentMesh::~ComponentMesh()
 
 void ComponentMesh::Update(float dt)
 {
-	ComponentTransform* transformation = (ComponentTransform*)go->GetComponent(Component::TRANSFORM);
-	
-	ComponentMaterial* material = (ComponentMaterial*)go->GetComponent(Component::MATERIAL);
-	
-	uint tex_id = 0;
-	if (material)
+	if (isEnabled())
 	{
-		tex_id = material->texture_id;
+		ComponentTransform* transformation = (ComponentTransform*)go->GetComponent(Component::TRANSFORM);
+		
+		ComponentMaterial* material = (ComponentMaterial*)go->GetComponent(Component::MATERIAL);
+		
+		uint tex_id = 0;
+		if (material)
+		{
+			tex_id = material->texture_id;
+		}
+	
+		//If geometry is enabled, Render it
+		App->renderer3D->Render(*mesh, transformation->GetTransformationMatrix(), tex_id);
+	}
+	else
+	{
+		return;
 	}
 
-	//Render geometry
-	App->renderer3D->Render(*mesh, transformation->GetTransformationMatrix(), tex_id);
+
 
 }
 

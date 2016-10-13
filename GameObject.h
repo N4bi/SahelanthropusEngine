@@ -24,12 +24,17 @@ public:
 	Component* GetComponent(Component::Types type);
 	GameObject* GetParent();
 
+	bool isEnabled();
+	void Enable();
+	void Disable();
+
 
 
 private:
 	GameObject* parent = nullptr;
+	bool enabled = true;
 
-public: 
+public: 	
 	std::string name_object;
 	std::list<GameObject*> childs;
 	std::list<Component*> components;

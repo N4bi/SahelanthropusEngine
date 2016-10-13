@@ -131,3 +131,33 @@ GameObject * GameObject::GetParent()
 {
 	return parent;
 }
+
+bool GameObject::isEnabled()
+{
+	return enabled;
+}
+
+void GameObject::Enable()
+{
+	enabled = true;
+
+	list<GameObject*>::iterator it = childs.begin();
+	while (it != childs.end())
+	{
+	
+		(*it)->enabled = true;
+		++it;
+	}
+}
+
+void GameObject::Disable()
+{
+	enabled = false;
+
+	list<GameObject*>::iterator it = childs.begin();
+	while (it != childs.end())
+	{
+		(*it)->enabled = false;
+		++it;
+	}
+}

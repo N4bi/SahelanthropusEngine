@@ -13,6 +13,7 @@ ModuleGOManager::ModuleGOManager(Application * app, bool start_enabled) : Module
 
 ModuleGOManager::~ModuleGOManager()
 {
+
 }
 
 bool ModuleGOManager::Init()
@@ -112,6 +113,19 @@ void ModuleGOManager::EditorWindow()
 
 	if (game_object_on_editor)
 	{
+		bool is_enabled = game_object_on_editor->isEnabled();
+		if (ImGui::Checkbox("##enabled",&is_enabled))
+		{
+			if (is_enabled)
+			{
+				game_object_on_editor->Enable();
+			}
+			else
+			{
+				game_object_on_editor->Disable();
+			}
+		}
+
 		ImGui::SameLine();
 		ImGui::Text("%s", game_object_on_editor->name_object.data());
 

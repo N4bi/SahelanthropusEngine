@@ -38,7 +38,7 @@ void ComponentTransform::ShowOnEditor()
 		ImGui::SameLine();
 
 		float3 rot = rotation_deg;	
-		if (ImGui::DragFloat3("##R", rot.ptr(), 0.2f, 0.0f, 359.0f));
+		if (ImGui::DragFloat3("##R", rot.ptr(), 0.2f, -360.0f, 360.0f));
 		{
 			SetRotation(rot);
 		}

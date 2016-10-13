@@ -20,17 +20,22 @@ public:
 	Component(Types _type);
 	virtual ~Component();
 
-	virtual void Enable() {};
-	virtual void Disable() {};
+	virtual void Enable();
+	virtual void Disable();
 	virtual void Update(float dt) {};
 	virtual void ShowOnEditor() {};
 
+	bool isEnabled();
 	Types GetType() const;
 	const char* GetTypeStr() const;
+	GameObject* GetGameObject() const;
 
-public:
-	Types type = NONE;
+public: 
 	GameObject* go = nullptr;
+
+private:
+	Types type = NONE;
+	bool enabled = true;
 
 };
 
