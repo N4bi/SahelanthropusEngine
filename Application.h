@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __APPLICATION_H__
+#define __APPLICATION_H__
 
 #include "Globals.h"
 #include "Timer.h"
@@ -38,16 +39,16 @@ private:
 
 	Timer	ms_timer;
 	Timer	last_second_frame_time;
-	
+
 	float	dt;
 	int		fps = 144;
 	int		capped_ms = -1;
 	int		fps_counter = 0;
 	int		last_second_frame_count = 0;
 	std::string log;
-	
-		
-	
+
+
+
 	list<Module*> list_modules;
 
 public:
@@ -61,7 +62,7 @@ public:
 	void SetMaxFPS(int max_fps);
 	int GetLastFPS();
 	void Log(const char* text);
-	
+
 	bool console_on;
 
 private:
@@ -72,3 +73,6 @@ private:
 };
 
 extern Application* App;
+
+#endif // !__APPLICATION_H__
+

@@ -1,5 +1,4 @@
-#pragma once
-
+#ifndef __PHYSBODY3D_H__
 #include <list>
 #include"MathGeoLib\include\MathGeoLib.h"
 
@@ -29,3 +28,9 @@ private:
 public:
 	list<Module*> collision_listeners;
 };
+
+
+#define __PHYSBODY3D_H__
+#endif // !__PHYSBODY3D_H__
+
+

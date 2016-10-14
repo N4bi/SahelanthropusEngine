@@ -1,5 +1,6 @@
 
-#pragma once
+#ifndef __PRIMITIVE_H__
+#define __PRIMITIVE_H__
 #include "Color.h"
 #include "MathGeoLib\include\MathGeoLib.h"
 
@@ -28,10 +29,10 @@ public:
 	PrimitiveTypes	GetType() const;
 
 public:
-	
+
 	Color color;
 	float4x4 transform;
-	bool axis,wire;
+	bool axis, wire;
 
 protected:
 	PrimitiveTypes type;
@@ -40,7 +41,7 @@ protected:
 // ============================================
 class Cube_Prim : public Primitive
 {
-public :
+public:
 	Cube_Prim();
 	Cube_Prim(float sizeX, float sizeY, float sizeZ);
 	void InnerRender() const;
@@ -94,3 +95,4 @@ public:
 	vec normal;
 	float constant;
 };
+#endif // !__PRIMITIVE_H__

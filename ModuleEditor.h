@@ -1,4 +1,7 @@
-#pragma once
+#ifndef __MODULEEDITOR_H__
+#define __MODULEEDITOR_H__
+
+
 #include "Module.h"
 #include "Globals.h"
 #include "MathGeoLib\include\MathGeoLib.h"
@@ -44,7 +47,7 @@ private:
 	bool box_render;
 	int n_points;
 	Cube_Prim bounding_box;
-	float2 range;	
+	float2 range;
 	list<Sphere_Prim> points;
 
 	//-------Info stuff
@@ -52,10 +55,12 @@ private:
 
 	FPSwindow* fps_win = nullptr;
 	HardwareWindow* hd_win = nullptr;
-	
+
 
 
 
 
 };
 
+
+#endif // !__MODULEEDITOR_H__

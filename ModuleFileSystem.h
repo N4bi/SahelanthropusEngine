@@ -1,5 +1,5 @@
-#ifndef __ModuleFileSystem_H__
-#define __ModuleFileSystem_H__
+#ifndef __MODULEFILESYSTEM_H__
+#define __MODULEFILESYSTEM_H__
 
 #include "Module.h"
 
@@ -41,4 +41,4 @@ private:
 
 };
 
-#endif // __ModuleFileSystem_H__
+#endif // __MODULEFILESYSTEM_H__

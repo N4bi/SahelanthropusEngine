@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __MODULERENDERER3D_H__
+#define __MODULERENDERER3D_H__
+
 #include "Module.h"
 #include "Globals.h"
 #include"MathGeoLib\include\MathGeoLib.h"
@@ -21,7 +23,7 @@ public:
 	bool CleanUp();
 
 	void OnResize(int width, int height);
-	void Render(Mesh m, float4x4 mtrx,uint tex_id);
+	void Render(Mesh m, float4x4 mtrx, uint tex_id);
 
 public:
 
@@ -30,3 +32,4 @@ public:
 	float3x3 NormalMatrix;
 	float4x4 ModelMatrix, ViewMatrix, ProjectionMatrix;
 };
+#endif // !__MODULERENDERER3D_H__

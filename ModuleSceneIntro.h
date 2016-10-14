@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __MODULESCENEINTRO_H__
+#define __MODULESCENEINTRO_H__
+
 #include "Module.h"
 #include "Globals.h"
 #include"MathGeoLib\include\MathGeoLib.h"
@@ -29,3 +31,6 @@ public:
 	vector<Mesh> fbx;
 	uint ImageName;
 };
+
+
+#endif // !__MODULESCENEINTRO_H__

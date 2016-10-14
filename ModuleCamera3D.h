@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __MODULECAMERA3D_H__
+#define __MODULECAMERA3D_H__
+
 #include "Module.h"
 #include "Globals.h"
 #include "MathGeoLib\include\MathGeoLib.h"
@@ -25,7 +27,7 @@ private:
 	void CalculateViewMatrix();
 
 public:
-	
+
 	vec X, Y, Z, Position, Reference;
 
 private:
@@ -36,3 +38,5 @@ private:
 	float max_following_dist;
 	float following_height;
 };
+
+#endif // !__MODULECAMERA3D_H__

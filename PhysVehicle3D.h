@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __PHYSVEHICLE3D_H__
+#define __PHYSVEHICLE3D_H__
 
 #include "PhysBody3D.h"
 #include "MathGeoLib\include\MathGeoLib.h"
@@ -9,7 +10,7 @@ struct PhysBody3D;
 struct Wheel
 {
 	vec connection; // origin of the ray. Must come from within the chassis
-	vec direction; 
+	vec direction;
 	vec axis;
 	float suspensionRestLength; // max length for suspension in meters
 	float radius;
@@ -23,7 +24,7 @@ struct Wheel
 struct VehicleInfo
 {
 	~VehicleInfo();
-	
+
 	vec chassis_size;
 	vec chassis_offset;
 	float mass;
@@ -55,3 +56,5 @@ public:
 	VehicleInfo info;
 	btRaycastVehicle* vehicle;
 };
+
+#endif // !__PHYSVEHICLE3D_H__

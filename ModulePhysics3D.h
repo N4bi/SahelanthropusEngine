@@ -1,4 +1,7 @@
-#pragma once
+#ifndef __MODULEPHYSICS3D_H__
+#define __MODULEPHYSICS3D_H__
+
+
 #include "Module.h"
 #include "Globals.h"
 
@@ -76,7 +79,7 @@ private:
 class DebugDrawer : public btIDebugDraw
 {
 public:
-	DebugDrawer() : line(0,0,0)
+	DebugDrawer() : line(0, 0, 0)
 	{}
 
 	void drawLine(const btVector3& from, const btVector3& to, const btVector3& color);
@@ -90,3 +93,4 @@ public:
 	Line_Prim line;
 	Primitive point;
 };
+#endif // !__MODULEPHYSICS3D_H__

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __MODULEMESH_H__
+#define __MODULEMESH_H__
+
 #include "Module.h"
 #include "Globals.h"
 #include "GameObject.h"
@@ -64,3 +66,5 @@ private:
 };
 
 
+
+#endif // !__MODULEMESH_H__
