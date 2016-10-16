@@ -26,10 +26,6 @@ public:
 
 public:
 
-	SDL_Texture* graphics;
-	PhysBody3D* ground;
-	vector<Mesh> fbx;
-	uint ImageName;
 };
 
 

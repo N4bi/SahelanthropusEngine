@@ -84,9 +84,6 @@
     <ClInclude Include="ModuleSceneIntro.h">
       <Filter>Sources\Modules\Game</Filter>
     </ClInclude>
-    <ClInclude Include="ModulePlayer.h">
-      <Filter>Sources\Modules\Game</Filter>
-    </ClInclude>
     <ClInclude Include="ModulePhysics3D.h">
       <Filter>Sources\Modules</Filter>
     </ClInclude>
@@ -348,6 +345,9 @@
     <ClInclude Include="ComponentMaterial.h">
       <Filter>Sources\Containers</Filter>
     </ClInclude>
+    <ClInclude Include="MemLeaks.h">
+      <Filter>Sources\Tools</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -390,9 +390,6 @@
       <Filter>Sources\Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleSceneIntro.cpp">
-      <Filter>Sources\Modules\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="ModulePlayer.cpp">
       <Filter>Sources\Modules\Game</Filter>
     </ClCompile>
     <ClCompile Include="PhysBody3D.cpp">

@@ -7,7 +7,6 @@
 #include "ModuleWindow.h"
 #include "ModuleInput.h"
 #include "ModuleAudio.h"
-#include "ModulePlayer.h"
 #include "ModulePhysics3D.h"
 #include "ModuleSceneIntro.h"
 #include "ModuleRenderer3D.h"
@@ -24,7 +23,6 @@ public:
 	ModuleWindow* window;
 	ModuleInput* input;
 	ModuleAudio* audio;
-	ModulePlayer* player;
 	ModuleSceneIntro* scene_intro;
 	ModulePhysics3D* physics3D;
 	ModuleRenderer3D* renderer3D;

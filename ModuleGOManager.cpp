@@ -44,13 +44,14 @@ bool ModuleGOManager::CleanUp()
 	bool ret = true;
 
 	delete root;
+	delete game_object_on_editor;
 
 	return ret;
 }
 
-GameObject* ModuleGOManager::CreateGameObject(GameObject* parent)
+GameObject* ModuleGOManager::CreateGameObject(GameObject* parent, const char* name)
 {
-	GameObject* ret = new GameObject(parent, "Game objects Group");
+	GameObject* ret = new GameObject(parent, name);
 	if (parent == nullptr)
 	{
 		parent = root;
@@ -129,7 +130,7 @@ void ModuleGOManager::EditorWindow()
 		ImGui::SameLine();
 		ImGui::Text("%s", game_object_on_editor->name_object.data());
 
-		list<Component*>::const_iterator it = game_object_on_editor->components.begin();
+		list<Component*>::iterator it = game_object_on_editor->components.begin();
 		while (it!= game_object_on_editor->components.end())
 		{
 			(*it)->ShowOnEditor();
@@ -148,7 +149,7 @@ void ModuleGOManager::UpdateChilds(float dt, GameObject * go)
 		go->Update(dt);
 	}
 
-	list<GameObject*>::const_iterator it = go->childs.begin();
+	list<GameObject*>::iterator it = go->childs.begin();
 	while (it != go->childs.end())
 	{
 		UpdateChilds(dt, (*it));

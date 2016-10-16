@@ -39,10 +39,6 @@ private:
 	void ShowHardwareWindow();
 	void ShowConsoleWindow();
 
-public:
-	bool console_on = false;
-	ConsoleWindow* console = nullptr;
-
 private:
 	bool box_render;
 	int n_points;

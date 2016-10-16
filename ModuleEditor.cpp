@@ -11,8 +11,7 @@
 
 ModuleEditor::ModuleEditor(Application* app, bool start_enabled) : Module(app, start_enabled)
 {	
-	info_window.push_back(console = new ConsoleWindow());
-	console_on = false;
+
 }
 
 ModuleEditor::~ModuleEditor()
@@ -24,7 +23,6 @@ bool ModuleEditor::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
-	console_on = true;
 	n_points = 0;
 	range.x = 0.0f;
 	range.y = 0.0f;
@@ -41,7 +39,6 @@ bool ModuleEditor::CleanUp()
 {
 	LOG("Unloading editor");
 
-	console_on = false;
 	vector<InfoWindows*>::iterator it = info_window.begin();
 	while (it != info_window.end())
 	{
@@ -50,7 +47,6 @@ bool ModuleEditor::CleanUp()
 	}
 
 	info_window.clear();
-	console = nullptr;
 
 	return true;
 }
@@ -277,7 +273,7 @@ void ModuleEditor::ShowHardwareWindow()
 
 void ModuleEditor::ShowConsoleWindow()
 {
-	console->SetActive(true);
+	//console->SetActive(true);
 }
 
 void ModuleEditor::Log(const char * text)

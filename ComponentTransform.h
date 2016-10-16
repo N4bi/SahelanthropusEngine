@@ -10,6 +10,8 @@ public:
 	ComponentTransform(Types _type);
 	~ComponentTransform();
 
+	void Update(float dt);
+
 	void ShowOnEditor();	
 
 	void SetTranslation(float3 pos);
@@ -25,7 +27,7 @@ public:
 	float4x4 GetTransformationMatrix();
 
 private:
-	void InheritedTransformation();
+	void WorldTransformation();
 	void SetTransformation();
 
 private:

@@ -5,11 +5,17 @@
 ComponentTransform::ComponentTransform(Types _type) : Component(_type)
 {
 	_type = TRANSFORM;
+	
 }
 
 ComponentTransform::~ComponentTransform()
 {
 
+}
+
+void ComponentTransform::Update(float dt)
+{
+	WorldTransformation();
 }
 
 void ComponentTransform::ShowOnEditor()
@@ -28,7 +34,7 @@ void ComponentTransform::ShowOnEditor()
 
 		float3 translate = translation;
 
-		if (ImGui::DragFloat3("##T",translate.ptr(),0.2f))
+		if (ImGui::DragFloat3("##T", translate.ptr(), 0.2f))
 		{
 			SetTranslation(translate);
 		}
@@ -62,7 +68,7 @@ void ComponentTransform::SetTranslation(float3 pos)
 	translation.z = pos.z;
 
 	SetTransformation();
-	InheritedTransformation();
+	WorldTransformation();
 }
 
 float3 ComponentTransform::GetTranslation()
@@ -75,7 +81,7 @@ void ComponentTransform::SetScale(float3 _scale)
 	scale.Set(_scale.x, _scale.y, _scale.z);
 
 	SetTransformation();
-	InheritedTransformation();
+	WorldTransformation();
 
 }
 float3 ComponentTransform::GetScale()
@@ -96,7 +102,7 @@ void ComponentTransform::SetRotation(float3 rot)
 	rotation = Quat::FromEulerXYZ(rotation_rad.x, rotation_rad.y, rotation_rad.z);
 
 	SetTransformation();
-	InheritedTransformation();
+	WorldTransformation();
 }
 
 void ComponentTransform::SetRotation(Quat rot)
@@ -104,7 +110,7 @@ void ComponentTransform::SetRotation(Quat rot)
 	rotation.Set(rot.x,rot.y,rot.z,rot.w);
 
 	SetTransformation();
-	InheritedTransformation();
+	WorldTransformation();
 }
 
 float3 ComponentTransform::GetRotation()
@@ -123,7 +129,7 @@ float4x4 ComponentTransform::GetTransformationMatrix()
 	return final_transformation.Transposed();
 }
 
-void ComponentTransform::InheritedTransformation()
+void ComponentTransform::WorldTransformation()
 {
 	if (go != nullptr)
 	{
@@ -136,11 +142,11 @@ void ComponentTransform::InheritedTransformation()
 			std::list<GameObject*>::const_iterator it = go->childs.begin();
 			while (it != go->childs.end())
 			{
-				//Apply parent transformation to the childs
+				//Apply transform to the childs
 				ComponentTransform* child_transformation = (ComponentTransform*)(*it)->GetComponent(Component::TRANSFORM);
 				if (child_transformation != nullptr)
 				{	
-					child_transformation->InheritedTransformation();
+					child_transformation->WorldTransformation();
 				}
 				++it;
 			}

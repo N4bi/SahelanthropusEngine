@@ -90,7 +90,7 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent)
 {
 	//Transform
 
-	GameObject* root_game_object = App->go_manager->CreateGameObject(parent);
+	GameObject* root_game_object = App->go_manager->CreateGameObject(parent,node->mName.C_Str());
 	ComponentTransform* transformation = (ComponentTransform*)root_game_object->AddComponent(Component::TRANSFORM);
 
 	aiVector3D translation;
@@ -131,7 +131,7 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent)
 		//Transformation
 		if (node->mNumMeshes > 1)
 		{
-			game_object = App->go_manager->CreateGameObject(root_game_object);
+			game_object = App->go_manager->CreateGameObject(root_game_object,node->mName.C_Str());
 			game_object->AddComponent(Component::TRANSFORM);
 		}
 		else
@@ -144,8 +144,7 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent)
 			game_object->name_object = node->mName.C_Str();
 		}
 
-
-		//Meshes & Components
+		//Meshes
 		ComponentMesh* comp_mesh = (ComponentMesh*)game_object->AddComponent(Component::MESH);
 		Mesh* m = new Mesh();
 
@@ -196,7 +195,7 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent)
 		{
 			m->num_uv = new_mesh->mNumVertices;
 			m->uvs = new float2[m->num_uv];
-			for (int k = 0; k < m->num_uv; k++)
+			for (uint k = 0; k < m->num_uv; k++)
 			{
 				memcpy(&m->uvs[k], &new_mesh->mTextureCoords[uv_id][k].x, sizeof(float2));
 				memcpy(&m->uvs[k + 1], &new_mesh->mTextureCoords[uv_id][k + 1].y, sizeof(float2));
@@ -208,7 +207,7 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent)
 
 
 
-
+		// Set mesh with all the information
 		comp_mesh->SetMesh(m);	
 
 		//Copy Materials------------------------------------------------------------------------------
@@ -228,12 +227,12 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent)
 		}
 	}
 
-
-
+	//Load for all the childs 
 	for (uint i = 0; i < node->mNumChildren; i++)
 	{
 		Load(node->mChildren[i], scene, root_game_object);
 	}
+
 }
 
 

@@ -18,10 +18,10 @@ public:
 	void ShowOnEditor();
 
 	Component* AddComponent(Component::Types type);
-	std::list<Component*> GetListComponentsByType(Component::Types type);
+	std::list<Component*> GetListComponentsByType(Component::Types type) const;
 	const std::list<GameObject*>* GetChilds() const;
 	const std::list<Component*>* GetComponents() const;
-	Component* GetComponent(Component::Types type);
+	Component* GetComponent(Component::Types type) const;
 	GameObject* GetParent();
 
 	bool isEnabled();

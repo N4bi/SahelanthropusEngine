@@ -18,7 +18,7 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
-	GameObject* CreateGameObject(GameObject* parent);
+	GameObject* CreateGameObject(GameObject* parent,const char* name);
 
 	void HierarchyInfo();
 	void ShowGameObjectsOnEditor(const std::list<GameObject*>* childs);

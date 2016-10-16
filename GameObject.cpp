@@ -19,6 +19,7 @@ GameObject::~GameObject()
 		list<GameObject*>::iterator it = childs.begin();
 		while (it != childs.end())
 		{
+			
 			delete (*it);
 			++it;
 		}
@@ -83,11 +84,11 @@ Component* GameObject::AddComponent(Component::Types type)
 	return ret;
 }
 
-list<Component*> GameObject::GetListComponentsByType(Component::Types type)
+list<Component*> GameObject::GetListComponentsByType(Component::Types type) const
 {
 	list<Component*> ret;
 
-	list<Component*>::iterator it = components.begin();
+	list<Component*>::const_iterator it = components.begin();
 	while (it != components.end())
 	{
 		if ((*it)->GetType() == type)
@@ -111,11 +112,11 @@ const std::list<Component*>* GameObject::GetComponents() const
 	return &components;
 }
 
-Component * GameObject::GetComponent(Component::Types type)
+Component * GameObject::GetComponent(Component::Types type) const
 {
 	Component* ret = nullptr;
 
-	list<Component*>::iterator it = components.begin();
+	list<Component*>::const_iterator it = components.begin();
 	while (it != components.end())
 	{
 		if ((*it)->GetType() == type)
