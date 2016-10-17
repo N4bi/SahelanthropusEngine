@@ -29,26 +29,36 @@ bool ModuleFileSystem::Init()
 {
 	LOG("Loading File System");
 	bool ret = true;
-
-	// Add all paths in configuration in order
-	//AddPath() manually
-
-
-	// Ask SDL for a write dir
-	char* write_path = SDL_GetPrefPath("Sahelanthropus Engine", "Sahelanthropus");
-
-	if (PHYSFS_setWriteDir(write_path) == 0)
+	
+	if (PHYSFS_setWriteDir(".") == 0)
 	{
 		LOG("File System error while creating write dir: %s\n", PHYSFS_getLastError());
 	}
-	else
+
+	if (PHYSFS_exists(ASSETS_DIRECTORY) == 0)
 	{
-		// We add the writing directory as a reading directory too with speacial mount point
-		LOG("Writing directory is %s\n", write_path);
-		AddPath(write_path, GetSaveDirectory());
+		if (PHYSFS_mkdir(ASSETS_DIRECTORY) != 0)
+		{
+			LOG("Directory %s created", ASSETS_DIRECTORY);
+		}
+		else
+		{
+			LOG("Error creating %s", ASSETS_DIRECTORY, PHYSFS_getLastError());
+		}
 	}
 
-	SDL_free(write_path);
+	if (PHYSFS_exists(LIBRARY_DIRECTORY) == 0)
+	{
+		if (PHYSFS_mkdir(LIBRARY_DIRECTORY) != 0)
+		{
+			LOG("Directory %s created", LIBRARY_DIRECTORY);
+		}
+		else
+		{
+			LOG("Error creating %s", LIBRARY_DIRECTORY, PHYSFS_getLastError());
+		}
+	}
+
 
 	return ret;
 }
@@ -171,4 +181,20 @@ unsigned int ModuleFileSystem::Save(const char* file, const char* buffer, unsign
 		LOG("File System error while opening file %s: %s\n", file, PHYSFS_getLastError());
 
 	return ret;
+}
+
+bool ModuleFileSystem::EnumerateFiles(const char * directory, std::list<const char*>& buff)
+{
+	char** enumerated_files = PHYSFS_enumerateFiles(directory);
+	char** it = enumerated_files;
+
+	for (it = enumerated_files; *it != NULL; it++)
+	{
+		buff.push_back(*it);
+	}
+
+	PHYSFS_freeList(enumerated_files);
+
+	return true;
+
 }

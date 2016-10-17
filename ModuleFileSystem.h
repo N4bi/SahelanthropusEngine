@@ -3,6 +3,7 @@
 
 #include "Module.h"
 
+
 struct SDL_RWops;
 
 int close_sdl_rwops(SDL_RWops *rw);
@@ -36,6 +37,7 @@ public:
 	SDL_RWops* Load(const char* file) const;
 
 	unsigned int Save(const char* file, const char* buffer, unsigned int size) const;
+	bool EnumerateFiles(const char* directory, std::list<const char*>&buff);
 
 private:
 

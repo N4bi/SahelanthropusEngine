@@ -205,7 +205,9 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent)
 			glBufferData(GL_ARRAY_BUFFER, sizeof(float2) * m->num_uv, m->uvs, GL_STATIC_DRAW);
 		}
 
-
+		//Bounding box for each mesh
+		m->bounding_box.SetNegativeInfinity();
+		m->bounding_box.Enclose((float3*)m->vertices, m->num_vertices);
 
 		// Set mesh with all the information
 		comp_mesh->SetMesh(m);	

@@ -20,7 +20,7 @@ Application* App = nullptr;
 
 int main(int argc, char ** argv)
 {
-	ReportMemoryLeaks();
+	//ReportMemoryLeaks();
 
 	LOG("Starting game '%s'...", TITLE);
 

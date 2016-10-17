@@ -11,6 +11,7 @@
 class FPSwindow;
 class HardwareWindow;
 class ConsoleWindow;
+class AssetsWindow;
 
 class ModuleEditor : public Module
 {
@@ -35,9 +36,11 @@ private:
 	//---- Imgui stuff
 	void AboutMenu();
 	void InfoMenu();
+	void WindowsMenu();
 	void ShowFPSwindow();
 	void ShowHardwareWindow();
 	void ShowConsoleWindow();
+	void ShowAssetsWindow();
 
 private:
 	bool box_render;
@@ -51,6 +54,8 @@ private:
 
 	FPSwindow* fps_win = nullptr;
 	HardwareWindow* hd_win = nullptr;
+	AssetsWindow* asset_win = nullptr;
+
 
 
 

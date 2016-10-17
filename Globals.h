@@ -38,5 +38,11 @@ enum update_status
 #define VSYNC true
 #define TITLE "Sahelanthropus Engine"
 
+//Directories--------------
+#define ASSETS_DIRECTORY "/Assets/"
+#define LIBRARY_DIRECTORY "/Library/"
+#define TEXTURES_DIRECTORY "/Library/Textures/"
+
+
 #endif // __GLOBALS_H__
 

@@ -5,6 +5,7 @@
 #include "FPSwindow.h"
 #include "HardwareWindow.h"
 #include "ConsoleWindow.h"
+#include "AssetsWindow.h"
 #include "InfoWindows.h"
 #include "MathGeoLib\include\Algorithm\Random\LCG.h"
 
@@ -30,6 +31,7 @@ bool ModuleEditor::Start()
 
 	info_window.push_back(fps_win = new FPSwindow());
 	info_window.push_back(hd_win = new HardwareWindow());
+	info_window.push_back(asset_win = new AssetsWindow());
 
 	return ret;
 }
@@ -181,16 +183,24 @@ update_status ModuleEditor::UpdateEditor()
 			ImGui::EndMenu();
 		}
 
+		if (ImGui::BeginMenu("Windows"))
+		{
+			WindowsMenu();
+			ImGui::EndMenu();
+		}
+
 		if (ImGui::BeginMenu("About"))
 		{
 			AboutMenu();
 			ImGui::EndMenu();
 		}
+
 		if (ImGui::MenuItem("Close"))
 		{
 			return UPDATE_STOP;
 			
 		}
+
 		ImGui::EndMainMenuBar();
 	}
 
@@ -240,8 +250,7 @@ void ModuleEditor::AboutMenu()
 
 void ModuleEditor::InfoMenu()
 {
-	if (ImGui::BeginMenu("Info"))
-	{
+
 		if (ImGui::MenuItem("FPS info"))
 		{
 			ShowFPSwindow();
@@ -257,7 +266,13 @@ void ModuleEditor::InfoMenu()
 			ShowConsoleWindow();
 		}
 
-		ImGui::EndMenu();
+}
+
+void ModuleEditor::WindowsMenu()
+{
+	if (ImGui::MenuItem("Assets"))
+	{
+		ShowAssetsWindow();
 	}
 }
 
@@ -271,6 +286,11 @@ void ModuleEditor::ShowHardwareWindow()
 	hd_win->SetActive(true);
 }
 
+void ModuleEditor::ShowAssetsWindow()
+{
+	asset_win->SetActive(true);
+}
+
 void ModuleEditor::ShowConsoleWindow()
 {
 	//console->SetActive(true);
@@ -280,3 +300,5 @@ void ModuleEditor::Log(const char * text)
 {
 	//console->Write(text);
 }
+
+
