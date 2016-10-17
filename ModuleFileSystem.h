@@ -2,6 +2,8 @@
 #define __MODULEFILESYSTEM_H__
 
 #include "Module.h"
+#include <string>
+#include <vector>
 
 
 struct SDL_RWops;
@@ -36,8 +38,9 @@ public:
 	unsigned int Load(const char* file, char** buffer) const;
 	SDL_RWops* Load(const char* file) const;
 
-	unsigned int Save(const char* file, const char* buffer, unsigned int size) const;
-	bool EnumerateFiles(const char* directory, std::list<const char*>&buff);
+	unsigned int Save(const char* file, const void* buffer, unsigned int size) const;
+	bool SaveUnique(const char* file,std::string& output_name, const void* buffer, unsigned int size,const char* path,const char* extension);
+	bool EnumerateFiles(const char* directory, std::vector<const char*>&buff);
 
 private:
 

@@ -30,7 +30,7 @@ void AssetsWindow::Render()
 
 	ImGui::Begin("Assets", &active);
 	
-	list<const char*>::iterator it = assets.begin();
+	vector<const char*>::iterator it = assets.begin();
 	while (it != assets.end())
 	{
 		ImGui::Text(*it);

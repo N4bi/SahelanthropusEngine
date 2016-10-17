@@ -8,6 +8,7 @@
 #include "Glew\include\glew.h"
 #include <gl/GL.h>
 
+
 ModuleMesh::ModuleMesh(Application * app, bool start_enabled) : Module(app,start_enabled)
 {
 }
@@ -82,6 +83,7 @@ bool ModuleMesh::LoadFBX(const char* path)
 	}
 
 	delete[] buffer;
+	buffer = nullptr;
 
 	return ret;
 }
@@ -146,64 +148,30 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent)
 
 		//Meshes
 		ComponentMesh* comp_mesh = (ComponentMesh*)game_object->AddComponent(Component::MESH);
-		Mesh* m = new Mesh();
 
-		//Copy vertices
-		m->num_vertices = new_mesh->mNumVertices;
-		m->vertices = new float[m->num_vertices * 3];
-		memcpy(m->vertices, new_mesh->mVertices, sizeof(float) * m->num_vertices * 3);
-		LOG("Mesh loaded with %d vertices", m->num_vertices);
+		string path;
+		ImportMesh(new_mesh, path);
+
+		Mesh* m = LoadMesh(path.data());
+
+		//Generate buffers
 
 		glGenBuffers(1, (GLuint*)&(m->id_vertices));
 		glBindBuffer(GL_ARRAY_BUFFER, m->id_vertices);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * m->num_vertices * 3, m->vertices, GL_STATIC_DRAW);
-
-		//Copy Normals
-		m->num_normal = new_mesh->mNumVertices;
-		m->normals = new float[m->num_normal * 3];
-		memcpy(m->normals, new_mesh->mNormals, sizeof(float) * m->num_normal * 3);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float3) * m->num_vertices, m->vertices, GL_STATIC_DRAW);
 
 		glGenBuffers(1, (GLuint*)&(m->id_normal));
 		glBindBuffer(GL_ARRAY_BUFFER, m->id_normal);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float)* m->num_normal * 3, m->normals, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float3)* m->num_normal, m->normals, GL_STATIC_DRAW);
 
-		//Copy indices--------------------------------------------------------------------------------------
-		if (new_mesh->HasFaces())
-		{
-			m->num_indices = new_mesh->mNumFaces * 3;
-			m->indices = new uint[m->num_indices];
-			for (unsigned int j = 0; j < new_mesh->mNumFaces; j++)
-			{
-				if (new_mesh->mFaces[j].mNumIndices != 3)
-				{
-					LOG("WARNING, Geometry with more/less than 3 faces wants to be loaded");
-				}
-				else
-				{
-					memcpy(&m->indices[j * 3], new_mesh->mFaces[j].mIndices, sizeof(uint) * 3);
-				}
-			}
-		}
 		glGenBuffers(1, (GLuint*)&(m->id_indices));
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m->id_indices);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * m->num_indices, m->indices, GL_STATIC_DRAW);
 
+		glGenBuffers(1, (GLuint*)&(m->id_uv));
+		glBindBuffer(GL_ARRAY_BUFFER, m->id_uv);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float2) * m->num_uv, m->uvs, GL_STATIC_DRAW);
 
-		//Copy UVs----------------------------------------------------------------------------------------
-		uint uv_id = 0;
-		if (new_mesh->HasTextureCoords(uv_id))
-		{
-			m->num_uv = new_mesh->mNumVertices;
-			m->uvs = new float2[m->num_uv];
-			for (uint k = 0; k < m->num_uv; k++)
-			{
-				memcpy(&m->uvs[k], &new_mesh->mTextureCoords[uv_id][k].x, sizeof(float2));
-				memcpy(&m->uvs[k + 1], &new_mesh->mTextureCoords[uv_id][k + 1].y, sizeof(float2));
-			}
-			glGenBuffers(1, (GLuint*)&(m->id_uv));
-			glBindBuffer(GL_ARRAY_BUFFER, m->id_uv);
-			glBufferData(GL_ARRAY_BUFFER, sizeof(float2) * m->num_uv, m->uvs, GL_STATIC_DRAW);
-		}
 
 		//Bounding box for each mesh
 		m->bounding_box.SetNegativeInfinity();
@@ -236,6 +204,189 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent)
 	}
 
 }
+
+bool ModuleMesh::ImportMesh(const aiMesh * mesh, string & output_file)
+{
+	Mesh m;
+
+	//Copy vertices
+	m.num_vertices = mesh->mNumVertices;
+	m.vertices = new float3[m.num_vertices];
+	memcpy(m.vertices, mesh->mVertices, sizeof(float3) * m.num_vertices);
+
+	//Copy Normals
+	if (mesh->HasNormals())
+	{
+		m.num_normal = mesh->mNumVertices;
+		m.normals = new float3[m.num_normal];
+		memcpy(m.normals, mesh->mNormals, sizeof(float3) * m.num_normal);
+	}
+
+
+	//Copy indices
+	if (mesh->HasFaces())
+	{
+		m.num_indices = mesh->mNumFaces * 3;
+		m.indices = new uint[m.num_indices];
+		for (unsigned int j = 0; j < mesh->mNumFaces; j++)
+		{
+			if (mesh->mFaces[j].mNumIndices != 3)
+			{
+				LOG("WARNING, Geometry with more/less than 3 faces wants to be loaded");
+			}
+			else
+			{
+				memcpy(&m.indices[j * 3], mesh->mFaces[j].mIndices, sizeof(uint) * 3);
+			}
+		}
+	}
+
+	//Copy UV
+	uint uv_id = 0;
+	if (mesh->HasTextureCoords(uv_id))
+	{
+		m.num_uv = mesh->mNumVertices;
+		m.uvs = new float2[m.num_uv];
+		for (uint k = 0; k < m.num_uv; k++)
+		{
+			memcpy(&m.uvs[k], &mesh->mTextureCoords[uv_id][k].x, sizeof(float2));
+			memcpy(&m.uvs[k + 1], &mesh->mTextureCoords[uv_id][k].y, sizeof(float2));
+		
+		}
+	}
+
+	if (mesh->mName.length > 0)
+	{
+		m.name_mesh = mesh->mName.C_Str();
+	}
+	else
+	{
+		m.name_mesh = "Unnamed_mesh";
+	}
+
+	return SaveMesh(m,output_file);
+}
+
+bool ModuleMesh::SaveMesh(Mesh& mesh, string& output_file)
+{
+	bool ret = false;
+	uint header[4] =
+	{
+		mesh.num_indices,
+		mesh.num_vertices,
+		(mesh.normals) ? mesh.num_vertices : 0,
+		mesh.num_uv
+	};
+
+	uint size = sizeof(header) + sizeof(uint) * header[0] + sizeof(float)  * header[1] * 3;
+	if (header[2] != 0)
+	{
+		size += sizeof(float)  * header[2] * 3;
+	}
+
+	size += sizeof(float) * header[3] * 2;
+
+	char* data = new char[size];
+	char* cursor = data;
+
+	//Header
+	uint bytes = sizeof(header);
+	memcpy(cursor, header, bytes);
+
+	cursor += bytes;
+	
+	//Indices
+	bytes = sizeof(uint) * header[0];
+	memcpy(cursor, mesh.indices, bytes);
+
+	cursor += bytes;
+
+	//Vertices
+	bytes = sizeof(float) * header[1] * 3;
+	memcpy(cursor, mesh.vertices, bytes);
+
+	cursor += bytes;
+
+	//Normals -- Same as vertices so, do nothing on bytes
+	if (header[2] != 0)
+	{
+		memcpy(cursor, mesh.normals, bytes);
+		cursor += bytes;
+	}
+
+	//UVs
+	bytes = sizeof(float) * header[3] * 2;
+	memcpy(cursor, mesh.uvs, bytes);
+
+	ret = App->fs->SaveUnique(mesh.name_mesh, output_file, data, size, MESH_DIRECTORY, "shl");
+
+	delete[] data;
+	data = nullptr;
+
+
+	return ret;
+}
+
+Mesh* ModuleMesh::LoadMesh(const char* path)
+{
+	Mesh* m;
+	char* buffer;
+
+	if (App->fs->Load(path, &buffer) != 0)
+	{
+		m = new Mesh();
+
+		char* cursor = buffer;
+
+		uint header[4];
+		uint bytes = sizeof(header);
+		memcpy(header, cursor, bytes);
+
+		m->num_indices = header[0];
+		m->num_vertices = header[1];
+		m->num_normal = header[2];
+		m->num_uv = header[3];
+		
+		cursor += bytes;
+
+		//Indices
+		bytes = sizeof(uint) * m->num_indices;
+		m->indices = new uint[m->num_indices];
+		memcpy(m->indices, cursor, bytes);
+
+		cursor += bytes;
+
+		//Vertices
+		bytes = sizeof(float3) * m->num_vertices;
+		m->vertices = new float3[m->num_vertices];
+		memcpy(m->vertices, cursor, bytes);
+
+		cursor += bytes;
+
+		//Normals
+		if (header[2] != 0)
+		{
+			bytes = sizeof(float3) * m->num_normal;
+			m->normals = new float3[m->num_normal];
+			memcpy(m->normals, cursor, bytes);
+		
+			cursor += bytes;
+		}
+	
+
+		//UVs
+		bytes = sizeof(float2) * m->num_uv;
+		m->uvs = new float2[m->num_uv];
+		memcpy(m->uvs, cursor, bytes);
+
+	}
+
+	delete[] buffer;
+	buffer = nullptr;
+
+	return m;
+}
+
 
 
 

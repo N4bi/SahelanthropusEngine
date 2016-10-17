@@ -42,7 +42,7 @@ enum update_status
 #define ASSETS_DIRECTORY "/Assets/"
 #define LIBRARY_DIRECTORY "/Library/"
 #define TEXTURES_DIRECTORY "/Library/Textures/"
-
+#define MESH_DIRECTORY "/Library/Mesh/"
 
 #endif // __GLOBALS_H__
 

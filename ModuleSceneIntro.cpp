@@ -27,10 +27,10 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
-	App->meshes->LoadFBX("Street environment_V01.fbx");
+	//App->meshes->LoadFBX("Street environment_V01.fbx");
 
 	// Load this FBX to see a better object hierarchy 
-	//App->meshes->LoadFBX("test_3.fbx");
+	App->meshes->LoadFBX("test_3.fbx");
 
 	
 	return ret;

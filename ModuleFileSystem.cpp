@@ -35,30 +35,15 @@ bool ModuleFileSystem::Init()
 		LOG("File System error while creating write dir: %s\n", PHYSFS_getLastError());
 	}
 
-	if (PHYSFS_exists(ASSETS_DIRECTORY) == 0)
+	const char* directories[] = { ASSETS_DIRECTORY,LIBRARY_DIRECTORY,TEXTURES_DIRECTORY,MESH_DIRECTORY };
+
+	for (uint i = 0; i < 4; i++)
 	{
-		if (PHYSFS_mkdir(ASSETS_DIRECTORY) != 0)
+		if (PHYSFS_exists(directories[i]) == 0)
 		{
-			LOG("Directory %s created", ASSETS_DIRECTORY);
-		}
-		else
-		{
-			LOG("Error creating %s", ASSETS_DIRECTORY, PHYSFS_getLastError());
+			PHYSFS_mkdir(directories[i]);
 		}
 	}
-
-	if (PHYSFS_exists(LIBRARY_DIRECTORY) == 0)
-	{
-		if (PHYSFS_mkdir(LIBRARY_DIRECTORY) != 0)
-		{
-			LOG("Directory %s created", LIBRARY_DIRECTORY);
-		}
-		else
-		{
-			LOG("Error creating %s", LIBRARY_DIRECTORY, PHYSFS_getLastError());
-		}
-	}
-
 
 	return ret;
 }
@@ -158,7 +143,7 @@ int close_sdl_rwops(SDL_RWops *rw)
 }
 
 // Save a whole buffer to disk
-unsigned int ModuleFileSystem::Save(const char* file, const char* buffer, unsigned int size) const
+unsigned int ModuleFileSystem::Save(const char* file, const void* buffer, unsigned int size) const
 {
 	unsigned int ret = 0;
 
@@ -183,10 +168,54 @@ unsigned int ModuleFileSystem::Save(const char* file, const char* buffer, unsign
 	return ret;
 }
 
-bool ModuleFileSystem::EnumerateFiles(const char * directory, std::list<const char*>& buff)
+bool ModuleFileSystem::SaveUnique(const char * file, string & output_name, const void * buffer, unsigned int size, const char * path, const char * extension)
+{
+	char copy_name[100];
+	sprintf_s(copy_name, 100, "%s.%s", file, extension);
+
+	std::vector<const char*> files_in_directory;
+	EnumerateFiles(path, files_in_directory);
+
+	int copy = 0;
+
+	bool name_taken = false;
+	while (name_taken == false)
+	{
+		name_taken = true;
+
+		std::vector<const char*>::iterator it = files_in_directory.begin();
+		while (it != files_in_directory.end())
+		{
+			if (strcmp((*it), copy_name) == 0)
+			{
+				++copy;
+				sprintf_s(copy_name, 100, "%s%d.%s", file, copy, extension);
+				name_taken = false;
+
+			}
+			it++;
+		}
+	}
+
+	char output_n[500];
+	sprintf_s(output_n, 500, "%s%s", path, copy_name);
+
+	if (Save(output_n,buffer,size) >0)
+	{
+		output_name = output_n;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool ModuleFileSystem::EnumerateFiles(const char * directory, std::vector<const char*>& buff)
 {
 	char** enumerated_files = PHYSFS_enumerateFiles(directory);
 	char** it = enumerated_files;
+
 
 	for (it = enumerated_files; *it != NULL; it++)
 	{

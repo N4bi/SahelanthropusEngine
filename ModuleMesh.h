@@ -9,6 +9,7 @@
 #include "Assimp/include/postprocess.h"
 #include "Assimp/include/cfileio.h"
 #include"MathGeoLib\include\MathGeoLib.h"
+#include <cstdint>
 #pragma comment (lib, "Assimp/libx86/assimp.lib")
 
 class GameObject;
@@ -17,15 +18,18 @@ class aiScene;
 
 struct Mesh
 {
+	const char* name_mesh = nullptr;
+
 	//--Vertices
 	uint id_vertices = 0;
-	uint num_indices = 0;
-	uint* indices = nullptr;
+	uint num_vertices = 0;
+	float3* vertices = nullptr;
 
 	//-- Indices
 	uint id_indices = 0;
-	uint num_vertices = 0;
-	float* vertices = nullptr;
+	uint num_indices = 0;
+	uint* indices = nullptr;
+
 
 	//-- UVs
 	uint id_uv = 0;
@@ -38,7 +42,7 @@ struct Mesh
 	//-- Normals
 	uint id_normal = 0;
 	uint num_normal = 0;
-	float* normals = nullptr;
+	float3* normals = nullptr;
 
 	//--Box -- WIP
 	AABB bounding_box;
@@ -57,8 +61,15 @@ public:
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
-	bool LoadFBX(const char* path);
-	void Load(aiNode* node, const aiScene* scene, GameObject* parent);
+	bool  LoadFBX(const char* path);
+	Mesh* LoadMesh(const char* path);
+
+	void  Load(aiNode* node, const aiScene* scene, GameObject* parent);
+
+	bool ImportMesh(const aiMesh* mesh, std::string& output_file);
+	bool SaveMesh(Mesh& mesh, std::string& output_file);
+
+
 
 private:
 

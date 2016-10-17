@@ -3,6 +3,7 @@
 
 #include "Globals.h"
 #include "Module.h"
+#include <string>
 
 
 
@@ -16,6 +17,7 @@ public:
 	bool CleanUp();
 
 	uint LoadTexture(char* path);
+	bool ImportTexture(const char* file, const char* path, std::string& output_file);
 
 
 

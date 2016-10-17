@@ -1,5 +1,7 @@
 #include "ModuleTextures.h"
+#include "ModuleFileSystem.h"
 #include "Application.h"
+#include <string>
 #include <gl\GL.h>
 #include "Devil\include\il.h"
 #include "Devil\include\ilut.h"
@@ -52,5 +54,31 @@ uint ModuleTextures::LoadTexture(char * path)
 	ilLoadImage(path);
 
 	return ilutGLBindTexImage();
+}
+
+bool ModuleTextures::ImportTexture(const char * file, const char * path, std::string& output_file)
+{
+	bool ret = false;
+
+	ILuint id;
+	ilGenImages(1, &id);
+	ilBindImage(id);
+	ilLoadImage(path);
+
+	ILuint size;
+	ILubyte* data;
+	ilSetInteger(IL_DXTC_FORMAT, IL_DXT5);
+	size = ilSaveL(IL_DDS, NULL, 0);
+
+	if (size > 0)
+	{
+		data = new ILubyte[size];
+		ret = App->fs->SaveUnique(file, output_file, data, size, TEXTURES_DIRECTORY, "dds");
+
+		delete[] data;
+		data = nullptr;
+	}
+
+	return ret;
 }
 
