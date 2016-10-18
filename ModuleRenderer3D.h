@@ -24,6 +24,8 @@ public:
 
 	void OnResize(int width, int height);
 	void Render(Mesh m, float4x4 mtrx, uint tex_id);
+	void DebugDrawBox(const float3* corners, Color color);
+	void RenderBoundingBox(const math::AABB& aabb, Color color, const float4x4& transform);
 
 public:
 

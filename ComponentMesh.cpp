@@ -20,7 +20,7 @@ void ComponentMesh::Update(float dt)
 {
 	if (isEnabled())
 	{
-		ComponentTransform* transformation = (ComponentTransform*)go->GetComponent(Component::TRANSFORM);
+		transformation = (ComponentTransform*)go->GetComponent(Component::TRANSFORM);
 		
 		ComponentMaterial* material = (ComponentMaterial*)go->GetComponent(Component::MATERIAL);
 		
@@ -31,7 +31,13 @@ void ComponentMesh::Update(float dt)
 		}
 	
 		//If geometry is enabled, Render it
+
 		App->renderer3D->Render(*mesh, transformation->GetTransformationMatrix(),tex_id);
+		if (bbox_enabled)
+		{
+			App->renderer3D->RenderBoundingBox(mesh->bounding_box, Red, transformation->GetTransformationMatrix());
+		}
+		
 	}
 	else
 	{
@@ -60,6 +66,19 @@ void ComponentMesh::ShowOnEditor()
 			ImGui::TextColored(IMGUI_YELLOW, "N. Normal:   ");
 			ImGui::SameLine();
 			ImGui::Text("%d", mesh->num_normal);
+
+			bool is_enabled = bbox_enabled;
+			if (ImGui::Checkbox("Bounding box", &is_enabled))
+			{
+				if (is_enabled)
+				{
+					bbox_enabled = true;
+				}
+				else
+				{
+					bbox_enabled = false;
+				}
+			}
 		}
 	}
 }
@@ -76,3 +95,5 @@ bool ComponentMesh::SetMesh(Mesh* _mesh)
 
 	return ret;
 }
+
+

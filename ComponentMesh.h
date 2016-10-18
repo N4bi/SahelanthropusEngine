@@ -2,7 +2,9 @@
 #define __COMPONENTMESH_H__
 #include "Component.h"
 
+
 struct Mesh;
+class ComponentTransform;
 
 class ComponentMesh : public Component
 {
@@ -16,8 +18,13 @@ public:
 
 
 
+
+
 public:
 	Mesh* mesh = nullptr;
+	ComponentTransform* transformation;
+	bool bbox_enabled = false;
+	bool is_enabled = false;
 };
 
 #endif // !__COMPONENTMESH_H__
