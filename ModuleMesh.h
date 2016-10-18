@@ -9,7 +9,6 @@
 #include "Assimp/include/postprocess.h"
 #include "Assimp/include/cfileio.h"
 #include"MathGeoLib\include\MathGeoLib.h"
-#include <cstdint>
 #pragma comment (lib, "Assimp/libx86/assimp.lib")
 
 class GameObject;
@@ -36,8 +35,6 @@ struct Mesh
 	uint num_uv = 0;
 	float2* uvs = nullptr;
 
-	//-- Textures
-	uint id_tex = 0;
 
 	//-- Normals
 	uint id_normal = 0;

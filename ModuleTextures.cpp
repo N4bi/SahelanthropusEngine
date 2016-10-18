@@ -46,7 +46,7 @@ bool ModuleTextures::CleanUp()
 	return ret;
 }
 
-uint ModuleTextures::LoadTexture(char * path)
+uint ModuleTextures::LoadTexture(const char* path)
 {
 	ILuint id;
 	ilGenImages(1, &id);
@@ -73,11 +73,15 @@ bool ModuleTextures::ImportTexture(const char * file, const char * path, std::st
 	if (size > 0)
 	{
 		data = new ILubyte[size];
-		ret = App->fs->SaveUnique(file, output_file, data, size, TEXTURES_DIRECTORY, "dds");
+		if (ilSaveL(IL_DDS,data,size) > 0)
+		{
+			ret = App->fs->SaveUnique(file, output_file, data, size, TEXTURES_DIRECTORY, "dds");
+		}
 
 		delete[] data;
 		data = nullptr;
 	}
+	ilDeleteImages(1, &id);
 
 	return ret;
 }

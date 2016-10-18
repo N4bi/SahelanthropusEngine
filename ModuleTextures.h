@@ -16,7 +16,7 @@ public:
 	bool Init();
 	bool CleanUp();
 
-	uint LoadTexture(char* path);
+	uint LoadTexture(const char* path);
 	bool ImportTexture(const char* file, const char* path, std::string& output_file);
 
 

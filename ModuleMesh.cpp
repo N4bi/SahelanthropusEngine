@@ -5,6 +5,7 @@
 #include "ComponentTransform.h"
 #include "ComponentMesh.h"
 #include "ComponentMaterial.h"
+#include "ModuleTextures.h"
 #include "Glew\include\glew.h"
 #include <gl/GL.h>
 
@@ -185,16 +186,21 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent)
 		{
 			aiMaterial* material = scene->mMaterials[new_mesh->mMaterialIndex];
 
-			aiString path;
-			material->GetTexture(aiTextureType_DIFFUSE, 0, &path);
+	
+				aiString path;
+				material->GetTexture(aiTextureType_DIFFUSE, 0, &path);
 
-			if (path.length > 0)
-			{
-				ComponentMaterial* comp_material = (ComponentMaterial*)game_object->AddComponent(Component::MATERIAL);
+				if (path.length > 0)
+				{
+					ComponentMaterial* comp_material = (ComponentMaterial*)game_object->AddComponent(Component::MATERIAL);
 
-				comp_material->texture_id = App->tex->LoadTexture(path.data);
-			}
-		}
+					string name_tex;
+
+					App->tex->ImportTexture("tx", path.data, name_tex);
+					comp_material->texture_id = App->tex->LoadTexture(name_tex.data());
+
+				}
+		}	
 	}
 
 	//Load for all the childs 

@@ -31,7 +31,7 @@ void ComponentMesh::Update(float dt)
 		}
 	
 		//If geometry is enabled, Render it
-		App->renderer3D->Render(*mesh, transformation->GetTransformationMatrix(), tex_id);
+		App->renderer3D->Render(*mesh, transformation->GetTransformationMatrix(),tex_id);
 	}
 	else
 	{

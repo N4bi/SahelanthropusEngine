@@ -40,7 +40,7 @@ public:
 
 	unsigned int Save(const char* file, const void* buffer, unsigned int size) const;
 	bool SaveUnique(const char* file,std::string& output_name, const void* buffer, unsigned int size,const char* path,const char* extension);
-	bool EnumerateFiles(const char* directory, std::vector<const char*>&buff);
+	bool EnumerateFiles(const char* directory, std::vector<std::string>&buff);
 
 private:
 

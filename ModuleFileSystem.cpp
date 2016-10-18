@@ -173,7 +173,7 @@ bool ModuleFileSystem::SaveUnique(const char * file, string & output_name, const
 	char copy_name[100];
 	sprintf_s(copy_name, 100, "%s.%s", file, extension);
 
-	std::vector<const char*> files_in_directory;
+	std::vector<string> files_in_directory;
 	EnumerateFiles(path, files_in_directory);
 
 	int copy = 0;
@@ -183,14 +183,15 @@ bool ModuleFileSystem::SaveUnique(const char * file, string & output_name, const
 	{
 		name_taken = true;
 
-		std::vector<const char*>::iterator it = files_in_directory.begin();
+		std::vector<string>::iterator it = files_in_directory.begin();
 		while (it != files_in_directory.end())
 		{
-			if (strcmp((*it), copy_name) == 0)
+			if ((*it).compare(copy_name) == 0)
 			{
 				++copy;
 				sprintf_s(copy_name, 100, "%s%d.%s", file, copy, extension);
 				name_taken = false;
+				break;
 
 			}
 			it++;
@@ -211,7 +212,7 @@ bool ModuleFileSystem::SaveUnique(const char * file, string & output_name, const
 	}
 }
 
-bool ModuleFileSystem::EnumerateFiles(const char * directory, std::vector<const char*>& buff)
+bool ModuleFileSystem::EnumerateFiles(const char * directory, std::vector<string>& buff)
 {
 	char** enumerated_files = PHYSFS_enumerateFiles(directory);
 	char** it = enumerated_files;

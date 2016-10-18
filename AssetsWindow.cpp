@@ -14,10 +14,6 @@ AssetsWindow::~AssetsWindow()
 
 void AssetsWindow::Start()
 {
-	if (App->fs->EnumerateFiles("Assets",assets))
-	{
-		LOG("Files found! %d",assets.size());
-	}
 
 }
 
