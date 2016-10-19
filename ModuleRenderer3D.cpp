@@ -197,14 +197,25 @@ void ModuleRenderer3D::OnResize(int width, int height)
 	glLoadIdentity();
 }
 
-void ModuleRenderer3D::Render(Mesh m,float4x4 mtrx,uint tex_id)
+void ModuleRenderer3D::Render(Mesh m,float4x4 mtrx,uint tex_id,bool wire)
 {
 	glPushMatrix();
 	glMultMatrixf(*mtrx.v);
 
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	glDisable(GL_CULL_FACE);
-	glColor3f(1, 1, 1);
+	wireframe = wire;
+
+	if (wire)
+	{
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		glDisable(GL_CULL_FACE);
+		glColor3f(1, 1, 1);
+	}
+	else
+	{
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		glDisable(GL_CULL_FACE);
+		glColor3f(1, 1, 1);
+	}
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_NORMAL_ARRAY);
@@ -223,7 +234,7 @@ void ModuleRenderer3D::Render(Mesh m,float4x4 mtrx,uint tex_id)
 	glBindTexture(GL_TEXTURE_2D, tex_id);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m.id_indices);
-	glDrawElements(GL_TRIANGLES, m.num_indices, GL_UNSIGNED_INT, NULL);
+	glDrawElements(GL_TRIANGLES, m.num_indices, GL_UNSIGNED_INT, NULL);  
 //---------------------------------------------
 	glDisable(GL_TEXTURE_2D);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);

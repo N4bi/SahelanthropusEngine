@@ -32,7 +32,15 @@ void ComponentMesh::Update(float dt)
 	
 		//If geometry is enabled, Render it
 
-		App->renderer3D->Render(*mesh, transformation->GetTransformationMatrix(),tex_id);
+		if (App->renderer3D->wireframe)
+		{
+			App->renderer3D->Render(*mesh, transformation->GetTransformationMatrix(), tex_id, true);
+		}
+		else
+		{
+			App->renderer3D->Render(*mesh, transformation->GetTransformationMatrix(), tex_id);
+		}
+	
 		if (bbox_enabled)
 		{
 			App->renderer3D->RenderBoundingBox(mesh->bounding_box, Red, transformation->GetTransformationMatrix());

@@ -115,7 +115,7 @@ void ModuleGOManager::EditorWindow()
 	if (game_object_on_editor)
 	{
 		bool is_enabled = game_object_on_editor->isEnabled();
-		if (ImGui::Checkbox("##enabled",&is_enabled))
+		if (ImGui::Checkbox(game_object_on_editor->name_object.data(),&is_enabled))
 		{
 			if (is_enabled)
 			{
@@ -128,7 +128,19 @@ void ModuleGOManager::EditorWindow()
 		}
 
 		ImGui::SameLine();
-		ImGui::Text("%s", game_object_on_editor->name_object.data());
+		
+		bool wire_enabled = App->renderer3D->wireframe;
+		if (ImGui::Checkbox("Wireframe", &wire_enabled))
+		{
+			if (wire_enabled)
+			{
+				App->renderer3D->wireframe = true;
+			}
+			else
+			{
+				App->renderer3D->wireframe = false;
+			}
+		}
 
 		list<Component*>::iterator it = game_object_on_editor->components.begin();
 		while (it!= game_object_on_editor->components.end())

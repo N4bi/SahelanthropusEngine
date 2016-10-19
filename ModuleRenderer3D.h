@@ -23,7 +23,7 @@ public:
 	bool CleanUp();
 
 	void OnResize(int width, int height);
-	void Render(Mesh m, float4x4 mtrx, uint tex_id);
+	void Render(Mesh m, float4x4 mtrx, uint tex_id,bool wire = false);
 	void DebugDrawBox(const float3* corners, Color color);
 	void RenderBoundingBox(const math::AABB& aabb, Color color, const float4x4& transform);
 
@@ -33,5 +33,6 @@ public:
 	SDL_GLContext context;
 	float3x3 NormalMatrix;
 	float4x4 ModelMatrix, ViewMatrix, ProjectionMatrix;
+	bool wireframe = false;
 };
 #endif // !__MODULERENDERER3D_H__
