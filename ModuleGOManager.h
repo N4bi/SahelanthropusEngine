@@ -3,6 +3,7 @@
 
 #include "Globals.h"
 #include "Module.h"
+#include "ComponentCamera.h"
 #include <list>
 
 class GameObject;
@@ -26,7 +27,8 @@ public:
 
 	void UpdateChilds(float dt, GameObject* go);
 
-
+public:
+	ComponentCamera* fake_camera = nullptr;
 private:
 	GameObject* root = nullptr;
 	GameObject* game_object_on_editor = nullptr;

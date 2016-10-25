@@ -8,7 +8,7 @@ using namespace std;
 
 ModuleGOManager::ModuleGOManager(Application * app, bool start_enabled) : Module(app, start_enabled)
 {
-
+	root = new GameObject(nullptr, "root");
 }
 
 ModuleGOManager::~ModuleGOManager()
@@ -21,7 +21,8 @@ bool ModuleGOManager::Init()
 	bool ret = true;
 	LOG("Init Game Object Manager");
 
-	root = new GameObject(nullptr, "root");
+	GameObject* camera_go = CreateGameObject(root, "Camera");
+	fake_camera = (ComponentCamera*)camera_go->AddComponent(Component::CAMERA);
 
 	return ret;
 }

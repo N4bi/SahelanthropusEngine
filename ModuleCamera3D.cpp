@@ -9,8 +9,6 @@ ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(ap
 {
 	CalculateViewMatrix();
 
-	camera_go = new GameObject(nullptr, "Camera");
-	fake_camera = (ComponentCamera*)camera_go->AddComponent(Component::CAMERA);
 
 	X = math::vec(1.0f, 0.0f, 0.0f);
 	Y = math::vec(0.0f, 1.0f, 0.0f);
@@ -24,7 +22,7 @@ ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(ap
 
 ModuleCamera3D::~ModuleCamera3D()
 {
-	delete camera_go;
+
 }
 
 // -----------------------------------------------------------------
@@ -205,7 +203,7 @@ void ModuleCamera3D::Move(const vec &Movement)
 
 void ModuleCamera3D::MoveCamera(float dt)
 {
-	Frustum* frustum = &fake_camera->frustum;
+	Frustum* frustum = &App->go_manager->fake_camera->frustum;
 
 	float3 newPos = float3::zero;
 	float speed = 50.0f;
@@ -240,7 +238,7 @@ void ModuleCamera3D::MoveCamera(float dt)
 
 void ModuleCamera3D::LookAt(float dx, float dy,float sensitivity)
 {
-	Frustum* frustum = &fake_camera->frustum;
+	Frustum* frustum = &App->go_manager->fake_camera->frustum;
 
 	if (dx != 0)
 	{

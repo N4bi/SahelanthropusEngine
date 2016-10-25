@@ -19,6 +19,7 @@ ComponentCamera::ComponentCamera(Component::Types type) : Component(type)
 
 ComponentCamera::~ComponentCamera()
 {
+
 }
 
 void ComponentCamera::Update(float dt)
@@ -46,9 +47,15 @@ void ComponentCamera::ShowOnEditor()
 {
 	if (ImGui::CollapsingHeader("Camera"))
 	{
-		//TODO: CHANGE FOV, NEAR, FAR
+			ImGui::Text("Near plane");
+			float new_near = frustum.nearPlaneDistance;
+			if (ImGui::SliderFloat3("##near", &new_near, 0, 5000));
+			{
+				SetNearDistance(new_near);
+			}
 	}
 }
+
 
 Frustum ComponentCamera::GetFrustum() const
 {

@@ -37,7 +37,6 @@ private:
 public:
 
 	vec X, Y, Z, Position, Reference;
-	ComponentCamera* fake_camera = nullptr;
 
 private:
 
@@ -47,7 +46,6 @@ private:
 	float max_following_dist;
 	float following_height;
 
-	GameObject* camera_go = nullptr;
 	
 
 };
