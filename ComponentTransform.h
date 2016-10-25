@@ -16,6 +16,7 @@ public:
 
 	void SetTranslation(float3 pos);
 	float3 GetTranslation();
+	float3 GetWorldTranslation();
 
 	void SetScale(float3 scale);
 	float3 GetScale();
@@ -23,6 +24,7 @@ public:
 	void SetRotation(float3 rot);
 	void SetRotation(Quat rot);
 	float3 GetRotation();
+
 
 	float4x4 GetTransformationMatrix();
 

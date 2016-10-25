@@ -136,7 +136,7 @@ bool ModuleInput::CleanUp()
 	return true;
 }
 
-void ModuleInput::getMousePosition(iPoint & p) const
+void ModuleInput::getMousePosition(float2 & p) const
 {
 	p.x = mouse_x;
 	p.y = mouse_y;

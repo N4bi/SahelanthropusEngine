@@ -333,9 +333,6 @@
     <ClInclude Include="Component.h">
       <Filter>Sources\Containers</Filter>
     </ClInclude>
-    <ClInclude Include="p2Point.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
     <ClInclude Include="ComponentTransform.h">
       <Filter>Sources\Containers</Filter>
     </ClInclude>
@@ -350,6 +347,9 @@
     </ClInclude>
     <ClInclude Include="AssetsWindow.h">
       <Filter>Sources\InfoWindows</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentCamera.h">
+      <Filter>Sources\Containers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -559,6 +559,9 @@
     </ClCompile>
     <ClCompile Include="AssetsWindow.cpp">
       <Filter>Sources\InfoWindows</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentCamera.cpp">
+      <Filter>Sources\Containers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

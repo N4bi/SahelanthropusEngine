@@ -3,6 +3,7 @@
 #include "ComponentTransform.h"
 #include "ComponentMaterial.h"
 #include "ComponentMesh.h"
+#include "ComponentCamera.h"
 
 using namespace std;
 
@@ -66,6 +67,7 @@ Component* GameObject::AddComponent(Component::Types type)
 		ret = new ComponentMaterial(type);
 		break;
 	case Component::CAMERA:
+		ret = new ComponentCamera(type);
 		break;
 	case Component::NONE:
 		break;

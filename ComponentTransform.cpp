@@ -76,6 +76,11 @@ float3 ComponentTransform::GetTranslation()
 	return translation;
 }
 
+float3 ComponentTransform::GetWorldTranslation()
+{
+	return final_transformation.TranslatePart();
+}
+
 void ComponentTransform::SetScale(float3 _scale)
 {
 	scale.Set(_scale.x, _scale.y, _scale.z);

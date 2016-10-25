@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleRenderer3D.h"
 #include "ModuleMesh.h"
+#include "ComponentCamera.h"
 #include "Glew\include\glew.h"
 #include "SDL\include\SDL_opengl.h"
 #include <gl/GL.h>
@@ -107,10 +108,12 @@ bool ModuleRenderer3D::Init()
 	}
 
 	// Projection matrix for
-	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
-	
+	//OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
+	OnResize_cmp_camera(SCREEN_WIDTH, SCREEN_HEIGHT); //COMPONENT CAMERA
 	ImGui_ImplSdlGL3_Init(App->window->window);
-	App->camera->Look(vec(1.75f, 1.75f, 5.0f), vec(0.0f, 0.0f, 0.0f));
+	//App->camera->Look(vec(1.75f, 1.75f, 5.0f), vec(0.0f, 0.0f, 0.0f));
+	App->camera->fake_camera->LookAt(float3(1.75f, 1.75f, 5.0f)); // COMPONENT CAMERA
+	
 
 	LOG("OpenGL version: %s", glGetString(GL_VERSION));
 	LOG("Glew version: %s", glewGetString(GLEW_VERSION));
@@ -121,14 +124,19 @@ bool ModuleRenderer3D::Init()
 // PreUpdate: clear buffer
 update_status ModuleRenderer3D::PreUpdate(float dt)
 {
+	ComponentCamera* camera = App->camera->fake_camera;
+	UpdateCamera();
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
 	glMatrixMode(GL_MODELVIEW);
-	glLoadMatrixf(App->camera->GetViewMatrix());
+	//glLoadMatrixf(App->camera->GetViewMatrix());
+	glLoadMatrixf(camera->GetViewMatrix()); // COMPONENT CAMERA
 
 	// light 0 on cam pos
-	lights[0].SetPos(App->camera->Position.x, App->camera->Position.y, App->camera->Position.z);
+	//lights[0].SetPos(App->camera->Position.x, App->camera->Position.y, App->camera->Position.z);
+	lights[0].SetPos(camera->frustum.pos.x,camera->frustum.pos.y,camera->frustum.pos.z); // COMPONENT CAMERA
 
 	for(uint i = 0; i < MAX_LIGHTS; ++i)
 		lights[i].Render();
@@ -195,6 +203,16 @@ void ModuleRenderer3D::OnResize(int width, int height)
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+}
+
+void ModuleRenderer3D::OnResize_cmp_camera(int width, int height)
+{
+	glViewport(0, 0, width, height);
+
+	ComponentCamera* camera = App->camera->fake_camera;
+	camera->SetAspectRatio((float)width / (float)height);
+
+	UpdateCamera();
 }
 
 void ModuleRenderer3D::Render(Mesh m,float4x4 mtrx,uint tex_id,bool wire)
@@ -295,4 +313,15 @@ void ModuleRenderer3D::RenderBoundingBox(const math::AABB & aabb, Color color, c
 	glMultMatrixf((GLfloat*)transform.ptr());
 	DebugDrawBox(corners, color);
 	glPopMatrix();
+}
+
+void ModuleRenderer3D::UpdateCamera()
+{
+	ComponentCamera* camera = App->camera->fake_camera;
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glLoadMatrixf((GLfloat*)camera->GetProjectionMatrix());
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 }
