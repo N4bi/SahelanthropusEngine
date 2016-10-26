@@ -21,8 +21,8 @@ bool ModuleGOManager::Init()
 	bool ret = true;
 	LOG("Init Game Object Manager");
 
-	GameObject* camera_go = CreateGameObject(root, "Camera");
-	fake_camera = (ComponentCamera*)camera_go->AddComponent(Component::CAMERA);
+	GameObject* main_camera = CreateGameObject(root, "Main camera");
+	main_camera_c= (ComponentCamera*)main_camera->AddComponent(Component::CAMERA);
 
 	return ret;
 }

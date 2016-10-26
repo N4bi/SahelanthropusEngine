@@ -203,7 +203,7 @@ void ModuleCamera3D::Move(const vec &Movement)
 
 void ModuleCamera3D::MoveCamera(float dt)
 {
-	Frustum* frustum = &App->go_manager->fake_camera->frustum;
+	Frustum* frustum = &App->go_manager->main_camera_c->frustum;
 
 	float3 newPos = float3::zero;
 	float speed = 50.0f;
@@ -238,7 +238,7 @@ void ModuleCamera3D::MoveCamera(float dt)
 
 void ModuleCamera3D::LookAt(float dx, float dy,float sensitivity)
 {
-	Frustum* frustum = &App->go_manager->fake_camera->frustum;
+	Frustum* frustum = &App->go_manager->main_camera_c->frustum;
 
 	if (dx != 0)
 	{

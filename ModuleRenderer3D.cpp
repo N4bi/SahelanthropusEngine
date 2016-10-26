@@ -112,7 +112,7 @@ bool ModuleRenderer3D::Init()
 	OnResize_cmp_camera(SCREEN_WIDTH, SCREEN_HEIGHT); //COMPONENT CAMERA
 	ImGui_ImplSdlGL3_Init(App->window->window);
 	//App->camera->Look(vec(1.75f, 1.75f, 5.0f), vec(0.0f, 0.0f, 0.0f));
-	App->go_manager->fake_camera->LookAt(float3(1.75f, 1.75f, 5.0f)); // COMPONENT CAMERA
+	App->go_manager->main_camera_c->LookAt(float3(1.75f, 1.75f, 5.0f)); // COMPONENT CAMERA
 	
 
 	LOG("OpenGL version: %s", glGetString(GL_VERSION));
@@ -124,7 +124,7 @@ bool ModuleRenderer3D::Init()
 // PreUpdate: clear buffer
 update_status ModuleRenderer3D::PreUpdate(float dt)
 {
-	ComponentCamera* camera = App->go_manager->fake_camera;
+	ComponentCamera* camera = App->go_manager->main_camera_c;
 	UpdateCamera();
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -209,7 +209,7 @@ void ModuleRenderer3D::OnResize_cmp_camera(int width, int height)
 {
 	glViewport(0, 0, width, height);
 
-	ComponentCamera* camera = App->go_manager->fake_camera;
+	ComponentCamera* camera = App->go_manager->main_camera_c;
 	camera->SetAspectRatio((float)width / (float)height);
 
 	UpdateCamera();
@@ -317,7 +317,7 @@ void ModuleRenderer3D::RenderBoundingBox(const math::AABB & aabb, Color color, c
 
 void ModuleRenderer3D::UpdateCamera()
 {
-	ComponentCamera* camera = App->go_manager->fake_camera;
+	ComponentCamera* camera = App->go_manager->main_camera_c;
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glLoadMatrixf((GLfloat*)camera->GetProjectionMatrix());

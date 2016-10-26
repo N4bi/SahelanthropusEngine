@@ -28,7 +28,7 @@ public:
 	void UpdateChilds(float dt, GameObject* go);
 
 public:
-	ComponentCamera* fake_camera = nullptr;
+	ComponentCamera* main_camera_c = nullptr;
 private:
 	GameObject* root = nullptr;
 	GameObject* game_object_on_editor = nullptr;

@@ -13,7 +13,7 @@ ComponentCamera::ComponentCamera(Component::Types type) : Component(type)
 	frustum.front = float3::unitZ;
 	frustum.up = float3::unitY;
 	frustum.nearPlaneDistance = 1.0f;
-	frustum.farPlaneDistance = 10000.0f;
+	frustum.farPlaneDistance = 1000.0f;
 	frustum.verticalFov = DegToRad(60.0f);
 }
 
@@ -49,10 +49,26 @@ void ComponentCamera::ShowOnEditor()
 	{
 			ImGui::Text("Near plane");
 			float new_near = frustum.nearPlaneDistance;
-			if (ImGui::SliderFloat3("##near", &new_near, 0, 5000));
+			if (ImGui::DragFloat("##near", &new_near,1.0f,1.0f,5000.0f));
 			{
 				SetNearDistance(new_near);
 			}
+
+			ImGui::Text("Far plane");
+			float new_far = frustum.farPlaneDistance;
+			if (ImGui::DragFloat("##far", &new_far, 1.0f, 1.0f, 5000.0f));
+			{
+				SetFarDistance(new_far);
+			}
+
+	/*		ImGui::Text("FOV");
+			float fov = frustum.verticalFov;
+			if (ImGui::DragFloat("##fov", &fov, 1.0f, 1.0f, 500.0f));
+			{
+				SetFieldOfView(fov);
+			}*/
+
+
 	}
 }
 
@@ -92,7 +108,7 @@ void ComponentCamera::SetNearDistance(float distance)
 
 void ComponentCamera::SetFarDistance(float distance)
 {
-	if (distance > 0 && distance > frustum.farPlaneDistance)
+	if (distance > 0 && distance > frustum.nearPlaneDistance)
 	{
 		frustum.farPlaneDistance = distance;
 	}
