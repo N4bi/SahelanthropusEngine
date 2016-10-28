@@ -36,6 +36,8 @@ public:
 
 private:
 	ComponentTransform* camera_transformation = nullptr;
+	float field_of_view = 60.0f;
+	float aspect_ratio = 1.75f;
 	bool culling = false;
 
 };

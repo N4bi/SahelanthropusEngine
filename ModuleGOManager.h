@@ -24,14 +24,17 @@ public:
 	void HierarchyInfo();
 	void ShowGameObjectsOnEditor(const std::list<GameObject*>* childs);
 	void EditorWindow();
+	GameObject* GetRoot() const;
 
 	void UpdateChilds(float dt, GameObject* go);
 
 public:
-	ComponentCamera* main_camera_c = nullptr;
+
 private:
 	GameObject* root = nullptr;
 	GameObject* game_object_on_editor = nullptr;
+
+
 
 };
 

@@ -5,9 +5,11 @@
 #include "Module.h"
 #include "Globals.h"
 #include "MathGeoLib\include\MathGeoLib.h"
+#include "ComponentCamera.h"
 #include "InfoWindows.h"
 #include <vector>
 
+class GameObject;
 class FPSwindow;
 class HardwareWindow;
 class ConsoleWindow;
@@ -19,6 +21,7 @@ public:
 	ModuleEditor(Application* app, bool start_enabled = true);
 	~ModuleEditor();
 
+	bool Init();
 	bool Start();
 	update_status Update(float dt);
 	update_status PostUpdate(float dt);
@@ -41,6 +44,10 @@ private:
 	void ShowHardwareWindow();
 	void ShowConsoleWindow();
 	void ShowAssetsWindow();
+
+public:
+	ComponentCamera* main_camera_component = nullptr;
+	GameObject* main_camera = nullptr;
 
 private:
 	bool box_render;

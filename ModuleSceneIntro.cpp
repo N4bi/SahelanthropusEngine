@@ -4,6 +4,7 @@
 #include "ModuleSceneIntro.h"
 #include "ModuleWindow.h"
 #include "ModuleRenderer3D.h"
+#include "ModuleGOManager.h"
 #include "Primitive.h"
 #include "PhysBody3D.h"
 #include "Imgui\imgui.h"
@@ -29,6 +30,11 @@ bool ModuleSceneIntro::Start()
 
 	App->meshes->LoadFBX("Assets/Meshes/Street environment_V01.fbx");
 
+	//Camera TEST
+	camera = App->go_manager->CreateGameObject(App->go_manager->GetRoot() , "camera1");
+	camera->AddComponent(Component::TRANSFORM);
+	camera->AddComponent(Component::CAMERA);
+
 	// Load this FBX to see a better object hierarchy 
 	//App->meshes->LoadFBX("test_3.fbx");
 
@@ -40,7 +46,8 @@ bool ModuleSceneIntro::Start()
 bool ModuleSceneIntro::CleanUp()
 {
 	LOG("Unloading Intro scene");
-
+	delete camera;
+	camera = nullptr;
 	return true;
 }
 

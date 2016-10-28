@@ -31,8 +31,8 @@ Application::Application()
 	AddModule(physics3D);
 	AddModule(meshes);
 	AddModule(go_manager);
-	AddModule(scene_intro);
 	AddModule(editor);
+	AddModule(scene_intro);
 	AddModule(renderer3D);
 	
 }

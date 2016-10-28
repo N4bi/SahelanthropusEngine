@@ -2,6 +2,7 @@
 #include "ModuleEditor.h"
 #include "Primitive.h"
 #include "Imgui\imgui.h"
+#include "ModuleGOManager.h"
 #include "FPSwindow.h"
 #include "HardwareWindow.h"
 #include "ConsoleWindow.h"
@@ -18,6 +19,15 @@ ModuleEditor::ModuleEditor(Application* app, bool start_enabled) : Module(app, s
 ModuleEditor::~ModuleEditor()
 {}
 
+bool ModuleEditor::Init()
+{
+	bool ret = true;
+
+	GameObject* main_camera = App->go_manager->CreateGameObject(App->go_manager->GetRoot(), "Main camera");
+	main_camera_component = (ComponentCamera*)main_camera->AddComponent(Component::CAMERA);
+
+	return ret;
+}
 // Load assets
 bool ModuleEditor::Start()
 {
@@ -32,6 +42,8 @@ bool ModuleEditor::Start()
 	info_window.push_back(fps_win = new FPSwindow());
 	info_window.push_back(hd_win = new HardwareWindow());
 	info_window.push_back(asset_win = new AssetsWindow());
+
+
 
 	return ret;
 }

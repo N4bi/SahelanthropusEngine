@@ -9,6 +9,7 @@ using namespace std;
 ModuleGOManager::ModuleGOManager(Application * app, bool start_enabled) : Module(app, start_enabled)
 {
 	root = new GameObject(nullptr, "root");
+	root->AddComponent(Component::TRANSFORM);
 }
 
 ModuleGOManager::~ModuleGOManager()
@@ -21,8 +22,7 @@ bool ModuleGOManager::Init()
 	bool ret = true;
 	LOG("Init Game Object Manager");
 
-	GameObject* main_camera = CreateGameObject(root, "Main camera");
-	main_camera_c= (ComponentCamera*)main_camera->AddComponent(Component::CAMERA);
+
 
 	return ret;
 }
@@ -46,6 +46,9 @@ bool ModuleGOManager::CleanUp()
 
 	delete root;
 	delete game_object_on_editor;
+
+	game_object_on_editor = nullptr;
+	root = nullptr;
 
 	return ret;
 }
@@ -153,6 +156,11 @@ void ModuleGOManager::EditorWindow()
 	}
 
 	ImGui::End();
+}
+
+GameObject* ModuleGOManager::GetRoot() const
+{
+	return root;
 }
 
 void ModuleGOManager::UpdateChilds(float dt, GameObject * go)

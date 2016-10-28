@@ -10,6 +10,8 @@
 
 struct PhysBody3D;
 class Mesh;
+class GameObject;
+
 
 class ModuleSceneIntro : public Module
 {
@@ -24,8 +26,8 @@ public:
 
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 
-public:
-
+private:
+	GameObject* camera = nullptr;
 };
 
 

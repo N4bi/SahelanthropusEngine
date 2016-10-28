@@ -8,13 +8,14 @@ ComponentCamera::ComponentCamera(Component::Types type) : Component(type)
 {
 	type = CAMERA;
 
-	frustum.type = FrustumType::PerspectiveFrustum; // TO TEST: when mathgeolib calculates frustum.projectionmatrix he assumes that is a perspective frustum so we can try to eliminate this
+	frustum.type = FrustumType::PerspectiveFrustum;
 	frustum.pos = float3::zero;
 	frustum.front = float3::unitZ;
 	frustum.up = float3::unitY;
 	frustum.nearPlaneDistance = 1.0f;
 	frustum.farPlaneDistance = 1000.0f;
-	frustum.verticalFov = DegToRad(60.0f);
+	frustum.verticalFov = DegToRad(field_of_view);
+	SetAspectRatio(aspect_ratio);
 }
 
 ComponentCamera::~ComponentCamera()
@@ -24,18 +25,17 @@ ComponentCamera::~ComponentCamera()
 
 void ComponentCamera::Update(float dt)
 {
-	camera_transformation = (ComponentTransform*)go->GetComponent(Component::TRANSFORM);
-
 	if (camera_transformation)
 	{
 		LookAt(camera_transformation->GetWorldTranslation());
 		UpdateCameraTransform();
 	}
-
 }
 
 void ComponentCamera::UpdateCameraTransform()
 {
+	camera_transformation = (ComponentTransform*)go->GetComponent(Component::TRANSFORM);
+
 	float4x4 transformation = camera_transformation->GetTransformationMatrix();
 
 	frustum.pos = transformation.TranslatePart();
@@ -61,12 +61,12 @@ void ComponentCamera::ShowOnEditor()
 				SetFarDistance(new_far);
 			}
 
-	/*		ImGui::Text("FOV");
-			float fov = frustum.verticalFov;
-			if (ImGui::DragFloat("##fov", &fov, 1.0f, 1.0f, 500.0f));
+			ImGui::Text("FOV");
+			float fov = field_of_view;
+			if (ImGui::DragFloat("##fov", &fov, 1.0f, 1.0f, 150.0f));
 			{
 				SetFieldOfView(fov);
-			}*/
+			}
 
 
 	}
@@ -100,7 +100,7 @@ float ComponentCamera::GetAspectRatio() const
 
 void ComponentCamera::SetNearDistance(float distance)
 {
-	if (distance > 0 &&distance < frustum.farPlaneDistance)
+	if (distance > 0 && distance < frustum.farPlaneDistance)
 	{
 		frustum.nearPlaneDistance = distance;
 	}
@@ -108,7 +108,7 @@ void ComponentCamera::SetNearDistance(float distance)
 
 void ComponentCamera::SetFarDistance(float distance)
 {
-	if (distance > 0 && distance > frustum.nearPlaneDistance)
+	if (distance > frustum.nearPlaneDistance)
 	{
 		frustum.farPlaneDistance = distance;
 	}
@@ -116,7 +116,11 @@ void ComponentCamera::SetFarDistance(float distance)
 
 void ComponentCamera::SetFieldOfView(float fov)
 {
+	aspect_ratio = frustum.AspectRatio();
+
+	field_of_view = fov;
 	frustum.verticalFov = DegToRad(fov);
+	SetAspectRatio(aspect_ratio);
 }
 
 void ComponentCamera::SetAspectRatio(float aspect_ratio)
