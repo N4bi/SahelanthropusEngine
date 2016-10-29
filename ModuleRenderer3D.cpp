@@ -108,11 +108,9 @@ bool ModuleRenderer3D::Init()
 	}
 
 	// Projection matrix for
-	//OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
-	OnResize_cmp_camera(SCREEN_WIDTH, SCREEN_HEIGHT); //COMPONENT CAMERA
+	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
 	ImGui_ImplSdlGL3_Init(App->window->window);
-	//App->camera->Look(vec(1.75f, 1.75f, 5.0f), vec(0.0f, 0.0f, 0.0f));
-	App->editor->main_camera_component->LookAt(float3(1.75f, 1.75f, 5.0f)); // COMPONENT CAMERA
+	App->editor->main_camera_component->LookAt(float3(1.75f, 1.75f, 5.0f));
 	
 
 	LOG("OpenGL version: %s", glGetString(GL_VERSION));
@@ -131,12 +129,10 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 	glLoadIdentity();
 
 	glMatrixMode(GL_MODELVIEW);
-	//glLoadMatrixf(App->camera->GetViewMatrix());
-	glLoadMatrixf(camera->GetViewMatrix()); // COMPONENT CAMERA
+	glLoadMatrixf(camera->GetViewMatrix());
 
 	// light 0 on cam pos
-	//lights[0].SetPos(App->camera->Position.x, App->camera->Position.y, App->camera->Position.z);
-	lights[0].SetPos(camera->frustum.pos.x,camera->frustum.pos.y,camera->frustum.pos.z); // COMPONENT CAMERA
+	lights[0].SetPos(camera->frustum.pos.x,camera->frustum.pos.y,camera->frustum.pos.z);
 
 	for(uint i = 0; i < MAX_LIGHTS; ++i)
 		lights[i].Render();
@@ -172,40 +168,7 @@ bool ModuleRenderer3D::CleanUp()
 	return true;
 }
 
-
 void ModuleRenderer3D::OnResize(int width, int height)
-{
-	glViewport(0, 0, width, height);
-
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-
-	//Doing what perspective method does in glmath library
-	float4x4 Perspective;
-	float n = 0.125f;
-	float f = 512.0f;
-	float fovy = 60.0f;
-
-	Perspective.SetIdentity();
-
-	float coty = 1.0f / tan(fovy * pi / 360.0f);
-
-	Perspective[0][0] = coty/ ((float)width / (float)height);
-	Perspective[1][1] = coty;
-	Perspective[2][2] = (n + f) / (n - f);
-	Perspective[2][3] = -1.0f;
-	Perspective[3][2] = 2.0f * n * f / (n - f);
-	Perspective[3][3] = 0.0f;
-
-	ProjectionMatrix = Perspective;
-
-	glLoadMatrixf(*ProjectionMatrix.v);
-
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-}
-
-void ModuleRenderer3D::OnResize_cmp_camera(int width, int height)
 {
 	glViewport(0, 0, width, height);
 
@@ -262,6 +225,19 @@ void ModuleRenderer3D::Render(Mesh m,float4x4 mtrx,uint tex_id,bool wire)
 	glPopMatrix();
 }
 
+void ModuleRenderer3D::UpdateCamera()
+{
+	ComponentCamera* camera = App->editor->main_camera_component;
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glLoadMatrixf((GLfloat*)camera->GetProjectionMatrix());
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+}
+
+//---DEBUG DRAW---------------------------------------------------------------------------------------------------------------------------------------------
+
 void ModuleRenderer3D::DebugDrawBox(const float3 * corners, Color color)
 {
 	glColor3f(color.r, color.g, color.b);
@@ -315,13 +291,15 @@ void ModuleRenderer3D::RenderBoundingBox(const math::AABB & aabb, Color color, c
 	glPopMatrix();
 }
 
-void ModuleRenderer3D::UpdateCamera()
+void ModuleRenderer3D::RenderFrustum(const Frustum & frustum, Color color)
 {
-	ComponentCamera* camera = App->editor->main_camera_component;
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glLoadMatrixf((GLfloat*)camera->GetProjectionMatrix());
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glDisable(GL_CULL_FACE);
 
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
+	float3 corners[8];
+	frustum.GetCornerPoints(corners);
+
+	DebugDrawBox(corners, color);
 }
+
+

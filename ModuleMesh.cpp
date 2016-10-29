@@ -73,7 +73,10 @@ bool ModuleMesh::LoadFBX(const char* path)
 	if (scene != nullptr && scene->HasMeshes())
 	{
 		aiNode* root_node = scene->mRootNode;
-		Load(root_node, scene, nullptr);
+		for (int i = 0; i < root_node->mNumChildren; i++)
+		{
+			Load(root_node->mChildren[i], scene, nullptr);
+		}	
 		aiReleaseImport(scene);
 
 		ret = true;

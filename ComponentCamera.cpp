@@ -15,7 +15,9 @@ ComponentCamera::ComponentCamera(Component::Types type) : Component(type)
 	frustum.nearPlaneDistance = 1.0f;
 	frustum.farPlaneDistance = 1000.0f;
 	frustum.verticalFov = DegToRad(field_of_view);
+
 	SetAspectRatio(aspect_ratio);
+
 }
 
 ComponentCamera::~ComponentCamera()
@@ -25,28 +27,43 @@ ComponentCamera::~ComponentCamera()
 
 void ComponentCamera::Update(float dt)
 {
-	if (camera_transformation)
+	if (debug_frustum)
 	{
-		LookAt(camera_transformation->GetWorldTranslation());
-		UpdateCameraTransform();
+		App->renderer3D->RenderFrustum(frustum, Green);	
 	}
 }
 
-void ComponentCamera::UpdateCameraTransform()
+void ComponentCamera::UpdateTransform()
 {
-	camera_transformation = (ComponentTransform*)go->GetComponent(Component::TRANSFORM);
+	if (go != nullptr)
+	{
+		camera_transformation = (ComponentTransform*)go->GetComponent(Component::TRANSFORM);
+		camera_transformation->SetScale(float3(0.0f, frustum.verticalFov,frustum.horizontalFov));
 
-	float4x4 transformation = camera_transformation->GetTransformationMatrix();
-
-	frustum.pos = transformation.TranslatePart();
-	frustum.front = transformation.WorldZ();
-	frustum.up = transformation.WorldY();
+		float4x4 transformation = camera_transformation->GetWorldTransformationMatrix();
+		frustum.pos = transformation.TranslatePart();
+		frustum.front = transformation.WorldZ();
+		frustum.up = transformation.WorldY();
+	}	
 }
 
 void ComponentCamera::ShowOnEditor()
 {
 	if (ImGui::CollapsingHeader("Camera"))
 	{
+		bool is_enabled = debug_frustum;
+		if (ImGui::Checkbox("Debug", &is_enabled))
+		{
+			if (is_enabled)
+			{
+				debug_frustum = true;
+			}
+			else
+			{
+				debug_frustum = false;
+			}
+		}
+
 			ImGui::Text("Near plane");
 			float new_near = frustum.nearPlaneDistance;
 			if (ImGui::DragFloat("##near", &new_near,1.0f,1.0f,5000.0f));
@@ -67,8 +84,6 @@ void ComponentCamera::ShowOnEditor()
 			{
 				SetFieldOfView(fov);
 			}
-
-
 	}
 }
 
@@ -130,8 +145,8 @@ void ComponentCamera::SetAspectRatio(float aspect_ratio)
 
 float * ComponentCamera::GetViewMatrix()
 {
-	float4x4 m;
-	m = frustum.ViewMatrix();
+	
+	float4x4 m = frustum.ViewMatrix();
 	m.Transpose();
 
 	return (float*)m.v;
@@ -139,8 +154,8 @@ float * ComponentCamera::GetViewMatrix()
 
 float * ComponentCamera::GetProjectionMatrix()
 {
-	float4x4 m;
-	m = frustum.ProjectionMatrix();
+	
+	float4x4 m = frustum.ProjectionMatrix();
 	m.Transpose();
 
 	return (float*) m.v;

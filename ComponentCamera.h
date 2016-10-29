@@ -4,6 +4,7 @@
 #include "MathGeoLib\include\MathGeoLib.h"
 
 class ComponentTransform;
+class GameObject;
 
 class ComponentCamera : public Component
 {
@@ -12,7 +13,7 @@ public:
 	~ComponentCamera();
 
 	void Update(float dt);
-	void UpdateCameraTransform();
+	void UpdateTransform();
 	void ShowOnEditor();
 
 	Frustum GetFrustum() const;
@@ -36,9 +37,12 @@ public:
 
 private:
 	ComponentTransform* camera_transformation = nullptr;
+	GameObject* camera = nullptr;
 	float field_of_view = 60.0f;
 	float aspect_ratio = 1.75f;
 	bool culling = false;
+	bool debug_frustum = false;
+
 
 };
 

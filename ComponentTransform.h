@@ -15,18 +15,19 @@ public:
 	void ShowOnEditor();	
 
 	void SetTranslation(float3 pos);
-	float3 GetTranslation();
-	float3 GetWorldTranslation();
+	float3 GetTranslation() const;
+	float3 GetWorldTranslation() const;
 
 	void SetScale(float3 scale);
-	float3 GetScale();
+	float3 GetScale() const;
 
 	void SetRotation(float3 rot);
 	void SetRotation(Quat rot);
-	float3 GetRotation();
+	float3 GetRotation() const;
 
 
-	float4x4 GetTransformationMatrix();
+	float4x4 GetTransformationMatrix() const;
+	float4x4 GetWorldTransformationMatrix() const;
 
 private:
 	void WorldTransformation();
@@ -40,6 +41,8 @@ private:
 
 	float4x4 transformation = float4x4::identity;
 	float4x4 final_transformation = float4x4::identity;
+
+	bool transform_updated = false;
 };
 
 

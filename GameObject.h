@@ -16,6 +16,7 @@ public:
 
 	void Update(float dt);
 	void ShowOnEditor();
+	void UpdateGameObjectTransform();
 
 	Component* AddComponent(Component::Types type);
 	std::list<Component*> GetListComponentsByType(Component::Types type) const;

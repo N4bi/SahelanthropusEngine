@@ -24,6 +24,7 @@ public:
 	virtual void Disable();
 	virtual void Update(float dt) {};
 	virtual void ShowOnEditor() {};
+	virtual void UpdateTransform() {}; 
 
 	bool isEnabled();
 	Types GetType() const;

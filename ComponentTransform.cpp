@@ -5,7 +5,7 @@
 ComponentTransform::ComponentTransform(Types _type) : Component(_type)
 {
 	_type = TRANSFORM;
-	
+	WorldTransformation();
 }
 
 ComponentTransform::~ComponentTransform()
@@ -15,7 +15,13 @@ ComponentTransform::~ComponentTransform()
 
 void ComponentTransform::Update(float dt)
 {
-	WorldTransformation();
+	if (transform_updated)
+	{
+		SetTransformation();
+		WorldTransformation();
+		transform_updated = false;
+	}
+	
 }
 
 void ComponentTransform::ShowOnEditor()
@@ -63,33 +69,28 @@ void ComponentTransform::ShowOnEditor()
 
 void ComponentTransform::SetTranslation(float3 pos)
 {
-	translation.x = pos.x;
-	translation.y = pos.y;
-	translation.z = pos.z;
-
-	SetTransformation();
-	WorldTransformation();
+	translation = pos;
+	transform_updated = true;
 }
 
-float3 ComponentTransform::GetTranslation()
+float3 ComponentTransform::GetTranslation() const
 {
 	return translation;
 }
 
-float3 ComponentTransform::GetWorldTranslation()
+float3 ComponentTransform::GetWorldTranslation() const
 {
 	return final_transformation.TranslatePart();
 }
 
 void ComponentTransform::SetScale(float3 _scale)
 {
-	scale.Set(_scale.x, _scale.y, _scale.z);
+	scale = _scale;
 
-	SetTransformation();
-	WorldTransformation();
+	transform_updated = true;
 
 }
-float3 ComponentTransform::GetScale()
+float3 ComponentTransform::GetScale() const
 {
 	return scale;
 }
@@ -104,21 +105,19 @@ void ComponentTransform::SetRotation(float3 rot)
 	rotation_rad.y = DegToRad(rotation_deg.y);
 	rotation_rad.z = DegToRad(rotation_deg.z);
 
-	rotation = Quat::FromEulerXYZ(rotation_rad.x, rotation_rad.y, rotation_rad.z);
+	rotation = Quat::FromEulerXYZ(rotation_rad.z, rotation_rad.y, rotation_rad.x);
 
-	SetTransformation();
-	WorldTransformation();
+	transform_updated = true;
 }
 
 void ComponentTransform::SetRotation(Quat rot)
 {
-	rotation.Set(rot.x,rot.y,rot.z,rot.w);
+	rotation = rot;
 
-	SetTransformation();
-	WorldTransformation();
+	transform_updated = true;
 }
 
-float3 ComponentTransform::GetRotation()
+float3 ComponentTransform::GetRotation() const
 {
 	float3 ret = rotation.ToEulerXYZ();
 	
@@ -129,9 +128,14 @@ float3 ComponentTransform::GetRotation()
 	return ret;
 }
 
-float4x4 ComponentTransform::GetTransformationMatrix()
+float4x4 ComponentTransform::GetTransformationMatrix() const
 {
 	return final_transformation.Transposed();
+}
+
+float4x4 ComponentTransform::GetWorldTransformationMatrix() const
+{
+	return final_transformation;
 }
 
 void ComponentTransform::WorldTransformation()
@@ -160,6 +164,8 @@ void ComponentTransform::WorldTransformation()
 		{
 			final_transformation = transformation;
 		}
+
+	   go->UpdateGameObjectTransform();
 	}
 }
 

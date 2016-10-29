@@ -16,15 +16,10 @@ public:
 	void ShowOnEditor();
 	bool SetMesh(Mesh* _mesh);
 
-
-
-
-
 public:
 	Mesh* mesh = nullptr;
 	ComponentTransform* transformation;
 	bool bbox_enabled = false;
-	bool is_enabled = false;
 };
 
 #endif // !__COMPONENTMESH_H__

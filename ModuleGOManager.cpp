@@ -45,7 +45,6 @@ bool ModuleGOManager::CleanUp()
 	bool ret = true;
 
 	delete root;
-	delete game_object_on_editor;
 
 	game_object_on_editor = nullptr;
 	root = nullptr;
@@ -119,7 +118,7 @@ void ModuleGOManager::EditorWindow()
 	if (game_object_on_editor)
 	{
 		bool is_enabled = game_object_on_editor->isEnabled();
-		if (ImGui::Checkbox(game_object_on_editor->name_object.data(),&is_enabled))
+		if (ImGui::Checkbox(game_object_on_editor->name_object._Myptr(),&is_enabled))
 		{
 			if (is_enabled)
 			{
@@ -146,11 +145,10 @@ void ModuleGOManager::EditorWindow()
 			}
 		}
 
-		list<Component*>::iterator it = game_object_on_editor->components.begin();
-		while (it!= game_object_on_editor->components.end())
+		const list<Component*>* components = game_object_on_editor->GetComponents();
+		for (list<Component*>::const_iterator component = (*components).begin(); component != (*components).end(); ++component)
 		{
-			(*it)->ShowOnEditor();
-			++it;
+			(*component)->ShowOnEditor();
 		}
 
 	}

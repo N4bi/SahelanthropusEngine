@@ -50,6 +50,16 @@ void GameObject::ShowOnEditor()
 
 }
 
+void GameObject::UpdateGameObjectTransform()
+{
+	list<Component*>::iterator it = components.begin();
+	while (it != components.end())
+	{
+		(*it)->UpdateTransform();
+		it++;
+	}
+}
+
 
 Component* GameObject::AddComponent(Component::Types type)
 {
