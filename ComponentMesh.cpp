@@ -9,6 +9,8 @@
 ComponentMesh::ComponentMesh(Types _type) : Component(_type)
 {
 	_type = MESH;
+	local_bb.SetNegativeInfinity();
+	world_bb.SetNegativeInfinity();
 }
 
 ComponentMesh::~ComponentMesh()
@@ -20,6 +22,14 @@ void ComponentMesh::Update(float dt)
 {
 	if (isEnabled())
 	{
+		ComponentCamera* camera_c = (ComponentCamera*)App->scene_intro->camera->GetComponent(Component::CAMERA);
+
+		//If contains the geometry bb and culling is activated then don't render the geometry 
+		if (camera_c->ContainsAABB(world_bb) == false && camera_c->culling == true)
+		{
+			return;
+		}
+
 		transformation = (ComponentTransform*)go->GetComponent(Component::TRANSFORM);
 		
 		ComponentMaterial* material = (ComponentMaterial*)go->GetComponent(Component::MATERIAL);
@@ -43,7 +53,7 @@ void ComponentMesh::Update(float dt)
 	
 		if (bbox_enabled)
 		{
-			App->renderer3D->RenderBoundingBox(mesh->bounding_box, Red, transformation->GetTransformationMatrix());
+			App->renderer3D->RenderBoundingBox(world_bb, Red);
 		}
 		
 	}
@@ -54,6 +64,11 @@ void ComponentMesh::Update(float dt)
 
 
 
+}
+
+void ComponentMesh::UpdateTransform()
+{
+	CalculateFinalBB();
 }
 
 void ComponentMesh::ShowOnEditor()
@@ -98,10 +113,20 @@ bool ComponentMesh::SetMesh(Mesh* _mesh)
 	if (_mesh)
 	{
 		mesh = _mesh;
+		local_bb.Enclose(_mesh->vertices, _mesh->num_vertices);
+		CalculateFinalBB();
 		ret = true;
 	}
 
 	return ret;
+}
+
+void ComponentMesh::CalculateFinalBB()
+{
+	transformation = (ComponentTransform*)go->GetComponent(Component::TRANSFORM);
+
+	OBB obb = local_bb.Transform(transformation->GetWorldTransformationMatrix());
+	world_bb = obb.MinimalEnclosingAABB();
 }
 
 

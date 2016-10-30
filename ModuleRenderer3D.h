@@ -29,7 +29,7 @@ public:
 
 	//--DEBUG DRAW-------------------
 	void DebugDrawBox(const float3* corners, Color color);
-	void RenderBoundingBox(const math::AABB& aabb, Color color, const float4x4& transform);
+	void RenderBoundingBox(const math::AABB& aabb, Color color);
 	void RenderFrustum(const Frustum& frustum, Color color);
 
 public:

@@ -277,7 +277,7 @@ void ModuleRenderer3D::DebugDrawBox(const float3 * corners, Color color)
 	glEnd();
 }
 
-void ModuleRenderer3D::RenderBoundingBox(const math::AABB & aabb, Color color, const float4x4 & transform)
+void ModuleRenderer3D::RenderBoundingBox(const math::AABB & aabb, Color color)
 {
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glDisable(GL_CULL_FACE);
@@ -285,10 +285,7 @@ void ModuleRenderer3D::RenderBoundingBox(const math::AABB & aabb, Color color, c
 	static float3 corners[8];
 	aabb.GetCornerPoints(corners);
 
-	glPushMatrix();
-	glMultMatrixf((GLfloat*)transform.ptr());
 	DebugDrawBox(corners, color);
-	glPopMatrix();
 }
 
 void ModuleRenderer3D::RenderFrustum(const Frustum & frustum, Color color)

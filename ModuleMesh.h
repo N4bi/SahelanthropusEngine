@@ -41,8 +41,6 @@ struct Mesh
 	uint num_normal = 0;
 	float3* normals = nullptr;
 
-	//--Box -- WIP
-	AABB bounding_box;
 };
 
 class ModuleMesh : public Module

@@ -64,6 +64,21 @@ void ComponentCamera::ShowOnEditor()
 			}
 		}
 
+		ImGui::SameLine();
+
+		bool culling_enabled = culling;
+		if (ImGui::Checkbox("Culling",&culling_enabled))
+		{
+			if (culling_enabled)
+			{
+				culling = true;
+			}
+			else
+			{
+				culling = false;
+			}
+		}
+
 			ImGui::Text("Near plane");
 			float new_near = frustum.nearPlaneDistance;
 			if (ImGui::DragFloat("##near", &new_near,1.0f,1.0f,5000.0f));
@@ -168,4 +183,36 @@ void ComponentCamera::LookAt(const float3 & position)
 
 	frustum.front = m.MulDir(frustum.front).Normalized();
 	frustum.up = m.MulDir(frustum.up).Normalized();
+}
+
+bool ComponentCamera::ContainsAABB(const AABB & ref_box) const
+{
+	bool ret = true;
+
+	float3 corners[8];
+	ref_box.GetCornerPoints(corners);
+
+	Plane planes[6];
+	frustum.GetPlanes(planes);
+
+	for (int n_planes = 0; n_planes < 6; ++n_planes)
+	{
+		int in_count = 8;
+
+		for (int i = 0; i < 8; ++i)
+		{
+			if (planes[n_planes].IsOnPositiveSide(corners[i]))
+			{
+				--in_count;
+			}
+		}
+
+		if (in_count == 0)
+		{
+			ret = false;
+			break;
+		}
+	}
+
+	return ret;
 }

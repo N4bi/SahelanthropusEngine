@@ -29,18 +29,20 @@ public:
 
 	void LookAt(const float3& position);
 
+	bool ContainsAABB(const AABB& ref_box) const;
+
 	float* GetViewMatrix();
 	float* GetProjectionMatrix();
 
 public:
 	Frustum frustum;
+	bool culling = false;
 
 private:
 	ComponentTransform* camera_transformation = nullptr;
 	GameObject* camera = nullptr;
 	float field_of_view = 60.0f;
 	float aspect_ratio = 1.75f;
-	bool culling = false;
 	bool debug_frustum = false;
 
 

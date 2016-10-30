@@ -13,10 +13,14 @@ public:
 	~ComponentMesh();
 
 	void Update(float dt);
+	void UpdateTransform();
 	void ShowOnEditor();
 	bool SetMesh(Mesh* _mesh);
+	void CalculateFinalBB();
 
 public:
+	AABB local_bb;
+	AABB world_bb;
 	Mesh* mesh = nullptr;
 	ComponentTransform* transformation;
 	bool bbox_enabled = false;
