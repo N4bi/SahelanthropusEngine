@@ -43,6 +43,9 @@
     <Filter Include="Sources\InfoWindows">
       <UniqueIdentifier>{61711d87-9e1d-4901-868e-8b153c12d714}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Parson">
+      <UniqueIdentifier>{48e8376e-e5a8-4166-ac2f-d4e67e3e085c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -351,6 +354,12 @@
     <ClInclude Include="ComponentCamera.h">
       <Filter>Sources\Containers</Filter>
     </ClInclude>
+    <ClInclude Include="JSON.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="parson.h">
+      <Filter>Sources\Parson</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -562,6 +571,12 @@
     </ClCompile>
     <ClCompile Include="ComponentCamera.cpp">
       <Filter>Sources\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="JSON.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="parson.c">
+      <Filter>Sources\Parson</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
