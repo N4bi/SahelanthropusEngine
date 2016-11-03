@@ -6,7 +6,7 @@
 
 #pragma comment( lib, "PhysFS/libx86/physfs.lib" )
 
-ModuleFileSystem::ModuleFileSystem(Application* app, bool start_enabled) : Module(app, start_enabled)
+ModuleFileSystem::ModuleFileSystem(Application* app, const char* name, bool start_enabled) : Module(app,name, start_enabled)
 {
 	// need to be created before Awake so other modules can use it
 	char* base_path = SDL_GetBasePath();

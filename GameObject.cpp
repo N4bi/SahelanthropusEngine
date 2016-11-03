@@ -140,7 +140,7 @@ Component * GameObject::GetComponent(Component::Types type) const
 	return ret;
 }
 
-GameObject * GameObject::GetParent()
+GameObject * GameObject::GetParent() const
 {
 	return parent;
 }

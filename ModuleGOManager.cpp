@@ -6,7 +6,7 @@
 
 using namespace std;
 
-ModuleGOManager::ModuleGOManager(Application * app, bool start_enabled) : Module(app, start_enabled)
+ModuleGOManager::ModuleGOManager(Application * app, const char* name, bool start_enabled) : Module(app, name, start_enabled)
 {
 	root = new GameObject(nullptr, "root");
 	root->AddComponent(Component::TRANSFORM);

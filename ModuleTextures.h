@@ -10,7 +10,7 @@
 class ModuleTextures : public Module
 {
 public:
-	ModuleTextures(Application* app, bool start_enabled = true);
+	ModuleTextures(Application* app, const char* name, bool start_enabled = true);
 	~ModuleTextures();
 
 	bool Init();

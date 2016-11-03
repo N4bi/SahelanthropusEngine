@@ -14,7 +14,7 @@ class ComponentCamera;
 class ModuleRenderer3D : public Module
 {
 public:
-	ModuleRenderer3D(Application* app, bool start_enabled = true);
+	ModuleRenderer3D(Application* app, const char* name, bool start_enabled = true);
 	~ModuleRenderer3D();
 
 	bool Init();

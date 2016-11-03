@@ -12,7 +12,7 @@ class ModuleGOManager : public Module
 {
 public:
 
-	ModuleGOManager(Application* app, bool start_enabled = true);
+	ModuleGOManager(Application* app, const char* name, bool start_enabled = true);
 	~ModuleGOManager();
 
 	bool Init();

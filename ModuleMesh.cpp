@@ -10,7 +10,7 @@
 #include <gl/GL.h>
 
 
-ModuleMesh::ModuleMesh(Application * app, bool start_enabled) : Module(app,start_enabled)
+ModuleMesh::ModuleMesh(Application * app, const char* name, bool start_enabled) : Module(app, name, start_enabled)
 {
 }
 

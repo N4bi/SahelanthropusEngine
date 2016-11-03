@@ -18,7 +18,7 @@ class AssetsWindow;
 class ModuleEditor : public Module
 {
 public:
-	ModuleEditor(Application* app, bool start_enabled = true);
+	ModuleEditor(Application* app, const char* name, bool start_enabled = true);
 	~ModuleEditor();
 
 	bool Init();

@@ -23,7 +23,7 @@ public:
 	const std::list<GameObject*>* GetChilds() const;
 	const std::list<Component*>* GetComponents() const;
 	Component* GetComponent(Component::Types type) const;
-	GameObject* GetParent();
+	GameObject* GetParent() const;
 
 	bool isEnabled();
 	void Enable();

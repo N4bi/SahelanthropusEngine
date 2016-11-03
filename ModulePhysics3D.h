@@ -32,7 +32,7 @@ struct VehicleInfo;
 class ModulePhysics3D : public Module
 {
 public:
-	ModulePhysics3D(Application* app, bool start_enabled = true);
+	ModulePhysics3D(Application* app, const char* name, bool start_enabled = true);
 	~ModulePhysics3D();
 
 	bool Init();

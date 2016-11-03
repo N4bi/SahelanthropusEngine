@@ -16,7 +16,7 @@ class GameObject;
 class ModuleSceneIntro : public Module
 {
 public:
-	ModuleSceneIntro(Application* app, bool start_enabled = true);
+	ModuleSceneIntro(Application* app, const char* name, bool start_enabled = true);
 	~ModuleSceneIntro();
 
 	bool Start();

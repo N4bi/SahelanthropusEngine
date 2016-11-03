@@ -24,7 +24,7 @@ void ComponentMesh::Update(float dt)
 	{
 		ComponentCamera* camera_c = (ComponentCamera*)App->scene_intro->camera->GetComponent(Component::CAMERA);
 
-		//If contains the geometry bb and culling is activated then don't render the geometry 
+		//If frustum don't contains the geometry bb and culling is activated then don't render the geometry 
 		if (camera_c->ContainsAABB(world_bb) == false && camera_c->culling == true)
 		{
 			return;

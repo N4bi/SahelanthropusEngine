@@ -1,6 +1,7 @@
 #ifndef __MODULE_H__
 #define __MODULE_H__
 
+#include <string>
 
 class Application;
 struct PhysBody3D;
@@ -12,10 +13,15 @@ private:
 	bool enabled;
 
 public:
+	std::string name;
+
+public:
 	Application* App;
 
-	Module(Application* parent, bool start_enabled = true) : App(parent), enabled(start_enabled)
-	{}
+	Module(Application* parent, const char* name, bool start_enabled = true) : App(parent), enabled(start_enabled)
+	{
+		this->name = name;
+	}
 
 	virtual ~Module()
 	{}

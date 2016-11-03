@@ -3,18 +3,18 @@
 Application::Application()
 {
 
-	window = new ModuleWindow(this);
-	input = new ModuleInput(this);
-	audio = new ModuleAudio(this, true);
-	scene_intro = new ModuleSceneIntro(this);
-	physics3D = new ModulePhysics3D(this);
-	renderer3D = new ModuleRenderer3D(this);
-	camera = new ModuleCamera3D(this);
-	editor = new ModuleEditor(this);
-	meshes = new ModuleMesh(this);
-	fs = new ModuleFileSystem(this);
-	tex = new ModuleTextures(this);
-	go_manager = new ModuleGOManager(this);
+	window = new ModuleWindow(this,"Window");
+	input = new ModuleInput(this,"Input");
+	audio = new ModuleAudio(this,"Audio", true);
+	scene_intro = new ModuleSceneIntro(this,"Scene_Intro");
+	physics3D = new ModulePhysics3D(this,"Physics");
+	renderer3D = new ModuleRenderer3D(this,"Renderer");
+	camera = new ModuleCamera3D(this,"Camera");
+	editor = new ModuleEditor(this,"Editor");
+	meshes = new ModuleMesh(this,"Meshes");
+	fs = new ModuleFileSystem(this,"File_System");
+	tex = new ModuleTextures(this,"Textures");
+	go_manager = new ModuleGOManager(this,"GameObject_Manager");
 
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order

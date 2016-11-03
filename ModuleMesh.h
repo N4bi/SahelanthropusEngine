@@ -46,7 +46,7 @@ struct Mesh
 class ModuleMesh : public Module
 {
 public:
-	ModuleMesh(Application* app, bool start_enabled = true);
+	ModuleMesh(Application* app, const char* name, bool start_enabled = true);
 	~ModuleMesh();
 
 	bool Init();
