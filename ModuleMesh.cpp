@@ -18,7 +18,7 @@ ModuleMesh::~ModuleMesh()
 {
 }
 
-bool ModuleMesh::Init()
+bool ModuleMesh::Init(Json& config)
 {
 	bool ret = true;
 

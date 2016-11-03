@@ -1,7 +1,9 @@
 #include "Application.h"
+#include "JSON.h"
 
 Application::Application()
 {
+	
 
 	window = new ModuleWindow(this,"Window");
 	input = new ModuleInput(this,"Input");
@@ -35,6 +37,8 @@ Application::Application()
 	AddModule(scene_intro);
 	AddModule(renderer3D);
 	
+	//Random for ids
+	random_id = new LCG();
 }
 
 Application::~Application()
@@ -48,11 +52,23 @@ Application::~Application()
 	}
 
 	list_modules.clear();
+
+	delete random_id;
+	random_id = nullptr;
 }
 
 bool Application::Init()
 {
 	bool ret = true;
+
+	//Load config file
+	char* buff;
+	if (App->fs->Load("Config.json",&buff) == 0)
+	{
+		//error
+	}
+	Json config(buff);
+	delete[] buff;
 
 	// Call Init() in all modules
 	list<Module*>::iterator it = list_modules.begin();
@@ -60,7 +76,7 @@ bool Application::Init()
 
 	while(it != list_modules.end() && ret == true)
 	{
-		ret = (*it)->Init();
+		ret = (*it)->Init(config.GetJSON_object((*it)->name.data()));
 		++it;
 	}
 

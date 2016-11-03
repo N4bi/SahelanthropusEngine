@@ -22,7 +22,7 @@ public:
 	ModuleInput(Application* app, const char* name, bool start_enabled = true);
 	~ModuleInput();
 
-	bool Init();
+	bool Init(Json& config);
 	update_status PreUpdate(float dt);
 	bool CleanUp();
 

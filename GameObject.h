@@ -4,6 +4,7 @@
 #include <string>
 #include <list>
 #include "Component.h"
+#include "Globals.h"
 
 class Component;
 enum Types;
@@ -24,6 +25,7 @@ public:
 	const std::list<Component*>* GetComponents() const;
 	Component* GetComponent(Component::Types type) const;
 	GameObject* GetParent() const;
+	uint GetID()const;
 
 	bool isEnabled();
 	void Enable();
@@ -34,6 +36,7 @@ public:
 private:
 	GameObject* parent = nullptr;
 	bool enabled = true;
+	uint id = NULL;
 
 public: 	
 	std::string name_object;

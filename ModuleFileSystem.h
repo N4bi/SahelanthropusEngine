@@ -19,7 +19,7 @@ public:
 	// Destructor
 	virtual ~ModuleFileSystem();
 
-	bool Init();
+	bool Init(Json& config);
 
 
 	// Called before quitting

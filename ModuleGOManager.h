@@ -15,7 +15,7 @@ public:
 	ModuleGOManager(Application* app, const char* name, bool start_enabled = true);
 	~ModuleGOManager();
 
-	bool Init();
+	bool Init(Json& config);
 	update_status Update(float dt);
 	bool CleanUp();
 

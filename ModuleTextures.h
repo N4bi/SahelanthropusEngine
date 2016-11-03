@@ -13,7 +13,7 @@ public:
 	ModuleTextures(Application* app, const char* name, bool start_enabled = true);
 	~ModuleTextures();
 
-	bool Init();
+	bool Init(Json& config);
 	bool CleanUp();
 
 	uint LoadTexture(const char* path);

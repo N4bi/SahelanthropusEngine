@@ -16,7 +16,7 @@ public:
 	ModuleAudio(Application* app, const char* name, bool start_enabled = true);
 	~ModuleAudio();
 
-	bool Init();
+	bool Init(Json& config);
 	bool CleanUp();
 
 	// Play a music file

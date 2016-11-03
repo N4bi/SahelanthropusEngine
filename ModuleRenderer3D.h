@@ -17,7 +17,7 @@ public:
 	ModuleRenderer3D(Application* app, const char* name, bool start_enabled = true);
 	~ModuleRenderer3D();
 
-	bool Init();
+	bool Init(Json& config);
 	update_status PreUpdate(float dt);
 	update_status Update(float dt);
 	update_status PostUpdate(float dt);

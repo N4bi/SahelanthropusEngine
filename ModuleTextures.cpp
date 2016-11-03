@@ -25,7 +25,7 @@ ModuleTextures::~ModuleTextures()
 	ilShutDown();
 }
 
-bool ModuleTextures::Init()
+bool ModuleTextures::Init(Json& config)
 {
 	bool ret = true;
 

@@ -21,7 +21,7 @@ public:
 	ModuleEditor(Application* app, const char* name, bool start_enabled = true);
 	~ModuleEditor();
 
-	bool Init();
+	bool Init(Json& config);
 	bool Start();
 	update_status Update(float dt);
 	update_status PostUpdate(float dt);

@@ -1,6 +1,6 @@
 #ifndef __COMPONENT_H__
 #define __COMPONENT_H__
-
+#include "Globals.h"
 
 class GameObject;
 
@@ -30,6 +30,7 @@ public:
 	Types GetType() const;
 	const char* GetTypeStr() const;
 	GameObject* GetGameObject() const;
+	uint GetID() const;
 
 public: 
 	GameObject* go = nullptr;
@@ -37,6 +38,7 @@ public:
 private:
 	Types type = NONE;
 	bool enabled = true;
+	uint id = NULL;
 
 };
 

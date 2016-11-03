@@ -19,12 +19,14 @@ ModuleEditor::ModuleEditor(Application* app, const char* name, bool start_enable
 ModuleEditor::~ModuleEditor()
 {}
 
-bool ModuleEditor::Init()
+bool ModuleEditor::Init(Json& config)
 {
 	bool ret = true;
 
 	GameObject* main_camera = App->go_manager->CreateGameObject(App->go_manager->GetRoot(), "Main camera");
 	main_camera_component = (ComponentCamera*)main_camera->AddComponent(Component::CAMERA);
+
+	LOG("EDITOR HEHE %d and %s", config.GetInt("int"), config.GetString("string"));
 
 	return ret;
 }

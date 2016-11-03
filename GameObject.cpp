@@ -1,3 +1,4 @@
+#include "Application.h"
 #include "GameObject.h"
 #include "Component.h"
 #include "ComponentTransform.h"
@@ -10,6 +11,7 @@ using namespace std;
 GameObject::GameObject(GameObject* parent, const char * name) : parent(parent)
 {
 	name_object = name;
+	id = App->random_id->Int(1, MAX_INTEGER);
 }
 
 GameObject::~GameObject()
@@ -143,6 +145,11 @@ Component * GameObject::GetComponent(Component::Types type) const
 GameObject * GameObject::GetParent() const
 {
 	return parent;
+}
+
+uint GameObject::GetID() const
+{
+	return id;
 }
 
 bool GameObject::isEnabled()

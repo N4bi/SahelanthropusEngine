@@ -35,7 +35,7 @@ public:
 	ModulePhysics3D(Application* app, const char* name, bool start_enabled = true);
 	~ModulePhysics3D();
 
-	bool Init();
+	bool Init(Json& config);
 	bool Start();
 	update_status PreUpdate(float dt);
 	update_status Update(float dt);

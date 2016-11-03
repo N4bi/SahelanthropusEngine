@@ -49,7 +49,7 @@ public:
 	ModuleMesh(Application* app, const char* name, bool start_enabled = true);
 	~ModuleMesh();
 
-	bool Init();
+	bool Init(Json& config);
 	bool Start();
 	update_status PreUpdate(float dt);
 	update_status Update(float dt);

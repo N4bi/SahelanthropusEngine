@@ -12,9 +12,12 @@ class Json
 public:
 	Json();
 	Json(const char* data);
+	Json(JSON_Object* object);
 	~Json();
 
+	Json GetJSON_object(const char* field) const;
 	const char* GetString(const char* field) const;
+	int GetInt(const char* field) const;
 
 private:
 	JSON_Value*	 json_value = nullptr;

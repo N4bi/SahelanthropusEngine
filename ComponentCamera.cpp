@@ -51,6 +51,11 @@ void ComponentCamera::ShowOnEditor()
 {
 	if (ImGui::CollapsingHeader("Camera"))
 	{
+		if (ImGui::CollapsingHeader("ID Component"))
+		{
+			ImGui::Text("ID Component: %d", Component::GetID());
+		}
+
 		bool is_enabled = debug_frustum;
 		if (ImGui::Checkbox("Debug", &is_enabled))
 		{

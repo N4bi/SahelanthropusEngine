@@ -1,6 +1,6 @@
 #ifndef __MODULE_H__
 #define __MODULE_H__
-
+#include "JSON.h"
 #include <string>
 
 class Application;
@@ -49,7 +49,7 @@ public:
 		}
 	}
 
-	virtual bool Init()
+	virtual bool Init(Json& config)
 	{
 		return true;
 	}

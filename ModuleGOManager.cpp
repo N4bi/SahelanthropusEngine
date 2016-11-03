@@ -8,8 +8,7 @@ using namespace std;
 
 ModuleGOManager::ModuleGOManager(Application * app, const char* name, bool start_enabled) : Module(app, name, start_enabled)
 {
-	root = new GameObject(nullptr, "root");
-	root->AddComponent(Component::TRANSFORM);
+
 }
 
 ModuleGOManager::~ModuleGOManager()
@@ -17,11 +16,13 @@ ModuleGOManager::~ModuleGOManager()
 
 }
 
-bool ModuleGOManager::Init()
+bool ModuleGOManager::Init(Json& config)
 {
 	bool ret = true;
 	LOG("Init Game Object Manager");
 
+	root = new GameObject(nullptr, "root");
+	root->AddComponent(Component::TRANSFORM);
 
 
 	return ret;
@@ -144,6 +145,11 @@ void ModuleGOManager::EditorWindow()
 				App->renderer3D->wireframe = false;
 			}
 		}
+
+		ImGui::SameLine();
+		ImGui::TextColored(IMGUI_GREEN,"ID object: ");
+		ImGui::SameLine();
+		ImGui::Text("%d", game_object_on_editor->GetID());
 
 		const list<Component*>* components = game_object_on_editor->GetComponents();
 		for (list<Component*>::const_iterator component = (*components).begin(); component != (*components).end(); ++component)

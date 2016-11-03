@@ -16,6 +16,7 @@
 #include "ModuleFileSystem.h"
 #include "ModuleTextures.h"
 #include "ModuleGOManager.h"
+#include "MathGeoLib\include\MathGeoLib.h"
 
 class Application
 {
@@ -62,6 +63,7 @@ public:
 	void Log(const char* text);
 
 	bool console_on;
+	LCG* random_id = nullptr;
 
 private:
 
