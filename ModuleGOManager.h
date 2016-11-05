@@ -24,6 +24,7 @@ public:
 	void HierarchyInfo();
 	void ShowGameObjectsOnEditor(const std::list<GameObject*>* childs);
 	void EditorWindow();
+	void SaveGameObjectsOnScene() const;
 	GameObject* GetRoot() const;
 
 	void UpdateChilds(float dt, GameObject* go);

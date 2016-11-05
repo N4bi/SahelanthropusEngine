@@ -8,6 +8,7 @@
 #include "Assimp/include/scene.h"
 #include "Assimp/include/postprocess.h"
 #include "Assimp/include/cfileio.h"
+#include <string>
 #include"MathGeoLib\include\MathGeoLib.h"
 #pragma comment (lib, "Assimp/libx86/assimp.lib")
 
@@ -40,6 +41,7 @@ struct Mesh
 	uint id_normal = 0;
 	uint num_normal = 0;
 	float3* normals = nullptr;
+
 
 };
 

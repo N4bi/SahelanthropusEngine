@@ -129,4 +129,15 @@ void ComponentMesh::CalculateFinalBB()
 	world_bb = obb.MinimalEnclosingAABB();
 }
 
+void ComponentMesh::ToSave(Json & file_data) const
+{
+	Json data;
+	data.AddString("type", GetTypeStr());
+	data.AddInt("Id Component", GetID());
+	data.AddBool("enabled", enabled);
+	data.AddBool("Bounding box", bbox_enabled);
+
+	file_data.AddArrayData(data);
+}
+
 

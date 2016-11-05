@@ -107,6 +107,24 @@ void ComponentCamera::ShowOnEditor()
 	}
 }
 
+void ComponentCamera::ToSave(Json & file_data) const
+{
+	Json data;
+	data.AddString("type", GetTypeStr());
+	data.AddInt("Id Component", GetID());
+	data.AddBool("enabled", enabled);
+
+	data.AddBool("Culling", culling);
+	data.AddBool("Debug Frustum", debug_frustum);
+	data.AddFloat("Near plane", frustum.nearPlaneDistance);
+	data.AddFloat("Far plane", frustum.farPlaneDistance);
+	data.AddFloat("FOV", field_of_view);
+	data.AddFloat("Aspect ratio", aspect_ratio);
+
+	file_data.AddArrayData(data);
+
+}
+
 
 Frustum ComponentCamera::GetFrustum() const
 {

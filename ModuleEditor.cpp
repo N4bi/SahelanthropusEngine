@@ -26,8 +26,6 @@ bool ModuleEditor::Init(Json& config)
 	GameObject* main_camera = App->go_manager->CreateGameObject(App->go_manager->GetRoot(), "Main camera");
 	main_camera_component = (ComponentCamera*)main_camera->AddComponent(Component::CAMERA);
 
-	LOG("EDITOR HEHE %d and %s", config.GetInt("int"), config.GetString("string"));
-
 	return ret;
 }
 // Load assets
@@ -191,6 +189,16 @@ update_status ModuleEditor::UpdateEditor()
 
 	if (ImGui::BeginMainMenuBar())
 	{
+		if (ImGui::BeginMenu("File"))
+		{
+			FileMenu();
+			if (ImGui::MenuItem("Close"))
+			{
+				return UPDATE_STOP;
+
+			}
+			ImGui::EndMenu();
+		}
 		if (ImGui::BeginMenu("Configuration"))
 		{
 			InfoMenu();
@@ -241,6 +249,13 @@ update_status ModuleEditor::UpdateEditor()
 	ImGui::End();
 
 	return ret;
+}
+void ModuleEditor::FileMenu()
+{
+	if (ImGui::MenuItem("Save scene"))
+	{
+		App->go_manager->SaveGameObjectsOnScene();
+	}
 }
 
 void ModuleEditor::AboutMenu()

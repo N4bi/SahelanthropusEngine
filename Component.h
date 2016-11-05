@@ -3,6 +3,7 @@
 #include "Globals.h"
 
 class GameObject;
+class Json;
 
 class Component
 {
@@ -25,6 +26,7 @@ public:
 	virtual void Update(float dt) {};
 	virtual void ShowOnEditor() {};
 	virtual void UpdateTransform() {}; 
+	virtual void ToSave(Json& file_data) const {};
 
 	bool isEnabled();
 	Types GetType() const;
@@ -34,10 +36,10 @@ public:
 
 public: 
 	GameObject* go = nullptr;
+	bool enabled = true;
 
 private:
 	Types type = NONE;
-	bool enabled = true;
 	uint id = NULL;
 
 };

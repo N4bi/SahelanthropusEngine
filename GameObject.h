@@ -18,6 +18,8 @@ public:
 	void Update(float dt);
 	void ShowOnEditor();
 	void UpdateGameObjectTransform();
+	void Save(Json& file_data) const;
+
 
 	Component* AddComponent(Component::Types type);
 	std::list<Component*> GetListComponentsByType(Component::Types type) const;

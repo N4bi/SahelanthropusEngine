@@ -162,6 +162,26 @@ void ModuleGOManager::EditorWindow()
 	ImGui::End();
 }
 
+void ModuleGOManager::SaveGameObjectsOnScene() const
+{
+	Json data;
+	data.AddArray("Game Objects");
+
+	//Save all Game Objects data
+	list<GameObject*>::const_iterator it = root->childs.begin();
+	while (it != root->childs.end())
+	{
+		(*it)->Save(data);
+		++it;
+	}
+
+	char* buff;
+	size_t size = data.Save(&buff);
+
+	App->fs->Save("Scene.json", buff, size);
+	delete[] buff;
+}
+
 GameObject* ModuleGOManager::GetRoot() const
 {
 	return root;

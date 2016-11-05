@@ -27,3 +27,14 @@ void ComponentMaterial::ShowOnEditor()
 		}
 	}
 }
+
+void ComponentMaterial::ToSave(Json & file_data) const
+{
+	Json data;
+	data.AddString("type", GetTypeStr());
+	data.AddInt("ID Component", GetID());
+	data.AddInt("ID Material", texture_id);
+	data.AddBool("enabled", enabled);
+
+	file_data.AddArrayData(data);
+}

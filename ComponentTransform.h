@@ -11,8 +11,8 @@ public:
 	~ComponentTransform();
 
 	void Update(float dt);
-
-	void ShowOnEditor();	
+	void ShowOnEditor();
+	void ToSave(Json& file_data) const;
 
 	void SetTranslation(float3 pos);
 	float3 GetTranslation() const;

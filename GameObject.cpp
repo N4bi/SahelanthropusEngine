@@ -5,6 +5,7 @@
 #include "ComponentMaterial.h"
 #include "ComponentMesh.h"
 #include "ComponentCamera.h"
+#include "JSON.h"
 
 using namespace std;
 
@@ -29,7 +30,7 @@ GameObject::~GameObject()
 	}
 	
 
-	list<Component*>::iterator it2 = components.begin();
+	list<Component*>::const_iterator it2 = components.begin();
 	while (it2 != components.end())
 	{
 		delete(*it2);
@@ -39,7 +40,7 @@ GameObject::~GameObject()
 
 void GameObject::Update(float dt)
 {
-	list<Component*>::iterator it = components.begin();
+	list<Component*>::const_iterator it = components.begin();
 	while (it != components.end())
 	{
 		(*it)->Update(dt);
@@ -54,12 +55,49 @@ void GameObject::ShowOnEditor()
 
 void GameObject::UpdateGameObjectTransform()
 {
-	list<Component*>::iterator it = components.begin();
+	list<Component*>::const_iterator it = components.begin();
 	while (it != components.end())
 	{
 		(*it)->UpdateTransform();
 		it++;
 	}
+}
+
+void GameObject::Save(Json & file_data) const
+{
+	Json data;
+	data.AddString("Name", name_object.data());
+	data.AddInt("ID Game Object", id);
+	if (parent == nullptr)
+	{
+		data.AddInt("ID Parent", App->go_manager->GetRoot()->id);
+	}
+	else
+	{
+		data.AddInt("ID Parent", parent->id);
+	}
+	
+	data.AddBool("Enabled", enabled);
+	data.AddArray("Components");
+
+	//Save all components data
+	list<Component*>::const_iterator it = components.begin();
+	while (it != components.end())
+	{
+		(*it)->ToSave(data);
+		++it;
+	}
+
+	file_data.AddArrayData(data);
+
+	list<GameObject*>::const_iterator it2 = childs.begin();
+	while (it2 != childs.end())
+	{
+		(*it2)->Save(file_data);
+		++it2;
+	}
+
+
 }
 
 

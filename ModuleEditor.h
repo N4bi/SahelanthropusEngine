@@ -37,6 +37,7 @@ private:
 	void Render();
 
 	//---- Imgui stuff
+	void FileMenu();
 	void AboutMenu();
 	void InfoMenu();
 	void WindowsMenu();

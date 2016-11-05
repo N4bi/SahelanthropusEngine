@@ -1,5 +1,6 @@
 #include "ComponentTransform.h"
 #include "GameObject.h"
+#include "JSON.h"
 #include "Imgui\imgui.h"
 
 ComponentTransform::ComponentTransform(Types _type) : Component(_type)
@@ -65,6 +66,23 @@ void ComponentTransform::ShowOnEditor()
 			SetScale(scale);
 		}
 	}
+}
+
+void ComponentTransform::ToSave(Json & file_data) const
+{
+	Json data;
+	data.AddString("type", GetTypeStr());
+	data.AddInt("Id Component", GetID());
+	data.AddBool("enabled", enabled);
+
+	//TODO: THIS IS NOT WORKING
+	data.AddFloat3("Translation", translation);
+	data.AddFloat3("Rotation", rotation_deg);
+	data.AddFloat3("Scale", scale);
+
+	file_data.AddArrayData(data);
+
+
 }
 
 void ComponentTransform::SetTranslation(float3 pos)
