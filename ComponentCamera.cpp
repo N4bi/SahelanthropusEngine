@@ -111,7 +111,7 @@ void ComponentCamera::ToSave(Json & file_data) const
 {
 	Json data;
 	data.AddString("type", GetTypeStr());
-	data.AddInt("Id Component", GetID());
+	data.AddInt("ID Component", GetID());
 	data.AddBool("enabled", enabled);
 
 	data.AddBool("Culling", culling);

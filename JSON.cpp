@@ -28,9 +28,9 @@ Json::~Json()
 
 size_t Json::Save(char ** buff) const
 {
-	size_t size = json_serialization_size(this->json_value);
+	size_t size = json_serialization_size_pretty(this->json_value);
 	*buff = new char[size];
-	json_serialize_to_buffer(this->json_value, *buff, size);
+	json_serialize_to_buffer_pretty(this->json_value, *buff, size);
 
 	return size;
 }
