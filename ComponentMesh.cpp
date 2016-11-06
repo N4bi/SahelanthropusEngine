@@ -136,6 +136,7 @@ void ComponentMesh::ToSave(Json & file_data) const
 	data.AddInt("ID Component", GetID());
 	data.AddBool("enabled", enabled);
 	data.AddBool("Bounding box", bbox_enabled);
+	data.AddString("Directory", mesh->directory.data());
 
 	file_data.AddArrayData(data);
 }

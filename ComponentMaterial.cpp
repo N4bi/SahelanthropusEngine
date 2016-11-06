@@ -35,6 +35,7 @@ void ComponentMaterial::ToSave(Json & file_data) const
 	data.AddInt("ID Component", GetID());
 	data.AddInt("ID Material", texture_id);
 	data.AddBool("enabled", enabled);
+	data.AddString("Directory", directory.data());
 
 	file_data.AddArrayData(data);
 }

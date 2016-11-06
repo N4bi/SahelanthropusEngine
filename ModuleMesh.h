@@ -42,6 +42,7 @@ struct Mesh
 	uint num_normal = 0;
 	float3* normals = nullptr;
 
+	std::string directory;
 
 };
 

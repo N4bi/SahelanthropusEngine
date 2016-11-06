@@ -20,6 +20,7 @@ public:
 public:
 	uint texture_id = 0;
 	ComponentMaterial* material;
+	std::string directory;
 
 };
 #endif // !__COMPONENT_MATERIAL_H__

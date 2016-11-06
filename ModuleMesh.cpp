@@ -199,7 +199,7 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent)
 
 					App->tex->ImportTexture("tx", path.data, name_tex);
 					comp_material->texture_id = App->tex->LoadTexture(name_tex.data());
-					//comp_material->path = name_tex;
+					comp_material->directory = name_tex;
 				}
 		}	
 	}
@@ -342,7 +342,8 @@ Mesh* ModuleMesh::LoadMesh(const char* path)
 	if (App->fs->Load(path, &buffer) != 0)
 	{
 		m = new Mesh();
-		//m->path = path;
+
+		m->directory = path;
 
 		char* cursor = buffer;
 
