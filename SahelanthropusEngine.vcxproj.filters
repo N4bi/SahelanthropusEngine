@@ -360,6 +360,9 @@
     <ClInclude Include="parson.h">
       <Filter>Sources\Parson</Filter>
     </ClInclude>
+    <ClInclude Include="Quadtree.h">
+      <Filter>Sources\Tools</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
