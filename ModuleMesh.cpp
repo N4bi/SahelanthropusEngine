@@ -156,6 +156,8 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent)
 		//Meshes
 		ComponentMesh* comp_mesh = (ComponentMesh*)game_object->AddComponent(Component::MESH);
 
+		new_mesh->mName = game_object->name_object;
+
 		string path;
 		ImportMesh(new_mesh, path);
 
@@ -196,7 +198,6 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent)
 					ComponentMaterial* comp_material = (ComponentMaterial*)game_object->AddComponent(Component::MATERIAL);
 
 					string name_tex;
-
 					App->tex->ImportTexture("tx", path.data, name_tex);
 					comp_material->texture_id = App->tex->LoadTexture(name_tex.data());
 					comp_material->directory = name_tex;
@@ -262,14 +263,8 @@ bool ModuleMesh::ImportMesh(const aiMesh * mesh, string & output_file)
 		}
 	}
 
-	if (mesh->mName.length > 0)
-	{
-		m.name_mesh = mesh->mName.C_Str();
-	}
-	else
-	{
-		m.name_mesh = "Unnamed_mesh";
-	}
+	m.name_mesh = mesh->mName.C_Str();
+
 
 	return SaveMesh(m,output_file);
 }

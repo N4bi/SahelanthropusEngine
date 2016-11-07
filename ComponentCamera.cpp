@@ -27,7 +27,7 @@ ComponentCamera::~ComponentCamera()
 
 void ComponentCamera::Update(float dt)
 {
-	if (debug_frustum)
+	if (debug_frustum && go->isEnabled())
 	{
 		App->renderer3D->RenderFrustum(frustum, Green);	
 	}
@@ -86,21 +86,21 @@ void ComponentCamera::ShowOnEditor()
 
 			ImGui::Text("Near plane");
 			float new_near = frustum.nearPlaneDistance;
-			if (ImGui::DragFloat("##near", &new_near,1.0f,1.0f,5000.0f));
+			if (ImGui::SliderFloat("##near", &new_near,1.0f,4999.0f));
 			{
 				SetNearDistance(new_near);
 			}
 
 			ImGui::Text("Far plane");
 			float new_far = frustum.farPlaneDistance;
-			if (ImGui::DragFloat("##far", &new_far, 1.0f, 1.0f, 5000.0f));
+			if (ImGui::SliderFloat("##far", &new_far, 1.0f, 5000.0f));
 			{
 				SetFarDistance(new_far);
 			}
 
 			ImGui::Text("FOV");
 			float fov = field_of_view;
-			if (ImGui::DragFloat("##fov", &fov, 1.0f, 1.0f, 150.0f));
+			if (ImGui::SliderFloat("##fov", &fov, 1.0f, 150.0f));
 			{
 				SetFieldOfView(fov);
 			}
