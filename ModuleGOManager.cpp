@@ -24,8 +24,28 @@ bool ModuleGOManager::Init(Json& config)
 	root = new GameObject(nullptr, "root");
 	root->AddComponent(Component::TRANSFORM);
 
-
 	return ret;
+}
+
+update_status ModuleGOManager::PreUpdate(float dt)
+{
+	//Delete game objects in the vector to delete 
+	vector<GameObject*>::iterator it = to_delete.begin();
+	while (it != to_delete.end())
+	{
+		delete(*it);
+		++it;
+	}
+
+	to_delete.clear();
+
+	if (root)
+	{
+		DoPreUpdate(dt, root);
+	}
+
+
+	return UPDATE_CONTINUE;
 }
 
 update_status ModuleGOManager::Update(float dt)
@@ -66,6 +86,21 @@ GameObject* ModuleGOManager::CreateGameObject(GameObject* parent, const char* na
 	return ret;
 }
 
+void ModuleGOManager::DeleteGameObject(GameObject * go)
+{
+
+	if (go != nullptr)
+	{
+		if (go->GetParent() != nullptr)
+		{
+			go->GetParent()->DeleteChilds(go);
+	
+		}
+		go->DeleteAllChildren();
+		to_delete.push_back(go);
+	}
+}
+
 void ModuleGOManager::HierarchyInfo()
 {
 	ImGui::Begin("Hierarchy");
@@ -75,9 +110,9 @@ void ModuleGOManager::HierarchyInfo()
 	ImGui::End();
 }
 
-void ModuleGOManager::ShowGameObjectsOnEditor(const list<GameObject*>* childs)
+void ModuleGOManager::ShowGameObjectsOnEditor(const vector<GameObject*>* childs)
 {
-	list<GameObject*>::const_iterator it = (*childs).begin();
+	vector<GameObject*>::const_iterator it = (*childs).begin();
 	while (it != (*childs).end())
 	{
 		if ((*it) == game_object_on_editor)
@@ -151,8 +186,8 @@ void ModuleGOManager::EditorWindow()
 		ImGui::SameLine();
 		ImGui::Text("%d", game_object_on_editor->GetID());
 
-		const list<Component*>* components = game_object_on_editor->GetComponents();
-		for (list<Component*>::const_iterator component = (*components).begin(); component != (*components).end(); ++component)
+		const vector<Component*>* components = game_object_on_editor->GetComponents();
+		for (vector<Component*>::const_iterator component = (*components).begin(); component != (*components).end(); ++component)
 		{
 			(*component)->ShowOnEditor();
 		}
@@ -167,13 +202,7 @@ void ModuleGOManager::SaveGameObjectsOnScene() const
 	Json data;
 	data.AddArray("Game Objects");
 
-	//Save all Game Objects data
-	list<GameObject*>::const_iterator it = root->childs.begin();
-	while (it != root->childs.end())
-	{
-		(*it)->Save(data);
-		++it;
-	}
+	root->Save(data);
 
 	char* buff;
 	size_t size = data.Save(&buff);
@@ -182,9 +211,126 @@ void ModuleGOManager::SaveGameObjectsOnScene() const
 	delete[] buff;
 }
 
+GameObject * ModuleGOManager::LoadGameObjectsOnScene(Json & game_objects)
+{
+	const char* name = game_objects.GetString("Name");
+	int id = game_objects.GetInt("ID Game Object");
+	int parent_id = game_objects.GetInt("ID Parent");
+	bool enabled = game_objects.GetBool("enabled");
+
+	//Search the parent of the game object
+	GameObject* parent = nullptr;
+	if (parent_id != 0 && root != nullptr)
+	{
+		parent = SearchGameObjectsByID(root, parent_id);
+	}
+
+	//Create the childs 
+	GameObject* child = new GameObject(parent, name, id, enabled);
+
+	if (parent != nullptr)
+	{
+		parent->childs.push_back(child);
+	}
+
+	//Attach the components
+	Json component_data;
+	int component_array_size = game_objects.GetArraySize("Components");
+	for (uint i = 0; i < component_array_size; i++)
+	{
+		component_data = game_objects.GetArray("Components", i);
+		int type = component_data.GetInt("type");
+
+		Component* cmp_go = child->AddComponent(static_cast<Component::Types>(type));
+		cmp_go->ToLoad(component_data);
+
+	}
+
+	return child;
+}
+
+GameObject * ModuleGOManager::SearchGameObjectsByID(GameObject * first_go, int id) const
+{
+	GameObject* ret = nullptr;
+	if (first_go != nullptr)
+	{
+		if (first_go->id == id)
+		{
+			ret = first_go;
+		}
+		else
+		{
+			const std::vector<GameObject*>* game_objects = first_go->GetChilds();
+			vector<GameObject*>::const_iterator it = game_objects->begin();
+
+			while (it != game_objects->end())
+			{
+				ret = SearchGameObjectsByID((*it), id);				
+				if (ret != nullptr)
+				{
+					break;
+				}
+				++it;
+			}
+		}
+	}
+
+	return ret;
+}
+
+void ModuleGOManager::LoadScene(const char * directory)
+{
+	char* buff;
+	uint size = App->fs->Load(directory, &buff);
+	
+	Json scene(buff);
+	Json root;
+
+	root = scene.GetArray("Game Objects",0);
+	uint scene_size = scene.GetArraySize("Game Objects");
+
+	//DeleteScene();
+
+	for (uint i = 0; i < scene_size; i++)
+	{
+		if (i == 0)
+		{
+			this->root = LoadGameObjectsOnScene(scene.GetArray("Game Objects", i));
+		}
+		else
+		{
+			LoadGameObjectsOnScene(scene.GetArray("Game Objects", i));
+		}	
+	}
+
+	delete[] buff;
+
+}
+
+void ModuleGOManager::DeleteScene()
+{
+	DeleteGameObject(root);
+	game_object_on_editor = nullptr;
+	root = nullptr;
+}
+
 GameObject* ModuleGOManager::GetRoot() const
 {
 	return root;
+}
+
+void ModuleGOManager::DoPreUpdate(float dt	,GameObject * go)
+{
+	if (root != go)
+	{
+		go->PreUpdate(dt);
+	}
+	vector<GameObject*>::const_iterator it = go->childs.begin();
+	while (it != go->childs.end())
+	{
+		DoPreUpdate(dt, (*it));
+		++it;
+	}
 }
 
 void ModuleGOManager::UpdateChilds(float dt, GameObject * go)
@@ -194,7 +340,7 @@ void ModuleGOManager::UpdateChilds(float dt, GameObject * go)
 		go->Update(dt);
 	}
 
-	list<GameObject*>::iterator it = go->childs.begin();
+	vector<GameObject*>::const_iterator it = go->childs.begin();
 	while (it != go->childs.end())
 	{
 		UpdateChilds(dt, (*it));

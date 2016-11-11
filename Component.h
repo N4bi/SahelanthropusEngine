@@ -27,6 +27,7 @@ public:
 	virtual void ShowOnEditor() {};
 	virtual void UpdateTransform() {}; 
 	virtual void ToSave(Json& file_data) const {};
+	virtual void ToLoad(Json& file_data) {};
 
 	bool isEnabled();
 	Types GetType() const;
@@ -38,10 +39,9 @@ public:
 	GameObject* go = nullptr;
 	bool enabled = true;
 
-private:
-	Types type = NONE;
+protected:
 	uint id = NULL;
-
+	Types type = NONE;
 };
 
 

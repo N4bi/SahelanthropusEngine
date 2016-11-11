@@ -71,18 +71,29 @@ void ComponentTransform::ShowOnEditor()
 void ComponentTransform::ToSave(Json & file_data) const
 {
 	Json data;
-	data.AddString("type", GetTypeStr());
-	data.AddInt("ID Component", GetID());
+	data.AddInt("type", type);
+	data.AddInt("ID Component", id);
 	data.AddBool("enabled", enabled);
 
-	//TODO: THIS IS NOT WORKING
-	data.AddFloat3("Translation", translation);
-	data.AddFloat3("Rotation", rotation_deg);
-	data.AddFloat3("Scale", scale);
+	data.AddFloatArray("Translation", translation.ptr());
+	data.AddFloatArray("Rotation", rotation_deg.ptr());
+	data.AddFloatArray("Scale", scale.ptr());
 
 	file_data.AddArrayData(data);
 
 
+}
+
+void ComponentTransform::ToLoad(Json & file_data)
+{
+	id = file_data.GetInt("ID Component");
+	enabled = file_data.GetBool("enabled");
+
+	translation = file_data.GetFloat3("Translation");
+	rotation_deg = file_data.GetFloat3("Rotation");
+	scale = file_data.GetFloat3("Scale");
+
+	transform_updated = true;
 }
 
 void ComponentTransform::SetTranslation(float3 pos)
@@ -123,7 +134,7 @@ void ComponentTransform::SetRotation(float3 rot)
 	rotation_rad.y = DegToRad(rotation_deg.y);
 	rotation_rad.z = DegToRad(rotation_deg.z);
 
-	rotation = Quat::FromEulerXYZ(rotation_rad.z, rotation_rad.y, rotation_rad.x);
+	rotation = Quat::FromEulerXYZ(rotation_rad.x, rotation_rad.y, rotation_rad.z);
 
 	transform_updated = true;
 }
@@ -166,7 +177,7 @@ void ComponentTransform::WorldTransformation()
 			ComponentTransform* parent_transformation = (ComponentTransform*)go->GetParent()->GetComponent(Component::TRANSFORM);
 			final_transformation = parent_transformation->final_transformation * transformation;
 
-			std::list<GameObject*>::const_iterator it = go->childs.begin();
+			std::vector<GameObject*>::iterator it = go->childs.begin();
 			while (it != go->childs.end())
 			{
 				//Apply transform to the childs

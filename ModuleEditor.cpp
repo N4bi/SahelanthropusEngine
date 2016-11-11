@@ -24,6 +24,7 @@ bool ModuleEditor::Init(Json& config)
 	bool ret = true;
 
 	GameObject* main_camera = App->go_manager->CreateGameObject(App->go_manager->GetRoot(), "Main camera");
+	main_camera->AddComponent(Component::TRANSFORM);
 	main_camera_component = (ComponentCamera*)main_camera->AddComponent(Component::CAMERA);
 
 	return ret;
@@ -255,6 +256,11 @@ void ModuleEditor::FileMenu()
 	if (ImGui::MenuItem("Save scene"))
 	{
 		App->go_manager->SaveGameObjectsOnScene();
+	}
+
+	if (ImGui::MenuItem("Load scene"))
+	{
+		App->go_manager->LoadScene("Scene.json");
 	}
 }
 

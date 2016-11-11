@@ -3,7 +3,6 @@
 
 #include <string>
 #include <list>
-#include "Component.h"
 #include "Globals.h"
 
 class Component;
@@ -13,18 +12,22 @@ class GameObject
 {
 public:
 	GameObject(GameObject* parent, const char* name);
+	GameObject(GameObject* parent, const char* name, int id, bool enabled);
 	virtual ~GameObject();
 
+	void PreUpdate(float dt);
 	void Update(float dt);
 	void ShowOnEditor();
 	void UpdateGameObjectTransform();
-	void Save(Json& file_data) const;
+	void Save(Json& file_data);
 
 
 	Component* AddComponent(Component::Types type);
-	std::list<Component*> GetListComponentsByType(Component::Types type) const;
-	const std::list<GameObject*>* GetChilds() const;
-	const std::list<Component*>* GetComponents() const;
+	void DeleteComponent(Component* comp);
+	void DeleteChilds(GameObject* child);
+	void DeleteAllChildren();
+	const std::vector<GameObject*>* GetChilds() const;
+	const std::vector<Component*>* GetComponents() const;
 	Component* GetComponent(Component::Types type) const;
 	GameObject* GetParent() const;
 	uint GetID()const;
@@ -37,14 +40,16 @@ public:
 
 private:
 	GameObject* parent = nullptr;
-	bool enabled = true;
-	uint id = NULL;
+
 
 public: 	
 	std::string name_object;
-	std::list<GameObject*> childs;
-	std::list<Component*> components;
+	std::vector<GameObject*> childs;
+	std::vector<Component*> components;
+	std::vector<Component*> to_delete;
 
+	bool enabled = true;
+	uint id = NULL;
 };
 
 

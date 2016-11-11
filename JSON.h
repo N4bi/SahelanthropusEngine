@@ -25,7 +25,6 @@ public:
 	bool AddInt(const char* name, int value);
 	bool AddFloat(const char* name, float value);
 	bool AddFloatArray(const char * name, const float * value);
-	bool AddFloat3(const char* name, const float3& value);
 	bool AddBool(const char* name, bool value);
 	bool AddArray(const char* name);
 	bool AddArrayData(const Json& data);
@@ -34,6 +33,12 @@ public:
 	Json GetJSON_object(const char* field) const;
 	const char* GetString(const char* field) const;
 	int GetInt(const char* field) const;
+	bool GetBool(const char* field) const;
+	float GetFloat(const char* field) const;
+	float3 GetFloat3(const char* field) const;
+
+	Json GetArray(const char* filed, int id)const;
+	size_t GetArraySize(const char* field)const;
 
 private:
 	JSON_Value*	 json_value = nullptr;

@@ -4,6 +4,7 @@
 #include "Globals.h"
 #include "Module.h"
 #include "ComponentCamera.h"
+#include "Quadtree.h"
 #include <list>
 
 class GameObject;
@@ -16,17 +17,26 @@ public:
 	~ModuleGOManager();
 
 	bool Init(Json& config);
+	update_status PreUpdate(float dt);
 	update_status Update(float dt);
 	bool CleanUp();
 
 	GameObject* CreateGameObject(GameObject* parent,const char* name);
+	void DeleteGameObject(GameObject* go);
 
 	void HierarchyInfo();
-	void ShowGameObjectsOnEditor(const std::list<GameObject*>* childs);
+	void ShowGameObjectsOnEditor(const std::vector<GameObject*>* childs);
 	void EditorWindow();
 	void SaveGameObjectsOnScene() const;
+	GameObject* LoadGameObjectsOnScene(Json& game_objects);
+	GameObject* SearchGameObjectsByID(GameObject* first_go, int id) const;
+
+	void LoadScene(const char* directory);
+	void DeleteScene();
+
 	GameObject* GetRoot() const;
 
+	void DoPreUpdate(float dt, GameObject* go);
 	void UpdateChilds(float dt, GameObject* go);
 
 public:
@@ -34,6 +44,8 @@ public:
 private:
 	GameObject* root = nullptr;
 	GameObject* game_object_on_editor = nullptr;
+	vector<GameObject*> to_delete;
+
 
 
 

@@ -175,6 +175,7 @@
     <ClInclude Include="PhysBody3D.h" />
     <ClInclude Include="Primitive.h" />
     <ClInclude Include="Quadtree.h" />
+    <ClInclude Include="RayCast.h" />
     <ClInclude Include="Rng.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="PhysVehicle3D.h" />
@@ -249,6 +250,7 @@
     <ClCompile Include="parson.c" />
     <ClCompile Include="PhysBody3D.cpp" />
     <ClCompile Include="Primitive.cpp" />
+    <ClCompile Include="RayCast.cpp" />
     <ClCompile Include="Rng.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="PhysVehicle3D.cpp" />

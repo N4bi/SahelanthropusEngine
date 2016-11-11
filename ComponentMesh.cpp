@@ -132,13 +132,25 @@ void ComponentMesh::CalculateFinalBB()
 void ComponentMesh::ToSave(Json & file_data) const
 {
 	Json data;
-	data.AddString("type", GetTypeStr());
-	data.AddInt("ID Component", GetID());
+	data.AddInt("type", type);
+	data.AddInt("ID Component", id);
 	data.AddBool("enabled", enabled);
 	data.AddBool("Bounding box", bbox_enabled);
 	data.AddString("Directory", mesh->directory.data());
 
 	file_data.AddArrayData(data);
+}
+
+void ComponentMesh::ToLoad(Json & file_data)
+{
+	id = file_data.GetInt("ID Component");
+	enabled = file_data.GetBool("enabled");
+	const char* directory = file_data.GetString("Directory");
+	Mesh* m = App->meshes->LoadMesh(directory);
+	m->directory = directory;
+
+	SetMesh(m);
+	UpdateTransform();
 }
 
 

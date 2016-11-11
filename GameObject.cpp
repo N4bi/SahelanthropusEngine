@@ -15,12 +15,16 @@ GameObject::GameObject(GameObject* parent, const char * name) : parent(parent)
 	id = App->random_id->Int(1, MAX_INTEGER);
 }
 
+GameObject::GameObject(GameObject * parent, const char * name, int id, bool enabled) : parent(parent), name_object(name), id(id), enabled(enabled)
+{
+}
+
 GameObject::~GameObject()
 {
 
 	if (parent!= nullptr)
 	{
-		list<GameObject*>::iterator it = childs.begin();
+		vector<GameObject*>::iterator it = childs.begin();
 		while (it != childs.end())
 		{
 			
@@ -30,7 +34,7 @@ GameObject::~GameObject()
 	}
 	
 
-	list<Component*>::const_iterator it2 = components.begin();
+	vector<Component*>::iterator it2 = components.begin();
 	while (it2 != components.end())
 	{
 		delete(*it2);
@@ -38,9 +42,30 @@ GameObject::~GameObject()
 	}
 }
 
+void GameObject::PreUpdate(float dt)
+{
+	vector<Component*>::iterator it = to_delete.begin();
+	while (it != to_delete.end())
+	{
+		vector<Component*>::iterator it2 = components.begin();
+		while (it2 != components.end())
+		{
+			if ((*it2) == (*it))
+			{
+				components.erase(it2);
+				break;
+			}
+			++it2;
+		}
+		delete(*it);
+		++it;
+	}
+	to_delete.clear();
+}
+
 void GameObject::Update(float dt)
 {
-	list<Component*>::const_iterator it = components.begin();
+	vector<Component*>::iterator it = components.begin();
 	while (it != components.end())
 	{
 		(*it)->Update(dt);
@@ -55,7 +80,7 @@ void GameObject::ShowOnEditor()
 
 void GameObject::UpdateGameObjectTransform()
 {
-	list<Component*>::const_iterator it = components.begin();
+	vector<Component*>::iterator it = components.begin();
 	while (it != components.end())
 	{
 		(*it)->UpdateTransform();
@@ -63,12 +88,17 @@ void GameObject::UpdateGameObjectTransform()
 	}
 }
 
-void GameObject::Save(Json & file_data) const
+void GameObject::Save(Json & file_data) 
 {
 	Json data;
 	data.AddString("Name", name_object.data());
 	data.AddInt("ID Game Object", id);
-	if (parent == nullptr)
+
+	if (this == App->go_manager->GetRoot())
+	{
+		data.AddInt("ID Parent", 0);
+	}
+	else if (parent == nullptr)
 	{
 		data.AddInt("ID Parent", App->go_manager->GetRoot()->id);
 	}
@@ -81,7 +111,7 @@ void GameObject::Save(Json & file_data) const
 	data.AddArray("Components");
 
 	//Save all components data
-	list<Component*>::const_iterator it = components.begin();
+	vector<Component*>::iterator it = components.begin();
 	while (it != components.end())
 	{
 		(*it)->ToSave(data);
@@ -90,7 +120,7 @@ void GameObject::Save(Json & file_data) const
 
 	file_data.AddArrayData(data);
 
-	list<GameObject*>::const_iterator it2 = childs.begin();
+	vector<GameObject*>::iterator it2 = childs.begin();
 	while (it2 != childs.end())
 	{
 		(*it2)->Save(file_data);
@@ -136,30 +166,55 @@ Component* GameObject::AddComponent(Component::Types type)
 	return ret;
 }
 
-list<Component*> GameObject::GetListComponentsByType(Component::Types type) const
+void GameObject::DeleteComponent(Component * comp)
 {
-	list<Component*> ret;
-
-	list<Component*>::const_iterator it = components.begin();
+	vector<Component*>::iterator it = components.begin();
 	while (it != components.end())
 	{
-		if ((*it)->GetType() == type)
+		if ((*it) == comp)
 		{
-			ret.push_back((*it));
+			to_delete.push_back(comp);
+			break;
 		}
-
 		++it;
 	}
-
-	return ret;
 }
 
-const std::list<GameObject*>* GameObject::GetChilds() const
+void GameObject::DeleteChilds(GameObject * child)
+{
+	if (child != nullptr)
+	{
+		vector<GameObject*>::iterator it = childs.begin();
+		while (it != childs.end())
+		{
+			if ((*it) == child)
+			{
+				childs.erase(it);
+				break;
+			}
+			++it;
+		}
+	}
+}
+
+void GameObject::DeleteAllChildren()
+{
+	if (childs.size() > 0)
+	{
+		for (uint i = 0; i < childs.size(); ++i)
+		{
+			App->go_manager->DeleteGameObject(childs[i]);
+		}
+	}
+	childs.clear();
+}
+
+ const std::vector<GameObject*>* GameObject::GetChilds() const
 {
 	return &childs;
 }
 
-const std::list<Component*>* GameObject::GetComponents() const
+ const std::vector<Component*>* GameObject::GetComponents() const
 {
 	return &components;
 }
@@ -168,7 +223,7 @@ Component * GameObject::GetComponent(Component::Types type) const
 {
 	Component* ret = nullptr;
 
-	list<Component*>::const_iterator it = components.begin();
+	vector<Component*>::const_iterator it = components.begin();
 	while (it != components.end())
 	{
 		if ((*it)->GetType() == type)
@@ -199,7 +254,7 @@ void GameObject::Enable()
 {
 	enabled = true;
 
-	list<GameObject*>::iterator it = childs.begin();
+	vector<GameObject*>::iterator it = childs.begin();
 	while (it != childs.end())
 	{
 	
@@ -212,7 +267,7 @@ void GameObject::Disable()
 {
 	enabled = false;
 
-	list<GameObject*>::iterator it = childs.begin();
+	vector<GameObject*>::iterator it = childs.begin();
 	while (it != childs.end())
 	{
 		(*it)->enabled = false;

@@ -163,24 +163,6 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent)
 
 		Mesh* m = LoadMesh(path.data());
 
-		//Generate buffers
-
-		glGenBuffers(1, (GLuint*)&(m->id_vertices));
-		glBindBuffer(GL_ARRAY_BUFFER, m->id_vertices);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float3) * m->num_vertices, m->vertices, GL_STATIC_DRAW);
-
-		glGenBuffers(1, (GLuint*)&(m->id_normal));
-		glBindBuffer(GL_ARRAY_BUFFER, m->id_normal);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float3)* m->num_normal, m->normals, GL_STATIC_DRAW);
-
-		glGenBuffers(1, (GLuint*)&(m->id_indices));
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m->id_indices);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * m->num_indices, m->indices, GL_STATIC_DRAW);
-
-		glGenBuffers(1, (GLuint*)&(m->id_uv));
-		glBindBuffer(GL_ARRAY_BUFFER, m->id_uv);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float2) * m->num_uv, m->uvs, GL_STATIC_DRAW);
-
 		// Set mesh with all the information
 		comp_mesh->SetMesh(m);	
 
@@ -382,6 +364,24 @@ Mesh* ModuleMesh::LoadMesh(const char* path)
 		bytes = sizeof(float2) * m->num_uv;
 		m->uvs = new float2[m->num_uv];
 		memcpy(m->uvs, cursor, bytes);
+
+		//Generate buffers 
+
+		glGenBuffers(1, (GLuint*)&(m->id_vertices));
+		glBindBuffer(GL_ARRAY_BUFFER, m->id_vertices);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float3) * m->num_vertices, m->vertices, GL_STATIC_DRAW);
+
+		glGenBuffers(1, (GLuint*)&(m->id_normal));
+		glBindBuffer(GL_ARRAY_BUFFER, m->id_normal);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float3)* m->num_normal, m->normals, GL_STATIC_DRAW);
+
+		glGenBuffers(1, (GLuint*)&(m->id_indices));
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m->id_indices);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * m->num_indices, m->indices, GL_STATIC_DRAW);
+
+		glGenBuffers(1, (GLuint*)&(m->id_uv));
+		glBindBuffer(GL_ARRAY_BUFFER, m->id_uv);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float2) * m->num_uv, m->uvs, GL_STATIC_DRAW);
 
 	}
 

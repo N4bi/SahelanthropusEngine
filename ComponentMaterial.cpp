@@ -1,3 +1,4 @@
+#include "Application.h"
 #include "ComponentMaterial.h"
 #include "ModuleMesh.h"
 #include "GameObject.h"
@@ -31,11 +32,19 @@ void ComponentMaterial::ShowOnEditor()
 void ComponentMaterial::ToSave(Json & file_data) const
 {
 	Json data;
-	data.AddString("type", GetTypeStr());
-	data.AddInt("ID Component", GetID());
+	data.AddInt("type", type);
+	data.AddInt("ID Component", id);
 	data.AddInt("ID Material", texture_id);
 	data.AddBool("enabled", enabled);
 	data.AddString("Directory", directory.data());
 
 	file_data.AddArrayData(data);
+}
+
+void ComponentMaterial::ToLoad(Json & file_data)
+{
+	id = file_data.GetInt("ID Component");
+	directory = file_data.GetString("Directory");
+	texture_id = App->tex->LoadTexture(directory.data());
+	enabled = file_data.GetBool("enabled");
 }

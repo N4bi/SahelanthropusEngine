@@ -16,6 +16,7 @@ public:
 	void UpdateTransform();
 	void ShowOnEditor();
 	void ToSave(Json& file_data) const;
+	void ToLoad(Json& file_data);
 
 	Frustum GetFrustum() const;
 	float GetNearDistance() const;

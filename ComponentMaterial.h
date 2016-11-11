@@ -16,6 +16,7 @@ public:
 
 	void ShowOnEditor();
 	void ToSave(Json& file_data) const;
+	void ToLoad(Json& file_data);
 
 public:
 	uint texture_id = 0;

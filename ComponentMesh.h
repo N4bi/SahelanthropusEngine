@@ -18,6 +18,7 @@ public:
 	bool SetMesh(Mesh* _mesh);
 	void CalculateFinalBB();
 	void ToSave(Json& file_data) const;
+	void ToLoad(Json& file_data);
 
 public:
 	AABB local_bb;

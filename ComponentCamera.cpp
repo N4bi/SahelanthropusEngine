@@ -37,8 +37,10 @@ void ComponentCamera::UpdateTransform()
 {
 	if (go != nullptr)
 	{
+		float3 camera_scale(0.0f, frustum.verticalFov, frustum.horizontalFov);
+
 		camera_transformation = (ComponentTransform*)go->GetComponent(Component::TRANSFORM);
-		camera_transformation->SetScale(float3(0.0f, frustum.verticalFov,frustum.horizontalFov));
+		camera_transformation->SetScale(camera_scale);
 
 		float4x4 transformation = camera_transformation->GetWorldTransformationMatrix();
 		frustum.pos = transformation.TranslatePart();
@@ -110,8 +112,8 @@ void ComponentCamera::ShowOnEditor()
 void ComponentCamera::ToSave(Json & file_data) const
 {
 	Json data;
-	data.AddString("type", GetTypeStr());
-	data.AddInt("ID Component", GetID());
+	data.AddInt("type", type);
+	data.AddInt("ID Component", id);
 	data.AddBool("enabled", enabled);
 
 	data.AddBool("Culling", culling);
@@ -123,6 +125,36 @@ void ComponentCamera::ToSave(Json & file_data) const
 
 	file_data.AddArrayData(data);
 
+}
+
+void ComponentCamera::ToLoad(Json & file_data)
+{
+	id = file_data.GetInt("ID Component");
+	enabled = file_data.GetBool("enabled");
+
+	culling = file_data.GetBool("Culling");
+	debug_frustum = file_data.GetBool("Debug Frustum");
+	frustum.nearPlaneDistance = file_data.GetFloat("Near plane");
+	frustum.farPlaneDistance = file_data.GetFloat("Far plane");
+	field_of_view = file_data.GetFloat("FOV");
+	aspect_ratio = file_data.GetFloat("Aspect Ratio");
+
+	//Apply the load on the scene 
+
+	//frustum.type = FrustumType::PerspectiveFrustum;
+	//frustum.pos = float3::zero;
+	//frustum.front = float3::unitZ;
+	//frustum.up = float3::unitY;
+	//frustum.nearPlaneDistance = 1.0f;
+	//frustum.farPlaneDistance = 1000.0f;
+	//frustum.verticalFov = DegToRad(field_of_view);
+
+	//SetAspectRatio(aspect_ratio);
+
+
+
+
+	UpdateTransform();
 }
 
 
