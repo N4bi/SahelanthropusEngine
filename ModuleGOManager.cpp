@@ -58,6 +58,12 @@ update_status ModuleGOManager::Update(float dt)
 	HierarchyInfo();
 	EditorWindow();
 
+	if (App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_DOWN)
+	{
+		Ray raycast = App->editor->main_camera_component->DoRay(float2(App->input->GetMouseX(), App->input->GetMouseY()));
+		
+	}
+
 	return UPDATE_CONTINUE;
 }
 
@@ -108,6 +114,14 @@ void ModuleGOManager::HierarchyInfo()
 	ShowGameObjectsOnEditor(root->GetChilds());
 
 	ImGui::End();
+}
+
+void ModuleGOManager::SelectObjects()
+{
+	if (true)
+	{
+
+	}
 }
 
 void ModuleGOManager::ShowGameObjectsOnEditor(const vector<GameObject*>* childs)
@@ -196,6 +210,46 @@ void ModuleGOManager::EditorWindow()
 
 	ImGui::End();
 }
+
+GameObject * ModuleGOManager::DoRaycast(Ray & raycast)
+{
+	GameObject* ret = nullptr;
+	list<GameObject*> objects_hit;
+	CollectHits(root, raycast, objects_hit);
+
+	list<GameObject*>::iterator it = objects_hit.begin();
+	while (it != objects_hit.end())
+	{
+		if ((*it)->DoRaycast(raycast))
+		{
+			ret = (*it);
+			break;
+		}
+		++it;
+	}
+
+	return ret;
+}
+
+void ModuleGOManager::CollectHits(GameObject * go, Ray & raycast, list<GameObject*>& hits)
+{	
+	ComponentMesh* cmp_mesh = (ComponentMesh*) go->GetComponent(Component::MESH);
+
+		if (raycast.Intersects(cmp_mesh->world_bb))
+		{
+			hits.push_back(go);
+		
+		}
+
+		vector<GameObject*>::iterator it = go->childs.begin();
+		while (it != go->childs.end())
+		{
+			CollectHits((*it), raycast, hits);
+			++it;
+		}
+
+}
+
 
 void ModuleGOManager::SaveGameObjectsOnScene() const
 {

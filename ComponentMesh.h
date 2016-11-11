@@ -16,6 +16,7 @@ public:
 	void UpdateTransform();
 	void ShowOnEditor();
 	bool SetMesh(Mesh* _mesh);
+	Mesh* GetMesh()const;
 	void CalculateFinalBB();
 	void ToSave(Json& file_data) const;
 	void ToLoad(Json& file_data);

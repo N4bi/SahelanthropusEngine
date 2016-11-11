@@ -40,6 +40,8 @@ GameObject::~GameObject()
 		delete(*it2);
 		++it2;
 	}
+
+	matrix = nullptr;
 }
 
 void GameObject::PreUpdate(float dt)
@@ -207,6 +209,41 @@ void GameObject::DeleteAllChildren()
 		}
 	}
 	childs.clear();
+}
+
+bool GameObject::DoRaycast(const Ray & raycast)
+{
+	bool ret = false;
+	ComponentMesh* mesh = (ComponentMesh*)GetComponent(Component::MESH);
+	if (mesh != nullptr)
+	{
+		Mesh* m = mesh->GetMesh();
+		if (m != nullptr)
+		{
+			Ray ray = raycast;
+			ray.Transform(matrix->Inverted());
+
+			uint indices = m->num_indices / 3;
+			
+			for (int i = 0; i < indices; i++)
+			{
+				int v1 = m->indices[i * 3];
+				int v2 = m->indices[i * 3 + 1];
+				int v3 = m->indices[i * 3 + 2];
+
+				float3* v_1 = &m->vertices[v1];
+				float3* v_2 = &m->vertices[v2];
+				float3* v_3 = &m->vertices[v3];
+
+				if (raycast.Intersects(Triangle(*v_1,*v_2,*v_3)))
+				{
+					ret = true;
+					break;
+				}
+			}
+		}
+	}
+	return ret;
 }
 
  const std::vector<GameObject*>* GameObject::GetChilds() const

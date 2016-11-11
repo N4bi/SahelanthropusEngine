@@ -2,13 +2,13 @@
     "Game Objects": [
         {
             "Name": "root",
-            "ID Game Object": 100143105,
+            "ID Game Object": 1189845505,
             "ID Parent": 0,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1337948161,
+                    "ID Component": 1210564865,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -30,13 +30,13 @@
         },
         {
             "Name": "Main camera",
-            "ID Game Object": 46529537,
-            "ID Parent": 100143105,
+            "ID Game Object": 609825793,
+            "ID Parent": 1189845505,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1032498689,
+                    "ID Component": 930390017,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -56,7 +56,7 @@
                 },
                 {
                     "type": 3,
-                    "ID Component": 885243649,
+                    "ID Component": 149027841,
                     "enabled": true,
                     "Culling": false,
                     "Debug Frustum": false,
@@ -69,13 +69,13 @@
         },
         {
             "Name": "Mano",
-            "ID Game Object": 932446209,
-            "ID Parent": 100143105,
+            "ID Game Object": 984193025,
+            "ID Parent": 1189845505,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1558459137,
+                    "ID Component": 749387521,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -95,29 +95,29 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 2028707329,
+                    "ID Component": 10313473,
                     "enabled": true,
                     "Bounding box": false,
-                    "Directory": "Library\/Mesh\/Mano3.shl"
+                    "Directory": "Library\/Mesh\/Mano2.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 647970049,
+                    "ID Component": 782145281,
                     "ID Material": 1,
                     "enabled": true,
-                    "Directory": "Library\/Textures\/tx16.dds"
+                    "Directory": "Library\/Textures\/tx2.dds"
                 }
             ]
         },
         {
             "Name": "Mano1_$AssimpFbx$_RotationPivot",
-            "ID Game Object": 150378497,
-            "ID Parent": 100143105,
+            "ID Game Object": 6303233,
+            "ID Parent": 1189845505,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 532554241,
+                    "ID Component": 755524353,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -139,13 +139,13 @@
         },
         {
             "Name": "Mano1_$AssimpFbx$_RotationPivotInverse",
-            "ID Game Object": 660052225,
-            "ID Parent": 150378497,
+            "ID Game Object": 2058007809,
+            "ID Parent": 6303233,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1648745217,
+                    "ID Component": 470426113,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -167,13 +167,13 @@
         },
         {
             "Name": "Mano1_$AssimpFbx$_ScalingPivot",
-            "ID Game Object": 7036929,
-            "ID Parent": 660052225,
+            "ID Game Object": 275148289,
+            "ID Parent": 2058007809,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 295869953,
+                    "ID Component": 548865537,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -195,13 +195,13 @@
         },
         {
             "Name": "Mano1_$AssimpFbx$_ScalingPivotInverse",
-            "ID Game Object": 104355841,
-            "ID Parent": 7036929,
+            "ID Game Object": 249732865,
+            "ID Parent": 275148289,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 421315585,
+                    "ID Component": 635536129,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -223,13 +223,13 @@
         },
         {
             "Name": "Mano1",
-            "ID Game Object": 2096148225,
-            "ID Parent": 104355841,
+            "ID Game Object": 2065492225,
+            "ID Parent": 249732865,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1550502657,
+                    "ID Component": 1836314881,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -249,29 +249,29 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 2543617,
+                    "ID Component": 2086033921,
                     "enabled": true,
                     "Bounding box": false,
-                    "Directory": "Library\/Mesh\/Mano12.shl"
+                    "Directory": "Library\/Mesh\/Mano11.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 1004063233,
+                    "ID Component": 1759964929,
                     "ID Material": 2,
                     "enabled": true,
-                    "Directory": "Library\/Textures\/tx17.dds"
+                    "Directory": "Library\/Textures\/tx3.dds"
                 }
             ]
         },
         {
             "Name": "camera_test",
-            "ID Game Object": 1163765249,
-            "ID Parent": 100143105,
+            "ID Game Object": 1561419521,
+            "ID Parent": 1189845505,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 94060033,
+                    "ID Component": 1966329857,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -291,7 +291,7 @@
                 },
                 {
                     "type": 3,
-                    "ID Component": 889354497,
+                    "ID Component": 74932481,
                     "enabled": true,
                     "Culling": false,
                     "Debug Frustum": false,

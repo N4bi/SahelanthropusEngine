@@ -36,6 +36,8 @@ public:
 	float* GetViewMatrix();
 	float* GetProjectionMatrix();
 
+	Ray DoRay(float2 cam_position);
+
 public:
 	Frustum frustum;
 	bool culling = false;

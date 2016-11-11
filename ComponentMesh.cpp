@@ -121,6 +121,11 @@ bool ComponentMesh::SetMesh(Mesh* _mesh)
 	return ret;
 }
 
+Mesh * ComponentMesh::GetMesh() const
+{	
+	return mesh;
+}
+
 void ComponentMesh::CalculateFinalBB()
 {
 	transformation = (ComponentTransform*)go->GetComponent(Component::TRANSFORM);

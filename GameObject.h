@@ -26,6 +26,8 @@ public:
 	void DeleteComponent(Component* comp);
 	void DeleteChilds(GameObject* child);
 	void DeleteAllChildren();
+	bool DoRaycast(const Ray& raycast);
+
 	const std::vector<GameObject*>* GetChilds() const;
 	const std::vector<Component*>* GetComponents() const;
 	Component* GetComponent(Component::Types type) const;
@@ -50,6 +52,7 @@ public:
 
 	bool enabled = true;
 	uint id = NULL;
+	float4x4* matrix = nullptr;
 };
 
 

@@ -25,8 +25,11 @@ public:
 	void DeleteGameObject(GameObject* go);
 
 	void HierarchyInfo();
+	void SelectObjects();
 	void ShowGameObjectsOnEditor(const std::vector<GameObject*>* childs);
 	void EditorWindow();
+	GameObject* DoRaycast(Ray& raycast);
+	void CollectHits(GameObject* go, Ray& raycast, list<GameObject*>& hits);
 	void SaveGameObjectsOnScene() const;
 	GameObject* LoadGameObjectsOnScene(Json& game_objects);
 	GameObject* SearchGameObjectsByID(GameObject* first_go, int id) const;
