@@ -170,6 +170,8 @@ unsigned int ModuleFileSystem::Save(const char* file, const void* buffer, unsign
 
 bool ModuleFileSystem::SaveUnique(const char * file, string & output_name, const void * buffer, unsigned int size, const char * path, const char * extension)
 {
+	bool ret = false;
+	bool no_save = false;
 	char copy_name[100];
 	sprintf_s(copy_name, 100, "%s.%s", file, extension);
 
@@ -188,28 +190,31 @@ bool ModuleFileSystem::SaveUnique(const char * file, string & output_name, const
 		{
 			if ((*it).compare(copy_name) == 0)
 			{
-				++copy;
-				sprintf_s(copy_name, 100, "%s%d.%s", file, copy, extension);
-				name_taken = false;
+				no_save = true;
 				break;
-
 			}
 			it++;
 		}
 	}
 
-	char output_n[500];
-	sprintf_s(output_n, 500, "%s%s", path, copy_name);
+	char output_n[100];
+	sprintf_s(output_n, 100, "%s%s", path, copy_name);
 
-	if (Save(output_n,buffer,size) >0)
+	if (no_save)
 	{
 		output_name = output_n;
-		return true;
+		ret = true;
 	}
 	else
 	{
-		return false;
+		if (Save(output_n, buffer, size) >0)
+		{
+			output_name = output_n;
+			ret = true;
+		}
 	}
+
+	return ret;
 }
 
 bool ModuleFileSystem::EnumerateFiles(const char * directory, std::vector<string>& buff)

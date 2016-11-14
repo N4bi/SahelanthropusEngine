@@ -234,8 +234,9 @@ float * ComponentCamera::GetProjectionMatrix()
 math::Ray ComponentCamera::DoRay(float2 cam_position)
 {
 	float2 pos = cam_position;
-	pos.x = (pos.x * 2) / SCREEN_WIDTH;
-	pos.y = (pos.x * -2) / SCREEN_HEIGHT;
+
+	pos.x = -(1.0f-((float)pos.x * 2.0f) / SCREEN_WIDTH);
+	pos.y = 1.0f - ((float)pos.y * 2.0f) / SCREEN_HEIGHT;
 
 	Ray raycast = frustum.UnProjectFromNearPlane(pos.x, pos.y);
 

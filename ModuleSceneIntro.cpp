@@ -28,15 +28,13 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
-	App->meshes->LoadFBX("Assets/Meshes/manos_scene.fbx");
+	App->meshes->LoadFBX("Assets/Meshes/Street environment_V01.fbx");
 
 	//Camera TEST
 	camera = App->go_manager->CreateGameObject(App->go_manager->GetRoot() , "camera_test");
 	camera->AddComponent(Component::TRANSFORM);
 	camera->AddComponent(Component::CAMERA);
 
-	// Load this FBX to see a better object hierarchy 
-	//App->meshes->LoadFBX("test_3.fbx");
 
 	
 	return ret;

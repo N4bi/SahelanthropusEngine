@@ -584,9 +584,6 @@
     <ClCompile Include="parson.c">
       <Filter>Sources\Parson</Filter>
     </ClCompile>
-    <ClCompile Include="RayCast.cpp">
-      <Filter>Sources\Tools</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="MathGeoLib\include\Math\Matrix.inl">

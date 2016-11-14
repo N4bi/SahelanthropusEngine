@@ -4,6 +4,7 @@
 #include <string>
 #include <list>
 #include "Globals.h"
+#include "RayCast.h"
 
 class Component;
 enum Types;
@@ -26,7 +27,7 @@ public:
 	void DeleteComponent(Component* comp);
 	void DeleteChilds(GameObject* child);
 	void DeleteAllChildren();
-	bool DoRaycast(const Ray& raycast);
+	bool DoRaycast(const Ray& raycast,RayCast& hit_point);
 
 	const std::vector<GameObject*>* GetChilds() const;
 	const std::vector<Component*>* GetComponents() const;
@@ -52,7 +53,8 @@ public:
 
 	bool enabled = true;
 	uint id = NULL;
-	float4x4* matrix = nullptr;
+	AABB* bb = nullptr;
+
 };
 
 

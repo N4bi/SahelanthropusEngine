@@ -41,9 +41,11 @@ private:
 	float3 rotation_deg = float3::zero;
 
 	float4x4 transformation = float4x4::identity;
-	float4x4 final_transformation = float4x4::identity;
 
 	bool transform_updated = false;
+
+public:
+	float4x4 final_transformation = float4x4::identity;
 };
 
 

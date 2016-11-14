@@ -180,9 +180,13 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent)
 					ComponentMaterial* comp_material = (ComponentMaterial*)game_object->AddComponent(Component::MATERIAL);
 
 					string name_tex;
-					App->tex->ImportTexture("tx", path.data, name_tex);
+					string directory = path.data;
+					string name_to_import = directory.substr(12);
+
+					App->tex->ImportTexture(name_to_import.data(), path.data, name_tex);
 					comp_material->texture_id = App->tex->LoadTexture(name_tex.data());
 					comp_material->directory = name_tex;
+
 				}
 		}	
 	}
@@ -197,6 +201,7 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent)
 
 bool ModuleMesh::ImportMesh(const aiMesh * mesh, string & output_file)
 {
+	bool ret = false;
 	Mesh m;
 
 	//Copy vertices
@@ -247,8 +252,9 @@ bool ModuleMesh::ImportMesh(const aiMesh * mesh, string & output_file)
 
 	m.name_mesh = mesh->mName.C_Str();
 
+	ret = SaveMesh(m, output_file);
 
-	return SaveMesh(m,output_file);
+	return ret;
 }
 
 bool ModuleMesh::SaveMesh(Mesh& mesh, string& output_file)

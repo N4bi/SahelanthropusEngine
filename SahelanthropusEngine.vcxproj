@@ -250,7 +250,6 @@
     <ClCompile Include="parson.c" />
     <ClCompile Include="PhysBody3D.cpp" />
     <ClCompile Include="Primitive.cpp" />
-    <ClCompile Include="RayCast.cpp" />
     <ClCompile Include="Rng.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="PhysVehicle3D.cpp" />

@@ -2,7 +2,9 @@
 #include "ModuleGOManager.h"
 #include "GameObject.h"
 #include "Component.h"
+#include "RayCast.h"
 #include "Imgui\imgui.h"
+
 
 using namespace std;
 
@@ -61,7 +63,7 @@ update_status ModuleGOManager::Update(float dt)
 	if (App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_DOWN)
 	{
 		Ray raycast = App->editor->main_camera_component->DoRay(float2(App->input->GetMouseX(), App->input->GetMouseY()));
-		
+		game_object_on_editor = DoRaycast(raycast);
 	}
 
 	return UPDATE_CONTINUE;
@@ -116,13 +118,6 @@ void ModuleGOManager::HierarchyInfo()
 	ImGui::End();
 }
 
-void ModuleGOManager::SelectObjects()
-{
-	if (true)
-	{
-
-	}
-}
 
 void ModuleGOManager::ShowGameObjectsOnEditor(const vector<GameObject*>* childs)
 {
@@ -215,17 +210,19 @@ GameObject * ModuleGOManager::DoRaycast(Ray & raycast)
 {
 	GameObject* ret = nullptr;
 	list<GameObject*> objects_hit;
+
 	CollectHits(root, raycast, objects_hit);
 
 	list<GameObject*>::iterator it = objects_hit.begin();
-	while (it != objects_hit.end())
+	RayCast hit_point;
+
+	for (list<GameObject*>::iterator it = objects_hit.begin(); it != objects_hit.end(); it++)
 	{
-		if ((*it)->DoRaycast(raycast))
+		if ((*it)->DoRaycast(raycast, hit_point))
 		{
 			ret = (*it);
 			break;
 		}
-		++it;
 	}
 
 	return ret;
@@ -235,10 +232,11 @@ void ModuleGOManager::CollectHits(GameObject * go, Ray & raycast, list<GameObjec
 {	
 	ComponentMesh* cmp_mesh = (ComponentMesh*) go->GetComponent(Component::MESH);
 
-		if (raycast.Intersects(cmp_mesh->world_bb))
+	if (go->bb != nullptr)
+	{
+		if (raycast.Intersects(*go->bb))
 		{
 			hits.push_back(go);
-		
 		}
 
 		vector<GameObject*>::iterator it = go->childs.begin();
@@ -247,7 +245,7 @@ void ModuleGOManager::CollectHits(GameObject * go, Ray & raycast, list<GameObjec
 			CollectHits((*it), raycast, hits);
 			++it;
 		}
-
+	}
 }
 
 
@@ -295,7 +293,7 @@ GameObject * ModuleGOManager::LoadGameObjectsOnScene(Json & game_objects)
 		component_data = game_objects.GetArray("Components", i);
 		int type = component_data.GetInt("type");
 
-		Component* cmp_go = child->AddComponent(static_cast<Component::Types>(type));
+		Component* cmp_go = child->AddComponent((Component::Types)(type));
 		cmp_go->ToLoad(component_data);
 
 	}

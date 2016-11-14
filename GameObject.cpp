@@ -5,6 +5,7 @@
 #include "ComponentMaterial.h"
 #include "ComponentMesh.h"
 #include "ComponentCamera.h"
+#include "RayCast.h"
 #include "JSON.h"
 
 using namespace std;
@@ -41,7 +42,7 @@ GameObject::~GameObject()
 		++it2;
 	}
 
-	matrix = nullptr;
+	bb = nullptr;
 }
 
 void GameObject::PreUpdate(float dt)
@@ -211,20 +212,25 @@ void GameObject::DeleteAllChildren()
 	childs.clear();
 }
 
-bool GameObject::DoRaycast(const Ray & raycast)
+bool GameObject::DoRaycast(const Ray & raycast,RayCast& hit_point)
 {
 	bool ret = false;
 	ComponentMesh* mesh = (ComponentMesh*)GetComponent(Component::MESH);
+	ComponentTransform* cmp_trans = (ComponentTransform*)GetComponent(Component::TRANSFORM);
+	RayCast ray_hit;
+
 	if (mesh != nullptr)
 	{
 		Mesh* m = mesh->GetMesh();
 		if (m != nullptr)
 		{
 			Ray ray = raycast;
-			ray.Transform(matrix->Inverted());
+			float dist;
+			float3 hit;
+			Triangle triangle;
+			ray.Transform(cmp_trans->final_transformation);
 
 			uint indices = m->num_indices / 3;
-			
 			for (int i = 0; i < indices; i++)
 			{
 				int v1 = m->indices[i * 3];
@@ -235,10 +241,33 @@ bool GameObject::DoRaycast(const Ray & raycast)
 				float3* v_2 = &m->vertices[v2];
 				float3* v_3 = &m->vertices[v3];
 
-				if (raycast.Intersects(Triangle(*v_1,*v_2,*v_3)))
+				triangle = Triangle(*v_1,*v_2,*v_3);
+
+				if (raycast.Intersects(triangle, &dist, &hit))
 				{
 					ret = true;
-					break;
+					if (ray_hit.distance < dist)
+					{
+						ray_hit.distance = dist;
+						ray_hit.normal = triangle.PlaneCCW().normal;
+						ray_hit.point = hit;
+
+						hit_point.distance = raycast.pos.Distance(hit_point.point);
+						hit_point.normal = cmp_trans->final_transformation.MulDir(ray_hit.normal);
+						hit_point.normal.Normalize();
+						hit_point.point = cmp_trans->final_transformation.MulPos(ray_hit.point);
+					}
+					else
+					{
+						ray_hit.distance = dist;
+						ray_hit.normal = triangle.PlaneCCW().normal;
+						ray_hit.point = hit;
+
+						hit_point.distance = raycast.pos.Distance(hit_point.point);
+						hit_point.normal = cmp_trans->final_transformation.MulDir(ray_hit.normal);
+						hit_point.normal.Normalize();
+						hit_point.point = cmp_trans->final_transformation.MulPos(ray_hit.point);
+					}
 				}
 			}
 		}
