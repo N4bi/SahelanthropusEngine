@@ -23,7 +23,7 @@ bool ModuleEditor::Init(Json& config)
 {
 	bool ret = true;
 
-	GameObject* main_camera = App->go_manager->CreateGameObject(App->go_manager->GetRoot(), "Main camera");
+	main_camera = new GameObject(nullptr, "Main camera");
 	main_camera->AddComponent(Component::TRANSFORM);
 	main_camera_component = (ComponentCamera*)main_camera->AddComponent(Component::CAMERA);
 
@@ -62,6 +62,8 @@ bool ModuleEditor::CleanUp()
 	}
 
 	info_window.clear();
+	delete main_camera;
+	main_camera = nullptr;
 
 	return true;
 }

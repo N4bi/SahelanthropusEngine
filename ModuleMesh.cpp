@@ -109,7 +109,7 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent)
 	translate.y = translation.y;
 	translate.z = translation.z;
 
-	transformation->SetTranslation(translate);
+
 
 	Quat rot;
 
@@ -118,13 +118,32 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent)
 	rot.z = rotation.z;
 	rot.w = rotation.w;
 
-	transformation->SetRotation(rot);
+
 
 	float3 scale;
 	scale.x = scaling.x;
 	scale.y = scaling.y;
 	scale.z = scaling.z;
 
+
+	//Ignore Assimp trash
+	static const char* dummies[5] =	{"$AssimpFbx$_PreRotation","$AssimpFbx$_Rotation","$AssimpFbx$_PostRotation","$AssimpFbx$_Scaling","$AssimpFbx$_Translation"};
+
+	for (int i = 0; i < 5; ++i)
+	{
+		if (((string)(node->mName.C_Str())).find(dummies[i]) != string::npos && node->mNumChildren == 1)
+		{
+			node = node->mChildren[0];
+			node->mTransformation.Decompose(scaling, rotation, translation);
+			translate += float3(translation.x, translation.y, translation.z);
+			scale = float3(scale.x * scaling.x, scale.y * scaling.y, scale.z * scaling.z);
+			rot = rot * Quat(rotation.x, rotation.y, rotation.z, rotation.w);
+			i = -1;
+		}
+	}
+
+	transformation->SetTranslation(translate);
+	transformation->SetRotation(rot);
 	transformation->SetScale(scale);
 
 	for (unsigned int i = 0; i < node->mNumMeshes; i++)

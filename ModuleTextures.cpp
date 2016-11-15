@@ -70,8 +70,8 @@ bool ModuleTextures::ImportTexture(const char * file, const char * path, std::st
 	ilSetInteger(IL_DXTC_FORMAT, IL_DXT5);
 	size = ilSaveL(IL_DDS, NULL, 0);
 
-	if (size > 0)
-	{
+	//if (size > 0)
+	//{
 		data = new ILubyte[size];
 		if (ilSaveL(IL_DDS,data,size) > 0)
 		{
@@ -80,7 +80,7 @@ bool ModuleTextures::ImportTexture(const char * file, const char * path, std::st
 
 		delete[] data;
 		data = nullptr;
-	}
+	//}
 	ilDeleteImages(1, &id);
 
 	return ret;

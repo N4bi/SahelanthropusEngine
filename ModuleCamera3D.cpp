@@ -54,22 +54,6 @@ update_status ModuleCamera3D::Update(float dt)
 
 	}
 
-	// Mouse wheel - ZOOM TODO COMPONENT CAMERA -----------------------
-
-	//float zDelta = (float) App->input->GetMouseZ();
-
-	//Position -= Reference;
-
-	//if(zDelta < 0 && Position.Length() < 500.0f)
-	//{
-	//	Position += Position * 0.1f;
-	//}
-
-	//if(zDelta > 0 && Position.Length() > 0.05f)
-	//{
-	//	Position -= Position * 0.1f;
-	//}
-
 	return UPDATE_CONTINUE;
 }
 

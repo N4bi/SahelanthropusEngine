@@ -2,13 +2,13 @@
     "Game Objects": [
         {
             "Name": "root",
-            "ID Game Object": 620761345,
+            "ID Game Object": 2045752321,
             "ID Parent": 0,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 2073947393,
+                    "ID Component": 1913783553,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -25,57 +25,18 @@
                         0,
                         0
                     ]
-                }
-            ]
-        },
-        {
-            "Name": "Main camera",
-            "ID Game Object": 2096066049,
-            "ID Parent": 620761345,
-            "Enabled": true,
-            "Components": [
-                {
-                    "type": 1,
-                    "ID Component": 115452929,
-                    "enabled": true,
-                    "Translation": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Scale": [
-                        0,
-                        1.047198,
-                        1.581106
-                    ]
-                },
-                {
-                    "type": 3,
-                    "ID Component": 2072290561,
-                    "enabled": true,
-                    "Culling": false,
-                    "Debug Frustum": false,
-                    "Near plane": 1,
-                    "Far plane": 1000,
-                    "FOV": 60,
-                    "Aspect ratio": 0
                 }
             ]
         },
         {
             "Name": "Sky001_$AssimpFbx$_Translation",
-            "ID Game Object": 561563137,
-            "ID Parent": 620761345,
+            "ID Game Object": 1651124737,
+            "ID Parent": 2045752321,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1657671169,
+                    "ID Component": 308813569,
                     "enabled": true,
                     "Translation": [
                         18.153732,
@@ -97,13 +58,13 @@
         },
         {
             "Name": "Sky001_$AssimpFbx$_PreRotation",
-            "ID Game Object": 818384897,
-            "ID Parent": 561563137,
+            "ID Game Object": 1460861697,
+            "ID Parent": 1651124737,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1888085505,
+                    "ID Component": 1840678657,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -125,13 +86,13 @@
         },
         {
             "Name": "Sky001_$AssimpFbx$_PostRotation",
-            "ID Game Object": 787851009,
-            "ID Parent": 818384897,
+            "ID Game Object": 955267073,
+            "ID Parent": 1460861697,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 2110586113,
+                    "ID Component": 1238059521,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -153,13 +114,13 @@
         },
         {
             "Name": "Sky001",
-            "ID Game Object": 1699514625,
-            "ID Parent": 787851009,
+            "ID Game Object": 1401632769,
+            "ID Parent": 955267073,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 2006012161,
+                    "ID Component": 1418717441,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -181,13 +142,13 @@
         },
         {
             "Name": "Dummy001_$AssimpFbx$_PreRotation",
-            "ID Game Object": 1124921345,
-            "ID Parent": 620761345,
+            "ID Game Object": 1165283073,
+            "ID Parent": 2045752321,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1579812609,
+                    "ID Component": 551412737,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -209,13 +170,13 @@
         },
         {
             "Name": "Dummy001_$AssimpFbx$_Rotation",
-            "ID Game Object": 464050689,
-            "ID Parent": 1124921345,
+            "ID Game Object": 1502204161,
+            "ID Parent": 1165283073,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 943375105,
+                    "ID Component": 360439553,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -237,13 +198,13 @@
         },
         {
             "Name": "Dummy001",
-            "ID Game Object": 93780993,
-            "ID Parent": 464050689,
+            "ID Game Object": 828375041,
+            "ID Parent": 1502204161,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 791961089,
+                    "ID Component": 1639243777,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -265,13 +226,13 @@
         },
         {
             "Name": "City_building_004",
-            "ID Game Object": 482428929,
-            "ID Parent": 93780993,
+            "ID Game Object": 2072976385,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 557283841,
+                    "ID Component": 1053814785,
                     "enabled": true,
                     "Translation": [
                         -41.475891,
@@ -291,15 +252,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 80503297,
+                    "ID Component": 1014374657,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_004.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 1949686529,
-                    "ID Material": 32,
+                    "ID Component": 1784807681,
+                    "ID Material": 1,
                     "enabled": true,
                     "Directory": "Library\/Textures\/building03_c.tga.dds"
                 }
@@ -307,18 +268,18 @@
         },
         {
             "Name": "City_building_001",
-            "ID Game Object": 983165697,
-            "ID Parent": 93780993,
+            "ID Game Object": 255906305,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 95599873,
+                    "ID Component": 944537601,
                     "enabled": true,
                     "Translation": [
                         17.707165,
                         20.053276,
-                        0
+                        0.000000
                     ],
                     "Rotation": [
                         0,
@@ -333,15 +294,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 707980289,
+                    "ID Component": 1564058113,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_001.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 1258414337,
-                    "ID Material": 33,
+                    "ID Component": 989858817,
+                    "ID Material": 2,
                     "enabled": true,
                     "Directory": "Library\/Textures\/Building_V02_C.png.dds"
                 }
@@ -349,13 +310,13 @@
         },
         {
             "Name": "City_building_007",
-            "ID Game Object": 1175184129,
-            "ID Parent": 93780993,
+            "ID Game Object": 71128065,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 527518465,
+                    "ID Component": 2062219521,
                     "enabled": true,
                     "Translation": [
                         16.010492,
@@ -375,15 +336,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 114011905,
+                    "ID Component": 1633953793,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_007.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 535810305,
-                    "ID Material": 34,
+                    "ID Component": 1004204033,
+                    "ID Material": 3,
                     "enabled": true,
                     "Directory": "Library\/Textures\/building_016_c.tga.dds"
                 }
@@ -391,13 +352,13 @@
         },
         {
             "Name": "City_building_008",
-            "ID Game Object": 1869992193,
-            "ID Parent": 93780993,
+            "ID Game Object": 213667073,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1688296193,
+                    "ID Component": 108667905,
                     "enabled": true,
                     "Translation": [
                         40.979996,
@@ -417,15 +378,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 505026817,
+                    "ID Component": 2134986497,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_008.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 1873934849,
-                    "ID Material": 35,
+                    "ID Component": 1816647425,
+                    "ID Material": 4,
                     "enabled": true,
                     "Directory": "Library\/Textures\/building_025_c.tga.dds"
                 }
@@ -433,13 +394,13 @@
         },
         {
             "Name": "Line002",
-            "ID Game Object": 1297447681,
-            "ID Parent": 93780993,
+            "ID Game Object": 776371969,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 12051457,
+                    "ID Component": 1786132225,
                     "enabled": true,
                     "Translation": [
                         -2.159772,
@@ -459,7 +420,7 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 1516631297,
+                    "ID Component": 134225409,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/Line002.shl"
@@ -468,13 +429,13 @@
         },
         {
             "Name": "Plane001",
-            "ID Game Object": 1911642113,
-            "ID Parent": 93780993,
+            "ID Game Object": 1216086017,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 153861889,
+                    "ID Component": 593085185,
                     "enabled": true,
                     "Translation": [
                         -0.028603,
@@ -494,7 +455,7 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 376269313,
+                    "ID Component": 1515514369,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/Plane001.shl"
@@ -503,13 +464,13 @@
         },
         {
             "Name": "City_building_010",
-            "ID Game Object": 1252010497,
-            "ID Parent": 93780993,
+            "ID Game Object": 1461149697,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 2015886337,
+                    "ID Component": 416202753,
                     "enabled": true,
                     "Translation": [
                         25.154011,
@@ -531,13 +492,13 @@
         },
         {
             "Name": "City_building_010",
-            "ID Game Object": 1381623809,
-            "ID Parent": 1252010497,
+            "ID Game Object": 466713857,
+            "ID Parent": 1461149697,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 2091521537,
+                    "ID Component": 1665726209,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -557,15 +518,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 1557290753,
+                    "ID Component": 1116041985,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_010.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 134160129,
-                    "ID Material": 36,
+                    "ID Component": 1865806849,
+                    "ID Material": 5,
                     "enabled": true,
                     "Directory": "Library\/Textures\/building 01_c.tga.dds"
                 }
@@ -573,13 +534,13 @@
         },
         {
             "Name": "City_building_010",
-            "ID Game Object": 959928577,
-            "ID Parent": 1252010497,
+            "ID Game Object": 209361409,
+            "ID Parent": 1461149697,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1505136897,
+                    "ID Component": 990770433,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -599,15 +560,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 525677057,
+                    "ID Component": 1258726145,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_010.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 754009857,
-                    "ID Material": 37,
+                    "ID Component": 1412074241,
+                    "ID Material": 6,
                     "enabled": true,
                     "Directory": "Library\/Textures\/building 01_c.tga.dds"
                 }
@@ -615,13 +576,13 @@
         },
         {
             "Name": "City_building_011",
-            "ID Game Object": 1841126145,
-            "ID Parent": 93780993,
+            "ID Game Object": 379179521,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 2049444097,
+                    "ID Component": 1991505921,
                     "enabled": true,
                     "Translation": [
                         30.134541,
@@ -641,15 +602,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 1255433729,
+                    "ID Component": 500933377,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_011.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 1973479681,
-                    "ID Material": 38,
+                    "ID Component": 353504001,
+                    "ID Material": 7,
                     "enabled": true,
                     "Directory": "Library\/Textures\/building_016_c.tga.dds"
                 }
@@ -657,13 +618,13 @@
         },
         {
             "Name": "City_building_013",
-            "ID Game Object": 1773872641,
-            "ID Parent": 93780993,
+            "ID Game Object": 1141686785,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1299307777,
+                    "ID Component": 569558529,
                     "enabled": true,
                     "Translation": [
                         -42.288055,
@@ -683,15 +644,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 662339329,
+                    "ID Component": 2109725953,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_013.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 1971480065,
-                    "ID Material": 39,
+                    "ID Component": 1953047297,
+                    "ID Material": 8,
                     "enabled": true,
                     "Directory": "Library\/Textures\/building 06_ c.tga.dds"
                 }
@@ -699,13 +660,13 @@
         },
         {
             "Name": "City_building_014",
-            "ID Game Object": 484609,
-            "ID Parent": 93780993,
+            "ID Game Object": 892489729,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1527474177,
+                    "ID Component": 751871489,
                     "enabled": true,
                     "Translation": [
                         -19.439707,
@@ -725,15 +686,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 899085057,
+                    "ID Component": 1147470593,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_014.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 355625729,
-                    "ID Material": 40,
+                    "ID Component": 1658973953,
+                    "ID Material": 9,
                     "enabled": true,
                     "Directory": "Library\/Textures\/building03_c.tga.dds"
                 }
@@ -741,13 +702,13 @@
         },
         {
             "Name": "City_building_016",
-            "ID Game Object": 693140225,
-            "ID Parent": 93780993,
+            "ID Game Object": 1329791489,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1025262849,
+                    "ID Component": 1253408001,
                     "enabled": true,
                     "Translation": [
                         34.270424,
@@ -769,13 +730,13 @@
         },
         {
             "Name": "City_building_016",
-            "ID Game Object": 1775186689,
-            "ID Parent": 693140225,
+            "ID Game Object": 531650561,
+            "ID Parent": 1329791489,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 449739265,
+                    "ID Component": 29213185,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -795,15 +756,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 993523201,
+                    "ID Component": 199455745,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_016.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 1780427265,
-                    "ID Material": 41,
+                    "ID Component": 682711809,
+                    "ID Material": 10,
                     "enabled": true,
                     "Directory": "Library\/Textures\/building 01_c.tga.dds"
                 }
@@ -811,13 +772,13 @@
         },
         {
             "Name": "City_building_016",
-            "ID Game Object": 227762177,
-            "ID Parent": 693140225,
+            "ID Game Object": 823643393,
+            "ID Parent": 1329791489,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 20256513,
+                    "ID Component": 771802881,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -837,15 +798,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 1533944321,
+                    "ID Component": 1501995777,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_016.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 388686849,
-                    "ID Material": 42,
+                    "ID Component": 887985921,
+                    "ID Material": 11,
                     "enabled": true,
                     "Directory": "Library\/Textures\/building 01_c.tga.dds"
                 }
@@ -853,13 +814,13 @@
         },
         {
             "Name": "City_building_017",
-            "ID Game Object": 330342913,
-            "ID Parent": 93780993,
+            "ID Game Object": 722708993,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1406861313,
+                    "ID Component": 193135873,
                     "enabled": true,
                     "Translation": [
                         44.260082,
@@ -881,13 +842,13 @@
         },
         {
             "Name": "City_building_017",
-            "ID Game Object": 371592193,
-            "ID Parent": 330342913,
+            "ID Game Object": 934557185,
+            "ID Parent": 722708993,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 2039227905,
+                    "ID Component": 361974273,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -907,15 +868,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 804960513,
+                    "ID Component": 300845313,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_017.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 1436826113,
-                    "ID Material": 43,
+                    "ID Component": 748191745,
+                    "ID Material": 12,
                     "enabled": true,
                     "Directory": "Library\/Textures\/building 01_c.tga.dds"
                 }
@@ -923,13 +884,13 @@
         },
         {
             "Name": "City_building_017",
-            "ID Game Object": 1337280001,
-            "ID Parent": 330342913,
+            "ID Game Object": 497200129,
+            "ID Parent": 722708993,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 774455553,
+                    "ID Component": 295756033,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -949,15 +910,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 1505579521,
+                    "ID Component": 775040769,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_017.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 1282679553,
-                    "ID Material": 44,
+                    "ID Component": 1450333697,
+                    "ID Material": 13,
                     "enabled": true,
                     "Directory": "Library\/Textures\/building 01_c.tga.dds"
                 }
@@ -965,13 +926,13 @@
         },
         {
             "Name": "City_building_022",
-            "ID Game Object": 489056001,
-            "ID Parent": 93780993,
+            "ID Game Object": 1153524225,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 225204737,
+                    "ID Component": 75817985,
                     "enabled": true,
                     "Translation": [
                         -20.831324,
@@ -991,15 +952,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 207223297,
+                    "ID Component": 23680001,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_022.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 308045313,
-                    "ID Material": 45,
+                    "ID Component": 1515626497,
+                    "ID Material": 14,
                     "enabled": true,
                     "Directory": "Library\/Textures\/building05 _c.tga.dds"
                 }
@@ -1007,13 +968,13 @@
         },
         {
             "Name": "City_building_023",
-            "ID Game Object": 1651176449,
-            "ID Parent": 93780993,
+            "ID Game Object": 687147009,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1771526913,
+                    "ID Component": 385278977,
                     "enabled": true,
                     "Translation": [
                         42.130642,
@@ -1033,15 +994,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 1202053633,
+                    "ID Component": 1450204161,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_023.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 748423937,
-                    "ID Material": 46,
+                    "ID Component": 729767169,
+                    "ID Material": 15,
                     "enabled": true,
                     "Directory": "Library\/Textures\/building_016_c.tga.dds"
                 }
@@ -1049,13 +1010,13 @@
         },
         {
             "Name": "City_building_024",
-            "ID Game Object": 1643342593,
-            "ID Parent": 93780993,
+            "ID Game Object": 1964762369,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1829465601,
+                    "ID Component": 463244289,
                     "enabled": true,
                     "Translation": [
                         -20.572771,
@@ -1075,15 +1036,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 1981687297,
+                    "ID Component": 633695745,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_024.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 1966421761,
-                    "ID Material": 47,
+                    "ID Component": 643918849,
+                    "ID Material": 16,
                     "enabled": true,
                     "Directory": "Library\/Textures\/building_025_c.tga.dds"
                 }
@@ -1091,13 +1052,13 @@
         },
         {
             "Name": "City_building_026",
-            "ID Game Object": 31278081,
-            "ID Parent": 93780993,
+            "ID Game Object": 1553403137,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 74903553,
+                    "ID Component": 60867073,
                     "enabled": true,
                     "Translation": [
                         31.511889,
@@ -1117,15 +1078,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 778531841,
+                    "ID Component": 651627265,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_026.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 1828250625,
-                    "ID Material": 48,
+                    "ID Component": 1354368513,
+                    "ID Material": 17,
                     "enabled": true,
                     "Directory": "Library\/Textures\/building05 _c.tga.dds"
                 }
@@ -1133,13 +1094,13 @@
         },
         {
             "Name": "City_building_028",
-            "ID Game Object": 1148977409,
-            "ID Parent": 93780993,
+            "ID Game Object": 789619201,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1354603521,
+                    "ID Component": 652797953,
                     "enabled": true,
                     "Translation": [
                         13.387990,
@@ -1159,15 +1120,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 2109187585,
+                    "ID Component": 1264763137,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_028.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 971310081,
-                    "ID Material": 49,
+                    "ID Component": 809971713,
+                    "ID Material": 18,
                     "enabled": true,
                     "Directory": "Library\/Textures\/Building_V01_C.png.dds"
                 }
@@ -1175,13 +1136,13 @@
         },
         {
             "Name": "Object010",
-            "ID Game Object": 1482462465,
-            "ID Parent": 93780993,
+            "ID Game Object": 275341569,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 310571521,
+                    "ID Component": 1129082625,
                     "enabled": true,
                     "Translation": [
                         -2.503353,
@@ -1201,7 +1162,7 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 1451075329,
+                    "ID Component": 1387077377,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/Object010.shl"
@@ -1210,13 +1171,13 @@
         },
         {
             "Name": "City_building_030",
-            "ID Game Object": 1243249153,
-            "ID Parent": 93780993,
+            "ID Game Object": 1676736001,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1922907649,
+                    "ID Component": 975298817,
                     "enabled": true,
                     "Translation": [
                         -42.807240,
@@ -1236,15 +1197,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 625522433,
+                    "ID Component": 2144886273,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_030.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 691329025,
-                    "ID Material": 50,
+                    "ID Component": 1705309185,
+                    "ID Material": 19,
                     "enabled": true,
                     "Directory": "Library\/Textures\/Building_V01_C.png.dds"
                 }
@@ -1252,13 +1213,13 @@
         },
         {
             "Name": "City_building_031",
-            "ID Game Object": 1631888385,
-            "ID Parent": 93780993,
+            "ID Game Object": 1714749697,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1093179649,
+                    "ID Component": 1828228097,
                     "enabled": true,
                     "Translation": [
                         -34.679482,
@@ -1278,15 +1239,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 1454235137,
+                    "ID Component": 1717178369,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_031.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 50059265,
-                    "ID Material": 51,
+                    "ID Component": 1272017409,
+                    "ID Material": 20,
                     "enabled": true,
                     "Directory": "Library\/Textures\/Building_V01_C.png.dds"
                 }
@@ -1294,13 +1255,13 @@
         },
         {
             "Name": "City_building_032",
-            "ID Game Object": 1960954881,
-            "ID Parent": 93780993,
+            "ID Game Object": 1199941377,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1665917185,
+                    "ID Component": 1857255937,
                     "enabled": true,
                     "Translation": [
                         -29.478403,
@@ -1320,15 +1281,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 1537662721,
+                    "ID Component": 1893942017,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_032.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 1560046337,
-                    "ID Material": 52,
+                    "ID Component": 496262401,
+                    "ID Material": 21,
                     "enabled": true,
                     "Directory": "Library\/Textures\/building03_c.tga.dds"
                 }
@@ -1336,13 +1297,13 @@
         },
         {
             "Name": "City_building_033",
-            "ID Game Object": 861800193,
-            "ID Parent": 93780993,
+            "ID Game Object": 1572232449,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 848199169,
+                    "ID Component": 1006430209,
                     "enabled": true,
                     "Translation": [
                         -32.361496,
@@ -1362,15 +1323,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 977931009,
+                    "ID Component": 581424897,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_033.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 728688897,
-                    "ID Material": 53,
+                    "ID Component": 1467668993,
+                    "ID Material": 22,
                     "enabled": true,
                     "Directory": "Library\/Textures\/building 06_ c.tga.dds"
                 }
@@ -1378,13 +1339,13 @@
         },
         {
             "Name": "City_building_034",
-            "ID Game Object": 2048099841,
-            "ID Parent": 93780993,
+            "ID Game Object": 1163623169,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 2146868225,
+                    "ID Component": 949334273,
                     "enabled": true,
                     "Translation": [
                         16.049517,
@@ -1404,15 +1365,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 120852737,
+                    "ID Component": 511558657,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_034.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 48308993,
-                    "ID Material": 54,
+                    "ID Component": 1362235649,
+                    "ID Material": 23,
                     "enabled": true,
                     "Directory": "Library\/Textures\/building05 _c.tga.dds"
                 }
@@ -1420,13 +1381,13 @@
         },
         {
             "Name": "City_building_035",
-            "ID Game Object": 374238209,
-            "ID Parent": 93780993,
+            "ID Game Object": 890810113,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1582895361,
+                    "ID Component": 1921635329,
                     "enabled": true,
                     "Translation": [
                         13.387990,
@@ -1446,15 +1407,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 346298625,
+                    "ID Component": 106851329,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_035.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 2010232065,
-                    "ID Material": 55,
+                    "ID Component": 223883777,
+                    "ID Material": 24,
                     "enabled": true,
                     "Directory": "Library\/Textures\/Building_V01_C.png.dds"
                 }
@@ -1462,13 +1423,13 @@
         },
         {
             "Name": "City_building_036",
-            "ID Game Object": 721743873,
-            "ID Parent": 93780993,
+            "ID Game Object": 590052609,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1711012097,
+                    "ID Component": 850678529,
                     "enabled": true,
                     "Translation": [
                         -31.216331,
@@ -1488,15 +1449,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 1461989633,
+                    "ID Component": 1801097473,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_036.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 906872833,
-                    "ID Material": 56,
+                    "ID Component": 494339585,
+                    "ID Material": 25,
                     "enabled": true,
                     "Directory": "Library\/Textures\/building 06_ c.tga.dds"
                 }
@@ -1504,13 +1465,13 @@
         },
         {
             "Name": "City_building_037",
-            "ID Game Object": 1383404801,
-            "ID Parent": 93780993,
+            "ID Game Object": 844712705,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1534559745,
+                    "ID Component": 915954177,
                     "enabled": true,
                     "Translation": [
                         -20.317694,
@@ -1530,15 +1491,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 277859585,
+                    "ID Component": 123802113,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_037.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 329892609,
-                    "ID Material": 57,
+                    "ID Component": 1391046401,
+                    "ID Material": 26,
                     "enabled": true,
                     "Directory": "Library\/Textures\/building05 _c.tga.dds"
                 }
@@ -1546,13 +1507,13 @@
         },
         {
             "Name": "City_building_038",
-            "ID Game Object": 131460865,
-            "ID Parent": 93780993,
+            "ID Game Object": 984752641,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 2009410305,
+                    "ID Component": 1064340481,
                     "enabled": true,
                     "Translation": [
                         -41.649002,
@@ -1572,15 +1533,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 1486967041,
+                    "ID Component": 1537710849,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_038.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 391949825,
-                    "ID Material": 58,
+                    "ID Component": 614615041,
+                    "ID Material": 27,
                     "enabled": true,
                     "Directory": "Library\/Textures\/building05 _c.tga.dds"
                 }
@@ -1588,13 +1549,13 @@
         },
         {
             "Name": "City_building_039",
-            "ID Game Object": 2028326145,
-            "ID Parent": 93780993,
+            "ID Game Object": 1506140929,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 2016472833,
+                    "ID Component": 1711323649,
                     "enabled": true,
                     "Translation": [
                         -42.807240,
@@ -1614,15 +1575,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 1411663617,
+                    "ID Component": 1679316225,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_039.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 1847542529,
-                    "ID Material": 59,
+                    "ID Component": 232662785,
+                    "ID Material": 28,
                     "enabled": true,
                     "Directory": "Library\/Textures\/Building_V01_C.png.dds"
                 }
@@ -1630,13 +1591,13 @@
         },
         {
             "Name": "City_building_040",
-            "ID Game Object": 2082764033,
-            "ID Parent": 93780993,
+            "ID Game Object": 1902582529,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1740219905,
+                    "ID Component": 762484225,
                     "enabled": true,
                     "Translation": [
                         -34.679482,
@@ -1656,15 +1617,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 1276789505,
+                    "ID Component": 1266028033,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_040.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 573546241,
-                    "ID Material": 60,
+                    "ID Component": 827232513,
+                    "ID Material": 29,
                     "enabled": true,
                     "Directory": "Library\/Textures\/Building_V01_C.png.dds"
                 }
@@ -1672,18 +1633,18 @@
         },
         {
             "Name": "City_building_041",
-            "ID Game Object": 559013633,
-            "ID Parent": 93780993,
+            "ID Game Object": 1540570113,
+            "ID Parent": 828375041,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 245628673,
+                    "ID Component": 2114558721,
                     "enabled": true,
                     "Translation": [
                         30.695278,
                         21.612646,
-                        0
+                        0.000000
                     ],
                     "Rotation": [
                         0,
@@ -1698,15 +1659,15 @@
                 },
                 {
                     "type": 0,
-                    "ID Component": 510682113,
+                    "ID Component": 1252527617,
                     "enabled": true,
                     "Bounding box": false,
                     "Directory": "Library\/Mesh\/City_building_041.shl"
                 },
                 {
                     "type": 2,
-                    "ID Component": 467787521,
-                    "ID Material": 61,
+                    "ID Component": 1519778305,
+                    "ID Material": 30,
                     "enabled": true,
                     "Directory": "Library\/Textures\/Building_V02_C.png.dds"
                 }
@@ -1714,13 +1675,13 @@
         },
         {
             "Name": "Camera001_$AssimpFbx$_Translation",
-            "ID Game Object": 1261505537,
-            "ID Parent": 620761345,
+            "ID Game Object": 1983698689,
+            "ID Parent": 2045752321,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1643780097,
+                    "ID Component": 275281921,
                     "enabled": true,
                     "Translation": [
                         -78.312431,
@@ -1742,13 +1703,13 @@
         },
         {
             "Name": "Camera001_$AssimpFbx$_PreRotation",
-            "ID Game Object": 68670465,
-            "ID Parent": 1261505537,
+            "ID Game Object": 1262036993,
+            "ID Parent": 1983698689,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 620029185,
+                    "ID Component": 2143391745,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -1770,13 +1731,13 @@
         },
         {
             "Name": "Camera001_$AssimpFbx$_Rotation",
-            "ID Game Object": 485398017,
-            "ID Parent": 68670465,
+            "ID Game Object": 741370369,
+            "ID Parent": 1262036993,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1093646849,
+                    "ID Component": 181181697,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -1790,21 +1751,21 @@
                     ],
                     "Scale": [
                         1,
-                        1,
-                        1
+                        1.000000,
+                        1.000000
                     ]
                 }
             ]
         },
         {
             "Name": "Camera001",
-            "ID Game Object": 1769190145,
-            "ID Parent": 485398017,
+            "ID Game Object": 1884132609,
+            "ID Parent": 741370369,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1722616321,
+                    "ID Component": 453039873,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -1826,13 +1787,13 @@
         },
         {
             "Name": "Camera001.Target_$AssimpFbx$_Translation",
-            "ID Game Object": 1904773121,
-            "ID Parent": 620761345,
+            "ID Game Object": 1003567105,
+            "ID Parent": 2045752321,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 810357249,
+                    "ID Component": 966215169,
                     "enabled": true,
                     "Translation": [
                         -28.132622,
@@ -1854,13 +1815,13 @@
         },
         {
             "Name": "Camera001.Target_$AssimpFbx$_PreRotation",
-            "ID Game Object": 1345199105,
-            "ID Parent": 1904773121,
+            "ID Game Object": 1093326081,
+            "ID Parent": 1003567105,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 212458753,
+                    "ID Component": 903413505,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -1882,13 +1843,13 @@
         },
         {
             "Name": "Camera001.Target_$AssimpFbx$_Rotation",
-            "ID Game Object": 1872984577,
-            "ID Parent": 1345199105,
+            "ID Game Object": 1061021185,
+            "ID Parent": 1093326081,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1715566593,
+                    "ID Component": 229722625,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -1902,7 +1863,7 @@
                     ],
                     "Scale": [
                         1,
-                        1,
+                        1.000000,
                         1
                     ]
                 }
@@ -1910,13 +1871,13 @@
         },
         {
             "Name": "Camera001.Target",
-            "ID Game Object": 724159489,
-            "ID Parent": 1872984577,
+            "ID Game Object": 1212890113,
+            "ID Parent": 1061021185,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 240538369,
+                    "ID Component": 1420231681,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -1938,13 +1899,13 @@
         },
         {
             "Name": "Spot001_$AssimpFbx$_Translation",
-            "ID Game Object": 457676033,
-            "ID Parent": 620761345,
+            "ID Game Object": 1364202753,
+            "ID Parent": 2045752321,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1651147009,
+                    "ID Component": 407781633,
                     "enabled": true,
                     "Translation": [
                         -66.721268,
@@ -1966,13 +1927,13 @@
         },
         {
             "Name": "Spot001_$AssimpFbx$_PreRotation",
-            "ID Game Object": 1855652865,
-            "ID Parent": 457676033,
+            "ID Game Object": 436409601,
+            "ID Parent": 1364202753,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1955267841,
+                    "ID Component": 681573121,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -1994,13 +1955,13 @@
         },
         {
             "Name": "Spot001_$AssimpFbx$_Rotation",
-            "ID Game Object": 864173569,
-            "ID Parent": 1855652865,
+            "ID Game Object": 1015428353,
+            "ID Parent": 436409601,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 742066433,
+                    "ID Component": 2140315137,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -2022,13 +1983,13 @@
         },
         {
             "Name": "Spot001_$AssimpFbx$_PostRotation",
-            "ID Game Object": 1403618305,
-            "ID Parent": 864173569,
+            "ID Game Object": 1302190593,
+            "ID Parent": 1015428353,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 73687297,
+                    "ID Component": 1646994177,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -2050,13 +2011,13 @@
         },
         {
             "Name": "Spot001",
-            "ID Game Object": 1998899713,
-            "ID Parent": 1403618305,
+            "ID Game Object": 502081793,
+            "ID Parent": 1302190593,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 2018458625,
+                    "ID Component": 853542657,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -2078,13 +2039,13 @@
         },
         {
             "Name": "Spot001.Target_$AssimpFbx$_Translation",
-            "ID Game Object": 80627201,
-            "ID Parent": 620761345,
+            "ID Game Object": 1480079873,
+            "ID Parent": 2045752321,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1987395073,
+                    "ID Component": 1948599041,
                     "enabled": true,
                     "Translation": [
                         28.890945,
@@ -2106,13 +2067,13 @@
         },
         {
             "Name": "Spot001.Target_$AssimpFbx$_PreRotation",
-            "ID Game Object": 2068241665,
-            "ID Parent": 80627201,
+            "ID Game Object": 442977537,
+            "ID Parent": 1480079873,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 2129868033,
+                    "ID Component": 532575489,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -2134,13 +2095,13 @@
         },
         {
             "Name": "Spot001.Target_$AssimpFbx$_Rotation",
-            "ID Game Object": 1945167105,
-            "ID Parent": 2068241665,
+            "ID Game Object": 2137757953,
+            "ID Parent": 442977537,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 2029601793,
+                    "ID Component": 1499948545,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -2162,13 +2123,13 @@
         },
         {
             "Name": "Spot001.Target",
-            "ID Game Object": 645745409,
-            "ID Parent": 1945167105,
+            "ID Game Object": 99782913,
+            "ID Parent": 2137757953,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 2022491649,
+                    "ID Component": 2032356353,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -2190,13 +2151,13 @@
         },
         {
             "Name": "camera_test",
-            "ID Game Object": 1687505665,
-            "ID Parent": 620761345,
+            "ID Game Object": 1287542785,
+            "ID Parent": 2045752321,
             "Enabled": true,
             "Components": [
                 {
                     "type": 1,
-                    "ID Component": 1305454337,
+                    "ID Component": 1903622401,
                     "enabled": true,
                     "Translation": [
                         0,
@@ -2210,20 +2171,20 @@
                     ],
                     "Scale": [
                         0,
-                        1.047198,
-                        1.581106
+                        0,
+                        0
                     ]
                 },
                 {
                     "type": 3,
-                    "ID Component": 1236272641,
+                    "ID Component": 152348417,
                     "enabled": true,
                     "Culling": false,
                     "Debug Frustum": false,
                     "Near plane": 1,
                     "Far plane": 1000,
                     "FOV": 60,
-                    "Aspect ratio": 0
+                    "Aspect ratio": 1.750000
                 }
             ]
         }

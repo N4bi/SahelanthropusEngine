@@ -41,8 +41,6 @@ GameObject::~GameObject()
 		delete(*it2);
 		++it2;
 	}
-
-	bb = nullptr;
 }
 
 void GameObject::PreUpdate(float dt)
@@ -214,7 +212,6 @@ void GameObject::DeleteAllChildren()
 
 bool GameObject::DoRaycast(const Ray & raycast,RayCast& hit_point)
 {
-	bool ret = false;
 	ComponentMesh* mesh = (ComponentMesh*)GetComponent(Component::MESH);
 	ComponentTransform* cmp_trans = (ComponentTransform*)GetComponent(Component::TRANSFORM);
 	RayCast ray_hit;
@@ -245,34 +242,27 @@ bool GameObject::DoRaycast(const Ray & raycast,RayCast& hit_point)
 
 				if (raycast.Intersects(triangle, &dist, &hit))
 				{
-					ret = true;
-					if (ray_hit.distance < dist)
+					if (ray_hit.distance == 0)
+					{
+			
+					}
+					else if (ray_hit.distance > dist)
 					{
 						ray_hit.distance = dist;
-						ray_hit.normal = triangle.PlaneCCW().normal;
+						ray_hit.normal = triangle.PlaneCW().normal;
 						ray_hit.point = hit;
-
-						hit_point.distance = raycast.pos.Distance(hit_point.point);
-						hit_point.normal = cmp_trans->final_transformation.MulDir(ray_hit.normal);
-						hit_point.normal.Normalize();
-						hit_point.point = cmp_trans->final_transformation.MulPos(ray_hit.point);
 					}
-					else
-					{
-						ray_hit.distance = dist;
-						ray_hit.normal = triangle.PlaneCCW().normal;
-						ray_hit.point = hit;
-
-						hit_point.distance = raycast.pos.Distance(hit_point.point);
-						hit_point.normal = cmp_trans->final_transformation.MulDir(ray_hit.normal);
-						hit_point.normal.Normalize();
-						hit_point.point = cmp_trans->final_transformation.MulPos(ray_hit.point);
-					}
+				
 				}
+
+				hit_point.distance = raycast.pos.Distance(ray_hit.point);
+				hit_point.normal = cmp_trans->final_transformation.MulDir(ray_hit.normal);
+				hit_point.normal.Normalize();
+				hit_point.point = cmp_trans->final_transformation.MulPos(ray_hit.point);
 			}
 		}
 	}
-	return ret;
+	return true;
 }
 
  const std::vector<GameObject*>* GameObject::GetChilds() const

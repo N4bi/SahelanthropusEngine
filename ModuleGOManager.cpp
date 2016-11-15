@@ -216,7 +216,7 @@ GameObject * ModuleGOManager::DoRaycast(Ray & raycast)
 	list<GameObject*>::iterator it = objects_hit.begin();
 	RayCast hit_point;
 
-	for (list<GameObject*>::iterator it = objects_hit.begin(); it != objects_hit.end(); it++)
+	for (list<GameObject*>::iterator it = objects_hit.begin(); it != objects_hit.end(); ++it)
 	{
 		if ((*it)->DoRaycast(raycast, hit_point))
 		{
@@ -229,23 +229,24 @@ GameObject * ModuleGOManager::DoRaycast(Ray & raycast)
 }
 
 void ModuleGOManager::CollectHits(GameObject * go, Ray & raycast, list<GameObject*>& hits)
-{	
+{
 	ComponentMesh* cmp_mesh = (ComponentMesh*) go->GetComponent(Component::MESH);
 
-	if (go->bb != nullptr)
+	if (cmp_mesh != nullptr)
 	{
-		if (raycast.Intersects(*go->bb))
+		if (raycast.Intersects(cmp_mesh->world_bb))
 		{
 			hits.push_back(go);
 		}
+	}
+		
 
 		vector<GameObject*>::iterator it = go->childs.begin();
 		while (it != go->childs.end())
 		{
 			CollectHits((*it), raycast, hits);
 			++it;
-		}
-	}
+		}	
 }
 
 
