@@ -53,6 +53,7 @@ public:
 
 	bool enabled = true;
 	uint id = NULL;
+	AABB* bb = nullptr;
 
 };
 

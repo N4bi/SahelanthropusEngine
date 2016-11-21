@@ -4,6 +4,7 @@
 #include "Component.h"
 #include "RayCast.h"
 #include "Imgui\imgui.h"
+#include <algorithm>
 
 
 using namespace std;
@@ -209,14 +210,17 @@ void ModuleGOManager::EditorWindow()
 GameObject * ModuleGOManager::DoRaycast(Ray & raycast)
 {
 	GameObject* ret = nullptr;
-	list<GameObject*> objects_hit;
+	vector<GameObject*> objects_hit;
 
 	CollectHits(root, raycast, objects_hit);
 
-	list<GameObject*>::iterator it = objects_hit.begin();
+	std::sort(objects_hit.begin(), objects_hit.end());
+
+	vector<GameObject*>::iterator it = objects_hit.begin();
 	RayCast hit_point;
 
-	for (list<GameObject*>::iterator it = objects_hit.begin(); it != objects_hit.end(); ++it)
+
+	for (vector<GameObject*>::iterator it = objects_hit.begin(); it != objects_hit.end(); ++it)
 	{
 		if ((*it)->DoRaycast(raycast, hit_point))
 		{
@@ -228,7 +232,27 @@ GameObject * ModuleGOManager::DoRaycast(Ray & raycast)
 	return ret;
 }
 
-void ModuleGOManager::CollectHits(GameObject * go, Ray & raycast, list<GameObject*>& hits)
+int ModuleGOManager::CheckDistance(const GameObject * bb1, const GameObject * bb2)
+{
+	float3 frustum_pos = App->editor->main_camera_component->frustum.pos;
+	float bb1_distance = (frustum_pos - bb1->bb->CenterPoint()).Length();
+	float bb2_distance = (frustum_pos - bb2->bb->CenterPoint()).Length();
+
+	if (bb1_distance < bb2_distance)
+	{
+		return -1;
+	}
+	if (bb1_distance = bb2_distance)
+	{
+		return  0;
+	}
+	if (bb1_distance > bb2_distance)
+	{
+		return 1;
+	}
+}
+
+void ModuleGOManager::CollectHits(GameObject * go, Ray & raycast, vector<GameObject*>& hits)
 {
 	ComponentMesh* cmp_mesh = (ComponentMesh*) go->GetComponent(Component::MESH);
 

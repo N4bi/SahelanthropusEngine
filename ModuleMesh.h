@@ -23,7 +23,7 @@ struct Mesh
 	//--Vertices
 	uint id_vertices = 0;
 	uint num_vertices = 0;
-	float3* vertices = nullptr;
+	float* vertices = nullptr;
 
 	//-- Indices
 	uint id_indices = 0;
@@ -34,13 +34,13 @@ struct Mesh
 	//-- UVs
 	uint id_uv = 0;
 	uint num_uv = 0;
-	float2* uvs = nullptr;
+	float* uvs = nullptr;
 
 
 	//-- Normals
 	uint id_normal = 0;
 	uint num_normal = 0;
-	float3* normals = nullptr;
+	float* normals = nullptr;
 
 	std::string directory;
 

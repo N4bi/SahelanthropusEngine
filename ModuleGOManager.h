@@ -29,7 +29,8 @@ public:
 	void ShowGameObjectsOnEditor(const std::vector<GameObject*>* childs);
 	void EditorWindow();
 	GameObject* DoRaycast(Ray& raycast);
-	void CollectHits(GameObject* go, Ray& raycast, list<GameObject*>& hits);
+	int CheckDistance(const GameObject* bb1, const GameObject* bb2);
+	void CollectHits(GameObject* go, Ray& raycast, vector<GameObject*>& hits);
 	void SaveGameObjectsOnScene() const;
 	GameObject* LoadGameObjectsOnScene(Json& game_objects);
 	GameObject* SearchGameObjectsByID(GameObject* first_go, int id) const;

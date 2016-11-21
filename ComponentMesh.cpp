@@ -113,7 +113,7 @@ bool ComponentMesh::SetMesh(Mesh* _mesh)
 	if (_mesh)
 	{
 		mesh = _mesh;
-		local_bb.Enclose(_mesh->vertices, _mesh->num_vertices);
+		local_bb.Enclose((float3*)_mesh->vertices, _mesh->num_vertices);
 		CalculateFinalBB();
 		ret = true;
 	}
@@ -132,6 +132,7 @@ void ComponentMesh::CalculateFinalBB()
 
 	OBB obb = local_bb.Transform(transformation->GetWorldTransformationMatrix());
 	world_bb = obb.MinimalEnclosingAABB();
+	go->bb = &world_bb;
 
 }
 

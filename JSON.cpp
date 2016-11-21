@@ -89,6 +89,20 @@ bool Json::AddArrayData(const Json & data)
 	return false;
 }
 
+bool Json::AddMatrix(const char * name, const float4x4 & matrix)
+{
+	JSON_Value* tmp_value = json_value_init_array();
+	JSON_Array* tmp_array = json_value_get_array(tmp_value);
+	const float* tmp_matrix = *matrix.v;
+
+	for (unsigned int i = 0; i < 16; i++)
+	{
+		json_array_append_number(tmp_array, tmp_matrix[i]);
+	}
+
+	return json_object_set_value(this->json_object,name,tmp_value);
+}
+
 Json Json::GetJSON_object(const char * field) const
 {
 	return (Json)json_object_get_object(this->json_object, field);
@@ -124,6 +138,18 @@ float3 Json::GetFloat3(const char * field) const
 		ret = float3((float)json_array_get_number(tmp_array, 0), (float)json_array_get_number(tmp_array, 1), (float)json_array_get_number(tmp_array, 2));
 	}
 
+	return ret;
+}
+
+float4x4 Json::GetMatrix(const char * field) const
+{
+	float4x4 ret = float4x4::identity;
+	JSON_Array* tmp_array = json_object_get_array(this->json_object, field);
+	if (tmp_array != nullptr)
+	{
+		float4x4 matrix((float)json_array_get_number(tmp_array, 0), (float)json_array_get_number(tmp_array, 1), (float)json_array_get_number(tmp_array, 2), (float)json_array_get_number(tmp_array, 3), (float)json_array_get_number(tmp_array, 4), (float)json_array_get_number(tmp_array, 5), (float)json_array_get_number(tmp_array, 6), (float)json_array_get_number(tmp_array, 7), (float)json_array_get_number(tmp_array, 8), (float)json_array_get_number(tmp_array, 9), (float)json_array_get_number(tmp_array, 10), (float)json_array_get_number(tmp_array, 11), (float)json_array_get_number(tmp_array, 12), (float)json_array_get_number(tmp_array, 13), (float)json_array_get_number(tmp_array, 14), (float)json_array_get_number(tmp_array, 15));	
+		return matrix;
+	}
 	return ret;
 }
 

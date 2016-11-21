@@ -6,6 +6,7 @@
 ComponentTransform::ComponentTransform(Types _type) : Component(_type)
 {
 	_type = TRANSFORM;
+	SetTransformation();
 	WorldTransformation();
 }
 
@@ -16,13 +17,8 @@ ComponentTransform::~ComponentTransform()
 
 void ComponentTransform::Update(float dt)
 {
-	if (transform_updated)
-	{
-		SetTransformation();
-		WorldTransformation();
-		transform_updated = false;
-	}
-	
+	SetTransformation();
+	WorldTransformation();
 }
 
 void ComponentTransform::ShowOnEditor()
@@ -61,9 +57,9 @@ void ComponentTransform::ShowOnEditor()
 		ImGui::SameLine();
 
 		float3 scal = scale;
-		if (ImGui::DragFloat3("##S", scale.ptr(), 0.2f))
+		if (ImGui::DragFloat3("##S", scal.ptr(), 0.2f))
 		{
-			SetScale(scale);
+			SetScale(scal);
 		}
 	}
 }
@@ -78,6 +74,8 @@ void ComponentTransform::ToSave(Json & file_data) const
 	data.AddFloatArray("Translation", translation.ptr());
 	data.AddFloatArray("Rotation", rotation_deg.ptr());
 	data.AddFloatArray("Scale", scale.ptr());
+	data.AddMatrix("transf_matrix", transformation);
+
 
 	file_data.AddArrayData(data);
 
@@ -88,10 +86,13 @@ void ComponentTransform::ToLoad(Json & file_data)
 {
 	id = file_data.GetInt("ID Component");
 	enabled = file_data.GetBool("enabled");
+	transformation = file_data.GetMatrix("transf_matrix");
 
-	translation = file_data.GetFloat3("Translation");
-	rotation_deg = file_data.GetFloat3("Rotation");
-	scale = file_data.GetFloat3("Scale");
+	translation = transformation.TranslatePart();
+	rotation_deg = transformation.ToEulerXYZ();
+	rotation = Quat::FromEulerXYZ(rotation_deg.x, rotation_deg.y, rotation_deg.z);
+	rotation_deg = RadToDeg(rotation_deg);
+	scale = transformation.GetScale();
 
 	transform_updated = true;
 }
@@ -99,7 +100,8 @@ void ComponentTransform::ToLoad(Json & file_data)
 void ComponentTransform::SetTranslation(float3 pos)
 {
 	translation = pos;
-	transform_updated = true;
+	SetTransformation();
+
 }
 
 float3 ComponentTransform::GetTranslation() const
@@ -116,7 +118,8 @@ void ComponentTransform::SetScale(float3 _scale)
 {
 	scale = _scale;
 
-	transform_updated = true;
+	SetTransformation();
+
 
 }
 float3 ComponentTransform::GetScale() const
@@ -136,14 +139,18 @@ void ComponentTransform::SetRotation(float3 rot)
 
 	rotation = Quat::FromEulerXYZ(rotation_rad.x, rotation_rad.y, rotation_rad.z);
 
-	transform_updated = true;
+	SetTransformation();
+
 }
 
 void ComponentTransform::SetRotation(Quat rot)
 {
 	rotation = rot;
 
-	transform_updated = true;
+	rotation_deg = RadToDeg(rotation.ToEulerXYZ());
+
+	SetTransformation();
+
 }
 
 float3 ComponentTransform::GetRotation() const

@@ -235,10 +235,11 @@ math::Ray ComponentCamera::DoRay(float2 cam_position)
 {
 	float2 pos = cam_position;
 
-	pos.x = -(1.0f-((float)pos.x * 2.0f) / SCREEN_WIDTH);
-	pos.y = 1.0f - ((float)pos.y * 2.0f) / SCREEN_HEIGHT;
+	pos.x = (pos.x * 2.0f / SCREEN_WIDTH) - 1.0f;
+	pos.y = 1.0f - pos.y * 2.0f / SCREEN_HEIGHT;
 
-	Ray raycast = frustum.UnProject(pos.x, pos.y);
+	//we do the raycast from the near plane of the frustum 
+	Ray raycast = frustum.UnProjectFromNearPlane(pos.x, pos.y);
 
 	return raycast;
 }

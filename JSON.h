@@ -28,6 +28,7 @@ public:
 	bool AddBool(const char* name, bool value);
 	bool AddArray(const char* name);
 	bool AddArrayData(const Json& data);
+	bool AddMatrix(const char* name, const float4x4& matrix);
 
 
 	Json GetJSON_object(const char* field) const;
@@ -36,6 +37,7 @@ public:
 	bool GetBool(const char* field) const;
 	float GetFloat(const char* field) const;
 	float3 GetFloat3(const char* field) const;
+	float4x4 GetMatrix(const char*field) const;
 
 	Json GetArray(const char* filed, int id)const;
 	size_t GetArraySize(const char* field)const;

@@ -41,6 +41,8 @@ GameObject::~GameObject()
 		delete(*it2);
 		++it2;
 	}
+
+	bb = nullptr;
 }
 
 void GameObject::PreUpdate(float dt)
@@ -212,6 +214,7 @@ void GameObject::DeleteAllChildren()
 
 bool GameObject::DoRaycast(const Ray & raycast,RayCast& hit_point)
 {
+	bool intersect = false;
 	ComponentMesh* mesh = (ComponentMesh*)GetComponent(Component::MESH);
 	ComponentTransform* cmp_trans = (ComponentTransform*)GetComponent(Component::TRANSFORM);
 	RayCast ray_hit;
@@ -222,47 +225,64 @@ bool GameObject::DoRaycast(const Ray & raycast,RayCast& hit_point)
 		if (m != nullptr)
 		{
 			Ray ray = raycast;
+			ray.Transform(cmp_trans->final_transformation);
+
 			float dist;
 			float3 hit;
 			Triangle triangle;
-			ray.Transform(cmp_trans->final_transformation);
-
+			int v1;
+			int v2;
+			int v3;
+			float3 v_1;
+			float3 v_2;
+			float3 v_3;
+			
 			uint indices = m->num_indices / 3;
 			for (int i = 0; i < indices; i++)
 			{
-				int v1 = m->indices[i * 3];
-				int v2 = m->indices[i * 3 + 1];
-				int v3 = m->indices[i * 3 + 2];
+				 v1 = m->indices[i * 3];
+				 v2 = m->indices[i * 3 + 1];
+				 v3 = m->indices[i * 3 + 2];
 
-				float3* v_1 = &m->vertices[v1];
-				float3* v_2 = &m->vertices[v2];
-				float3* v_3 = &m->vertices[v3];
+				 v_1 = float3(&m->vertices[v1]);
+				 v_2 = float3(&m->vertices[v2]);
+				 v_3 = float3(&m->vertices[v3]);
 
-				triangle = Triangle(*v_1,*v_2,*v_3);
+				triangle = Triangle(v_1,v_2,v_3);
 
 				if (raycast.Intersects(triangle, &dist, &hit))
-				{
+				{	
+					intersect = true;
+
 					if (ray_hit.distance == 0)
 					{
-			
+						
+						ray_hit.distance = dist;
+						ray_hit.point = hit;
+						ray_hit.normal = triangle.PlaneCCW().normal;
+						
 					}
 					else if (ray_hit.distance > dist)
 					{
 						ray_hit.distance = dist;
-						ray_hit.normal = triangle.PlaneCW().normal;
 						ray_hit.point = hit;
-					}
-				
+						ray_hit.normal = triangle.PlaneCCW().normal;
+						
+					}	
 				}
 
-				hit_point.distance = raycast.pos.Distance(ray_hit.point);
-				hit_point.normal = cmp_trans->final_transformation.MulDir(ray_hit.normal);
-				hit_point.normal.Normalize();
-				hit_point.point = cmp_trans->final_transformation.MulPos(ray_hit.point);
+				//if (intersect)
+				//{
+					hit_point.point = cmp_trans->final_transformation.MulPos(ray_hit.point);
+					hit_point.distance = raycast.pos.Distance(ray_hit.point);
+					hit_point.normal = cmp_trans->final_transformation.MulDir(ray_hit.normal);
+					hit_point.normal.Normalize();
+					
+				//}
 			}
 		}
 	}
-	return true;
+	return intersect;
 }
 
  const std::vector<GameObject*>* GameObject::GetChilds() const

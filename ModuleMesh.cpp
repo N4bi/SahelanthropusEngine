@@ -225,15 +225,15 @@ bool ModuleMesh::ImportMesh(const aiMesh * mesh, string & output_file)
 
 	//Copy vertices
 	m.num_vertices = mesh->mNumVertices;
-	m.vertices = new float3[m.num_vertices];
-	memcpy(m.vertices, mesh->mVertices, sizeof(float3) * m.num_vertices);
+	m.vertices = new float[m.num_vertices*3];
+	memcpy(m.vertices, mesh->mVertices, sizeof(float) * m.num_vertices*3);
 
 	//Copy Normals
 	if (mesh->HasNormals())
 	{
 		m.num_normal = mesh->mNumVertices;
-		m.normals = new float3[m.num_normal];
-		memcpy(m.normals, mesh->mNormals, sizeof(float3) * m.num_normal);
+		m.normals = new float[m.num_normal*3];
+		memcpy(m.normals, mesh->mNormals, sizeof(float) * m.num_normal*3);
 	}
 
 
@@ -260,11 +260,11 @@ bool ModuleMesh::ImportMesh(const aiMesh * mesh, string & output_file)
 	if (mesh->HasTextureCoords(uv_id))
 	{
 		m.num_uv = mesh->mNumVertices;
-		m.uvs = new float2[m.num_uv];
+		m.uvs = new float[m.num_uv*2];
 		for (uint k = 0; k < m.num_uv; k++)
 		{
-			memcpy(&m.uvs[k], &mesh->mTextureCoords[uv_id][k].x, sizeof(float2));
-			memcpy(&m.uvs[k + 1], &mesh->mTextureCoords[uv_id][k].y, sizeof(float2));
+			memcpy(&m.uvs[k*2], &mesh->mTextureCoords[uv_id][k].x, sizeof(float));
+			memcpy(&m.uvs[(k*2) + 1], &mesh->mTextureCoords[uv_id][k].y, sizeof(float));
 		
 		}
 	}
@@ -368,8 +368,8 @@ Mesh* ModuleMesh::LoadMesh(const char* path)
 		cursor += bytes;
 
 		//Vertices
-		bytes = sizeof(float3) * m->num_vertices;
-		m->vertices = new float3[m->num_vertices];
+		bytes = sizeof(float) * m->num_vertices*3;
+		m->vertices = new float[m->num_vertices*3];
 		memcpy(m->vertices, cursor, bytes);
 
 		cursor += bytes;
@@ -377,8 +377,8 @@ Mesh* ModuleMesh::LoadMesh(const char* path)
 		//Normals
 		if (header[2] != 0)
 		{
-			bytes = sizeof(float3) * m->num_normal;
-			m->normals = new float3[m->num_normal];
+			bytes = sizeof(float) * m->num_normal*3;
+			m->normals = new float[m->num_normal*3];
 			memcpy(m->normals, cursor, bytes);
 		
 			cursor += bytes;
@@ -386,19 +386,19 @@ Mesh* ModuleMesh::LoadMesh(const char* path)
 	
 
 		//UVs
-		bytes = sizeof(float2) * m->num_uv;
-		m->uvs = new float2[m->num_uv];
+		bytes = sizeof(float) * m->num_uv*2;
+		m->uvs = new float[m->num_uv*2];
 		memcpy(m->uvs, cursor, bytes);
 
 		//Generate buffers 
 
 		glGenBuffers(1, (GLuint*)&(m->id_vertices));
 		glBindBuffer(GL_ARRAY_BUFFER, m->id_vertices);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float3) * m->num_vertices, m->vertices, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * m->num_vertices * 3, m->vertices, GL_STATIC_DRAW);
 
 		glGenBuffers(1, (GLuint*)&(m->id_normal));
 		glBindBuffer(GL_ARRAY_BUFFER, m->id_normal);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float3)* m->num_normal, m->normals, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float)* m->num_normal * 3, m->normals, GL_STATIC_DRAW);
 
 		glGenBuffers(1, (GLuint*)&(m->id_indices));
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m->id_indices);
@@ -406,7 +406,7 @@ Mesh* ModuleMesh::LoadMesh(const char* path)
 
 		glGenBuffers(1, (GLuint*)&(m->id_uv));
 		glBindBuffer(GL_ARRAY_BUFFER, m->id_uv);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float2) * m->num_uv, m->uvs, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * m->num_uv * 2, m->uvs, GL_STATIC_DRAW);
 
 	}
 
