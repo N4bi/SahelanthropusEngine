@@ -8,6 +8,7 @@
 #include "ConsoleWindow.h"
 #include "AssetsWindow.h"
 #include "InfoWindows.h"
+#include "TimeManager.h"
 #include "MathGeoLib\include\Algorithm\Random\LCG.h"
 
 
@@ -75,6 +76,7 @@ update_status ModuleEditor::Update(float dt)
 
 	Render();
 	
+	TimerManagerMenu();
 
 
 	return ret;
@@ -311,6 +313,36 @@ void ModuleEditor::WindowsMenu()
 	{
 		ShowAssetsWindow();
 	}
+}
+
+void ModuleEditor::TimerManagerMenu()
+{
+	//ImGui::SetNextWindowPosCenter();
+	//bool open = true;
+	//ImGui::Begin("##TimerManager", &open, ImVec2(0, 0), -1.0f, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings);
+
+	if (ImGui::Button("Play"))
+	{
+		App->GameState(PLAY);
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("Pause"))
+	{
+		App->GameState(PAUSE);
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("Stop"))
+	{
+		App->GameState(STOP);
+	}
+	ImGui::SameLine();
+	int	time_running = App->time_manager->TimeStart();
+	ImGui::Text("Time: %i", time_running);
+
+
+
+
+
 }
 
 void ModuleEditor::ShowFPSwindow()

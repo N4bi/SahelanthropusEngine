@@ -16,7 +16,16 @@
 #include "ModuleFileSystem.h"
 #include "ModuleTextures.h"
 #include "ModuleGOManager.h"
+#include "TimeManager.h"
 #include "MathGeoLib\include\MathGeoLib.h"
+
+enum STATES
+{
+	PLAY,
+	PAUSE,
+	STOP,
+	UNKNOWN
+};
 
 class Application
 {
@@ -34,6 +43,8 @@ public:
 	ModuleTextures* tex;
 	ModuleGOManager* go_manager;
 
+	TimeManager* time_manager;
+
 private:
 
 	Timer	ms_timer;
@@ -45,6 +56,7 @@ private:
 	int		fps_counter = 0;
 	int		last_second_frame_count = 0;
 	std::string log;
+	STATES states = UNKNOWN;
 
 
 
@@ -61,6 +73,8 @@ public:
 	void SetMaxFPS(int max_fps);
 	int GetLastFPS();
 	void Log(const char* text);
+	bool GameState(STATES state);
+
 
 	bool console_on;
 	LCG* random_id = nullptr;

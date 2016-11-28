@@ -39,6 +39,10 @@ Application::Application()
 	
 	//Random for ids
 	random_id = new LCG();
+
+
+	//Timer
+	time_manager = new TimeManager();
 }
 
 Application::~Application()
@@ -55,6 +59,10 @@ Application::~Application()
 
 	delete random_id;
 	random_id = nullptr;
+
+
+	delete time_manager;
+	time_manager = nullptr;
 }
 
 bool Application::Init()
@@ -106,6 +114,8 @@ void Application::PrepareUpdate()
 
 	dt = (float)ms_timer.Read() / 1000.0f;
 	ms_timer.Start();
+
+	time_manager->Update();
 }
 
 // ---------------------------------------------
@@ -205,4 +215,37 @@ void Application::SetMaxFPS(int max_fps)
 {
 	fps = max_fps;
 	capped_ms = 1000 / fps;
+}
+
+bool Application::GameState(STATES state)
+{
+	bool ret = false;
+	switch (state)
+	{
+	case PLAY:
+		time_manager->Play();
+		states = PLAY;
+		ret = true;
+		break;
+
+	case PAUSE:
+		time_manager->Pause();
+		states = PAUSE;
+		ret = true;
+		break;
+
+	case STOP:
+		time_manager->Stop();
+		states = STOP;
+		ret = true;
+		break;
+
+	case UNKNOWN:
+		ret = false;
+		break;
+	default:
+		break;
+	}
+
+	return ret;
 }

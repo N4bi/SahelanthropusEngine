@@ -41,6 +41,7 @@ private:
 	void AboutMenu();
 	void InfoMenu();
 	void WindowsMenu();
+	void TimerManagerMenu();
 	void ShowFPSwindow();
 	void ShowHardwareWindow();
 	void ShowConsoleWindow();
