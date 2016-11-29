@@ -25,18 +25,19 @@ public:
 
 private:
 	//Engine
-	uint32_t engine_started_at = 0;
-	uint32_t frequency = 0;
+	UINT64 engine_started_at = 0;
+	UINT64 frequency = 0;
 
 	//In Game
-	uint32_t game_started_at = 0;
-	uint32_t game_paused_at = 0;
+	UINT64 game_started_at = 0;
+	UINT64 game_paused_at = 0;
+	
 	bool pause = false;
 	float time_pause = 0.0f;
 
 	//Frames
 
-	uint32_t frame_started_at = 0;
+	UINT64 frame_started_at = 0;
 	uint n_frames = 0;
 	float dt = 0.0f;
 	float engine_dt = 0.0f;

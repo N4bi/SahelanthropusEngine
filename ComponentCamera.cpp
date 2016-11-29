@@ -231,7 +231,7 @@ float * ComponentCamera::GetProjectionMatrix()
 	return (float*) m.v;
 }
 
-math::Ray ComponentCamera::DoRay(float2 cam_position)
+math::LineSegment ComponentCamera::DoRay(float2 cam_position)
 {
 	float2 pos = cam_position;
 
@@ -239,7 +239,7 @@ math::Ray ComponentCamera::DoRay(float2 cam_position)
 	pos.y = 1.0f - pos.y * 2.0f / SCREEN_HEIGHT;
 
 	//we do the raycast from the near plane of the frustum 
-	Ray raycast = frustum.UnProjectFromNearPlane(pos.x, pos.y);
+	LineSegment raycast = frustum.UnProjectLineSegment(pos.x, pos.y);
 
 	return raycast;
 }

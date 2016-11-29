@@ -27,7 +27,7 @@ public:
 	void DeleteComponent(Component* comp);
 	void DeleteChilds(GameObject* child);
 	void DeleteAllChildren();
-	bool DoRaycast(const Ray& raycast,RayCast& hit_point);
+	bool DoRaycast(const LineSegment& raycast,RayCast& hit_point);
 
 	const std::vector<GameObject*>* GetChilds() const;
 	const std::vector<Component*>* GetComponents() const;

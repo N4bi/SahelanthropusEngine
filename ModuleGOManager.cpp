@@ -63,7 +63,7 @@ update_status ModuleGOManager::Update(float dt)
 
 	if (App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_DOWN)
 	{
-		Ray raycast = App->editor->main_camera_component->DoRay(float2(App->input->GetMouseX(), App->input->GetMouseY()));
+		LineSegment raycast = App->editor->main_camera_component->DoRay(float2(App->input->GetMouseX(), App->input->GetMouseY()));
 		game_object_on_editor = DoRaycast(raycast);
 	}
 
@@ -207,7 +207,27 @@ void ModuleGOManager::EditorWindow()
 	ImGui::End();
 }
 
-GameObject * ModuleGOManager::DoRaycast(Ray & raycast)
+int ModuleGOManager::CheckDistance(const GameObject * bb1, const GameObject * bb2)
+{
+	float3 frustum_pos = App->editor->main_camera_component->frustum.pos;
+	float bb1_distance = (frustum_pos - bb1->bb->CenterPoint()).Length();
+	float bb2_distance = (frustum_pos - bb2->bb->CenterPoint()).Length();
+
+	if (bb1_distance < bb2_distance)
+	{
+		return -1;
+	}
+	if (bb1_distance = bb2_distance)
+	{
+		return  0;
+	}
+	if (bb1_distance > bb2_distance)
+	{
+		return 1;
+	}
+}
+
+GameObject * ModuleGOManager::DoRaycast(LineSegment & raycast)
 {
 	GameObject* ret = nullptr;
 	vector<GameObject*> objects_hit;
@@ -232,27 +252,9 @@ GameObject * ModuleGOManager::DoRaycast(Ray & raycast)
 	return ret;
 }
 
-int ModuleGOManager::CheckDistance(const GameObject * bb1, const GameObject * bb2)
-{
-	float3 frustum_pos = App->editor->main_camera_component->frustum.pos;
-	float bb1_distance = (frustum_pos - bb1->bb->CenterPoint()).Length();
-	float bb2_distance = (frustum_pos - bb2->bb->CenterPoint()).Length();
 
-	if (bb1_distance < bb2_distance)
-	{
-		return -1;
-	}
-	if (bb1_distance = bb2_distance)
-	{
-		return  0;
-	}
-	if (bb1_distance > bb2_distance)
-	{
-		return 1;
-	}
-}
 
-void ModuleGOManager::CollectHits(GameObject * go, Ray & raycast, vector<GameObject*>& hits)
+void ModuleGOManager::CollectHits(GameObject * go, LineSegment & raycast, vector<GameObject*>& hits)
 {
 	ComponentMesh* cmp_mesh = (ComponentMesh*) go->GetComponent(Component::MESH);
 

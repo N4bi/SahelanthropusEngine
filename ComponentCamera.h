@@ -36,7 +36,7 @@ public:
 	float* GetViewMatrix();
 	float* GetProjectionMatrix();
 
-	Ray DoRay(float2 cam_position);
+	LineSegment DoRay(float2 cam_position);
 
 public:
 	Frustum frustum;
