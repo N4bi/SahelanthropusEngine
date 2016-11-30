@@ -56,7 +56,7 @@ uint ModuleTextures::LoadTexture(const char* path)
 	return ilutGLBindTexImage();
 }
 
-bool ModuleTextures::ImportTexture(const char * file, const char * path, std::string& output_file)
+bool ModuleTextures::ImportTexture(const char * file, const char * path, std::string& output_file, const char* scene_folder)
 {
 	bool ret = false;
 
@@ -70,17 +70,20 @@ bool ModuleTextures::ImportTexture(const char * file, const char * path, std::st
 	ilSetInteger(IL_DXTC_FORMAT, IL_DXT5);
 	size = ilSaveL(IL_DDS, NULL, 0);
 
-	//if (size > 0)
-	//{
+	if (size > 0)
+	{
 		data = new ILubyte[size];
 		if (ilSaveL(IL_DDS,data,size) > 0)
 		{
-			ret = App->fs->SaveUnique(file, output_file, data, size, TEXTURES_DIRECTORY, "dds");
+			//string name = file;
+			string scene_dir = scene_folder;
+			scene_dir.append(TEXTURE_FOLDER);
+			ret = App->fs->SaveUnique(file, output_file, data, size, scene_dir.data() , "dds");
 		}
 
 		delete[] data;
 		data = nullptr;
-	//}
+	}
 	ilDeleteImages(1, &id);
 
 	return ret;

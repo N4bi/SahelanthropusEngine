@@ -238,7 +238,6 @@ math::LineSegment ComponentCamera::DoRay(float2 cam_position)
 	pos.x = (pos.x * 2.0f / SCREEN_WIDTH) - 1.0f;
 	pos.y = 1.0f - pos.y * 2.0f / SCREEN_HEIGHT;
 
-	//we do the raycast from the near plane of the frustum 
 	LineSegment raycast = frustum.UnProjectLineSegment(pos.x, pos.y);
 
 	return raycast;

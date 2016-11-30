@@ -28,7 +28,7 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
-	App->meshes->LoadFBX("Assets/Meshes/test.fbx");//Street environment_V01
+	App->meshes->LoadFBX("Assets/Meshes/Street environment_V01.fbx");//Street environment_V01
 
 	//Camera TEST
 	camera = App->go_manager->CreateGameObject(App->go_manager->GetRoot() , "camera_test");

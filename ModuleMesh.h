@@ -43,6 +43,7 @@ struct Mesh
 	float* normals = nullptr;
 
 	std::string directory;
+	std::string tx_directory;
 
 };
 
@@ -62,15 +63,15 @@ public:
 	bool  LoadFBX(const char* path);
 	Mesh* LoadMesh(const char* path);
 
-	void  Load(aiNode* node, const aiScene* scene, GameObject* parent);
+	void  Load(aiNode* node, const aiScene* scene, GameObject* parent,const char* scene_folder);
 
-	bool ImportMesh(const aiMesh* mesh, std::string& output_file);
-	bool SaveMesh(Mesh& mesh, std::string& output_file);
+	bool ImportMesh(const aiMesh* mesh, std::string& output_file, const char* scene_folder);
+	bool SaveMesh(Mesh& mesh, std::string& output_file,const char* scene_folder);
 
 
 
-private:
-
+public:
+	bool scene_found = false;
 
 };
 

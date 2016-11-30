@@ -207,35 +207,13 @@ void ModuleGOManager::EditorWindow()
 	ImGui::End();
 }
 
-int ModuleGOManager::CheckDistance(const GameObject * bb1, const GameObject * bb2)
-{
-	float3 frustum_pos = App->editor->main_camera_component->frustum.pos;
-	float bb1_distance = (frustum_pos - bb1->bb->CenterPoint()).Length();
-	float bb2_distance = (frustum_pos - bb2->bb->CenterPoint()).Length();
-
-	if (bb1_distance < bb2_distance)
-	{
-		return -1;
-	}
-	if (bb1_distance = bb2_distance)
-	{
-		return  0;
-	}
-	if (bb1_distance > bb2_distance)
-	{
-		return 1;
-	}
-}
-
 GameObject * ModuleGOManager::DoRaycast(LineSegment & raycast)
 {
 	GameObject* ret = nullptr;
 	vector<GameObject*> objects_hit;
 
 	CollectHits(root, raycast, objects_hit);
-
-	std::sort(objects_hit.begin(), objects_hit.end());
-
+	sort(objects_hit.begin(), objects_hit.end());
 	vector<GameObject*>::iterator it = objects_hit.begin();
 	RayCast hit_point;
 

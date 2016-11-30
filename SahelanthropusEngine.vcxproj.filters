@@ -369,6 +369,9 @@
     <ClInclude Include="TimeManager.h">
       <Filter>Sources\Tools</Filter>
     </ClInclude>
+    <ClInclude Include="Square.h">
+      <Filter>Sources\Tools</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -588,6 +591,9 @@
       <Filter>Sources\Parson</Filter>
     </ClCompile>
     <ClCompile Include="TimeManager.cpp">
+      <Filter>Sources\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Quadtree.cpp">
       <Filter>Sources\Tools</Filter>
     </ClCompile>
   </ItemGroup>

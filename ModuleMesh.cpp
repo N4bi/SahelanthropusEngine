@@ -65,7 +65,43 @@ bool ModuleMesh::LoadFBX(const char* path)
 {
 	bool ret;
 	char* buffer;
+	string path_s = path;
+	string scene_folder = LIBRARY_DIRECTORY;
+
 	uint size = App->fs->Load(path, &buffer);
+
+	if (size > 0)
+	{		
+		scene_folder.append(path_s.substr(path_s.find_last_of("/\\") + 1));
+
+		size_t name_size = scene_folder.find(".fbx");
+		if (name_size != string::npos)
+		{
+		scene_folder = scene_folder.substr(0, name_size);
+		}
+
+		// We check if the scene is already in our library folder
+			if (App->fs->Exists(scene_folder.data()) == false)
+			{
+				// Is not there so we create the folder
+				App->fs->MakeDirectory(scene_folder.data());
+
+				//Append the mesh folder to the directory folder
+				string mesh_folder = scene_folder;
+				mesh_folder.append(MESH_FOLDER);
+				App->fs->MakeDirectory(mesh_folder.data());
+
+				//Append the texture folder to the directory folder
+				string tx_folder = scene_folder;
+				tx_folder.append(TEXTURE_FOLDER);
+				App->fs->MakeDirectory(tx_folder.data());
+			}
+			else
+			{
+				//Scene folder already exists
+				scene_found = true;
+			}
+	}
 
 	const aiScene* scene = aiImportFileFromMemory(buffer, size, aiProcessPreset_TargetRealtime_MaxQuality, NULL);
 
@@ -75,11 +111,12 @@ bool ModuleMesh::LoadFBX(const char* path)
 		aiNode* root_node = scene->mRootNode;
 		for (int i = 0; i < root_node->mNumChildren; i++)
 		{
-			Load(root_node->mChildren[i], scene, nullptr);
+			Load(root_node->mChildren[i], scene, nullptr, scene_folder.data());
 		}	
 		aiReleaseImport(scene);
 
 		ret = true;
+		scene_found = false;//
 	}
 	else
 	{
@@ -91,7 +128,7 @@ bool ModuleMesh::LoadFBX(const char* path)
 	return ret;
 }
 
-void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent)
+void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent, const char* scene_folder)
 {
 	//Transform
 
@@ -177,10 +214,23 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent)
 
 		new_mesh->mName = game_object->name_object;
 
-		string path;
-		ImportMesh(new_mesh, path);
+		//Import the meshes 
 
-		Mesh* m = LoadMesh(path.data());
+		string path_mesh;
+
+		if (!scene_found)
+		{
+			ImportMesh(new_mesh, path_mesh,scene_folder);
+		}
+		else
+		{
+			const char* ext = ".shl";
+			path_mesh = scene_folder;
+			path_mesh.append(MESH_FOLDER);
+			path_mesh.append(new_mesh->mName.C_Str());
+			path_mesh.append(ext);
+		}
+		Mesh* m = LoadMesh(path_mesh.data());
 
 		// Set mesh with all the information
 		comp_mesh->SetMesh(m);	
@@ -193,32 +243,33 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent)
 	
 				aiString path;
 				material->GetTexture(aiTextureType_DIFFUSE, 0, &path);
-
 				if (path.length > 0)
 				{
-					ComponentMaterial* comp_material = (ComponentMaterial*)game_object->AddComponent(Component::MATERIAL);
-
-					string name_tex;
 					string directory = path.data;
-					string name_to_import = directory.substr(12);
+					string name_texture;
 
-					App->tex->ImportTexture(name_to_import.data(), path.data, name_tex);
-					comp_material->texture_id = App->tex->LoadTexture(name_tex.data());
-					comp_material->directory = name_tex;
+					m->tx_directory.assign(ASSETS_TEXTURES);
+					name_texture.assign(directory.substr(directory.find_last_of("/\\") + 1));
+					m->tx_directory.append(name_texture);
 
-				}
+					ComponentMaterial* comp_material = (ComponentMaterial*)game_object->AddComponent(Component::MATERIAL);
+					string name_tex_of;
+					App->tex->ImportTexture(name_texture.data(), m->tx_directory.data(), name_tex_of, scene_folder);
+					comp_material->texture_id = App->tex->LoadTexture(name_tex_of.data());
+					comp_material->directory = name_tex_of;
+			}
 		}	
 	}
 
 	//Load for all the childs 
 	for (uint i = 0; i < node->mNumChildren; i++)
 	{
-		Load(node->mChildren[i], scene, root_game_object);
+		Load(node->mChildren[i], scene, root_game_object,scene_folder);
 	}
 
 }
 
-bool ModuleMesh::ImportMesh(const aiMesh * mesh, string & output_file)
+bool ModuleMesh::ImportMesh(const aiMesh * mesh, string & output_file, const char* scene_folder)
 {
 	bool ret = false;
 	Mesh m;
@@ -271,12 +322,12 @@ bool ModuleMesh::ImportMesh(const aiMesh * mesh, string & output_file)
 
 	m.name_mesh = mesh->mName.C_Str();
 
-	ret = SaveMesh(m, output_file);
+	ret = SaveMesh(m, output_file, scene_folder);
 
 	return ret;
 }
 
-bool ModuleMesh::SaveMesh(Mesh& mesh, string& output_file)
+bool ModuleMesh::SaveMesh(Mesh& mesh, string& output_file, const char* scene_folder)
 {
 	bool ret = false;
 	uint header[4] =
@@ -327,7 +378,10 @@ bool ModuleMesh::SaveMesh(Mesh& mesh, string& output_file)
 	bytes = sizeof(float) * header[3] * 2;
 	memcpy(cursor, mesh.uvs, bytes);
 
-	ret = App->fs->SaveUnique(mesh.name_mesh, output_file, data, size, MESH_DIRECTORY, "shl");
+	string scene_directory = scene_folder;
+	scene_directory.append(MESH_FOLDER);
+
+	ret = App->fs->SaveUnique(mesh.name_mesh, output_file, data, size, scene_directory.data(), "shl");
 
 	delete[] data;
 	data = nullptr;

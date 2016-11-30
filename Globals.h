@@ -44,5 +44,10 @@ enum update_status
 #define TEXTURES_DIRECTORY "Library/Textures/"
 #define MESH_DIRECTORY "Library/Mesh/"
 
+#define ASSETS_TEXTURES "Assets/Textures/"
+#define ASSETS_MESHES "Assets/Meshes"
+#define MESH_FOLDER "/Mesh/"
+#define TEXTURE_FOLDER "/Tx/"
+
 #endif // __GLOBALS_H__
 

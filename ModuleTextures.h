@@ -17,7 +17,7 @@ public:
 	bool CleanUp();
 
 	uint LoadTexture(const char* path);
-	bool ImportTexture(const char* file, const char* path, std::string& output_file);
+	bool ImportTexture(const char* file, const char* path, std::string& output_file, const char* scene_folder);
 
 
 

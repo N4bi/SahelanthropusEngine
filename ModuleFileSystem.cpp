@@ -34,16 +34,20 @@ bool ModuleFileSystem::Init(Json& config)
 	{
 		LOG("File System error while creating write dir: %s\n", PHYSFS_getLastError());
 	}
-
-	const char* directories[] = { ASSETS_DIRECTORY,LIBRARY_DIRECTORY,TEXTURES_DIRECTORY,MESH_DIRECTORY };
-
-	for (uint i = 0; i < 4; i++)
+	else
 	{
-		if (PHYSFS_exists(directories[i]) == 0)
+		const char* directories[] = { ASSETS_DIRECTORY,LIBRARY_DIRECTORY};
+
+		for (uint i = 0; i < 2; i++)
 		{
-			PHYSFS_mkdir(directories[i]);
+			if (Exists(directories[i]) == 0)
+			{
+				MakeDirectory(directories[i]);
+			}
 		}
 	}
+
+
 
 	return ret;
 }
@@ -80,6 +84,32 @@ bool ModuleFileSystem::Exists(const char* file) const
 bool ModuleFileSystem::IsDirectory(const char* file) const
 {
 	return PHYSFS_isDirectory(file) != 0;
+}
+
+bool ModuleFileSystem::MakeDirectory(const char * dir)
+{
+	bool ret = false;
+	if (dir != nullptr && Exists(dir) == false)
+	{
+		if (PHYSFS_mkdir(dir) != 0)
+		{
+			ret = true;
+		}
+	}
+
+	return ret;
+}
+
+bool ModuleFileSystem::Mount(const char * path, const char * mount)
+{
+	bool ret = false;
+
+	if (PHYSFS_mount(path,mount,1) != 0)
+	{
+		ret = true;
+	}
+
+	return ret;
 }
 
 // Read a whole file and put it in a new buffer
