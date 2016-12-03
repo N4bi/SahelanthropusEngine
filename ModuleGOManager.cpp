@@ -348,6 +348,7 @@ void ModuleGOManager::LoadScene(const char * directory)
 
 	for (uint i = 0; i < scene_size; i++)
 	{
+		//the first one will be the root node, always.
 		if (i == 0)
 		{
 			this->root = LoadGameObjectsOnScene(scene.GetArray("Game Objects", i));

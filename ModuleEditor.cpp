@@ -300,9 +300,9 @@ void ModuleEditor::WindowsMenu()
 
 void ModuleEditor::TimerManagerMenu()
 {
-	//ImGui::SetNextWindowPosCenter();
-	//bool open = true;
-	//ImGui::Begin("##TimerManager", &open, ImVec2(0, 0), -1.0f, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings);
+	ImGui::SetNextWindowPos((ImVec2(600, 30)));
+	bool open = true;
+	ImGui::Begin("##TimerManager", &open, ImVec2(0, 0), -1.0f, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove);
 
 	if (ImGui::Button("Play"))
 	{
@@ -326,6 +326,8 @@ void ModuleEditor::TimerManagerMenu()
 	ImGui::SameLine();
 	int	time_running = App->time_manager->TimeStart();
 	ImGui::Text("Time: %i", time_running);
+
+	ImGui::End();
 
 }
 
