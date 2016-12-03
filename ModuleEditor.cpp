@@ -9,6 +9,8 @@
 #include "AssetsWindow.h"
 #include "InfoWindows.h"
 #include "TimeManager.h"
+#include "SaveSceneWindow.h"
+#include "LoadSceneWindow.h"
 #include "MathGeoLib\include\Algorithm\Random\LCG.h"
 
 
@@ -50,6 +52,8 @@ bool ModuleEditor::Start()
 	info_window.push_back(fps_win = new FPSwindow());
 	info_window.push_back(hd_win = new HardwareWindow());
 	info_window.push_back(asset_win = new AssetsWindow());
+	info_window.push_back(save_win = new SaveSceneWindow());
+	info_window.push_back(load_win = new LoadSceneWindow());
 
 
 
@@ -83,7 +87,6 @@ update_status ModuleEditor::Update(float dt)
 	Render();
 	
 	TimerManagerMenu();
-
 
 	return ret;
 }
@@ -228,49 +231,23 @@ update_status ModuleEditor::UpdateEditor()
 			ImGui::EndMenu();
 		}
 
-		if (ImGui::MenuItem("Close"))
-		{
-			return UPDATE_STOP;
-			
-		}
-
 		ImGui::EndMainMenuBar();
 	}
-
-	bool open = false;
-	if (!ImGui::Begin("Create a Bounding box on random points", &open))
-	{
-		ImGui::End();
-		return ret;
-	}
-
-	if (ImGui::CollapsingHeader("Random points"))
-	{
-		ImGui::InputFloat2("min range/max range", range.ptr());
-		ImGui::InputInt("Number of points", &n_points);
-		if (ImGui::Button("Create points"))
-		{
-			CreatePoints(range, n_points);
-		}
-		if (ImGui::Button("Bounding box"))
-		{
-			CreateBoundingBox();
-		}
-	}
-	ImGui::End();
 
 	return ret;
 }
 void ModuleEditor::FileMenu()
 {
+
 	if (ImGui::MenuItem("Save scene"))
 	{
-		App->go_manager->SaveGameObjectsOnScene();
+		save_win->SetActive(true);
 	}
+	
 
 	if (ImGui::MenuItem("Load scene"))
 	{
-		App->go_manager->LoadScene("Scene.json");
+		load_win->SetActive(true);
 	}
 }
 
@@ -329,7 +306,8 @@ void ModuleEditor::TimerManagerMenu()
 
 	if (ImGui::Button("Play"))
 	{
-		App->GameState(PLAY);
+		App->go_manager->SaveGameObjectsOnScene("Library/Save/Scene.json");
+		App->GameState(PLAY);	
 	}
 	ImGui::SameLine();
 	if (ImGui::Button("Pause"))
@@ -339,22 +317,25 @@ void ModuleEditor::TimerManagerMenu()
 	ImGui::SameLine();
 	if (ImGui::Button("Stop"))
 	{
-		App->GameState(STOP);
+		if (App->time_manager->TimeStart() > 0)
+		{
+			App->go_manager->LoadScene("Library/Save/Scene.json");
+			App->GameState(STOP);
+		}
 	}
 	ImGui::SameLine();
 	int	time_running = App->time_manager->TimeStart();
 	ImGui::Text("Time: %i", time_running);
 
-
-
-
-
 }
+
 
 void ModuleEditor::ShowFPSwindow()
 {
 	fps_win->SetActive(true);
 }
+
+
 
 void ModuleEditor::ShowHardwareWindow()
 {

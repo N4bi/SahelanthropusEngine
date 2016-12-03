@@ -14,6 +14,8 @@ class FPSwindow;
 class HardwareWindow;
 class ConsoleWindow;
 class AssetsWindow;
+class SaveSceneWindow;
+class LoadSceneWindow;
 
 class ModuleEditor : public Module
 {
@@ -64,6 +66,8 @@ private:
 	FPSwindow* fps_win = nullptr;
 	HardwareWindow* hd_win = nullptr;
 	AssetsWindow* asset_win = nullptr;
+	SaveSceneWindow* save_win = nullptr;
+	LoadSceneWindow* load_win = nullptr;
 
 
 

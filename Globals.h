@@ -41,6 +41,7 @@ enum update_status
 //Directories--------------
 #define ASSETS_DIRECTORY "Assets/"
 #define LIBRARY_DIRECTORY "Library/"
+#define SAVE_DIRECTORY "/Save/"
 #define TEXTURES_DIRECTORY "Library/Textures/"
 #define MESH_DIRECTORY "Library/Mesh/"
 

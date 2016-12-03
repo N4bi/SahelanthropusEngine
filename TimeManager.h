@@ -16,11 +16,12 @@ public:
 	void Pause();
 	void Stop();
 
-	float EngineTime() const;
-	float TimeStart() const;
+	double EngineTime() const;
+	double TimeStart() const;
 	unsigned int GetFrames() const;
 	float Dt() const;
 	float EngineDt() const;
+	bool GetPause() const;
 
 
 private:
@@ -33,6 +34,7 @@ private:
 	UINT64 game_paused_at = 0;
 	
 	bool pause = false;
+
 	float time_pause = 0.0f;
 
 	//Frames
@@ -41,7 +43,7 @@ private:
 	uint n_frames = 0;
 	float dt = 0.0f;
 	float engine_dt = 0.0f;
-
+	float time_scale = 1.0f;
 
 };
 

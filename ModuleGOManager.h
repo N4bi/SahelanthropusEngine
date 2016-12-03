@@ -31,7 +31,7 @@ public:
 	GameObject* SelectGameObject(const LineSegment& ray, const vector<GameObject*> hits);
 	vector<GameObject*> CollectHits(const LineSegment& ray) const;
 
-	void SaveGameObjectsOnScene() const;
+	void SaveGameObjectsOnScene(const char* name_file) const;
 	GameObject* LoadGameObjectsOnScene(Json& game_objects);
 	GameObject* SearchGameObjectsByID(GameObject* first_go, int id) const;
 

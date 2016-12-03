@@ -4,7 +4,6 @@
 #include <string>
 #include <list>
 #include "Globals.h"
-#include "RayCast.h"
 
 class Component;
 enum Types;
@@ -28,7 +27,7 @@ public:
 	void DeleteChilds(GameObject* child);
 	void DeleteAllChildren();
 	bool CheckHits(const LineSegment& ray, float& distance);
-	void CollectRayHits(GameObject* game_object, const LineSegment& ray, vector<GameObject*>&hits);
+	void CollectRayHits(GameObject* game_object, const LineSegment& ray, std::vector<GameObject*>&hits);
 
 	const std::vector<GameObject*>* GetChilds() const;
 	const std::vector<Component*>* GetComponents() const;

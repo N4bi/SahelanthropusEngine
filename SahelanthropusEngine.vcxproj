@@ -97,6 +97,7 @@
     <ClInclude Include="InfoWindows.h" />
     <ClInclude Include="JSON.h" />
     <ClInclude Include="Light.h" />
+    <ClInclude Include="LoadSceneWindow.h" />
     <ClInclude Include="MathGeoLib\include\Algorithm\Random\LCG.h" />
     <ClInclude Include="MathGeoLib\include\Geometry\AABB.h" />
     <ClInclude Include="MathGeoLib\include\Geometry\AABB2D.h" />
@@ -175,8 +176,8 @@
     <ClInclude Include="PhysBody3D.h" />
     <ClInclude Include="Primitive.h" />
     <ClInclude Include="Quadtree.h" />
-    <ClInclude Include="RayCast.h" />
     <ClInclude Include="Rng.h" />
+    <ClInclude Include="SaveSceneWindow.h" />
     <ClInclude Include="Square.h" />
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Timer.h" />
@@ -203,6 +204,7 @@
     <ClCompile Include="InfoWindows.cpp" />
     <ClCompile Include="JSON.cpp" />
     <ClCompile Include="Light.cpp" />
+    <ClCompile Include="LoadSceneWindow.cpp" />
     <ClCompile Include="log.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MathGeoLib\include\Algorithm\Random\LCG.cpp" />
@@ -254,6 +256,7 @@
     <ClCompile Include="Primitive.cpp" />
     <ClCompile Include="Quadtree.cpp" />
     <ClCompile Include="Rng.cpp" />
+    <ClCompile Include="SaveSceneWindow.cpp" />
     <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="PhysVehicle3D.cpp" />

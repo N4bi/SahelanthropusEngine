@@ -3,9 +3,14 @@
 
 TimeManager::TimeManager()
 {
+	if (frequency == 0)
+	{
+		frequency = SDL_GetPerformanceFrequency();
+	}
 	engine_started_at = SDL_GetPerformanceCounter();
 	frame_started_at = engine_started_at;
-	frequency = SDL_GetPerformanceFrequency();
+
+	
 }
 
 TimeManager::~TimeManager()
@@ -14,15 +19,21 @@ TimeManager::~TimeManager()
 
 void TimeManager::Update()
 {
-	engine_dt = (SDL_GetPerformanceCounter() - frame_started_at) / frequency;
+	engine_dt = (float)((double)SDL_GetPerformanceCounter() - frame_started_at) / (double)frequency;
+	if (pause == false && game_started_at > 0)
+	{
+		dt = engine_dt * time_scale;
+		++n_frames;
+	}
+	frame_started_at = SDL_GetPerformanceCounter();
 }
 
 void TimeManager::Play()
 {
 	if (pause)
 	{
-		time_pause = time_pause + SDL_GetPerformanceCounter() - game_paused_at;
 		pause = false;
+		game_started_at = time_pause;
 	}
 	else
 	{
@@ -35,7 +46,7 @@ void TimeManager::Play()
 void TimeManager::Pause()
 {
 	pause = true;
-	game_paused_at = SDL_GetPerformanceFrequency();
+	game_paused_at = SDL_GetPerformanceCounter();
 }
 
 void TimeManager::Stop()
@@ -46,23 +57,23 @@ void TimeManager::Stop()
 	time_pause = 0;
 }
 
-float TimeManager::EngineTime() const
+double TimeManager::EngineTime() const
 {
-	float ret = 0.0f;
-	ret = (SDL_GetPerformanceCounter() - engine_started_at) / frequency;
+	double ret = 0;
+	ret = ((double)SDL_GetPerformanceCounter() - engine_started_at) /(double)frequency;
 
 	return ret;
 }
 
-float TimeManager::TimeStart() const
+double TimeManager::TimeStart() const
 {
-	float ret = 0.0f;
+	double ret = 0;
 	if (game_started_at > 0)
 	{
-		ret = (SDL_GetPerformanceCounter() - game_started_at) / frequency;
-		if (pause)
+		ret = ((double)SDL_GetPerformanceCounter() - game_started_at) / (double)frequency;
+		if (pause == true)
 		{
-			ret = ret - (SDL_GetPerformanceCounter() - game_paused_at) / frequency;
+			ret -= ((double)SDL_GetPerformanceCounter() - game_paused_at) / (double)frequency;
 		}
 	}
 	return ret;
@@ -90,4 +101,9 @@ float TimeManager::Dt() const
 float TimeManager::EngineDt() const
 {
 	return engine_dt;
+}
+
+bool TimeManager::GetPause() const
+{
+	return pause;
 }

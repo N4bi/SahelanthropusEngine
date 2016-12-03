@@ -363,14 +363,17 @@
     <ClInclude Include="Quadtree.h">
       <Filter>Sources\Tools</Filter>
     </ClInclude>
-    <ClInclude Include="RayCast.h">
-      <Filter>Sources\Tools</Filter>
-    </ClInclude>
     <ClInclude Include="TimeManager.h">
       <Filter>Sources\Tools</Filter>
     </ClInclude>
     <ClInclude Include="Square.h">
       <Filter>Sources\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveSceneWindow.h">
+      <Filter>Sources\InfoWindows</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadSceneWindow.h">
+      <Filter>Sources\InfoWindows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -595,6 +598,12 @@
     </ClCompile>
     <ClCompile Include="Quadtree.cpp">
       <Filter>Sources\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveSceneWindow.cpp">
+      <Filter>Sources\InfoWindows</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadSceneWindow.cpp">
+      <Filter>Sources\InfoWindows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -5,7 +5,6 @@
 #include "ComponentMaterial.h"
 #include "ComponentMesh.h"
 #include "ComponentCamera.h"
-#include "RayCast.h"
 #include "JSON.h"
 
 using namespace std;
@@ -266,7 +265,7 @@ bool GameObject::CheckHits(const LineSegment & ray, float & distance)
 	return intersect;
 }
 
-void GameObject::CollectRayHits(GameObject * game_object, const LineSegment & ray, vector<GameObject*>& hits)
+void GameObject::CollectRayHits(GameObject * game_object, const LineSegment & ray, std::vector<GameObject*>& hits)
 {
 
 

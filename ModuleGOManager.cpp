@@ -3,7 +3,6 @@
 #include "GameObject.h"
 #include "Component.h"
 #include "ComponentTransform.h"
-#include "RayCast.h"
 #include "Imgui\imgui.h"
 #include <algorithm>
 
@@ -253,7 +252,7 @@ vector<GameObject*> ModuleGOManager::CollectHits(const LineSegment & ray) const
 }
 
 
-void ModuleGOManager::SaveGameObjectsOnScene() const
+void ModuleGOManager::SaveGameObjectsOnScene(const char* name_file) const
 {
 	Json data;
 	data.AddArray("Game Objects");
@@ -263,7 +262,7 @@ void ModuleGOManager::SaveGameObjectsOnScene() const
 	char* buff;
 	size_t size = data.Save(&buff);
 
-	App->fs->Save("Scene.json", buff, size);
+	App->fs->Save(name_file, buff, size);
 	delete[] buff;
 }
 

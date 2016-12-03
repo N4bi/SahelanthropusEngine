@@ -36,9 +36,9 @@ bool ModuleFileSystem::Init(Json& config)
 	}
 	else
 	{
-		const char* directories[] = { ASSETS_DIRECTORY,LIBRARY_DIRECTORY};
+		const char* directories[] = { ASSETS_DIRECTORY,LIBRARY_DIRECTORY,SAVE_DIRECTORY};
 
-		for (uint i = 0; i < 2; i++)
+		for (uint i = 0; i < 3; i++)
 		{
 			if (Exists(directories[i]) == 0)
 			{
@@ -262,4 +262,23 @@ bool ModuleFileSystem::EnumerateFiles(const char * directory, std::vector<string
 
 	return true;
 
+}
+
+ std::vector<std::string> ModuleFileSystem::GetFilesFromDirectory(const char * path) 
+{
+	std::vector<string> files_in_directory;
+	EnumerateFiles(path, files_in_directory);
+
+	std::vector<string> files_found;
+	for (uint i = 0; i < files_in_directory.size(); i++)
+	{
+		size_t size = files_in_directory[i].find(".json");
+		if (size != string::npos)
+		{
+			files_found.push_back((files_in_directory[i]));
+		}
+		
+	}
+
+	return files_found;
 }
