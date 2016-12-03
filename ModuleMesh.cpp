@@ -190,24 +190,26 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent, 
 		GameObject* game_object;
 
 		//Transformation
-		if (node->mNumMeshes > 1)
-		{
-			game_object = App->go_manager->CreateGameObject(root_game_object,node->mName.C_Str());
-			game_object->AddComponent(Component::TRANSFORM);
-		}
-		else
-		{
-			game_object = root_game_object;
-		}
 
-		if (node->mName.length >0)
-		{
-			game_object->name_object = node->mName.C_Str();
-		}
-		else
-		{
-			game_object->name_object = "Unnamed_mesh";
-		}
+			if (node->mNumMeshes > 1)
+			{
+				game_object = App->go_manager->CreateGameObject(root_game_object, node->mName.C_Str());
+				game_object->AddComponent(Component::TRANSFORM);
+			}
+			else
+			{
+				game_object = root_game_object;
+			}
+
+			if (node->mName.length >0)
+			{
+				game_object->name_object = node->mName.C_Str();
+			}
+			else
+			{
+				game_object->name_object = "Unnamed_mesh";
+			}
+		
 
 		//Meshes
 		ComponentMesh* comp_mesh = (ComponentMesh*)game_object->AddComponent(Component::MESH);
@@ -220,7 +222,7 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent, 
 
 		if (!scene_found)
 		{
-			ImportMesh(new_mesh, path_mesh,scene_folder);
+			ImportMesh(new_mesh, path_mesh, scene_folder);	
 		}
 		else
 		{

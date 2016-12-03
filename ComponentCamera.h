@@ -36,12 +36,11 @@ public:
 	float* GetViewMatrix();
 	float* GetProjectionMatrix();
 
-	LineSegment DoRay(float2 cam_position);
+	LineSegment CastRay();
 
 public:
 	Frustum frustum;
 	bool culling = false;
-
 private:
 	ComponentTransform* camera_transformation = nullptr;
 	GameObject* camera = nullptr;

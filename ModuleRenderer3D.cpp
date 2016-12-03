@@ -110,7 +110,8 @@ bool ModuleRenderer3D::Init(Json& config)
 	// Projection matrix for
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
 	ImGui_ImplSdlGL3_Init(App->window->window);
-	App->editor->main_camera_component->LookAt(float3(1.75f, 1.75f, 5.0f));
+	App->editor->main_camera_component->frustum.pos = float3(0.58f, 16.18f, 12.89f);
+	App->editor->main_camera_component->LookAt(float3(-9.75f, 14.75f, 5.0f));
 	
 
 	LOG("OpenGL version: %s", glGetString(GL_VERSION));

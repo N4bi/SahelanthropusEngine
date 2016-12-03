@@ -2,6 +2,7 @@
 #include "ModuleGOManager.h"
 #include "GameObject.h"
 #include "Component.h"
+#include "ComponentTransform.h"
 #include "RayCast.h"
 #include "Imgui\imgui.h"
 #include <algorithm>
@@ -63,8 +64,8 @@ update_status ModuleGOManager::Update(float dt)
 
 	if (App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_DOWN)
 	{
-		LineSegment raycast = App->editor->main_camera_component->DoRay(float2(App->input->GetMouseX(), App->input->GetMouseY()));
-		game_object_on_editor = DoRaycast(raycast);
+		LineSegment raycast = App->editor->main_camera_component->CastRay();
+		game_object_on_editor = SelectGameObject(raycast, CollectHits(raycast));
 	}
 
 	return UPDATE_CONTINUE;
@@ -125,14 +126,15 @@ void ModuleGOManager::ShowGameObjectsOnEditor(const vector<GameObject*>* childs)
 	vector<GameObject*>::const_iterator it = (*childs).begin();
 	while (it != (*childs).end())
 	{
+		uint flags = 0;
 		if ((*it) == game_object_on_editor)
 		{
-			ImGuiTreeNodeFlags_Framed;
+			flags = ImGuiTreeNodeFlags_Selected;
 		}
 		
 		if ((*it)->childs.size() > 0)
 		{
-			if (ImGui::TreeNodeEx((*it)->name_object.data(), ImGuiTreeNodeFlags_Framed))
+			if (ImGui::TreeNodeEx((*it)->name_object.data(), ImGuiTreeNodeFlags_Framed | ImGuiTreeNodeFlags_DefaultOpen))
 			{
 				if (ImGui::IsItemClicked())
 				{
@@ -144,7 +146,7 @@ void ModuleGOManager::ShowGameObjectsOnEditor(const vector<GameObject*>* childs)
 		}
 		else
 		{
-			if (ImGui::TreeNodeEx((*it)->name_object.data(), ImGuiTreeNodeFlags_Leaf))
+			if (ImGui::TreeNodeEx((*it)->name_object.data(), flags | ImGuiTreeNodeFlags_Leaf))
 			{
 				if (ImGui::IsItemClicked())
 				{
@@ -207,50 +209,47 @@ void ModuleGOManager::EditorWindow()
 	ImGui::End();
 }
 
-GameObject * ModuleGOManager::DoRaycast(LineSegment & raycast)
+int CheckDistance(const GameObject* go1, const GameObject* go2)
 {
-	GameObject* ret = nullptr;
-	vector<GameObject*> objects_hit;
-
-	CollectHits(root, raycast, objects_hit);
-	sort(objects_hit.begin(), objects_hit.end());
-	vector<GameObject*>::iterator it = objects_hit.begin();
-	RayCast hit_point;
-
-
-	for (vector<GameObject*>::iterator it = objects_hit.begin(); it != objects_hit.end(); ++it)
+	if (go1->distance_hit.Length() < go2->distance_hit.Length())
 	{
-		if ((*it)->DoRaycast(raycast, hit_point))
-		{
-			ret = (*it);
-			break;
-		}
+		return -1;
 	}
 
-	return ret;
+	if (go1->distance_hit.Length() == go2->distance_hit.Length())
+	{
+		return 0;
+	}
+
+	if (go1->distance_hit.Length() > go2->distance_hit.Length())
+	{
+		return 1;
+	}
+
 }
 
-
-
-void ModuleGOManager::CollectHits(GameObject * go, LineSegment & raycast, vector<GameObject*>& hits)
+GameObject * ModuleGOManager::SelectGameObject(const LineSegment & ray, const vector<GameObject*> hits) 
 {
-	ComponentMesh* cmp_mesh = (ComponentMesh*) go->GetComponent(Component::MESH);
-
-	if (cmp_mesh != nullptr)
+	GameObject* game_object_picked = nullptr;
+	float distance = App->editor->main_camera_component->frustum.farPlaneDistance;
+	vector<GameObject*>::const_iterator it = hits.begin();
+	while (it != hits.end())
 	{
-		if (raycast.Intersects(cmp_mesh->world_bb))
+		if ((*it)->CheckHits(ray,distance))
 		{
-			hits.push_back(go);
+			game_object_picked = (*it);
 		}
+		++it;
 	}
-		
+	return game_object_picked;
+}
 
-		vector<GameObject*>::iterator it = go->childs.begin();
-		while (it != go->childs.end())
-		{
-			CollectHits((*it), raycast, hits);
-			++it;
-		}	
+vector<GameObject*> ModuleGOManager::CollectHits(const LineSegment & ray) const
+{
+	vector<GameObject*> objects_hit;
+	root->CollectRayHits(root, ray, objects_hit);
+	sort(objects_hit.begin(), objects_hit.end(), CheckDistance);
+	return objects_hit;
 }
 
 

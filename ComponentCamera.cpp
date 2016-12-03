@@ -2,6 +2,7 @@
 #include "Component.h"
 #include "ComponentCamera.h"
 #include "ComponentTransform.h"
+#include "ComponentMesh.h"
 #include "Imgui\imgui.h"
 
 ComponentCamera::ComponentCamera(Component::Types type) : Component(type)
@@ -18,6 +19,7 @@ ComponentCamera::ComponentCamera(Component::Types type) : Component(type)
 
 	SetAspectRatio(aspect_ratio);
 
+
 }
 
 ComponentCamera::~ComponentCamera()
@@ -31,6 +33,7 @@ void ComponentCamera::Update(float dt)
 	{
 		App->renderer3D->RenderFrustum(frustum, Green);	
 	}
+
 }
 
 void ComponentCamera::UpdateTransform()
@@ -72,7 +75,6 @@ void ComponentCamera::ShowOnEditor()
 		}
 
 		ImGui::SameLine();
-
 		bool culling_enabled = culling;
 		if (ImGui::Checkbox("Culling",&culling_enabled))
 		{
@@ -118,6 +120,9 @@ void ComponentCamera::ToSave(Json & file_data) const
 
 	data.AddBool("Culling", culling);
 	data.AddBool("Debug Frustum", debug_frustum);
+	data.AddFloatArray("Frustum Pos", frustum.pos.ptr());
+	data.AddFloatArray("Frustum front", frustum.front.ptr());
+	data.AddFloatArray("Frustum up", frustum.up.ptr());
 	data.AddFloat("Near plane", frustum.nearPlaneDistance);
 	data.AddFloat("Far plane", frustum.farPlaneDistance);
 	data.AddFloat("FOV", field_of_view);
@@ -133,26 +138,15 @@ void ComponentCamera::ToLoad(Json & file_data)
 	enabled = file_data.GetBool("enabled");
 
 	culling = file_data.GetBool("Culling");
+
 	debug_frustum = file_data.GetBool("Debug Frustum");
+	frustum.pos = file_data.GetFloat3("Frustum Pos");
+	frustum.front = file_data.GetFloat3("Frustum front");
+	frustum.up = file_data.GetFloat3("Frustum up");
 	frustum.nearPlaneDistance = file_data.GetFloat("Near plane");
 	frustum.farPlaneDistance = file_data.GetFloat("Far plane");
 	field_of_view = file_data.GetFloat("FOV");
 	aspect_ratio = file_data.GetFloat("Aspect Ratio");
-
-	//Apply the load on the scene 
-
-	//frustum.type = FrustumType::PerspectiveFrustum;
-	//frustum.pos = float3::zero;
-	//frustum.front = float3::unitZ;
-	//frustum.up = float3::unitY;
-	//frustum.nearPlaneDistance = 1.0f;
-	//frustum.farPlaneDistance = 1000.0f;
-	//frustum.verticalFov = DegToRad(field_of_view);
-
-	//SetAspectRatio(aspect_ratio);
-
-
-
 
 	UpdateTransform();
 }
@@ -231,14 +225,14 @@ float * ComponentCamera::GetProjectionMatrix()
 	return (float*) m.v;
 }
 
-math::LineSegment ComponentCamera::DoRay(float2 cam_position)
+LineSegment ComponentCamera::CastRay()
 {
-	float2 pos = cam_position;
+	float2 mouse = float2(App->input->GetMouseX(), App->input->GetMouseY());
 
-	pos.x = (pos.x * 2.0f / SCREEN_WIDTH) - 1.0f;
-	pos.y = 1.0f - pos.y * 2.0f / SCREEN_HEIGHT;
+	float normX = (mouse.x * 2.0f / SCREEN_WIDTH) - 1.0f;
+	float normY = 1.0f - mouse.y * 2.0f / SCREEN_HEIGHT;
 
-	LineSegment raycast = frustum.UnProjectLineSegment(pos.x, pos.y);
+	LineSegment raycast = App->editor->main_camera_component->frustum.UnProjectLineSegment(normX,normY);
 
 	return raycast;
 }
@@ -254,8 +248,6 @@ void ComponentCamera::LookAt(const float3 & position)
 
 bool ComponentCamera::ContainsAABB(const AABB & ref_box) const
 {
-	bool ret = true;
-
 	float3 corners[8];
 	ref_box.GetCornerPoints(corners);
 
@@ -276,10 +268,9 @@ bool ComponentCamera::ContainsAABB(const AABB & ref_box) const
 
 		if (in_count == 0)
 		{
-			ret = false;
+			return false;
 			break;
 		}
 	}
-
-	return ret;
+	return true;
 }

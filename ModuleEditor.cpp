@@ -24,9 +24,10 @@ bool ModuleEditor::Init(Json& config)
 {
 	bool ret = true;
 
-	main_camera = new GameObject(nullptr, "Main camera");
+	main_camera = new GameObject(App->go_manager->GetRoot(), "Main camera");
 	main_camera->AddComponent(Component::TRANSFORM);
 	main_camera_component = (ComponentCamera*)main_camera->AddComponent(Component::CAMERA);
+
 
 	return ret;
 }
@@ -40,6 +41,11 @@ bool ModuleEditor::Start()
 	range.x = 0.0f;
 	range.y = 0.0f;
 	box_render = false;
+
+	main_camera_component->frustum.nearPlaneDistance = 1.0f;
+	main_camera_component->frustum.farPlaneDistance = 900.0f;
+	main_camera_component->frustum.verticalFov = DegToRad(60.0f);
+	main_camera_component->SetAspectRatio(1.75f);
 
 	info_window.push_back(fps_win = new FPSwindow());
 	info_window.push_back(hd_win = new HardwareWindow());

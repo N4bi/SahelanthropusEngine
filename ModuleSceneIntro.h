@@ -11,6 +11,7 @@
 struct PhysBody3D;
 class Mesh;
 class GameObject;
+class ComponentCamera;
 
 
 class ModuleSceneIntro : public Module
@@ -28,6 +29,7 @@ public:
 
 public:
 	GameObject* camera = nullptr;
+	ComponentCamera* camera_test_cmp = nullptr;
 
 };
 

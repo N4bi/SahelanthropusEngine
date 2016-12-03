@@ -27,7 +27,8 @@ public:
 	void DeleteComponent(Component* comp);
 	void DeleteChilds(GameObject* child);
 	void DeleteAllChildren();
-	bool DoRaycast(const LineSegment& raycast,RayCast& hit_point);
+	bool CheckHits(const LineSegment& ray, float& distance);
+	void CollectRayHits(GameObject* game_object, const LineSegment& ray, vector<GameObject*>&hits);
 
 	const std::vector<GameObject*>* GetChilds() const;
 	const std::vector<Component*>* GetComponents() const;
@@ -54,6 +55,7 @@ public:
 	bool enabled = true;
 	uint id = NULL;
 	AABB* bb = nullptr;
+	float3 distance_hit = float3::zero;
 
 };
 

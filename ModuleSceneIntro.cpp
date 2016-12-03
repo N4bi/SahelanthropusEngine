@@ -33,7 +33,7 @@ bool ModuleSceneIntro::Start()
 	//Camera TEST
 	camera = App->go_manager->CreateGameObject(App->go_manager->GetRoot() , "camera_test");
 	camera->AddComponent(Component::TRANSFORM);
-	camera->AddComponent(Component::CAMERA);
+	camera_test_cmp = (ComponentCamera*)camera->AddComponent(Component::CAMERA);
 
 
 	

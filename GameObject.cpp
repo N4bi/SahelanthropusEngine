@@ -212,64 +212,86 @@ void GameObject::DeleteAllChildren()
 	childs.clear();
 }
 
-bool GameObject::DoRaycast(const LineSegment & raycast,RayCast& hit_point)
+bool GameObject::CheckHits(const LineSegment & ray, float & distance)
 {
 	bool intersect = false;
 	ComponentMesh* mesh = (ComponentMesh*)GetComponent(Component::MESH);
 	ComponentTransform* cmp_trans = (ComponentTransform*)GetComponent(Component::TRANSFORM);
-	RayCast ray_hit;
+
+	Mesh* m = mesh->GetMesh();
 
 	if (mesh != nullptr)
 	{
-		Mesh* m = mesh->GetMesh();
 		if (m != nullptr)
 		{
-			LineSegment ray = raycast;
-			ray.Transform(cmp_trans->final_transformation.Inverted());
 
-			float dist;
-			float3 hit;
+			LineSegment raycast = ray;
+			raycast.Transform(cmp_trans->GetWorldTransformationMatrix().Inverted());
+
+			float hit_dist;
+			float3 hit_point;
 			Triangle triangle;
 			int v1;
 			int v2;
 			int v3;
-			float3 v_1;
-			float3 v_2;
-			float3 v_3;
-			
+			float3 a;
+			float3 b;
+			float3 c;
+
 			uint indices = m->num_indices / 3;
 			for (int i = 0; i < indices; i++)
 			{
-				 v1 = m->indices[i * 3];
-				 v2 = m->indices[i * 3 + 1];
-				 v3 = m->indices[i * 3 + 2];
+				v1 = m->indices[i * 3];
+				v2 = m->indices[i * 3 + 1];
+				v3 = m->indices[i * 3 + 2];
 
-				 v_1 = float3(&m->vertices[v1]);
-				 v_2 = float3(&m->vertices[v2]);
-				 v_3 = float3(&m->vertices[v3]);
+				a = float3(&m->vertices[v1]);
+				b = float3(&m->vertices[v2]);
+				c = float3(&m->vertices[v3]);
 
-				triangle = Triangle(v_1,v_2,v_3);
+				triangle = Triangle(a, b, c);
 
-				if (raycast.Intersects(triangle, &dist, &hit))
-				{	
-					intersect = true;
-
-					if (ray_hit.distance > dist)
+				if (raycast.Intersects(triangle, &hit_dist, &hit_point))
+				{
+					if (distance > hit_dist)
 					{
-						ray_hit.distance = dist;
-						ray_hit.point = hit;
-						ray_hit.normal = triangle.PlaneCCW().normal;			
-					}	
+						distance = hit_dist;
+						
+						intersect = true;
+					}
 				}
-					hit_point.point = cmp_trans->final_transformation.MulPos(ray_hit.point);
-					hit_point.distance = raycast.Distance(ray_hit.point);
-					hit_point.normal = cmp_trans->final_transformation.MulDir(ray_hit.normal);
-					hit_point.normal.Normalize();
-					hit_point.game_object = this;
 			}
 		}
 	}
 	return intersect;
+}
+
+void GameObject::CollectRayHits(GameObject * game_object, const LineSegment & ray, vector<GameObject*>& hits)
+{
+
+
+	if (game_object->GetComponent(Component::MESH) != nullptr)
+	{
+		ComponentMesh* cmp_mesh = (ComponentMesh*)game_object->GetComponent(Component::MESH);
+		if (cmp_mesh->GetMesh() != nullptr)
+		{
+			if (ray.Intersects(cmp_mesh->world_bb))
+			{
+				hits.push_back(game_object);
+				distance_hit = App->editor->main_camera_component->frustum.pos - cmp_mesh->world_bb.CenterPoint();
+			}
+		}
+	}
+
+	if (game_object->GetChilds()->size() > 0)
+	{
+		vector<GameObject*>::const_iterator it = game_object->childs.begin();
+		while (it != game_object->childs.end())
+		{
+			CollectRayHits((*it), ray, hits);
+			++it;
+		}
+	}
 }
 
  const std::vector<GameObject*>* GameObject::GetChilds() const
