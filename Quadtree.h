@@ -10,7 +10,7 @@
 #include "Square.h"
 #include "ComponentCamera.h"
 
-#define MAX_BUCKET 2
+#define MAX_BUCKET 1
 
 class QuadNode
 {

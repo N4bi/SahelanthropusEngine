@@ -297,9 +297,11 @@ void GameObject::CollectRayHits(GameObject * game_object, const LineSegment & ra
 
 void GameObject::InsertNode()
 {
-
+	ComponentMesh* cmp_mesh = (ComponentMesh*)GetComponent(Component::MESH);
+	if (cmp_mesh != nullptr)
+	{
 		App->go_manager->quad.Insert(this);
-	
+	}
 
 	if (childs.empty() == false)
 	{

@@ -129,6 +129,7 @@ void ComponentMesh::CalculateFinalBB()
 {
 	transformation = (ComponentTransform*)go->GetComponent(Component::TRANSFORM);
 
+
 	OBB obb = local_bb.Transform(transformation->GetWorldTransformationMatrix());
 	world_bb = obb.MinimalEnclosingAABB();
 	go->bb = &world_bb;

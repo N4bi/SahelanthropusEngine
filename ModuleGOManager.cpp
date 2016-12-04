@@ -28,9 +28,20 @@ bool ModuleGOManager::Init(Json& config)
 	root = new GameObject(nullptr, "root");
 	root->AddComponent(Component::TRANSFORM);
 
-	quad.Create(120.0f);
+	quad.Create(100.0f);
+
 
 	return ret;
+}
+
+bool ModuleGOManager::Start(float dt)
+{
+	bool ret = true;
+	LOG("Start Game Object Manager");
+
+	InsertObjects();
+
+	return false;
 }
 
 update_status ModuleGOManager::PreUpdate(float dt)
@@ -217,17 +228,7 @@ int CheckDistance(const GameObject* go1, const GameObject* go2)
 {
 	if (go1->distance_hit.Length() < go2->distance_hit.Length())
 	{
-		return -1;
-	}
-
-	if (go1->distance_hit.Length() == go2->distance_hit.Length())
-	{
 		return 0;
-	}
-
-	if (go1->distance_hit.Length() > go2->distance_hit.Length())
-	{
-		return 1;
 	}
 }
 
@@ -253,6 +254,7 @@ vector<GameObject*> ModuleGOManager::CollectHits(const LineSegment & ray) const
 	root->CollectRayHits(root, ray, objects_hit);
 	sort(objects_hit.begin(), objects_hit.end(), CheckDistance);
 	return objects_hit;
+
 }
 
 
@@ -302,7 +304,6 @@ GameObject * ModuleGOManager::LoadGameObjectsOnScene(Json & game_objects)
 
 		Component* cmp_go = child->AddComponent((Component::Types)(type));
 		cmp_go->ToLoad(component_data);
-
 	}
 
 	return child;

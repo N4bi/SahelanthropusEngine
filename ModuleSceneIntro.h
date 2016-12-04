@@ -30,7 +30,7 @@ public:
 public:
 	GameObject* camera = nullptr;
 	ComponentCamera* camera_test_cmp = nullptr;
-
+	bool on = false;
 };
 
 

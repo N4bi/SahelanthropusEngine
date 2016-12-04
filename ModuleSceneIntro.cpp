@@ -55,12 +55,15 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();
 
-
-
-	if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_UP)
+	if (!on)
 	{
-		App->go_manager->InsertObjects();
+		if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN)
+		{
+			on = true;
+			App->go_manager->InsertObjects();
+		}
 	}
+
 
 	App->go_manager->quad.FrustumCulling(camera_test_cmp);
 

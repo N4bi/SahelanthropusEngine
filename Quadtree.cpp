@@ -47,6 +47,10 @@ bool QuadNode::Insert(GameObject * object)
 			{
 				if (node->childs.empty())
 				{
+					if(cmp_mesh->GetMesh()->num_vertices < 10)
+					{
+						return false;
+					}
 					if (node->go.size() < MAX_BUCKET)
 					{
 						node->go.push_back(object);

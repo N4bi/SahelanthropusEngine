@@ -17,6 +17,7 @@ public:
 	~ModuleGOManager();
 
 	bool Init(Json& config);
+	bool Start(float dt);
 	update_status PreUpdate(float dt);
 	update_status Update(float dt);
 	bool CleanUp();
