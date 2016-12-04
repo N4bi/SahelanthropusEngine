@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "Component.h"
 #include "ComponentTransform.h"
+#include "Quadtree.h"
 #include "Imgui\imgui.h"
 #include <algorithm>
 
@@ -26,6 +27,8 @@ bool ModuleGOManager::Init(Json& config)
 
 	root = new GameObject(nullptr, "root");
 	root->AddComponent(Component::TRANSFORM);
+
+	quad.Create(120.0f);
 
 	return ret;
 }
@@ -66,6 +69,8 @@ update_status ModuleGOManager::Update(float dt)
 		LineSegment raycast = App->editor->main_camera_component->CastRay();
 		game_object_on_editor = SelectGameObject(raycast, CollectHits(raycast));
 	}
+
+	quad.Render();
 
 	return UPDATE_CONTINUE;
 }
@@ -224,7 +229,6 @@ int CheckDistance(const GameObject* go1, const GameObject* go2)
 	{
 		return 1;
 	}
-
 }
 
 GameObject * ModuleGOManager::SelectGameObject(const LineSegment & ray, const vector<GameObject*> hits) 
@@ -331,6 +335,14 @@ GameObject * ModuleGOManager::SearchGameObjectsByID(GameObject * first_go, int i
 	}
 
 	return ret;
+}
+
+void ModuleGOManager::InsertObjects()
+{
+	if (root->childs.empty() == false)
+	{
+		root->InsertNode();
+	}
 }
 
 void ModuleGOManager::LoadScene(const char * directory)

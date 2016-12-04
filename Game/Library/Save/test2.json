@@ -1,0 +1,2495 @@
+{
+    "Game Objects": [
+        {
+            "Name": "root",
+            "ID Game Object": 2104220673,
+            "ID Parent": 0,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 923569153,
+                    "enabled": true,
+                    "Translation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "transf_matrix": [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Sky001_$AssimpFbx$_Translation",
+            "ID Game Object": 1239494401,
+            "ID Parent": 2104220673,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 373251329,
+                    "enabled": true,
+                    "Translation": [
+                        18.153732,
+                        0,
+                        58.960911
+                    ],
+                    "Rotation": [
+                        -180,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        1,
+                        0,
+                        0,
+                        18.153732,
+                        0,
+                        -1.000000,
+                        0,
+                        0,
+                        0,
+                        0,
+                        -1.000000,
+                        58.960911,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Dummy001_$AssimpFbx$_PreRotation",
+            "ID Game Object": 1592571649,
+            "ID Parent": 2104220673,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 1861219585,
+                    "enabled": true,
+                    "Translation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        -89.999992,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0.000000,
+                        1.000000,
+                        0,
+                        0,
+                        -1.000000,
+                        0.000000,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "City_building_004",
+            "ID Game Object": 818973697,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 2082639873,
+                    "enabled": true,
+                    "Translation": [
+                        -41.475891,
+                        21.014099,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        1,
+                        0,
+                        0,
+                        -41.475891,
+                        0,
+                        1,
+                        0,
+                        21.014099,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 1672226305,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_004.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 539271169,
+                    "ID Material": 1,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/building03_c.tga.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_001",
+            "ID Game Object": 143057665,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 1940618753,
+                    "enabled": true,
+                    "Translation": [
+                        17.707165,
+                        20.053276,
+                        0.000000
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        1,
+                        0,
+                        0,
+                        17.707165,
+                        0,
+                        1,
+                        0,
+                        20.053276,
+                        0,
+                        0,
+                        1,
+                        0.000000,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 1036142849,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_001.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 1181236737,
+                    "ID Material": 2,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/Building_V02_C.png.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_007",
+            "ID Game Object": 1000781825,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 341707777,
+                    "enabled": true,
+                    "Translation": [
+                        16.010492,
+                        37.493286,
+                        -0.000002
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        1,
+                        0,
+                        0,
+                        16.010492,
+                        0,
+                        1,
+                        0,
+                        37.493286,
+                        0,
+                        0,
+                        1,
+                        -0.000002,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 214693377,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_007.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 687961345,
+                    "ID Material": 3,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/building_016_c.tga.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_008",
+            "ID Game Object": 1230831105,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 669452033,
+                    "enabled": true,
+                    "Translation": [
+                        40.979996,
+                        18.270824,
+                        -0.000002
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        89.999992
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        0.000000,
+                        -1.000000,
+                        0,
+                        40.979996,
+                        1.000000,
+                        0.000000,
+                        0,
+                        18.270824,
+                        0,
+                        0,
+                        1,
+                        -0.000002,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 1087689729,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_008.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 1486546945,
+                    "ID Material": 4,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/building_025_c.tga.dds"
+                }
+            ]
+        },
+        {
+            "Name": "Line002",
+            "ID Game Object": 1215831297,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 42156545,
+                    "enabled": true,
+                    "Translation": [
+                        -2.159772,
+                        1.853838,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -89.999992
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        0.000000,
+                        1.000000,
+                        0,
+                        -2.159772,
+                        -1.000000,
+                        0.000000,
+                        0,
+                        1.853838,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 1519480321,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/Line002.shl"
+                }
+            ]
+        },
+        {
+            "Name": "Plane001",
+            "ID Game Object": 555917569,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 1589987585,
+                    "enabled": true,
+                    "Translation": [
+                        -0.028603,
+                        0.026032,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        0.996635,
+                        0.970616,
+                        0.996635
+                    ],
+                    "transf_matrix": [
+                        0.996635,
+                        0,
+                        0,
+                        -0.028603,
+                        0,
+                        0.970616,
+                        0,
+                        0.026032,
+                        0,
+                        0,
+                        0.996635,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 192786945,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/Plane001.shl"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_010",
+            "ID Game Object": 250376193,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 322366209,
+                    "enabled": true,
+                    "Translation": [
+                        25.154011,
+                        -39.153721,
+                        0.000001
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        89.999992
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        0.000000,
+                        -1.000000,
+                        0,
+                        25.154011,
+                        1.000000,
+                        0.000000,
+                        0,
+                        -39.153721,
+                        0,
+                        0,
+                        1,
+                        0.000001,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "City_building_010",
+            "ID Game Object": 121140737,
+            "ID Parent": 250376193,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 781342209,
+                    "enabled": true,
+                    "Translation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "transf_matrix": [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 2081027841,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_010.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 1109399809,
+                    "ID Material": 5,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/building 01_c.tga.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_010",
+            "ID Game Object": 1133937921,
+            "ID Parent": 250376193,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 103875841,
+                    "enabled": true,
+                    "Translation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "transf_matrix": [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 1363043585,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_010.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 1316130049,
+                    "ID Material": 6,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/building 01_c.tga.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_011",
+            "ID Game Object": 1461232897,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 1910221569,
+                    "enabled": true,
+                    "Translation": [
+                        30.134541,
+                        37.493286,
+                        -0.000002
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        1,
+                        0,
+                        0,
+                        30.134541,
+                        0,
+                        1,
+                        0,
+                        37.493286,
+                        0,
+                        0,
+                        1,
+                        -0.000002,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 35561217,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_011.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 1922827521,
+                    "ID Material": 7,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/building_016_c.tga.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_013",
+            "ID Game Object": 1491540225,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 959026177,
+                    "enabled": true,
+                    "Translation": [
+                        -42.288055,
+                        33.201576,
+                        0.000001
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        89.999992
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        0.000000,
+                        -1.000000,
+                        0,
+                        -42.288055,
+                        1.000000,
+                        0.000000,
+                        0,
+                        33.201576,
+                        0,
+                        0,
+                        1,
+                        0.000001,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 954988545,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_013.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 1176590337,
+                    "ID Material": 8,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/building 06_ c.tga.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_014",
+            "ID Game Object": 1797165569,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 1626582017,
+                    "enabled": true,
+                    "Translation": [
+                        -19.439707,
+                        32.061729,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -179.999985
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        -1,
+                        0.000000,
+                        0,
+                        -19.439707,
+                        -0.000000,
+                        -1,
+                        0,
+                        32.061729,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 1014441985,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_014.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 24925953,
+                    "ID Material": 9,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/building03_c.tga.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_016",
+            "ID Game Object": 209948929,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 1095165441,
+                    "enabled": true,
+                    "Translation": [
+                        34.270424,
+                        -41.972748,
+                        0.000001
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -179.999985
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        -1,
+                        0.000000,
+                        0,
+                        34.270424,
+                        -0.000000,
+                        -1,
+                        0,
+                        -41.972748,
+                        0,
+                        0,
+                        1,
+                        0.000001,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "City_building_016",
+            "ID Game Object": 117002753,
+            "ID Parent": 209948929,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 443680769,
+                    "enabled": true,
+                    "Translation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "transf_matrix": [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 102394369,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_016.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 1317684225,
+                    "ID Material": 10,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/building 01_c.tga.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_016",
+            "ID Game Object": 141113601,
+            "ID Parent": 209948929,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 1894712577,
+                    "enabled": true,
+                    "Translation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "transf_matrix": [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 464962049,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_016.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 2102219777,
+                    "ID Material": 11,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/building 01_c.tga.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_017",
+            "ID Game Object": 1200334593,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 1331376385,
+                    "enabled": true,
+                    "Translation": [
+                        44.260082,
+                        -39.153721,
+                        0.000001
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        89.999992
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        0.000000,
+                        -1.000000,
+                        0,
+                        44.260082,
+                        1.000000,
+                        0.000000,
+                        0,
+                        -39.153721,
+                        0,
+                        0,
+                        1,
+                        0.000001,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "City_building_017",
+            "ID Game Object": 2075178753,
+            "ID Parent": 1200334593,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 1927393025,
+                    "enabled": true,
+                    "Translation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "transf_matrix": [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 1515781633,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_017.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 739243265,
+                    "ID Material": 12,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/building 01_c.tga.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_017",
+            "ID Game Object": 277724417,
+            "ID Parent": 1200334593,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 1656918785,
+                    "enabled": true,
+                    "Translation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "transf_matrix": [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 2125002753,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_017.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 377364993,
+                    "ID Material": 13,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/building 01_c.tga.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_022",
+            "ID Game Object": 222638849,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 1966604289,
+                    "enabled": true,
+                    "Translation": [
+                        -20.831324,
+                        -27.426489,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        179.999969
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        -1,
+                        -0.000000,
+                        0,
+                        -20.831324,
+                        0.000000,
+                        -1,
+                        0,
+                        -27.426489,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 2003869697,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_022.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 142756353,
+                    "ID Material": 14,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/building05 _c.tga.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_023",
+            "ID Game Object": 289284353,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 1179267073,
+                    "enabled": true,
+                    "Translation": [
+                        42.130642,
+                        37.493286,
+                        -0.000002
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        1,
+                        0,
+                        0,
+                        42.130642,
+                        0,
+                        1,
+                        0,
+                        37.493286,
+                        0,
+                        0,
+                        1,
+                        -0.000002,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 1311777025,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_023.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 1199555841,
+                    "ID Material": 15,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/building_016_c.tga.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_024",
+            "ID Game Object": 802018817,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 643398401,
+                    "enabled": true,
+                    "Translation": [
+                        -20.572771,
+                        43.060829,
+                        -0.069194
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        179.999985
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        -1,
+                        -0.000000,
+                        0,
+                        -20.572771,
+                        0.000000,
+                        -1,
+                        0,
+                        43.060829,
+                        0,
+                        0,
+                        1,
+                        -0.069194,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 1827907329,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_024.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 861566465,
+                    "ID Material": 16,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/building_025_c.tga.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_026",
+            "ID Game Object": 1762514177,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 788522241,
+                    "enabled": true,
+                    "Translation": [
+                        31.511889,
+                        -16.446016,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        179.999985
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        -1,
+                        -0.000000,
+                        0,
+                        31.511889,
+                        0.000000,
+                        -1,
+                        0,
+                        -16.446016,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 1588181249,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_026.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 1133801985,
+                    "ID Material": 17,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/building05 _c.tga.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_028",
+            "ID Game Object": 1388363521,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 1020946433,
+                    "enabled": true,
+                    "Translation": [
+                        13.387990,
+                        -33.755039,
+                        -0.000001
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        1,
+                        0,
+                        0,
+                        13.387990,
+                        0,
+                        1,
+                        0,
+                        -33.755039,
+                        0,
+                        0,
+                        1,
+                        -0.000001,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 1912066049,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_028.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 1742580737,
+                    "ID Material": 18,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/Building_V01_C.png.dds"
+                }
+            ]
+        },
+        {
+            "Name": "Object010",
+            "ID Game Object": 287514369,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 347544577,
+                    "enabled": true,
+                    "Translation": [
+                        -2.503353,
+                        15.800846,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        1,
+                        0,
+                        0,
+                        -2.503353,
+                        0,
+                        1,
+                        0,
+                        15.800846,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 710611713,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/Object010.shl"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_030",
+            "ID Game Object": 1919244033,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 1121979649,
+                    "enabled": true,
+                    "Translation": [
+                        -42.807240,
+                        -41.835564,
+                        -0.000001
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -89.999992
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        0.000000,
+                        1.000000,
+                        0,
+                        -42.807240,
+                        -1.000000,
+                        0.000000,
+                        0,
+                        -41.835564,
+                        0,
+                        0,
+                        1,
+                        -0.000001,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 790701313,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_030.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 826153217,
+                    "ID Material": 19,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/Building_V01_C.png.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_031",
+            "ID Game Object": 1567096833,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 2095325697,
+                    "enabled": true,
+                    "Translation": [
+                        -34.679482,
+                        -41.835564,
+                        -0.000001
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -89.999992
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        0.000000,
+                        1.000000,
+                        0,
+                        -34.679482,
+                        -1.000000,
+                        0.000000,
+                        0,
+                        -41.835564,
+                        0,
+                        0,
+                        1,
+                        -0.000001,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 119646977,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_031.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 2000811265,
+                    "ID Material": 20,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/Building_V01_C.png.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_032",
+            "ID Game Object": 1971653377,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 1336322305,
+                    "enabled": true,
+                    "Translation": [
+                        -29.478403,
+                        21.014099,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        1,
+                        0,
+                        0,
+                        -29.478403,
+                        0,
+                        1,
+                        0,
+                        21.014099,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 673271297,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_032.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 708006657,
+                    "ID Material": 21,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/building03_c.tga.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_033",
+            "ID Game Object": 947114753,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 605109761,
+                    "enabled": true,
+                    "Translation": [
+                        -32.361496,
+                        42.370422,
+                        0.000001
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        1,
+                        0,
+                        0,
+                        -32.361496,
+                        0,
+                        1,
+                        0,
+                        42.370422,
+                        0,
+                        0,
+                        1,
+                        0.000001,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 1161498881,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_033.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 1228214529,
+                    "ID Material": 22,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/building 06_ c.tga.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_034",
+            "ID Game Object": 1020563457,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 1005608961,
+                    "enabled": true,
+                    "Translation": [
+                        16.049517,
+                        -16.696884,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -90.000008
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        -0.000000,
+                        1.000000,
+                        0,
+                        16.049517,
+                        -1.000000,
+                        -0.000000,
+                        0,
+                        -16.696884,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 1396148481,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_034.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 1861305601,
+                    "ID Material": 23,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/building05 _c.tga.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_035",
+            "ID Game Object": 367479297,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 1318209281,
+                    "enabled": true,
+                    "Translation": [
+                        13.387990,
+                        -40.802517,
+                        -0.000001
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        1,
+                        0,
+                        0,
+                        13.387990,
+                        0,
+                        1,
+                        0,
+                        -40.802517,
+                        0,
+                        0,
+                        1,
+                        -0.000001,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 193967361,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_035.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 837347585,
+                    "ID Material": 24,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/Building_V01_C.png.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_036",
+            "ID Game Object": 1395228673,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 101214209,
+                    "enabled": true,
+                    "Translation": [
+                        -31.216331,
+                        33.201576,
+                        0.000001
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -89.999992
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        0.000000,
+                        1.000000,
+                        0,
+                        -31.216331,
+                        -1.000000,
+                        0.000000,
+                        0,
+                        33.201576,
+                        0,
+                        0,
+                        1,
+                        0.000001,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 745332993,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_036.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 1196050945,
+                    "ID Material": 25,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/building 06_ c.tga.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_037",
+            "ID Game Object": 1584707841,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 1976619521,
+                    "enabled": true,
+                    "Translation": [
+                        -20.317694,
+                        -16.163609,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        179.999969
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        -1,
+                        -0.000000,
+                        0,
+                        -20.317694,
+                        0.000000,
+                        -1,
+                        0,
+                        -16.163609,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 1344657921,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_037.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 1175259905,
+                    "ID Material": 26,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/building05 _c.tga.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_038",
+            "ID Game Object": 1509057281,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 740973057,
+                    "enabled": true,
+                    "Translation": [
+                        -41.649002,
+                        -16.495394,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -90.000008
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        -0.000000,
+                        1.000000,
+                        0,
+                        -41.649002,
+                        -1.000000,
+                        -0.000000,
+                        0,
+                        -16.495394,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 434147073,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_038.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 2070331393,
+                    "ID Material": 27,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/building05 _c.tga.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_039",
+            "ID Game Object": 1601490177,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 211201,
+                    "enabled": true,
+                    "Translation": [
+                        -42.807240,
+                        -30.643888,
+                        -0.000001
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -89.999992
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        0.000000,
+                        1.000000,
+                        0,
+                        -42.807240,
+                        -1.000000,
+                        0.000000,
+                        0,
+                        -30.643888,
+                        0,
+                        0,
+                        1,
+                        -0.000001,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 1829357057,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_039.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 866778625,
+                    "ID Material": 28,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/Building_V01_C.png.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_040",
+            "ID Game Object": 1710575361,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 1127725825,
+                    "enabled": true,
+                    "Translation": [
+                        -34.679482,
+                        -30.643888,
+                        -0.000001
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -89.999992
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        0.000000,
+                        1.000000,
+                        0,
+                        -34.679482,
+                        -1.000000,
+                        0.000000,
+                        0,
+                        -30.643888,
+                        0,
+                        0,
+                        1,
+                        -0.000001,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 1400312833,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_040.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 1865458689,
+                    "ID Material": 29,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/Building_V01_C.png.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_041",
+            "ID Game Object": 1744582401,
+            "ID Parent": 1592571649,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 56698625,
+                    "enabled": true,
+                    "Translation": [
+                        30.695278,
+                        21.612646,
+                        0.000000
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        89.999992
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        0.000000,
+                        -1.000000,
+                        0,
+                        30.695278,
+                        1.000000,
+                        0.000000,
+                        0,
+                        21.612646,
+                        0,
+                        0,
+                        1,
+                        0.000000,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 0,
+                    "ID Component": 355971073,
+                    "enabled": true,
+                    "Bounding box": false,
+                    "Directory": "Library\/Street environment_V01\/Mesh\/City_building_041.shl"
+                },
+                {
+                    "type": 2,
+                    "ID Component": 1106008321,
+                    "ID Material": 30,
+                    "enabled": true,
+                    "Directory": "Library\/Street environment_V01\/Tx\/Building_V02_C.png.dds"
+                }
+            ]
+        },
+        {
+            "Name": "Camera001_$AssimpFbx$_Translation",
+            "ID Game Object": 1246081025,
+            "ID Parent": 2104220673,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 1512311809,
+                    "enabled": true,
+                    "Translation": [
+                        -78.312431,
+                        45.251217,
+                        -97.031113
+                    ],
+                    "Rotation": [
+                        -158.525223,
+                        -37.000511,
+                        -166.680023
+                    ],
+                    "Scale": [
+                        1,
+                        1.000000,
+                        1.000000
+                    ],
+                    "transf_matrix": [
+                        -0.777146,
+                        0.183995,
+                        -0.601822,
+                        -78.312431,
+                        0.000000,
+                        0.956305,
+                        0.292371,
+                        45.251217,
+                        0.629320,
+                        0.227215,
+                        -0.743188,
+                        -97.031113,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Camera001.Target_$AssimpFbx$_Translation",
+            "ID Game Object": 1839728129,
+            "ID Parent": 2104220673,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 1359670529,
+                    "enabled": true,
+                    "Translation": [
+                        -28.132622,
+                        20.873329,
+                        -35.064213
+                    ],
+                    "Rotation": [
+                        -158.525223,
+                        -37.000530,
+                        -166.680023
+                    ],
+                    "Scale": [
+                        1,
+                        1.000000,
+                        1
+                    ],
+                    "transf_matrix": [
+                        -0.777146,
+                        0.183995,
+                        -0.601822,
+                        -28.132622,
+                        -0.000000,
+                        0.956305,
+                        0.292372,
+                        20.873329,
+                        0.629321,
+                        0.227215,
+                        -0.743188,
+                        -35.064213,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Spot001_$AssimpFbx$_Translation",
+            "ID Game Object": 557429761,
+            "ID Parent": 2104220673,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 1641728257,
+                    "enabled": true,
+                    "Translation": [
+                        -66.721268,
+                        141.934128,
+                        0.000006
+                    ],
+                    "Rotation": [
+                        -89.999985,
+                        64.768631,
+                        -89.999985
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        0.000000,
+                        0.426274,
+                        0.904594,
+                        -66.721268,
+                        -0.000000,
+                        -0.904594,
+                        0.426274,
+                        141.934128,
+                        1,
+                        -0.000000,
+                        0.000000,
+                        0.000006,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Spot001.Target_$AssimpFbx$_Translation",
+            "ID Game Object": 1106301953,
+            "ID Parent": 2104220673,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 215242241,
+                    "enabled": true,
+                    "Translation": [
+                        28.890945,
+                        -60.963882,
+                        -0.000003
+                    ],
+                    "Rotation": [
+                        0.000007,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "transf_matrix": [
+                        1,
+                        0,
+                        0,
+                        28.890945,
+                        0,
+                        1,
+                        -0.000000,
+                        -60.963882,
+                        0,
+                        0.000000,
+                        1,
+                        -0.000003,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "camera_test",
+            "ID Game Object": 248361729,
+            "ID Parent": 2104220673,
+            "Enabled": true,
+            "Components": [
+                {
+                    "type": 1,
+                    "ID Component": 1810700289,
+                    "enabled": true,
+                    "Translation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        0,
+                        1.047198,
+                        1.047198
+                    ],
+                    "transf_matrix": [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1.047198,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1.047198,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ]
+                },
+                {
+                    "type": 3,
+                    "ID Component": 1188198401,
+                    "enabled": true,
+                    "Culling": false,
+                    "Debug Frustum": true,
+                    "Frustum Pos": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Frustum front": [
+                        0,
+                        0,
+                        1.047198
+                    ],
+                    "Frustum up": [
+                        0,
+                        1.047198,
+                        0
+                    ],
+                    "Near plane": 1,
+                    "Far plane": 1148.311035,
+                    "FOV": 60,
+                    "Aspect ratio": 1
+                }
+            ]
+        }
+    ]
+} 

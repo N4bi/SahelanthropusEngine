@@ -4,6 +4,8 @@
 #include <string>
 #include <list>
 #include "Globals.h"
+#include "Component.h"
+#include "JSON.h"
 
 class Component;
 enum Types;
@@ -28,6 +30,7 @@ public:
 	void DeleteAllChildren();
 	bool CheckHits(const LineSegment& ray, float& distance);
 	void CollectRayHits(GameObject* game_object, const LineSegment& ray, std::vector<GameObject*>&hits);
+	void InsertNode();
 
 	const std::vector<GameObject*>* GetChilds() const;
 	const std::vector<Component*>* GetComponents() const;

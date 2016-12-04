@@ -13,6 +13,7 @@ public:
 		this->size = size;
 		min_point.x = center.x - size / 2.0f;
 		min_point.y = center.y - size / 2.0f;
+		aabb.SetFromCenterAndSize(float3(center_point.x, 10.0f, center_point.y), float3(size, size, size));
 	}
 	~Square() {}
 
@@ -30,6 +31,10 @@ public:
 	{
 		return size;
 	}
+	AABB GetAABB() const
+	{
+		return aabb;
+	}
 
 	bool PointInSquare(const float2& point) const
 	{
@@ -45,6 +50,7 @@ private:
 	float2 center_point;
 	float2 min_point;
 	float size;
+	AABB aabb;
 };
 
 

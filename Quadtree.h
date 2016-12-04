@@ -2,26 +2,39 @@
 #define __QUADTREE_H__
 
 #include "MathGeoLib\include\MathGeoLib.h"
-#include "ComponentMesh.h"
+
 #include "GameObject.h"
 #include <stdlib.h>
 #include <list>
 #include <vector>
 #include "Square.h"
+#include "ComponentCamera.h"
+
+#define MAX_BUCKET 2
 
 class QuadNode
 {
 public:
 	QuadNode();
-	QuadNode(QuadNode* parent, float size, float2 center,GameObject* object);
+	QuadNode(QuadNode* parent, float size, float2 center);
 	~QuadNode();
 
+	bool Insert(GameObject* object);
+	bool Remove(GameObject* object);
+	bool Intersect(const float2& position) const;
 	void Divide();
+	bool Clear();
+	void Render();
+
+	void FrustumCulling(ComponentCamera* cmp_cam);
+	std::vector<GameObject*> RayPicking(const math::LineSegment& raycast);
+
+
 
 public:
-	GameObject* object = nullptr;
 	Square bb;
 	std::vector<QuadNode*> childs;
+	std::vector<GameObject*> go;
 	QuadNode* parent = nullptr;
 
 };
@@ -35,11 +48,16 @@ public:
 	void Create(float size);
 	bool Insert(GameObject* object);
 	bool Remove(GameObject* object);
-	bool Intersect();
+	bool Clear();
+	void Render();
+
+	void FrustumCulling(ComponentCamera* cmp_cam) const;
+	std::vector<GameObject*> RayPicking(const LineSegment& raycast) const;
+	
 
 private:
 	QuadNode* root = nullptr;
-	float size = 0.0f;
+
 
 };
 

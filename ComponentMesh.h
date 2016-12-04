@@ -27,6 +27,7 @@ public:
 	Mesh* mesh = nullptr;
 	ComponentTransform* transformation;
 	bool bbox_enabled = false;
+	bool render = true;
 };
 
 #endif // !__COMPONENTMESH_H__

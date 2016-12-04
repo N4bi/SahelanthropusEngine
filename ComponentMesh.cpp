@@ -23,66 +23,41 @@ void ComponentMesh::Update(float dt)
 	if (isEnabled())
 	{
 		//If frustum don't contains the geometry bb and culling is activated then don't render the geometry 
-		if (App->scene_intro->camera_test_cmp->culling == false)
+		
+		if (render == true)
 		{
-			transformation = (ComponentTransform*)go->GetComponent(Component::TRANSFORM);
+				transformation = (ComponentTransform*)go->GetComponent(Component::TRANSFORM);
 
-			ComponentMaterial* material = (ComponentMaterial*)go->GetComponent(Component::MATERIAL);
+				ComponentMaterial* material = (ComponentMaterial*)go->GetComponent(Component::MATERIAL);
 
-			uint tex_id = 0;
-			if (material)
-			{
-				tex_id = material->texture_id;
-			}
+				uint tex_id = 0;
+				if (material)
+				{
+					tex_id = material->texture_id;
+				}
 
-			//If geometry is enabled, Render it
+				//If geometry is enabled, Render it
 
-			if (App->renderer3D->wireframe)
-			{
-				App->renderer3D->Render(*mesh, transformation->GetTransformationMatrix(), tex_id, true);
-			}
-			else
-			{
-				App->renderer3D->Render(*mesh, transformation->GetTransformationMatrix(), tex_id);
-			}
+				if (App->renderer3D->wireframe)
+				{
+					App->renderer3D->Render(*mesh, transformation->GetTransformationMatrix(), tex_id, true);
+				}
+				else
+				{
+					App->renderer3D->Render(*mesh, transformation->GetTransformationMatrix(), tex_id);
+				}
 
-			if (bbox_enabled)
-			{
-				App->renderer3D->RenderBoundingBox(world_bb, Red);
-			}
+				if (bbox_enabled)
+				{
+					App->renderer3D->RenderBoundingBox(world_bb, Red);
+				}
+
 		}
 		else
 		{
-			if (App->scene_intro->camera_test_cmp->ContainsAABB(world_bb) == true)
-			{
-			transformation = (ComponentTransform*)go->GetComponent(Component::TRANSFORM);
-
-			ComponentMaterial* material = (ComponentMaterial*)go->GetComponent(Component::MATERIAL);
-
-			uint tex_id = 0;
-			if (material)
-			{
-				tex_id = material->texture_id;
-			}
-
-			//If geometry is enabled, Render it
-
-			if (App->renderer3D->wireframe)
-			{
-				App->renderer3D->Render(*mesh, transformation->GetTransformationMatrix(), tex_id, true);
-			}
-			else
-			{
-				App->renderer3D->Render(*mesh, transformation->GetTransformationMatrix(), tex_id);
-			}
-
-			if (bbox_enabled)
-			{
-				App->renderer3D->RenderBoundingBox(world_bb, Red);
-			}
-			}
+			return;
 		}
-			
+
 	}
 	else
 	{

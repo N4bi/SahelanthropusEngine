@@ -35,8 +35,6 @@ bool ModuleSceneIntro::Start()
 	camera->AddComponent(Component::TRANSFORM);
 	camera_test_cmp = (ComponentCamera*)camera->AddComponent(Component::CAMERA);
 
-
-	
 	return ret;
 }
 
@@ -57,6 +55,14 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();
 
+
+
+	if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_UP)
+	{
+		App->go_manager->InsertObjects();
+	}
+
+	App->go_manager->quad.FrustumCulling(camera_test_cmp);
 
 	return UPDATE_CONTINUE;
 }

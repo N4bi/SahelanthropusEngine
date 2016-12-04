@@ -34,6 +34,7 @@ public:
 	void SaveGameObjectsOnScene(const char* name_file) const;
 	GameObject* LoadGameObjectsOnScene(Json& game_objects);
 	GameObject* SearchGameObjectsByID(GameObject* first_go, int id) const;
+	void InsertObjects();
 
 
 	void LoadScene(const char* directory);
@@ -45,11 +46,13 @@ public:
 	void UpdateChilds(float dt, GameObject* go);
 
 public:
+	Quadtree quad;
 
 private:
 	GameObject* root = nullptr;
 	GameObject* game_object_on_editor = nullptr;
 	vector<GameObject*> to_delete;
+
 
 
 
