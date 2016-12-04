@@ -22,7 +22,6 @@ void ComponentMesh::Update(float dt)
 {
 	if (isEnabled())
 	{
-		//If frustum don't contains the geometry bb and culling is activated then don't render the geometry 
 		
 		if (render == true)
 		{
@@ -52,7 +51,7 @@ void ComponentMesh::Update(float dt)
 					App->renderer3D->RenderBoundingBox(world_bb, Red);
 				}
 
-		}
+		}//if render is false means that we are doing frustum culling 
 		else
 		{
 			return;
@@ -132,7 +131,6 @@ void ComponentMesh::CalculateFinalBB()
 
 	OBB obb = local_bb.Transform(transformation->GetWorldTransformationMatrix());
 	world_bb = obb.MinimalEnclosingAABB();
-	go->bb = &world_bb;
 
 }
 

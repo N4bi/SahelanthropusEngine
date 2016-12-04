@@ -43,9 +43,10 @@ private:
 	float4x4 transformation = float4x4::identity;
 
 	bool transform_updated = false;
+	float4x4 final_transformation = float4x4::identity;
 
 public:
-	float4x4 final_transformation = float4x4::identity;
+
 };
 
 

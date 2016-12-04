@@ -55,6 +55,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();
 
+	//Insert Objects in Quadtree
 	if (!on)
 	{
 		if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN)

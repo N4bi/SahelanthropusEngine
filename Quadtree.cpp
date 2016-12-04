@@ -320,7 +320,7 @@ Quadtree::~Quadtree()
 
 void Quadtree::Create(float size)
 {
-	//Remove old Quadtree
+
 	if (root!= nullptr)
 	{
 		delete root;

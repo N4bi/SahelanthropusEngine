@@ -39,8 +39,6 @@ bool ModuleGOManager::Start(float dt)
 	bool ret = true;
 	LOG("Start Game Object Manager");
 
-	InsertObjects();
-
 	return false;
 }
 
@@ -356,8 +354,6 @@ void ModuleGOManager::LoadScene(const char * directory)
 
 	root = scene.GetArray("Game Objects",0);
 	uint scene_size = scene.GetArraySize("Game Objects");
-
-	//DeleteScene();
 
 	for (uint i = 0; i < scene_size; i++)
 	{

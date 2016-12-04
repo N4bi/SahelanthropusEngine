@@ -116,7 +116,7 @@ bool ModuleMesh::LoadFBX(const char* path)
 		aiReleaseImport(scene);
 
 		ret = true;
-		scene_found = false;//
+		scene_found = false;
 	}
 	else
 	{

@@ -13,7 +13,7 @@ public:
 		this->size = size;
 		min_point.x = center.x - size / 2.0f;
 		min_point.y = center.y - size / 2.0f;
-		aabb.SetFromCenterAndSize(float3(center_point.x, 10.0f, center_point.y), float3(size, size, size));
+		aabb.SetFromCenterAndSize(float3(center_point.x, 1.0f, center_point.y), float3(size, size, size));
 	}
 	~Square() {}
 
@@ -52,11 +52,5 @@ private:
 	float size;
 	AABB aabb;
 };
-
-
-
-
-
-
 #endif // !__SQUARE_H__
 

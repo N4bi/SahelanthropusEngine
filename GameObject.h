@@ -56,7 +56,6 @@ public:
 
 	bool enabled = true;
 	uint id = NULL;
-	AABB* bb = nullptr;
 	float3 distance_hit = float3::zero;
 
 };

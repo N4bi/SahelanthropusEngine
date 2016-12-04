@@ -34,8 +34,7 @@ public:
 
 
 private:
-	void CreatePoints(float2 min_max, int n);
-	void CreateBoundingBox();
+
 	void Render();
 
 	//---- Imgui stuff
@@ -47,25 +46,17 @@ private:
 	void ShowFPSwindow();
 	void ShowHardwareWindow();
 	void ShowConsoleWindow();
-	void ShowAssetsWindow();
 
 public:
 	ComponentCamera* main_camera_component = nullptr;
 	GameObject* main_camera = nullptr;
 
 private:
-	bool box_render;
-	int n_points;
-	Cube_Prim bounding_box;
-	float2 range;
-	list<Sphere_Prim> points;
-
 	//-------Info stuff
 	vector<InfoWindows*> info_window;
 
 	FPSwindow* fps_win = nullptr;
 	HardwareWindow* hd_win = nullptr;
-	AssetsWindow* asset_win = nullptr;
 	SaveSceneWindow* save_win = nullptr;
 	LoadSceneWindow* load_win = nullptr;
 

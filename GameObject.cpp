@@ -41,7 +41,6 @@ GameObject::~GameObject()
 		++it2;
 	}
 
-	bb = nullptr;
 }
 
 void GameObject::PreUpdate(float dt)
@@ -274,12 +273,6 @@ void GameObject::CollectRayHits(GameObject * game_object, const LineSegment & ra
 		ComponentMesh* cmp_mesh = (ComponentMesh*)game_object->GetComponent(Component::MESH);
 		if (cmp_mesh->GetMesh() != nullptr)
 		{
-		/*	if (ray.Intersects(cmp_mesh->world_bb))
-			{
-				hits.push_back(game_object);
-				distance_hit = App->editor->main_camera_component->frustum.pos - cmp_mesh->world_bb.CenterPoint();
-			}*/
-
 			hits = App->go_manager->quad.RayPicking(ray);
 		}
 	}
