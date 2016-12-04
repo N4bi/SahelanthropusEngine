@@ -45,9 +45,19 @@ bool QuadNode::Insert(GameObject * object)
 
 			if (node->Intersect(center_point))
 			{
-				if (node->childs.empty())
+				if (node->childs.empty() == false)
 				{
-					if(cmp_mesh->GetMesh()->num_vertices < 10)
+					std::vector<QuadNode*>::iterator it = node->childs.begin();
+					while (it != node->childs.end())
+					{
+						queue.push(*it);
+						++it;
+					}
+				}
+				else
+				{
+
+					if (cmp_mesh->GetMesh()->num_vertices < 10)
 					{
 						return false;
 					}
@@ -78,22 +88,14 @@ bool QuadNode::Insert(GameObject * object)
 						node->Insert(object);
 						return true;
 						break;
-					}
-				
-				}
-
-				std::vector<QuadNode*>::iterator it = node->childs.begin();
-				while (it != node->childs.end())
-				{
-					queue.push(*it);
-					++it;
-				}
-		
-			}
-		}	
+				   }
+				}				
+			}		
+		}
 	}
-return false;
+	return false;
 }
+
 	
 
 bool QuadNode::Remove(GameObject * object)
@@ -120,16 +122,28 @@ bool QuadNode::Remove(GameObject * object)
 
 			if (node->Intersect(center_point))
 			{
-				std::vector<GameObject*>::iterator it2 = node->go.begin();
-				while (it2 != node->go.end())
+				if (node->childs.empty() == false)
 				{
-					if ((*it2) == object && node->bb.GetCenterPoint().Equals(center_point))
+					std::vector<QuadNode*>::iterator it = node->childs.begin();
+					while (it != node->childs.end())
 					{
-						(*it2) = nullptr;
-						return true;
-						break;
+						queue.push(*it);
+						++it;
 					}
 				}
+				else
+				{
+					std::vector<GameObject*>::iterator it2 = node->go.begin();
+					while (it2 != node->go.end())
+					{
+						if ((*it2) == object && node->bb.GetCenterPoint().Equals(center_point))
+						{
+							(*it2) = nullptr;
+							return true;
+							break;
+						}
+					}
+				}				
 			}
 		}
 	}
@@ -226,41 +240,45 @@ void QuadNode::FrustumCulling(ComponentCamera * cmp_cam)
 	{
 		QuadNode* node = queue.front();
 		queue.pop();
-
-		if (node->go.empty() == false)
+		if (node->childs.empty() == false)
 		{
-			std::vector<GameObject*>::iterator it2 = node->go.begin();
-			while (it2 != node->go.end())
-			{
-				ComponentMesh* cmp_mesh = (ComponentMesh*)(*it2)->GetComponent(Component::MESH);
-				if (cmp_cam->culling)
-				{
-					if (cmp_cam->ContainsAABB(node->bb.GetAABB()))
-					{
-						if (node->childs.empty())
-						{
-							cmp_mesh->render = true;
-						}
-					}
-					else
-					{
-						cmp_mesh->render = false;
-					}
-				}
-				else
-				{
-					cmp_mesh->render = true;
-				}
-				++it2;
-			}
-			
-		}
 			std::vector<QuadNode*>::iterator it = node->childs.begin();
 			while (it != node->childs.end())
 			{
 				queue.push(*it);
 				++it;
 			}
+		}
+		else
+		{
+			if (node->go.empty() == false)
+			{
+				std::vector<GameObject*>::iterator it2 = node->go.begin();
+				while (it2 != node->go.end())
+				{
+					ComponentMesh* cmp_mesh = (ComponentMesh*)(*it2)->GetComponent(Component::MESH);
+					if (cmp_cam->culling)
+					{
+						if (cmp_cam->ContainsAABB(node->bb.GetAABB()))
+						{
+							if (node->childs.empty())
+							{
+								cmp_mesh->render = true;
+							}
+						}
+						else
+						{
+							cmp_mesh->render = false;
+						}
+					}
+					else
+					{
+						cmp_mesh->render = true;
+					}
+					++it2;
+				}
+			}
+		}
 	}
 }
 
@@ -275,31 +293,36 @@ std::vector<GameObject*> QuadNode::RayPicking(const math::LineSegment & raycast)
 	{
 		QuadNode* node = queue.front();
 		queue.pop();
-
-		if (node->go.empty() == false)
+		if (node->childs.empty() == false)
 		{
-			std::vector<GameObject*>::iterator it2 = node->go.begin();
-			while (it2 != node->go.end())
+			std::vector<QuadNode*>::iterator it = node->childs.begin();
+			while (it != node->childs.end())
 			{
-				ComponentMesh* cmp_mesh = (ComponentMesh*)(*it2)->GetComponent(Component::MESH);
-				if (raycast.Intersects(node->bb.GetAABB()))
-				{
-					if (node->childs.empty())
-					{
-						hits.push_back((*it2));
-						(*it2)->distance_hit = (App->editor->main_camera_component->frustum.pos - cmp_mesh->world_bb.CenterPoint());
-					}
-
-				}
-				++it2;
+				queue.push(*it);
+				++it;
 			}
-
 		}
-		std::vector<QuadNode*>::iterator it = node->childs.begin();
-		while (it != node->childs.end())
+		else
 		{
-			queue.push(*it);
-			++it;
+			if (node->go.empty() == false)
+			{
+				std::vector<GameObject*>::iterator it2 = node->go.begin();
+				while (it2 != node->go.end())
+				{
+					ComponentMesh* cmp_mesh = (ComponentMesh*)(*it2)->GetComponent(Component::MESH);
+					if (raycast.Intersects(node->bb.GetAABB()))
+					{
+						if (node->childs.empty())
+						{
+							hits.push_back((*it2));
+							(*it2)->distance_hit = (App->editor->main_camera_component->frustum.pos - cmp_mesh->world_bb.CenterPoint());
+						}
+
+					}
+					++it2;
+				}
+
+			}
 		}
 	}
 	return hits;

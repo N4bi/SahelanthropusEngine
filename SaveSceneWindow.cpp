@@ -34,6 +34,10 @@ void SaveSceneWindow::Render()
 			string library = LIBRARY_DIRECTORY;
 			save_directory = SAVE_DIRECTORY;
 			library.append(save_directory.data());
+			if (App->fs->Exists(library.data()) == false)
+			{
+				App->fs->MakeDirectory(library.data());
+			}
 			sprintf_s(name, 100, "%s.%s", name, "json");
 			library.append(name);
 

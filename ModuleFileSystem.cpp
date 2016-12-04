@@ -36,9 +36,9 @@ bool ModuleFileSystem::Init(Json& config)
 	}
 	else
 	{
-		const char* directories[] = { ASSETS_DIRECTORY,LIBRARY_DIRECTORY,SAVE_DIRECTORY};
+		const char* directories[] = { ASSETS_DIRECTORY,LIBRARY_DIRECTORY};
 
-		for (uint i = 0; i < 3; i++)
+		for (uint i = 0; i < 2; i++)
 		{
 			if (Exists(directories[i]) == 0)
 			{
@@ -141,6 +141,7 @@ unsigned int ModuleFileSystem::Load(const char* file, char** buffer) const
 			LOG("File System error while closing file %s: %s\n", file, PHYSFS_getLastError());
 	}
 	else
+
 		LOG("File System error while opening file %s: %s\n", file, PHYSFS_getLastError());
 
 	return ret;

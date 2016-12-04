@@ -194,7 +194,7 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent, 
 			if (node->mNumMeshes > 1)
 			{
 				game_object = App->go_manager->CreateGameObject(root_game_object, node->mName.C_Str());
-				game_object->AddComponent(Component::TRANSFORM);
+				game_object->AddComponent(Component::TRANSFORM);		
 			}
 			else
 			{
@@ -222,7 +222,7 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent, 
 
 		if (!scene_found)
 		{
-			ImportMesh(new_mesh, path_mesh, scene_folder);	
+			ImportMesh(new_mesh, path_mesh, scene_folder);
 		}
 		else
 		{
@@ -232,10 +232,14 @@ void ModuleMesh::Load(aiNode * node, const aiScene * scene, GameObject* parent, 
 			path_mesh.append(new_mesh->mName.C_Str());
 			path_mesh.append(ext);
 		}
-		Mesh* m = LoadMesh(path_mesh.data());
 
+		Mesh* m = nullptr;
+		m = LoadMesh(path_mesh.data());
+		
 		// Set mesh with all the information
-		comp_mesh->SetMesh(m);	
+		comp_mesh->SetMesh(m);
+		
+		
 
 		//Copy Materials------------------------------------------------------------------------------
 		if (scene->HasMaterials())
